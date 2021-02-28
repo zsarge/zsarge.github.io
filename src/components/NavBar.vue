@@ -1,6 +1,6 @@
 <template>
   <mdb-navbar color="indigo" dark>
-    <mdb-navbar-brand href="https://mdbootstrap.com/">
+    <mdb-navbar-brand href="#">
       <b> Zack Sargent </b>
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
@@ -40,6 +40,7 @@ import {
   mdbDropdownToggle,
   mdbDropdownItem,
 } from "mdbvue";
+
 export default {
   name: "NavbarPage",
   components: {
