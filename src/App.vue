@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <NavbarPage />
-    <img src="./assets/logo-mdb-vue-small.png" />
-    <router-view />
   </div>
 </template>
 

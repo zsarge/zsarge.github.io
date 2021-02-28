@@ -1,7 +1,7 @@
 <template>
   <mdb-navbar color="indigo" dark>
     <mdb-navbar-brand href="https://mdbootstrap.com/">
-      Zack Sargent
+      <b> Zack Sargent </b>
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav>
