@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h3>Make new things work, keep new things working.</h3>
+    <h3>Make new things work, keep old things working.</h3>
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit repellat
     obcaecati cupiditate, pariatur distinctio in ex aperiam maiores, beatae
     reprehenderit nesciunt expedita reiciendis tempore? Quod distinctio labore

@@ -1,28 +1,22 @@
 <template>
-  <mdb-navbar color="indigo" dark>
-    <mdb-navbar-brand href="#">
-      <b> Zack Sargent </b>
+  <mdb-navbar color="white" light>
+    <!-- Hide profile pic on small screens -->
+    <div class="profile-pic d-lg-flex d-sm-none d-none d-md-none title">
+      <img
+        class="rounded-circle img-fluid"
+        src="../assets/profile-pic.jpg"
+        data-holder-rendered="true"
+      />
+    </div>
+    <mdb-navbar-brand class="title" href="#">
+      <h1>Zack Sargent</h1>
+      <h2 class="d-lg-flex d-sm-none d-none d-md-none">zsarge</h2>
     </mdb-navbar-brand>
     <mdb-navbar-toggler>
-      <mdb-navbar-nav>
-        <mdb-nav-item href="#" active>Home</mdb-nav-item>
-        <mdb-nav-item href="#">Features</mdb-nav-item>
-        <mdb-nav-item href="#">Pricing</mdb-nav-item>
-        <mdb-dropdown tag="li" class="nav-item">
-          <mdb-dropdown-toggle
-            tag="a"
-            navLink
-            color="indigo"
-            slot="toggle"
-            waves-fixed
-            >Dropdown</mdb-dropdown-toggle
-          >
-          <mdb-dropdown-menu>
-            <mdb-dropdown-item>Action</mdb-dropdown-item>
-            <mdb-dropdown-item>Another action</mdb-dropdown-item>
-            <mdb-dropdown-item>Something else here</mdb-dropdown-item>
-          </mdb-dropdown-menu>
-        </mdb-dropdown>
+      <mdb-navbar-nav right>
+        <mdb-nav-item class="mdb-nav-item" href="#" active>Home</mdb-nav-item>
+        <mdb-nav-item class="mdb-nav-item" href="#" active>Blog</mdb-nav-item>
+        <mdb-nav-item class="mdb-nav-item" href="#">Live Demos</mdb-nav-item>
       </mdb-navbar-nav>
     </mdb-navbar-toggler>
   </mdb-navbar>
@@ -35,10 +29,6 @@ import {
   mdbNavbarToggler,
   mdbNavbarNav,
   mdbNavItem,
-  mdbDropdown,
-  mdbDropdownMenu,
-  mdbDropdownToggle,
-  mdbDropdownItem,
 } from "mdbvue";
 
 export default {
@@ -49,10 +39,43 @@ export default {
     mdbNavbarToggler,
     mdbNavbarNav,
     mdbNavItem,
-    mdbDropdown,
-    mdbDropdownMenu,
-    mdbDropdownToggle,
-    mdbDropdownItem,
   },
 };
 </script>
+
+<style scoped>
+h1 {
+  font-weight: bold;
+  font-size: 1.4em;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 1em;
+  text-align: left;
+  margin-bottom: 0;
+  color: gray;
+}
+
+.title :hover {
+  color: rgb(93, 92, 92);
+  cursor: pointer;
+}
+
+.mdb-nav-item {
+  font-weight: bolder;
+  margin-right: 1em;
+  font-size: 1.2em;
+}
+
+.mdb-nav-item :hover {
+  background: rgb(235, 235, 235);
+  border-radius: 1em;
+}
+
+.profile-pic {
+  max-width: 4em;
+  margin-right: 1em;
+}
+</style>
