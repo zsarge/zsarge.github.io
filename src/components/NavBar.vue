@@ -1,17 +1,19 @@
 <template>
   <mdb-navbar color="white" light>
-    <!-- Hide profile pic on small screens -->
-    <div class="profile-pic d-lg-flex d-sm-none d-none d-md-none title">
-      <img
-        class="rounded-circle img-fluid"
-        src="../assets/profile-pic.jpg"
-        data-holder-rendered="true"
-      />
+    <div class="title-container title">
+      <!-- Hide profile pic on small screens -->
+      <div class="profile-pic d-lg-flex d-sm-none d-none d-md-none title">
+        <img
+          class="rounded-circle img-fluid"
+          src="../assets/profile-pic.jpg"
+          data-holder-rendered="true"
+        />
+      </div>
+      <mdb-navbar-brand class="title" href="#">
+        <h1>Zack Sargent</h1>
+        <h2 class="title d-lg-flex d-sm-none d-none d-md-none">zsarge</h2>
+      </mdb-navbar-brand>
     </div>
-    <mdb-navbar-brand class="title" href="#">
-      <h1>Zack Sargent</h1>
-      <h2 class="d-lg-flex d-sm-none d-none d-md-none">zsarge</h2>
-    </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav right>
         <mdb-nav-item class="mdb-nav-item" href="#" active>Home</mdb-nav-item>
@@ -45,6 +47,11 @@ export default {
 </script>
 
 <style scoped>
+.title-container {
+  display: flex;
+  cursor: pointer;
+}
+
 h1 {
   font-weight: bold;
   font-size: 1.4em;
@@ -56,7 +63,7 @@ h2 {
   font-size: 1em;
   text-align: left;
   margin-bottom: 0;
-  color: gray;
+  color: rgb(93, 92, 92);
 }
 
 .title :hover {
