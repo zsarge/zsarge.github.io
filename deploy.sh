@@ -15,7 +15,7 @@ cd docs
 echo "zsarge.live" > CNAME
 
 git add -A
-git commit -S -m 'automatic deploy'
+git commit -S -m '[auto] build and deploy website'
 git push
 
 cd -
