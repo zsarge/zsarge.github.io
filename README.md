@@ -1,14 +1,14 @@
-# Zack Sargent's Website
+# Default starter for Gridsome
 
-Currently hosted at https://zsarge.live, though this domain will change in the future.
+This is the project you get when you run `gridsome create new-project`.
 
-This site is currently under development, but I am hosting it live in order to ensure compatibility with Github Pages.
+### 1. Install Gridsome CLI tool if you don't have
 
-## To do:
+`npm install --global @gridsome/cli`
 
-- Tweak for SEO
-  - Add robots.txt
-  - Move to a different hosting provider with better support for SPAs
-- add content
-- read from .md files?
-- add icon for website
+### 2. Create a Gridsome project
+
+1. `gridsome create my-gridsome-site` to install default starter
+2. `cd my-gridsome-site` to open the folder
+3. `gridsome develop` to start a local dev server at `http://localhost:8080`
+4. Happy coding 🎉🙌

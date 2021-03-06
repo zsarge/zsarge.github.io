@@ -1,13 +1,11 @@
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbvue/lib/css/mdb.min.css";
-import Vue from "vue";
-import App from "./App";
-import router from "./router";
+import 'bootstrap-css-only/css/bootstrap.min.css'
+import 'mdbvue/lib/css/mdb.min.css'
+// This is the main.js file. Import global CSS and scripts here.
+// The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
-Vue.config.productionTip = false;
+import DefaultLayout from '~/layouts/Default.vue'
 
-new Vue({
-	router,
-	render: (h) => h(App),
-}).$mount("#app");
+export default function (Vue, { router, head, isClient }) {
+  // Set default layout as a global component
+  Vue.component('Layout', DefaultLayout)
+}
