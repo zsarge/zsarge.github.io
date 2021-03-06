@@ -79,7 +79,8 @@ h2 {
 
 .mdb-nav-item {
   font-weight: bolder;
-  margin-right: 1em;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
   font-size: 1.2em;
 }
 
