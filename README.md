@@ -1,24 +1,21 @@
-# sample-vue-app
+# Zack Sargent's Website
 
-## Project setup
-```
-npm install
-```
+Currently hosted at https://zsarge.live, though this domain will change in the future.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This site is currently under development, but I am hosting it live in order to ensure compatibility with Github Pages.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## To do:
 
-### Lints and fixes files
-```
-npm run lint
+- Remove selection box on firefox:
+
+```css
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+select {
+    background: transparent;
+}
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Set up vue router
