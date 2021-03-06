@@ -4,19 +4,21 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "deploy": "chmod +x deploy.sh && ./deploy.sh",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "deploy": "chmod +x deploy.sh && ./deploy.sh",
     "start": "vue-cli-service serve --open"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "mdbvue": "6.7.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",

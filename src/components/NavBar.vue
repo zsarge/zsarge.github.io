@@ -1,24 +1,31 @@
 <template>
   <mdb-navbar color="white" light>
-    <div class="title-container title">
-      <!-- Hide profile pic on small screens -->
-      <div class="profile-pic d-lg-flex d-sm-none d-none d-md-none title">
-        <img
-          class="rounded-circle img-fluid"
-          src="../assets/profile-pic.jpg"
-          data-holder-rendered="true"
-        />
+    <router-link to="/">
+      <div class="title-container title">
+        <!-- Hide profile pic on small screens -->
+        <div class="profile-pic d-lg-flex d-sm-none d-none d-md-none title">
+          <img
+            class="rounded-circle img-fluid"
+            src="../assets/profile-pic.jpg"
+            data-holder-rendered="true"
+          />
+        </div>
+        <mdb-navbar-brand class="title" href="#">
+          <h1>Zack Sargent</h1>
+          <h2 class="title d-lg-flex d-sm-none d-none d-md-none">zsarge</h2>
+        </mdb-navbar-brand>
       </div>
-      <mdb-navbar-brand class="title" href="#">
-        <h1>Zack Sargent</h1>
-        <h2 class="title d-lg-flex d-sm-none d-none d-md-none">zsarge</h2>
-      </mdb-navbar-brand>
-    </div>
+    </router-link>
+
     <mdb-navbar-toggler>
       <mdb-navbar-nav right>
-        <mdb-nav-item class="mdb-nav-item" href="#" active>Home</mdb-nav-item>
-        <mdb-nav-item class="mdb-nav-item" href="#" active>Blog</mdb-nav-item>
-        <mdb-nav-item class="mdb-nav-item" href="#">Live Demos</mdb-nav-item>
+        <router-link to="/">
+          <mdb-nav-item class="mdb-nav-item">Home</mdb-nav-item>
+        </router-link>
+        <router-link to="/blog">
+          <mdb-nav-item class="mdb-nav-item">Blog</mdb-nav-item>
+        </router-link>
+        <mdb-nav-item class="mdb-nav-item">Live Demos</mdb-nav-item>
       </mdb-navbar-nav>
     </mdb-navbar-toggler>
   </mdb-navbar>
@@ -85,5 +92,9 @@ h2 {
 .profile-pic {
   max-width: 4em;
   margin-right: 1em;
+}
+
+a {
+  color: black;
 }
 </style>
