@@ -6,16 +6,9 @@ This site is currently under development, but I am hosting it live in order to e
 
 ## To do:
 
-- Remove selection box on firefox:
-
-```css
-select:-moz-focusring {
-    color: transparent;
-    text-shadow: 0 0 0 #000;
-}
-select {
-    background: transparent;
-}
-```
-
-- Set up vue router
+- Tweak for SEO
+  - Add robots.txt
+  - Move to a different hosting provider with better support for SPAs
+- add content
+- read from .md files?
+- add icon for website
