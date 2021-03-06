@@ -9,7 +9,6 @@
 import Header from "./Header.vue";
 
 export default {
-  title: "Zack Sargent's Webpage",
   name: "Homepage",
   components: {
     Header,

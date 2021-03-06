@@ -6,11 +6,8 @@
 
 <script>
 import Homepage from "../components/Homepage/Homepage";
-import titleMixin from "../mixins/titleMixin";
 
 export default {
-  mixins: [titleMixin],
-  title: "Zack Sargent's Webpage",
   name: "App",
   components: {
     Homepage,

@@ -41,7 +41,6 @@ import {
 } from "mdbvue";
 
 export default {
-  title: "Zack Sargent's Webpage",
   name: "NavbarPage",
   components: {
     mdbNavbar,
