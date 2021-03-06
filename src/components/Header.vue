@@ -1,6 +1,6 @@
 <template>
-  <div class="header">
-    <h3>Make new things work, keep old things working.</h3>
+  <div class="header-homepage">
+    <h2>Make new things work, keep old things working.</h2>
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit repellat
     obcaecati cupiditate, pariatur distinctio in ex aperiam maiores, beatae
     reprehenderit nesciunt expedita reiciendis tempore? Quod distinctio labore
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped>
-.header {
+.header-homepage {
   text-align: left;
   width: 100%;
   font-size: large;
