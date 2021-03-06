@@ -8,6 +8,9 @@ set -e
 # build
 npm run build
 
+# copy custom 404 page
+cp src/404.html docs/404.html
+
 # navigate into the build output directory
 cd docs
 
