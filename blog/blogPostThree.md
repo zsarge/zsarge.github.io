@@ -1,5 +1,6 @@
 ---
 title: Blog Post Three
+date: 2021-03-05
 ---
 
 # Blog Post Three

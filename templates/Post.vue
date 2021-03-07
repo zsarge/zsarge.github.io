@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div slot="header">
-      <h1>About us</h1>
+      <div v-html="$page.post.title" />
     </div>
     <div slot="content">
       <div v-html="$page.post.content" />

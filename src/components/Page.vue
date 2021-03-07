@@ -15,26 +15,23 @@
 export default {};
 </script>
 
-<style >
+<style>
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 
 :root {
   --max-width: 45rem;
 }
 
-.header h1 {
-  font-weight: 400;
-  margin-bottom: 0;
-}
-
 .header {
-  text-indent: -3em;
+  font-weight: 500;
+  margin-bottom: 0;
+  text-indent: -2em;
   font-family: "Roboto", sans-serif;
-  margin-bottom: 2em;
   transition: text-indent 1s;
+  font-size: 2.3em;
 }
 
-@media screen and (max-width: 50rem) {
+@media screen and (max-width: 60rem) {
   .header {
     text-indent: 0;
   }
