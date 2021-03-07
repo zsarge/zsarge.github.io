@@ -49,6 +49,7 @@ export default {};
 
 .width-restricted {
   margin: auto;
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 1em 0 1em;
   text-align: left;
