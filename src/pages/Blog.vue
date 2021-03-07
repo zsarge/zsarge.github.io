@@ -7,13 +7,16 @@
     </div>
 
     <div slot="content">
-      <ul>
-        <li v-for="post in $page.posts.edges" :key="post.id">
-          <g-link :to="post.node.path">
-            {{ post.node.title }}
-          </g-link>
-        </li>
-      </ul>
+      <!-- <ul> -->
+      <div v-for="post in $page.posts.edges" :key="post.id">
+        <PostPreview
+          :title="post.node.title"
+          :to="post.node.path"
+          :timeToRead="post.node.timeToRead"
+          :excerpt="post.node.excerpt"
+        />
+      </div>
+      <!-- </ul> -->
     </div>
   </Layout>
 </template>
@@ -38,9 +41,14 @@ query Posts {
 </page-query>
 
 <script>
+import PostPreview from "../components/PostPreview";
+
 export default {
   metaInfo: {
     title: "Hello, world!",
+  },
+  components: {
+    PostPreview,
   },
 };
 </script>
