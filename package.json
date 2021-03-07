@@ -1,20 +1,20 @@
 {
-	"name": "my-gridsome-site",
-	"private": true,
-	"scripts": {
-		"build": "gridsome build",
-		"develop": "gridsome develop",
-		"deploy": "chmod +x deploy.sh && ./deploy.sh",
-		"explore": "gridsome explore",
-		"start": "vue-cli-service serve --open"
-	},
-	"dependencies": {
-		"@gridsome/source-filesystem": "^0.6.2",
-		"@gridsome/transformer-remark": "^0.6.4",
-		"gridsome": "^0.7.0",
-		"mdbvue": "6.7.2"
-	},
-	"devDependencies": {
-		"vue-cli-plugin-mdb": "~2.1.0"
-	}
+  "name": "my-gridsome-site",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "deploy": "chmod +x deploy.sh && ./deploy.sh",
+    "explore": "gridsome explore",
+    "start": "vue-cli-service serve --open"
+  },
+  "dependencies": {
+    "@gridsome/source-filesystem": "^0.6.2",
+    "@gridsome/transformer-remark": "^0.6.4",
+    "gridsome": "^0.7.0",
+    "mdbvue": "6.7.2"
+  },
+  "devDependencies": {
+    "vue-cli-plugin-mdb": "~2.1.0"
+  }
 }
