@@ -12,7 +12,11 @@ This is my personal website. It is currently under development, but it is public
 - Blog
   - get better blog previews
   - add more info to the "about this blog" post
+  - improve header styling
+  - consider lowering the font size slightly
 - Code
-  - Delete all of the unnecessary READMEs
+  - delete all of the unnecessary READMEs
 - Other
-  - Get a better favicon
+  - get a better favicon
+  - add cool formatting to links
+  - add "live demos" section
