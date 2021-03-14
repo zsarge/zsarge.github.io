@@ -1,14 +1,18 @@
-# Default starter for Gridsome
+# zsarge.live
 
-This is the project you get when you run `gridsome create new-project`.
+This is my personal website. It is currently under development, but it is public.
 
-### 1. Install Gridsome CLI tool if you don't have
+# To do:
 
-`npm install --global @gridsome/cli`
-
-### 2. Create a Gridsome project
-
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+- Home page
+  - make boids screen
+  - add social media icons
+  - add more info
+  - add resume
+- Blog
+  - get better blog previews
+  - add more info to the "about this blog" post
+- Code
+  - Delete all of the unnecessary READMEs
+- Other
+  - Get a better favicon
