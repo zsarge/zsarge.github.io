@@ -25,7 +25,6 @@
         <router-link to="/blog">
           <mdb-nav-item class="mdb-nav-item">Blog</mdb-nav-item>
         </router-link>
-        <mdb-nav-item class="mdb-nav-item">Live Demos</mdb-nav-item>
       </mdb-navbar-nav>
     </mdb-navbar-toggler>
   </mdb-navbar>
