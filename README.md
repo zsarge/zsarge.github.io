@@ -14,6 +14,7 @@ This is my personal website. It is currently under development, but it is public
   - add more info to the "about this blog" post
   - improve header styling
   - consider lowering the font size slightly
+  - make sure posts are sorted backwards by date
 - Code
   - delete all of the unnecessary READMEs
 - Other
