@@ -1,33 +1,18 @@
 <template>
   <div class="boids">
-    <canvas id="myCanvas"> </canvas>
+    <canvas id="boids-canvas"> </canvas>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { CanvasSpace, Pt, Group } from "pts";
+import { CanvasSpace, Polygon, World, Body, Pt, Particle } from "pts";
 
 class Boid {
-  x: number;
-  y: number;
-  direction: number; // 0 = facing right
-  constructor(x: number, y: number, direction: number) {
-    this.x = x;
-    this.y = y;
-    this.direction = direction;
+  pt: Pt;
+  constructor(pt: Pt) {
+    this.pt = pt;
   }
-}
-
-function drawTriangle(ctx: CanvasRenderingContext2D, b: Boid) {
-  const radius = 50;
-  const divot = radius / 2;
-  ctx.beginPath();
-  ctx.moveTo(b.x + radius, b.y);
-  ctx.lineTo(b.x - radius, b.y + radius);
-  ctx.lineTo(b.x - radius + divot, b.y);
-  ctx.lineTo(b.x - radius, b.y - radius);
-  ctx.fill();
 }
 
 @Component
@@ -36,25 +21,57 @@ export default class Boids extends Vue {
   private canvasHeight: number = 720;
 
   mounted(): void {
-    const canvas = <HTMLCanvasElement>document.getElementById("myCanvas");
-    canvas.width = this.canvasWidth;
-    canvas.height = this.canvasHeight;
-    canvas.style.width = "100%";
-    canvas.style.height = "500px";
-    const ctx = canvas.getContext("2d");
-    if (ctx === null || ctx === undefined) return;
+    var space = new CanvasSpace("#boids-canvas");
+    space.setup({ bgcolor: "rgb(149, 149, 255)", resize: true, retina: true });
+    var form = space.getForm();
+    var world: World;
 
-    let b = new Boid(100, 60, 0);
+    space.add({
+      start: (bound, space) => {
+        world = new World(space.innerBound);
 
-    drawTriangle(ctx, b);
+        let unit = (space.size.x + space.size.y) / 150;
+
+        let triangle = Body.fromGroup(
+          Polygon.fromCenter(space.center, unit * 3, 3)
+        );
+
+        // add to world
+        world.add(triangle, "triangle");
+      },
+
+      animate: (time, ftime) => {
+        if (ftime === undefined) return;
+        world.drawParticles((p, i) =>
+          form.fillOnly("#09f").point(p, p.radius, "circle")
+        );
+
+        world.drawBodies((b, i) => {
+          form.fillOnly(["#0c9", "#f03", "#fe6"][i % 3]).polygon(b);
+          form.strokeOnly("rgba(0,0,0,0.1");
+          b.linksToLines().forEach((l) => form.line(l)); // visualize the edge constraints
+        });
+
+        world.update(ftime);
+      },
+
+      action: (type, px, py) => {
+        world.body("triangle")[0].position = new Pt(px, py);
+      },
+
+      resize: (bound, evt) => {
+        if (world) world.bound = space.innerBound;
+      },
+    });
+    space.bindMouse().bindTouch().play();
   }
 }
 </script>
 
 <style scoped>
-#myCanvas {
+#boids-canvas {
   width: 100%;
   height: 100%;
-  border: 1px solid #000000;
+  border: 1px solid rgb(149, 149, 255);
 }
 </style>
