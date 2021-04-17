@@ -1,21 +1,43 @@
 <template>
-  <div class="preview-container">
-    <div class="preview">
-      <g-link class="link" :to="to">
-        <div class="heading">
-          <div class="title">
-            {{ title }}
-          </div>
-          <div class="time-to-read">{{ timeToRead }} min read</div>
-        </div>
-        {{ excerpt }}
-      </g-link>
-    </div>
+  <div class="preview">
+    <g-link class="link" :to="to">
+      <mdb-card>
+        <mdb-card-body>
+          <mdb-card-title class="title">
+            <div class="joiner">
+              {{ title }}
+              <div class="time-to-read">{{ timeToRead }} min read</div>
+            </div>
+          </mdb-card-title>
+
+          <mdb-card-text>
+            {{ excerpt }}
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+    </g-link>
   </div>
 </template>
 
 <script>
+import {
+  mdbCard,
+  mdbCardImage,
+  mdbCardBody,
+  mdbCardTitle,
+  mdbCardText,
+  mdbBtn,
+} from "mdbvue";
+
 export default {
+  components: {
+    mdbCard,
+    mdbCardImage,
+    mdbCardBody,
+    mdbCardTitle,
+    mdbCardText,
+    mdbBtn,
+  },
   props: {
     title: String,
     to: String,
@@ -27,38 +49,29 @@ export default {
 
 <style scoped>
 .preview {
-  background: rgb(232, 240, 243);
   margin: 1em;
-  padding: 1em;
-  font-size: 1.3em;
-  border: 0.1em;
-}
-
-.preview-container {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-.preview-container :hover {
-  color: rgb(173, 151, 151);
-}
-
-.link {
   color: black;
 }
-
-.heading {
-  display: flex;
-}
-
-.title {
-  color: rgb(141, 141, 173);
-  margin-right: 0.8rem;
-}
-
 .time-to-read {
-  font-size: 1rem;
-  padding-top: 0.3rem;
+  color: black;
+  margin-left: 0.2em;
+  padding-bottom: 0.1em;
+  font-size: 0.7em;
+  justify-content: flex-end;
+}
+.joiner {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: space-between;
+}
+.title {
+  color: black;
+  margin-bottom: 0;
+  display: inline;
+}
+
+.preview:hover {
+  color: blue;
 }
 </style>
