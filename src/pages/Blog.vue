@@ -1,13 +1,10 @@
 <template>
   <Layout>
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-
     <div slot="header">
       <h1>Welcome to my blog!</h1>
     </div>
 
     <div slot="content">
-      <!-- <ul> -->
       <div v-for="post in $page.posts.edges" :key="post.id">
         <PostPreview
           :title="post.node.title"
@@ -16,7 +13,6 @@
           :excerpt="post.node.excerpt"
         />
       </div>
-      <!-- </ul> -->
     </div>
   </Layout>
 </template>
