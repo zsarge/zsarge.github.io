@@ -5,7 +5,6 @@
     </div>
 
     <div slot="content">
-      <p>Woah this is text as well!</p>
       <Boids />
     </div>
   </Layout>
