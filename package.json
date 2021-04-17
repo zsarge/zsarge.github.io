@@ -12,13 +12,16 @@
 		"@gridsome/source-filesystem": "^0.6.2",
 		"@gridsome/transformer-remark": "^0.6.4",
 		"core-js": "^3.6.5",
+		"easeljs": "^1.0.2",
 		"gridsome": "^0.7.0",
 		"mdbvue": "6.7.2",
+		"pts": "^0.10.5",
 		"vue": "^2.6.11",
 		"vue-class-component": "^7.2.3",
 		"vue-property-decorator": "^9.1.2"
 	},
 	"devDependencies": {
+		"@types/easeljs": "^1.0.0",
 		"@vue/cli-plugin-babel": "~4.5.0",
 		"@vue/cli-plugin-typescript": "~4.5.0",
 		"@vue/cli-service": "~4.5.0",

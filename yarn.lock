@@ -1082,6 +1082,19 @@
   dependencies:
     "@types/node" "*"
 
+"@types/createjs-lib@*":
+  "integrity" "sha1-+uguO6hgZmOxkOeJzsfZxyj8Qdc="
+  "resolved" "https://registry.npmjs.org/@types/createjs-lib/-/createjs-lib-0.0.29.tgz"
+  "version" "0.0.29"
+
+"@types/easeljs@^1.0.0":
+  "integrity" "sha512-DkhxqkgylaZGeuod35MCiv1Rix8GnBGv+URRBZt4rsMvhyi7Iap6SZbeEN5bD3b8BXHozHEKB/to9ohUDr3GIA=="
+  "resolved" "https://registry.npmjs.org/@types/easeljs/-/easeljs-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "@types/createjs-lib" "*"
+    "@types/tweenjs" "*"
+
 "@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.18":
   "integrity" "sha512-DJOSHzX7pCiSElWaGR8kCprwibCB/3yW6vcT8VG3P0SJjnv19gnWG/AZMfM60Xj/YJIp/YCaDHyvzsFVeniARA=="
   "resolved" "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-4.17.19.tgz"
@@ -1196,6 +1209,13 @@
   "integrity" "sha512-0VBprVqfgFD7Ehb2vd8Lh9TG3jP98gvr8rgehQqzztZNI7o8zS8Ad4jyZneKELphpuE212D8J70LnSNQSyO6bQ=="
   "resolved" "https://registry.npmjs.org/@types/tapable/-/tapable-1.0.7.tgz"
   "version" "1.0.7"
+
+"@types/tweenjs@*":
+  "integrity" "sha512-jf/riSjb8yvlGQNqWzYhDTl04ZHSqlUfuCXL4NI9rglqwjm0jLlxR/40i4T8QLI5jhydQViG/DhvLCfAGNrjAQ=="
+  "resolved" "https://registry.npmjs.org/@types/tweenjs/-/tweenjs-1.0.3.tgz"
+  "version" "1.0.3"
+  dependencies:
+    "@types/createjs-lib" "*"
 
 "@types/uglify-js@*":
   "integrity" "sha512-EGkrJD5Uy+Pg0NUR8uA4bJ5WMfljyad0G+784vLCNUkD+QwOJXUbBYExXfVGf7YtyzdQp3L/XMYcliB987kL5Q=="
@@ -4170,6 +4190,11 @@
     "inherits" "^2.0.1"
     "readable-stream" "^2.0.0"
     "stream-shift" "^1.0.0"
+
+"easeljs@^1.0.2":
+  "integrity" "sha512-PQTsiud32vrUIqZCbynjOJjCzoEp0xH+MRusRCdsZ1MzL4LCE2vp4Sa5cr6aShB3mK4vMZ8LFPnts4xuFhjEmg=="
+  "resolved" "https://registry.npmjs.org/easeljs/-/easeljs-1.0.2.tgz"
+  "version" "1.0.2"
 
 "easy-stack@^1.0.1":
   "integrity" "sha512-wK2sCs4feiiJeFXn3zvY0p41mdU5VUgbgs1rNsc/y5ngFUijdWd+iIN8eoyuZHKB8xN6BL4PdWmzqFmxNg6V2w=="
@@ -9100,6 +9125,11 @@
   "integrity" "sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ=="
   "resolved" "https://registry.yarnpkg.com/psl/-/psl-1.8.0.tgz"
   "version" "1.8.0"
+
+"pts@^0.10.5":
+  "integrity" "sha512-Dx8J3cQc2pXLpAb9cHDRCdxJO9c1YEPdxYTzbV16NyhxDP/CXl7zv2h/MgfIYaTXN4nPmtlagTD9b1YjzlLOBQ=="
+  "resolved" "https://registry.npmjs.org/pts/-/pts-0.10.5.tgz"
+  "version" "0.10.5"
 
 "public-encrypt@^4.0.0":
   "integrity" "sha512-zVpa8oKZSz5bTMTFClc1fQOnyyEzpl5ozpi1B5YcvBrdohMjH2rfsBtyXcuNuwjsDIXmBYlF2N5FlJYhR29t8Q=="
