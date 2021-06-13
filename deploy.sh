@@ -2,6 +2,11 @@
 
 # modified from: https://cli.vuejs.org/guide/deployment.html#github-pages
 
+# stolen from: https://stackoverflow.com/a/4774063/10976718
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+cd $SCRIPTPATH
+
 # abort on errors
 set -e
 
