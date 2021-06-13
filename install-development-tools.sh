@@ -8,9 +8,13 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 cd $SCRIPTPATH
 
+echo "Installing Files..."
 npm install
 sudo npm install --global @gridsome/cli
 
+echo "Installing Extensions for VSCode..."
+code --install-extension octref.vetur
+
 echo ""
 echo "Install finished."
-echo "Use `npm run-script develop` to start working with the site."
+echo "Use \`npm run-script develop\` to start working with the site."
