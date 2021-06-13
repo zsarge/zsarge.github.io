@@ -41,7 +41,7 @@ export default {
   props: {
     title: String,
     to: String,
-    timeToRead: String,
+    timeToRead: Number,
     excerpt: String,
   },
 };
