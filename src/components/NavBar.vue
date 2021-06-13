@@ -19,12 +19,12 @@
 
     <mdb-navbar-toggler>
       <mdb-navbar-nav right>
-        <router-link to="/">
+        <g-link to="/">
           <mdb-nav-item class="mdb-nav-item">Home</mdb-nav-item>
-        </router-link>
-        <router-link to="/blog">
+        </g-link>
+        <g-link to="/blog">
           <mdb-nav-item class="mdb-nav-item">Blog</mdb-nav-item>
-        </router-link>
+        </g-link>
         <mdb-nav-item class="mdb-nav-item">Live Demos</mdb-nav-item>
       </mdb-navbar-nav>
 
