@@ -17,6 +17,8 @@ This is my personal website. It is currently under development, but it is public
   - improve header styling
   - consider lowering the font size slightly
   - make sure posts are sorted backwards by date
+  - post ideas:
+    - How to use Bootstrap grid in gridsome?
 - Code
   - delete all of the unnecessary READMEs
 - Other
