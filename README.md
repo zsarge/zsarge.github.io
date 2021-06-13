@@ -6,6 +6,7 @@ This is my personal website. It is currently under development, but it is public
 
 - Home page
   - make boids screen
+  - make border with conway's game of life
   - add social media icons
   - add more info
   - add resume
@@ -21,3 +22,4 @@ This is my personal website. It is currently under development, but it is public
   - get a better favicon
   - add cool formatting to links
   - add "live demos" section
+  -
