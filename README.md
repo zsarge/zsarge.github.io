@@ -23,3 +23,11 @@ This is my personal website. It is currently under development, but it is public
   - get a better favicon
   - add cool formatting to links
   - add "live demos" section
+  - remove unused files
+
+# Goals for this website:
+
+- Give people links to my social media
+- Give a short description about myself
+- Show off some of the projects I've worked on
+- Provide a place to host some of the projects I'll work on in the future
