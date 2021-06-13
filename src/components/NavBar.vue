@@ -1,6 +1,6 @@
 <template>
-  <mdb-navbar color="white" light>
-    <g-link to="/">
+  <mdb-navbar color="white" light class="row">
+    <g-link to="/" class="offset-0 offset-xl-1 col-xl-5 col-4">
       <div class="title-container title">
         <!-- Hide profile pic on small screens -->
         <div class="profile-pic d-lg-flex d-sm-none d-none d-md-none title">
@@ -17,7 +17,7 @@
       </div>
     </g-link>
 
-    <mdb-navbar-toggler>
+    <mdb-navbar-toggler class="col-xl-5">
       <mdb-navbar-nav right>
         <g-link to="/">
           <mdb-nav-item class="mdb-nav-item">Home</mdb-nav-item>
@@ -27,15 +27,6 @@
         </g-link>
         <mdb-nav-item class="mdb-nav-item">Live Demos</mdb-nav-item>
       </mdb-navbar-nav>
-
-      <!-- <mdb-navbar-nav right>
-        <g-link to="/">
-          <mdb-nav-item class="mdb-nav-item">Home</mdb-nav-item>
-        </g-link>
-        <g-link to="/blog">
-          <mdb-nav-item class="mdb-nav-item">Blog</mdb-nav-item>
-        </g-link>
-      </mdb-navbar-nav> -->
     </mdb-navbar-toggler>
   </mdb-navbar>
 </template>
@@ -62,9 +53,21 @@ export default {
 </script>
 
 <style scoped>
+mdb-navbar {
+  display: flex !important;
+  flex-flow: row wrap !important;
+}
+
+.width-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: space-between;
+}
+
 .title-container {
   display: flex;
   cursor: pointer;
+  margin: 0;
 }
 
 h1 {
