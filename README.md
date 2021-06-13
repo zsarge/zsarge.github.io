@@ -10,6 +10,7 @@ This is my personal website. It is currently under development, but it is public
   - add social media icons
   - add more info
   - add resume
+  - add max width for header
 - Blog
   - get better blog previews
   - add more info to the "about this blog" post
@@ -22,4 +23,3 @@ This is my personal website. It is currently under development, but it is public
   - get a better favicon
   - add cool formatting to links
   - add "live demos" section
-  -
