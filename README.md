@@ -26,6 +26,7 @@ This is my personal website. It is currently under development, but it is public
   - add cool formatting to links
   - add "live demos" section
   - remove unused files
+  - feature where you click on my profile pic and it is randomly filtered
 
 # Goals for this website:
 

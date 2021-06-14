@@ -1,5 +1,5 @@
 <template>
-  <mdb-navbar color="white" light class="row">
+  <mdb-navbar color="white" light class="row container-fluid" id="navbar">
     <g-link to="/" class="offset-0 offset-xl-1 col-xl-5 col-4">
       <div class="title-container title">
         <!-- Hide profile pic on small screens -->
@@ -53,9 +53,8 @@ export default {
 </script>
 
 <style scoped>
-mdb-navbar {
-  display: flex !important;
-  flex-flow: row wrap !important;
+#navbar {
+  margin: 0 !important;
 }
 
 .width-container {

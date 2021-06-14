@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <NavBar />
-    <Page>
+    <Page class="offset-0 col-12 offset-md-2 col-md-7 offset-xl-3 col-xl-6">
       <div slot="header">
         <slot name="header" />
       </div>

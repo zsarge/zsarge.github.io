@@ -1,13 +1,9 @@
 <template>
   <div class="page-content">
-    <div class="centered">
-      <div class="width-restricted">
-        <div class="header">
-          <slot name="header"></slot>
-        </div>
-        <slot name="content"></slot>
-      </div>
+    <div class="header">
+      <slot name="header"></slot>
     </div>
+    <slot name="content"></slot>
   </div>
 </template>
 
@@ -40,19 +36,6 @@ export default {};
 .page-content {
   margin-top: 1.3em;
   font-family: "Noto Sans", sans-serif;
-}
-
-.centered {
-  display: flex;
-  justify-content: center;
-}
-
-.width-restricted {
-  margin: auto;
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 1em 0 1em;
-  text-align: left;
 }
 
 p {
