@@ -1,8 +1,9 @@
 <template>
   <div class="introduction">
+    <h3>About Me:</h3>
     Hello! I am a
     <Age />
-    year old developer.
+    year old who loves programming.
   </div>
 </template>
 
