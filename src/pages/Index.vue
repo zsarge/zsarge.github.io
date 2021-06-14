@@ -10,8 +10,6 @@
   </Layout>
 </template>
 
-
-
 <script>
 import Intro from "../components/Intro";
 
