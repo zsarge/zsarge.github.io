@@ -10,6 +10,22 @@ SOURCE_PATH = File.join(__dir__, 'content')
 OUTPUT_PATH = File.join(__dir__, 'build')
 ARTICLES_PATH = File.join(SOURCE_PATH, 'articles')
 
+# Cross-platform way of finding an executable in the $PATH.
+#
+#   which('ruby') #=> /usr/bin/ruby
+# 
+# FROM: https://stackoverflow.com/a/5471032
+def which(cmd)
+  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
+  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+    exts.each do |ext|
+      exe = File.join(path, "#{cmd}#{ext}")
+      return exe if File.executable?(exe) && !File.directory?(exe)
+    end
+  end
+  nil
+end
+
 def set_up_files
   def touch file_name
     File.open(File.join(SOURCE_PATH, file_name), 'w') { |file| file.write("") }
@@ -27,8 +43,10 @@ def set_up_files
 end
 
 class Article 
-  attr_reader :title, :url, :filename, :date, :tags, :author, :content
+  attr_reader :title, :url, :filename, :filepath, :date, :tags, :author, :content
   def initialize(filepath:)
+    @html = nil
+    @filepath = filepath
     @author = 'Zack Sargent'
 
     @filename = File.basename(filepath, ".md")
@@ -62,11 +80,28 @@ class Article
       @content = file.read # get rest of file
     end
   end
+
+  def to_html
+    @html || @html = `pandoc -f markdown -t html --highlight-style espresso <(tail -n +5 \"#{@filepath}\")`
+  end
+
+  def save_as_html
+    def create path
+      Dir.mkdir(path) unless Dir.exist?(path)
+    end
+    create OUTPUT_PATH
+    create File.join(OUTPUT_PATH, 'articles')
+    
+    File.open(File.join(OUTPUT_PATH, 'articles', "#{@filename}.html"), 'w') do |file|
+      file.write self.to_html
+    end
+  end
 end
 
 def generate_blog
   Dir["#{ARTICLES_PATH}/*"].each do |file|
-    p Article.new(filepath: file)
+    article = Article.new(filepath: file)
+    article.save_as_html
   end
 end
 
@@ -88,6 +123,7 @@ Arguments:
   when "init", "--init", "initialize", "--initialize"
     set_up_files
   when "generate", "--generate"
+	raise 'pandoc could not be found' unless which("pandoc")
     generate_blog
   else 
     puts "command not recognized. use --help for details"
