@@ -142,7 +142,7 @@ end
 
 def generate_blog
   articles = Dir["#{ARTICLES_PATH}/*"].map {|file| Article.new(filepath: file)}
-  articles = articles.sort_by{|article| article.date }.reverse
+  tags = articles.sort_by{|article| article.date }.reverse
 
   tags = Hash.new { |h, k| h[k] = [] }
 
@@ -153,11 +153,16 @@ def generate_blog
     end
   end
 
+  tags = tags.sort { |(tag_name_1, articles_1), (tag_name_2, articles_2)| 
+    # sort by count first, then alphabetically
+    count_order = articles_1.size <=> articles_2.size 
+    return count_order unless count_order == 0
+    return tag_name_2 <=> tag_name_1
+  }.reverse
+
   $footer = get_template('footer.erb').result(binding)
   $articles = get_template('articles.erb').result(binding)
   $tags = get_template('tags.erb').result(binding)
-
-  tags = tags.sort_by{|tag_name, articles| articles.size}.reverse
 
   generate_indicies(articles, tags)
   generate_tags(tags)
