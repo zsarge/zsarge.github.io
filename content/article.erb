@@ -7,16 +7,17 @@
   <meta name="author" content="<%=author%>">
   <meta property="article:author" content="<%=author%>">
   <meta name="keywords" content="<%= tags.join(", ")%>">
-  <title> <%= title %> </title>
-  <meta name="twitter:title" content="<%=title%>">
-  <meta name="twitter:text:title" content="<%=title%>">
-  <meta name="twitter:description" content="<%=preview%>">
-  <meta name="og:description" content="<%=preview%>">
+  <title> <%= h(title) %> </title>
+  <meta name="twitter:title" content="<%=h(title)%>">
+  <meta name="twitter:text:title" content="<%=h(title)%>">
+  <meta name="twitter:description" content="<%=h(preview)%>">
+  <meta name="description" content="<%=h(preview)%>">
+  <meta name="og:description" content="<%=h(preview)%>">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
-  <meta name="description" content="<%=preview%>">
+  <meta property="og:url" content="<%=full_url%>">
+  <link rel="canonical" href="<%=full_url%>">
   <meta property="article:published_time" content="<%=date.to_datetime.iso8601%>">
-  <link rel="canonical" href="<%=url%>">
 </head>
 
 <body>
@@ -34,6 +35,7 @@
     Tags: <%= get_tags_formatted %>
     Published: 
     <time datetime="<%= date %>" pubdate="pubdate"><%= date.strftime("%A, %B %e, %Y") %></time>
+    Reading time: <%= reading_time %>
     </div>
 
   <%= to_html %>

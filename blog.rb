@@ -7,10 +7,14 @@
 require 'date'
 require 'erb'
 
+include ERB::Util
+
 SOURCE_PATH = File.join(__dir__, 'content')
 OUTPUT_PATH = File.join(__dir__, 'build')
 ARTICLES_PATH = File.join(SOURCE_PATH, 'articles')
 CURRENT_YEAR = Time.new.year
+
+DOMAIN_NAME = "zsarge.github.io"
 
 # Cross-platform way of finding an executable in the $PATH.
 #
@@ -112,6 +116,7 @@ class Article
 
   def get_tags_formatted = @tags.map { format_tag(_1) }.join(" ")
   def format_tag(tag) = "<span class=\"tag\"> <a href=\"/tag/#{tag}.html\">#{tag}</a></span>"
+  def full_url = "https://#{DOMAIN_NAME}#{@url}"
 end
 
 def generate_indicies(articles, tags)
