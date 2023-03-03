@@ -28,23 +28,6 @@ def which(cmd)
   nil
 end
 
-def set_up_files
-  def touch file_name
-    File.open(File.join(SOURCE_PATH, file_name), 'w') { |file| file.write("") }
-  end
-
-  dirs = [SOURCE_PATH, OUTPUT_PATH]
-  raise "directories exist" if dirs.any? { Dir.exist? _1 }
-  dirs.each { Dir.mkdir _1 }
-
-  %w(header.erb footer.erb article.erb index.erb tag.erb tags.erb).each { touch _1 }
-
-  Dir.mkdir(ARTICLES_PATH)
-
-  touch File.join(ARTICLES_PATH, 'article_1.md')
-end
-
-
 def get_template(name) 
    ERB.new(File.read(File.join(SOURCE_PATH, name)))
 end
@@ -175,13 +158,9 @@ Arguments:
         show this help text
     --generate
         transform the content from ./content into the html files in ./build
-    --initialize | --init
-        create all the expected files and directories
     "
-  when "init", "--init", "initialize", "--initialize"
-    set_up_files
   when "generate", "--generate"
-	raise 'pandoc could not be found' unless which("pandoc")
+    raise 'pandoc could not be found' unless which("pandoc")
     generate_blog
   else 
     puts "command not recognized. use --help for details"
