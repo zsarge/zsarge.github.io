@@ -49,6 +49,10 @@ def get_template(name)
    ERB.new(File.read(File.join(SOURCE_PATH, name)))
 end
 
+def header(title="Zack Sargent's Blog")
+  get_template('header.erb').result(binding)
+end
+
 
 def create path
   Dir.mkdir(path) unless Dir.exist?(path)
@@ -149,7 +153,6 @@ def generate_blog
     end
   end
 
-  $header = get_template('header.erb').result(binding)
   $footer = get_template('footer.erb').result(binding)
   $articles = get_template('articles.erb').result(binding)
   $tags = get_template('tags.erb').result(binding)
