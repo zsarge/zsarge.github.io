@@ -5,10 +5,12 @@
 # minimizing the amount of code needed to maintain it.
 
 require 'date'
+require 'erb'
 
 SOURCE_PATH = File.join(__dir__, 'content')
 OUTPUT_PATH = File.join(__dir__, 'build')
 ARTICLES_PATH = File.join(SOURCE_PATH, 'articles')
+CURRENT_YEAR = Time.new.year
 
 # Cross-platform way of finding an executable in the $PATH.
 #
@@ -35,7 +37,7 @@ def set_up_files
   raise "directories exist" if dirs.any? { Dir.exist? _1 }
   dirs.each { Dir.mkdir _1 }
 
-  %w(header.html footer.html).each { touch _1 }
+  %w(header.erb footer.erb).each { touch _1 }
 
   Dir.mkdir(ARTICLES_PATH)
 
@@ -69,20 +71,19 @@ class Article
 
       # tags
       if file.readline =~ /^Tags: (.*)$/
-        @tags = $1.gsub(/[[:space:]]/, '').split(',')
+        @tags = $1.split(',').map{ _1.strip }
       else
         raise "Invalid tags in '#{filename}'"
       end
 
       raise "Line 4 must be blank in #{filename}" unless file.readline.strip == ''
-      raise "Line 5 must be blank in #{filename}" unless file.readline.strip == ''
 
       @content = file.read # get rest of file
     end
   end
 
   def to_html
-    @html || @html = `pandoc -f markdown -t html --highlight-style espresso <(tail -n +5 \"#{@filepath}\")`
+    @html || @html = `pandoc -f markdown -t html --highlight-style espresso <(tail -n +4 \"#{@filepath}\")`
   end
 
   def save_as_html
@@ -93,9 +94,14 @@ class Article
     create File.join(OUTPUT_PATH, 'articles')
     
     File.open(File.join(OUTPUT_PATH, 'articles', "#{@filename}.html"), 'w') do |file|
-      file.write self.to_html
+      file.write get_template('article.erb').result(binding)
     end
   end
+
+  private
+  def get_template(name) = ERB.new(File.read(File.join(SOURCE_PATH, name)))
+  def format_tag(tag) = "<span class=\"tag\">#{tag}</span>"
+  def get_tags_formatted = @tags.map { format_tag(_1) }.join(" ")
 end
 
 def generate_blog

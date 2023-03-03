@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="<%=author%>">
+  <meta name="keywords" content="<%= tags.join(", ")%>">
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body>
+<article class="post">
+  <time datetime="<%= date %>" pubdate="pubdate"></time>
+  <div id="heading">
+  <h1> <%= title %></h1>
+  Tags: <%= get_tags_formatted %>
+  Published: <%= date.strftime("%A, %B %e, %Y") %>
+  </div>
+
+  <%= to_html %>
+
+</article>
+
+<footer>
+&copy; <%= CURRENT_YEAR %> <%= author %>
+</footer>
+
+</body>
+
+</html>
