@@ -37,15 +37,25 @@ def set_up_files
   raise "directories exist" if dirs.any? { Dir.exist? _1 }
   dirs.each { Dir.mkdir _1 }
 
-  %w(header.erb footer.erb).each { touch _1 }
+  %w(header.erb footer.erb article.erb index.erb tag.erb tags.erb).each { touch _1 }
 
   Dir.mkdir(ARTICLES_PATH)
 
   touch File.join(ARTICLES_PATH, 'article_1.md')
 end
 
+
+def get_template(name) 
+   ERB.new(File.read(File.join(SOURCE_PATH, name)))
+end
+
+
+def create path
+  Dir.mkdir(path) unless Dir.exist?(path)
+end
+
 class Article 
-  attr_reader :title, :url, :filename, :filepath, :date, :tags, :author, :content
+  attr_reader :title, :url, :filename, :filepath, :date, :tags, :author, :content, :preview
   def initialize(filepath:)
     @html = nil
     @filepath = filepath
@@ -62,6 +72,12 @@ class Article
         raise "Invalid title in '#{filename}'"
       end
 
+      if file.readline =~ /^Preview: (.*)$/
+        @preview = $1.strip
+      else
+        raise "Invalid preview in '#{filename}'"
+      end
+
       # date
       if file.readline =~ /^Date: (\d{4}\-\d{1,2}\-\d{1,2})$/
         @date = Date.parse($1)
@@ -76,20 +92,17 @@ class Article
         raise "Invalid tags in '#{filename}'"
       end
 
-      raise "Line 4 must be blank in #{filename}" unless file.readline.strip == ''
+      raise "Line 5 must be blank in #{filename}" unless file.readline.strip == ''
 
       @content = file.read # get rest of file
     end
   end
 
   def to_html
-    @html || @html = `pandoc -f markdown -t html --highlight-style espresso <(tail -n +4 \"#{@filepath}\")`
+    @html || @html = `pandoc -f markdown -t html --highlight-style espresso <(tail -n +5 \"#{@filepath}\")`
   end
 
   def save_as_html
-    def create path
-      Dir.mkdir(path) unless Dir.exist?(path)
-    end
     create OUTPUT_PATH
     create File.join(OUTPUT_PATH, 'articles')
     
@@ -98,17 +111,53 @@ class Article
     end
   end
 
-  private
-  def get_template(name) = ERB.new(File.read(File.join(SOURCE_PATH, name)))
-  def format_tag(tag) = "<span class=\"tag\">#{tag}</span>"
   def get_tags_formatted = @tags.map { format_tag(_1) }.join(" ")
+  def format_tag(tag) = "<span class=\"tag\"> <a href=\"/tag/#{tag}.html\">#{tag}</a></span>"
+end
+
+def generate_indicies(articles, tags)
+  File.open(File.join(OUTPUT_PATH, 'index.html'), 'w') do |file|
+    file.write get_template('index.erb').result(binding)
+  end
+  File.open(File.join(OUTPUT_PATH, 'tag', "index.html"), 'w') do |file|
+    file.write get_template('tags_index.erb').result(binding)
+  end
+  File.open(File.join(OUTPUT_PATH, 'articles', "index.html"), 'w') do |file|
+    file.write get_template('articles_index.erb').result(binding)
+  end
+end
+
+def generate_tags(tags)
+  create File.join(OUTPUT_PATH, "tag")
+  for tag_name, articles in tags
+    File.open(File.join(OUTPUT_PATH, 'tag', "#{tag_name}.html"), 'w') do |file|
+      file.write get_template('tag.erb').result(binding)
+    end
+  end
 end
 
 def generate_blog
-  Dir["#{ARTICLES_PATH}/*"].each do |file|
-    article = Article.new(filepath: file)
+  articles = Dir["#{ARTICLES_PATH}/*"].map {|file| Article.new(filepath: file)}
+  articles = articles.sort_by{|article| article.date }.reverse
+
+  tags = Hash.new { |h, k| h[k] = [] }
+
+  articles.each do |article|
     article.save_as_html
+    article.tags.each do |tag|
+      tags[tag] << article
+    end
   end
+
+  $header = get_template('header.erb').result(binding)
+  $footer = get_template('footer.erb').result(binding)
+  $articles = get_template('articles.erb').result(binding)
+  $tags = get_template('tags.erb').result(binding)
+
+  tags = tags.sort_by{|tag_name, articles| articles.size}.reverse
+
+  generate_indicies(articles, tags)
+  generate_tags(tags)
 end
 
 

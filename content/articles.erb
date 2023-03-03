@@ -1,0 +1,17 @@
+<h2> Articles </h2>
+<table>
+    <thead>
+        <tr> 
+            <th scope="col">Date</th> 
+            <th scope="col">Title</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <% for article in articles %>
+        <tr>
+            <td> <%= article.date %> </td>
+            <td> <a href="<%=article.url%>"> <%= article.title %> </a> </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

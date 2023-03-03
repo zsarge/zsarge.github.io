@@ -6,23 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="<%=author%>">
   <meta name="keywords" content="<%= tags.join(", ")%>">
-  <title>
-    <%= title %>
-  </title>
+  <title> <%= title %> </title>
+  <meta name="twitter:title" content="<%=title%>">
+  <meta name="twitter:text:title" content="<%=title%>">
+  <meta name="twitter:description" content="<%=preview%>">
+  <meta name="og:description" content="<%=preview%>">
+  <meta name="description" content="<%=preview%>">
 </head>
 
 <body>
-<article class="post">
-  <time datetime="<%= date %>" pubdate="pubdate"></time>
-  <div id="heading">
-  <h1> <%= title %></h1>
-  Tags: <%= get_tags_formatted %>
-  Published: <%= date.strftime("%A, %B %e, %Y") %>
-  </div>
+  <h1> TODO: HEADER & NAVBAR </h1>
+
+  <article class="post">
+    <div id="heading">
+    <h1> <%= title %></h1>
+    Tags: <%= get_tags_formatted %>
+    Published: 
+    <time datetime="<%= date %>" pubdate="pubdate"><%= date.strftime("%A, %B %e, %Y") %></time>
+    </div>
 
   <%= to_html %>
 
-</article>
+  </article>
 
 <footer>
 &copy; <%= CURRENT_YEAR %> <%= author %>
