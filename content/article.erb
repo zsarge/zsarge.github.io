@@ -5,13 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="<%=author%>">
+  <meta property="article:author" content="<%=author%>">
   <meta name="keywords" content="<%= tags.join(", ")%>">
   <title> <%= title %> </title>
   <meta name="twitter:title" content="<%=title%>">
   <meta name="twitter:text:title" content="<%=title%>">
   <meta name="twitter:description" content="<%=preview%>">
   <meta name="og:description" content="<%=preview%>">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
   <meta name="description" content="<%=preview%>">
+  <meta property="article:published_time" content="<%=date.to_datetime.iso8601%>">
+  <link rel="canonical" href="<%=url%>">
 </head>
 
 <body>

@@ -45,9 +45,9 @@ class Article
   attr_reader :title, :url, :filename, :filepath, :date, :tags, :author, :content, :preview
   def initialize(filepath:)
     @html = nil
+    @length_in_minutes = nil
     @filepath = filepath
     @author = 'Zack Sargent'
-
     @filename = File.basename(filepath, ".md")
     @url = "/articles/#{@filename}.html"
   
@@ -86,7 +86,10 @@ class Article
   end
 
   def to_html
-    @html || @html = `pandoc -f markdown -t html --highlight-style espresso <(tail -n +5 \"#{@filepath}\")`
+    @html ||= `pandoc -f markdown -t html --table-of-contents \
+    --template \"#{File.join(SOURCE_PATH, 'pandoc-article.html5')}\" \
+    --metadata title="#{@title}" \
+    --highlight-style espresso <(tail -n +5 \"#{@filepath}\")`
   end
 
   def save_as_html
@@ -96,6 +99,15 @@ class Article
     File.open(File.join(OUTPUT_PATH, 'articles', "#{@filename}.html"), 'w') do |file|
       file.write get_template('article.erb').result(binding)
     end
+  end
+
+  def length_in_minutes
+    estimated_time = @content.split(/[^-a-zA-Z]/).size / 200
+    @length_in_minutes ||= [estimated_time, 1].max
+  end
+  
+  def reading_time
+    "#{length_in_minutes} min#{length_in_minutes == 1 ? '' : ?s}"
   end
 
   def get_tags_formatted = @tags.map { format_tag(_1) }.join(" ")

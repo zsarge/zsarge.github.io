@@ -1,0 +1,9 @@
+$if(table-of-contents)$
+<div id="$idprefix$TOC table-of-contents toc" role="doc-toc">
+<h3> Table of Contents <h3>
+
+$table-of-contents$
+</div>
+$endif$
+
+$body$
