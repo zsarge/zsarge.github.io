@@ -4,6 +4,7 @@
 # in that the goal is to create a blog, while
 # minimizing the amount of code needed to maintain it.
 
+require 'fileutils'
 require 'date'
 require 'erb'
 
@@ -115,7 +116,7 @@ class Article
   end
 
   def get_tags_formatted = @tags.map { format_tag(_1) }.join(" ")
-  def format_tag(tag) = "<span class=\"tag\"> <a href=\"/tag/#{tag}.html\">#{tag}</a></span>"
+  def format_tag(tag) = "<a href=\"/tag/#{tag}.html\" class=\"tag\">#{tag}</a>"
   def full_url = "https://#{DOMAIN_NAME}#{@url}"
 end
 
@@ -123,10 +124,10 @@ def generate_indicies(articles, tags)
   File.open(File.join(OUTPUT_PATH, 'index.html'), 'w') do |file|
     file.write get_template('index.erb').result(binding)
   end
-  File.open(File.join(OUTPUT_PATH, 'tag', "index.html"), 'w') do |file|
+  File.open(File.join(OUTPUT_PATH, 'tag', 'index.html'), 'w') do |file|
     file.write get_template('tags_index.erb').result(binding)
   end
-  File.open(File.join(OUTPUT_PATH, 'articles', "index.html"), 'w') do |file|
+  File.open(File.join(OUTPUT_PATH, 'articles', 'index.html'), 'w') do |file|
     file.write get_template('articles_index.erb').result(binding)
   end
 end
@@ -156,16 +157,18 @@ def generate_blog
   tags = tags.sort { |(tag_name_1, articles_1), (tag_name_2, articles_2)| 
     # sort by count first, then alphabetically
     count_order = articles_1.size <=> articles_2.size 
-    return count_order unless count_order == 0
-    return tag_name_2 <=> tag_name_1
+    next count_order unless count_order == 0
+    next tag_name_2 <=> tag_name_1
   }.reverse
 
   $footer = get_template('footer.erb').result(binding)
   $articles = get_template('articles.erb').result(binding)
   $tags = get_template('tags.erb').result(binding)
 
-  generate_indicies(articles, tags)
   generate_tags(tags)
+  generate_indicies(articles, tags)
+
+  FileUtils.copy_entry(File.join(SOURCE_PATH, 'assets'), File.join(OUTPUT_PATH, 'assets'), preserve: false, remove_destination: true)
 end
 
 

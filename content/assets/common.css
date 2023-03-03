@@ -1,0 +1,56 @@
+:root {
+    --orange: #F7D4BC;
+    --text-on-orange: black;
+    --blue: #846b8a;
+    /* or blue: #4a6fa5 */
+}
+
+nav,
+header {
+    text-align: center;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Lucida Sans", sans-serif;
+    height: 100%;
+}
+
+main,
+footer,
+header {
+    margin: 0 20%;
+    padding: 0;
+}
+
+@media only screen and (max-width: 1360px) {
+
+    /* small screens */
+    main,
+    footer,
+    header {
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.tag {
+    padding: 10px;
+    background: var(--orange);
+    color: var(--text-on-orange);
+    border-radius: 1em;
+    padding: 0.25em 0.6em;
+}
+
+.tag:link {
+    text-decoration: none;
+}
+
+.tags {
+    line-height: 2.3em;
+}
