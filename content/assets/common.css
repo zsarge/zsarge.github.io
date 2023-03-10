@@ -111,3 +111,13 @@ pre.cpp::before {
 pre.c::before {
     content: "C";
 }
+
+pre.javascript::before,
+pre.js::before {
+    content: "Javascript";
+}
+
+pre.typescript::before,
+pre.ts::before {
+    content: "Typescript";
+}
