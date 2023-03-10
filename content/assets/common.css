@@ -99,7 +99,9 @@ pre.rust::before {
     color: #ad966d;
 }
 
-pre.python::before {
+
+pre.python::before,
+pre.py::before {
     content: "Python 3";
     color: #75aa75;
 }
