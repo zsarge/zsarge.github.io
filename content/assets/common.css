@@ -2,6 +2,7 @@
     --orange: #F7D4BC;
     --text-on-orange: black;
     --blue: #846b8a;
+    --max-width: 48em;
     /* or blue: #4a6fa5 */
 }
 
@@ -22,22 +23,24 @@ body {
 main,
 footer,
 header {
-    margin: 0 20%;
-    padding: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-@media only screen and (max-width: 1360px) {
 
-    /* small screens */
+@media only screen and (min-width: 50em) {
+    /* 50em = calc(var(--max-width) + 2em) */
+
     main,
     footer,
     header {
-        padding-left: 1em;
-        padding-right: 1em;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
+        max-width: var(--max-width);
     }
 }
+
 
 .tag {
     padding: 10px;
