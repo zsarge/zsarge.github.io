@@ -94,7 +94,7 @@ class Article
     @html ||= `pandoc -f markdown -t html --table-of-contents  \
     --template \"#{File.join(SOURCE_PATH, 'pandoc-article.html5')}\" \
     --metadata title="#{@title}" \
-    --highlight-style espresso <(tail -n +5 \"#{@filepath}\")`
+    --highlight-style pygments <(tail -n +5 \"#{@filepath}\")`
   end
 
   def save_as_html

@@ -54,3 +54,59 @@ header {
 .tags {
     line-height: 2.3em;
 }
+
+#reading-time {
+    margin-left: 10px;
+}
+
+* {
+    font-family: 'Merriweather', Georgia, serif;
+}
+
+/* Code Styling */
+
+pre,
+code,
+.sourceCode,
+code span {
+    font-family: 'Fira Code', monospace;
+    word-spacing: normal;
+    box-sizing: border-box;
+    background: #fcfcff;
+}
+
+pre.sourceCode {
+    padding: 10px;
+    border: 1px solid #ddd8dd;
+    display: inline-block;
+    min-width: 100%;
+    overflow-x: auto;
+}
+
+code.sourceCode {
+    overflow-x: scroll;
+}
+
+code.sourceCode::before {
+    float: right;
+    color: grey;
+    font-variant-ligatures: none;
+}
+
+code.rust::before {
+    content: "Rust";
+    color: #ad966d;
+}
+
+code.python::before {
+    content: "Python 3";
+    color: #75aa75;
+}
+
+code.cpp::before {
+    content: "C++";
+}
+
+code.c::before {
+    content: "C";
+}
