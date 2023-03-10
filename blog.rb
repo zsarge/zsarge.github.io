@@ -91,7 +91,7 @@ class Article
   end
 
   def to_html
-    @html ||= `pandoc -f markdown -t html --table-of-contents \
+    @html ||= `pandoc -f markdown -t html --table-of-contents  \
     --template \"#{File.join(SOURCE_PATH, 'pandoc-article.html5')}\" \
     --metadata title="#{@title}" \
     --highlight-style espresso <(tail -n +5 \"#{@filepath}\")`
@@ -120,24 +120,26 @@ class Article
   def full_url = "https://#{DOMAIN_NAME}#{@url}"
 end
 
+def build_template(from:, to:, args: nil)
+  File.open(File.join(OUTPUT_PATH, *to), 'w') do |file|
+    if args
+      file.write get_template(from).result_with_hash(args)
+    else
+      file.write get_template(from).result(binding)
+    end
+  end
+end
+
 def generate_indicies(articles, tags)
-  File.open(File.join(OUTPUT_PATH, 'index.html'), 'w') do |file|
-    file.write get_template('index.erb').result(binding)
-  end
-  File.open(File.join(OUTPUT_PATH, 'tag', 'index.html'), 'w') do |file|
-    file.write get_template('tags_index.erb').result(binding)
-  end
-  File.open(File.join(OUTPUT_PATH, 'articles', 'index.html'), 'w') do |file|
-    file.write get_template('articles_index.erb').result(binding)
-  end
+  build_template from: 'index.erb', to: %w(index.html)
+  build_template from: 'tags_index.erb', to: %w(tag index.html)
+  build_template from: 'articles_index.erb', to: %w(articles index.html)
 end
 
 def generate_tags(tags)
   create File.join(OUTPUT_PATH, "tag")
   for tag_name, articles in tags
-    File.open(File.join(OUTPUT_PATH, 'tag', "#{tag_name}.html"), 'w') do |file|
-      file.write get_template('tag.erb').result(binding)
-    end
+    build_template from: 'tag.erb', to: ["tag", "#{tag_name}.html"], args: {tag_name:, articles:}
   end
 end
 
