@@ -80,33 +80,34 @@ pre.sourceCode {
     border: 1px solid #ddd8dd;
     display: inline-block;
     min-width: 100%;
-    overflow-x: auto;
 }
 
 code.sourceCode {
-    overflow-x: scroll;
+    overflow-x: overlay;
+    display: block;
+    min-width: fit-content;
 }
 
-code.sourceCode::before {
+pre.sourceCode::before {
     float: right;
     color: grey;
     font-variant-ligatures: none;
 }
 
-code.rust::before {
+pre.rust::before {
     content: "Rust";
     color: #ad966d;
 }
 
-code.python::before {
+pre.python::before {
     content: "Python 3";
     color: #75aa75;
 }
 
-code.cpp::before {
+pre.cpp::before {
     content: "C++";
 }
 
-code.c::before {
+pre.c::before {
     content: "C";
 }
