@@ -70,6 +70,7 @@ code,
 .sourceCode,
 code span {
     font-family: 'Fira Code', monospace;
+    font-size: 0.98em;
     word-spacing: normal;
     box-sizing: border-box;
     background: #fcfcff;
@@ -116,10 +117,15 @@ pre.c::before {
 
 pre.javascript::before,
 pre.js::before {
-    content: "Javascript";
+    content: "JavaScript";
 }
 
 pre.typescript::before,
 pre.ts::before {
-    content: "Typescript";
+    content: "TypeScript";
+}
+
+pre.ruby::before,
+pre.rb::before {
+    content: "Ruby";
 }

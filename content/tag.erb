@@ -1,26 +1,34 @@
 <%= header "Zack Sargent's Blog | Tagged #{tag_name}" %>
 
-<main>
-    <h2> Articles tagged <%= tag_name%> </h2>
-    <table>
-        <thead>
-            <tr> 
-                <th scope="col">Date</th> 
-                <th scope="col">Length</th> 
-                <th scope="col">Title</th> 
-            </tr>
-        </thead>
-        <tbody>
-            <% for article in articles %>
-            <tr>
-                <td> <%= article.date %> </td>
-                <td> <%= article.reading_time %> </td>
-                <td> <a href="<%=article.url%>"> <%= article.title %> </a> </td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
-</main>
+    <main>
+        <h2>
+            <%=articles.size%> article<%=articles.size == 1 ? '' : ?s%> tagged &quot;<%=tag_name%>&quot;
+        </h2>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Length</th>
+                    <th scope="col">Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for article in articles %>
+                    <tr>
+                        <td>
+                            <%= article.date %>
+                        </td>
+                        <td>
+                            <%= article.reading_time %>
+                        </td>
+                        <td> <a href="<%=article.url%>">
+                                <%= article.title %>
+                            </a> </td>
+                    </tr>
+                    <% end %>
+            </tbody>
+        </table>
+    </main>
 
 
-<%= $footer %>
+    <%= $footer %>
