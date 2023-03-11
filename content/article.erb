@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
 </head>
 
 <body>
@@ -61,6 +62,9 @@
 &copy; <%= CURRENT_YEAR %> <%= author %>
 </footer>
 
+  <script>
+    anchors.add("h1,h2,h3:nth-child(n+3),h4,h5,h6");
+  </script>
 </body>
 
 </html>
