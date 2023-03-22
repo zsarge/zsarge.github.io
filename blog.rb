@@ -12,7 +12,7 @@ include ERB::Util
 
 SOURCE_PATH = File.join(__dir__, 'content')
 OUTPUT_PATH = File.join(__dir__, 'build')
-ARTICLES_PATH = File.join(SOURCE_PATH, 'articles')
+ARTICLES_PATH = File.join(SOURCE_PATH, 'blog')
 CURRENT_YEAR = Time.new.year
 
 DOMAIN_NAME = "zsarge.github.io"
@@ -54,7 +54,7 @@ class Article
     @filepath = filepath
     @author = 'Zack Sargent'
     @filename = File.basename(filepath, ".md")
-    @url = "/articles/#{@filename}.html"
+    @url = "/blog/#{@filename}.html"
   
     File.open(filepath) do |file|
       # title
@@ -99,10 +99,10 @@ class Article
 
   def save_as_html
     create OUTPUT_PATH
-    create File.join(OUTPUT_PATH, 'articles')
+    create File.join(OUTPUT_PATH, 'blog')
     
-    File.open(File.join(OUTPUT_PATH, 'articles', "#{@filename}.html"), 'w') do |file|
-      file.write get_template('article.erb').result(binding)
+    File.open(File.join(OUTPUT_PATH, 'blog', "#{@filename}.html"), 'w') do |file|
+      file.write get_template('blog.erb').result(binding)
     end
   end
 
@@ -133,7 +133,7 @@ end
 def generate_indicies(articles, tags)
   build_template from: 'index.erb', to: %w(index.html)
   build_template from: 'tags_index.erb', to: %w(tag index.html)
-  build_template from: 'articles_index.erb', to: %w(articles index.html)
+  build_template from: 'blog_index.erb', to: %w(blog index.html)
 end
 
 def generate_tags(tags)
@@ -164,7 +164,7 @@ def generate_blog
   }.reverse
 
   $footer = get_template('footer.erb').result(binding)
-  $articles = get_template('articles.erb').result(binding)
+  $articles = get_template('blogroll.erb').result(binding)
   $tags = get_template('tags.erb').result(binding)
 
   generate_tags(tags)
