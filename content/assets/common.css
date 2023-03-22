@@ -1,9 +1,11 @@
 :root {
     --orange: #F7D4BC;
+    --orange-border: #c6aa96;
     --text-on-orange: black;
     --blue: #846b8a;
     --max-width: 48em;
-    /* or blue: #4a6fa5 */
+    --border-radius: 1em;
+    /*  or blue: #4a6fa5 */
 }
 
 nav,
@@ -46,7 +48,7 @@ header {
     padding: 10px;
     background: var(--orange);
     color: var(--text-on-orange);
-    border-radius: 1em;
+    border-radius: var(--border-radius);
     padding: 0.25em 0.6em;
 }
 
@@ -60,6 +62,29 @@ header {
 
 #reading-time {
     margin-left: 10px;
+}
+
+/* TABLE OF CONTENTS */
+
+#TOC\ table-of-contents\ toc {
+    width: fit-content;
+    padding: 1em 1.5em;
+    background: var(--orange);
+    border-radius: var(--border-radius);
+    border-color: var(--orange-border);
+    border-style: solid;
+}
+
+#TOC\ table-of-contents\ toc h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+#TOC\ table-of-contents\ toc ul {
+    padding: 0;
+    padding-left: 1em;
+    margin: 0;
 }
 
 * {
