@@ -157,3 +157,38 @@ pre.ruby::before,
 pre.rb::before {
     content: "Ruby";
 }
+
+/* TOP NAV */
+/* TODO: have cool logo */
+/* TODO: have hover effects */
+/* TODO: Make it look good on pc & mobile (responsive :O) */
+
+nav#top-nav {
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem
+}
+
+nav.prev-next {
+    margin-top: 2em
+}
+
+nav .gray {
+    color: #bbb9c6
+}
+
+nav a {
+    color: #100921 !important;
+}
+
+nav a::after {
+    content: none
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline
+}

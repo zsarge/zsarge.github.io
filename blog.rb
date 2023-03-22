@@ -37,6 +37,10 @@ def get_template(name)
    ERB.new(File.read(File.join(SOURCE_PATH, name)))
 end
 
+def navbar
+  get_template('navbar.erb').result()
+end
+
 def header(title="Zack Sargent's Blog")
   get_template('header.erb').result(binding)
 end
