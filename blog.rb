@@ -189,6 +189,9 @@ Arguments:
   when "generate", "--generate"
     raise 'pandoc could not be found' unless which("pandoc")
     generate_blog
+  when "version", "-version", "--version"
+    puts "blog.rb version 0.1.0"
+    puts "by Zack Sargent"
   else 
     puts "command not recognized. use --help for details"
   end
