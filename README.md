@@ -17,4 +17,6 @@
     - https://github.com/xu-cheng/pandoc-katex
   - add support for UML:
     - https://github.com/Masquerade-Circus/pandoc-plantuml
+  - add more "juice" to buttons and tags
+    - https://garden.bradwoods.io/notes/design/juice
 - write good content
