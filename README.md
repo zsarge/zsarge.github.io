@@ -12,6 +12,9 @@
   - rename "articles" to "blog"?
   - add support for Mermaid:
     - https://github.com/raghur/mermaid-filter
+  - add math formatting with KaTeX:
+    - https://github.com/KaTeX/KaTeX
+    - https://github.com/xu-cheng/pandoc-katex
   - add support for UML:
     - https://github.com/Masquerade-Circus/pandoc-plantuml
 - write good content
