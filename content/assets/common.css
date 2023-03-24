@@ -3,9 +3,10 @@
     --orange-border: #c6aa96;
     --text-on-orange: black;
     --blue: #846b8a;
-    --max-width: 48em;
+    --max-width: 40em;
     --border-radius: 1em;
-    /*  or blue: #4a6fa5 */
+    --blue-background: #e7f0f9;
+    --blue-border: #6666CC;
 }
 
 nav,
@@ -29,7 +30,9 @@ header {
     padding-right: 1em;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.5em;
 }
+
 
 
 @media only screen and (min-width: 50em) {
@@ -191,4 +194,19 @@ nav ul {
     display: flex;
     justify-content: space-between;
     align-items: baseline
+}
+
+/* aside */
+aside {
+    background: var(--blue-background);
+    padding: 0.5em 1.5em;
+    border-left: solid var(--blue-border);
+}
+
+main {
+    margin-bottom: 6em;
+}
+
+footer {
+    padding: 2em 0;
 }
