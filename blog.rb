@@ -179,7 +179,7 @@ end
 
 
 if ARGV.size == 0
-  puts "command not recognized. use --help for details"
+  puts "blog.rb: command not recognized. use --help for details"
 else
   case ARGV[0]
   when "help", "--help"
@@ -197,6 +197,6 @@ Arguments:
     puts "blog.rb version 0.1.0"
     puts "by Zack Sargent"
   else 
-    puts "command not recognized. use --help for details"
+    puts "blog.rb: command not recognized. use --help for details"
   end
 end
