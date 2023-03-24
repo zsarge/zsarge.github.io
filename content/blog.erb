@@ -32,8 +32,8 @@
 
   <main>
     <article class="post">
-      <div id="article-meta">
-        <h1> <%= title %></h1>
+      <h1 class="post-title"> <%= title %></h1>
+      <div id="post-meta">
         <span id="date-published">
           <i class="fa fa-calendar" aria-hidden="true"></i>
           <time datetime="<%= date %>" pubdate="pubdate"><%= date.strftime("%A, %B %e, %Y") %></time>
@@ -42,9 +42,9 @@
           <i class="fa fa-clock-o" aria-hidden="true"></i> 
           <%= reading_time %>
         </span>
-        <div class="tags">
+        <span class="tags">
           <%= get_tags_formatted %>
-        </div>
+        </span>
       </div>
 
     <%= to_html %>

@@ -1,5 +1,6 @@
 :root {
     --orange: #F7D4BC;
+    --dark-orange: #f2b78e;
     --orange-border: #c6aa96;
     --text-on-orange: black;
     --blue: #846b8a;
@@ -7,6 +8,8 @@
     --border-radius: 1em;
     --blue-background: #e7f0f9;
     --blue-border: #6666CC;
+    --text: #212427;
+    --less-prominent-text: #3d4348;
 }
 
 nav,
@@ -31,9 +34,8 @@ header {
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5em;
+    color: var(--text);
 }
-
-
 
 @media only screen and (min-width: 50em) {
     /* 50em = calc(var(--max-width) + 2em) */
@@ -50,22 +52,45 @@ header {
 .tag {
     padding: 10px;
     background: var(--orange);
-    color: var(--text-on-orange);
+    color: var(--less-prominent-text);
     border-radius: var(--border-radius);
     padding: 0.25em 0.6em;
+    transition: 0.3s;
+}
+
+.tag:hover {
+    color: var(--text);
+    background-color: var(--dark-orange);
 }
 
 .tag:link {
     text-decoration: none;
 }
 
-.tags {
-    line-height: 2.3em;
+.tags a {
+    word-wrap: nowrap;
+    white-space: nowrap;
 }
 
 #reading-time {
     margin-left: 10px;
 }
+
+.post-title {
+    margin-bottom: 0.2em;
+    font-size: 2em;
+}
+
+#post-meta {
+    color: var(--less-prominent-text);
+    line-height: 1.8em;
+    padding: 0.5em 0;
+}
+
+#post-meta span {
+    margin-right: 0.5em;
+}
+
 
 /* TABLE OF CONTENTS */
 
