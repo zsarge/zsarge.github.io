@@ -1,0 +1,237 @@
+:root {
+    --orange: #F7D4BC;
+    --dark-orange: #f2b78e;
+    --orange-border: #c6aa96;
+    --text-on-orange: black;
+    --blue: #846b8a;
+    --max-width: 40em;
+    --border-radius: 1em;
+    --blue-background: #e7f0f9;
+    --blue-border: #6666CC;
+    --text: #212427;
+    --less-prominent-text: #3d4348;
+}
+
+nav,
+header {
+    text-align: center;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Lucida Sans", sans-serif;
+    height: 100%;
+}
+
+main,
+footer,
+header {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5em;
+    color: var(--text);
+}
+
+@media only screen and (min-width: 50em) {
+    /* 50em = calc(var(--max-width) + 2em) */
+
+    main,
+    footer,
+    header {
+        margin: 0 auto;
+        max-width: var(--max-width);
+    }
+}
+
+
+.tag {
+    padding: 10px;
+    background: var(--orange);
+    color: var(--less-prominent-text);
+    border-radius: var(--border-radius);
+    padding: 0.25em 0.6em;
+    transition: 0.3s;
+}
+
+.tag:hover {
+    color: var(--text);
+    background-color: var(--dark-orange);
+}
+
+.tag:link {
+    text-decoration: none;
+}
+
+.tags a {
+    word-wrap: nowrap;
+    white-space: nowrap;
+}
+
+#reading-time {
+    margin-left: 10px;
+}
+
+.post-title {
+    margin-bottom: 0.2em;
+    font-size: 2em;
+}
+
+#post-meta {
+    color: var(--less-prominent-text);
+    line-height: 1.8em;
+    padding: 0.5em 0;
+}
+
+#post-meta span {
+    margin-right: 0.5em;
+}
+
+
+/* TABLE OF CONTENTS */
+
+#TOC\ table-of-contents\ toc {
+    width: fit-content;
+    padding: 1em 1.5em;
+    background: var(--orange);
+    border-radius: var(--border-radius);
+    border-color: var(--orange-border);
+    border-style: solid;
+}
+
+#TOC\ table-of-contents\ toc h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+#TOC\ table-of-contents\ toc ul {
+    padding: 0;
+    padding-left: 1em;
+    margin: 0;
+}
+
+* {
+    font-family: 'Merriweather', Georgia, serif;
+}
+
+/* Code Styling */
+
+pre,
+code,
+.sourceCode,
+code span {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.98em;
+    word-spacing: normal;
+    box-sizing: border-box;
+    background: #fcfcff;
+}
+
+pre.sourceCode {
+    padding: 10px;
+    border: 1px solid #ddd8dd;
+    display: inline-block;
+    min-width: 100%;
+}
+
+code.sourceCode {
+    overflow-x: overlay;
+    display: block;
+    min-width: fit-content;
+}
+
+pre.sourceCode::before {
+    float: right;
+    color: grey;
+    font-variant-ligatures: none;
+}
+
+pre.rust::before {
+    content: "Rust";
+    color: #ad966d;
+}
+
+
+pre.python::before,
+pre.py::before {
+    content: "Python 3";
+    color: #75aa75;
+}
+
+pre.cpp::before {
+    content: "C++";
+}
+
+pre.c::before {
+    content: "C";
+}
+
+pre.javascript::before,
+pre.js::before {
+    content: "JavaScript";
+}
+
+pre.typescript::before,
+pre.ts::before {
+    content: "TypeScript";
+}
+
+pre.ruby::before,
+pre.rb::before {
+    content: "Ruby";
+}
+
+/* TOP NAV */
+/* TODO: have cool logo */
+/* TODO: have hover effects */
+/* TODO: Make it look good on pc & mobile (responsive :O) */
+
+nav#top-nav {
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem
+}
+
+nav.prev-next {
+    margin-top: 2em
+}
+
+nav .gray {
+    color: #bbb9c6
+}
+
+nav a {
+    color: #100921 !important;
+}
+
+nav a::after {
+    content: none
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline
+}
+
+/* aside */
+aside {
+    background: var(--blue-background);
+    padding: 0.5em 1.5em;
+    border-left: solid var(--blue-border);
+}
+
+main {
+    margin-bottom: 6em;
+}
+
+footer {
+    padding: 2em 0;
+}
