@@ -88,6 +88,7 @@ blockquote {
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
     max-width: 100%;
+    overflow: auto;
 }
 
 .human details {
