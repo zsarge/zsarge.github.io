@@ -1,6 +1,6 @@
 Title: Comparison of Bard, ChatGPT, and Bing Chat
 Preview: A detailed comparison of Google's Bard, OpenAI's ChatGPT, and Microsoft's Bing Chat
-Date: 2023-03-24
+Date: 2023-03-25
 Tags: ai, chatbot, bard, chatgpt, bing
 
 This report will compare and contrast the outputs of the following chatbot services:
@@ -884,9 +884,9 @@ I hope you like it.😊
 
 ChatGPT does quite well, but I think Bing really wins here!
 
-The integration with image generation makes Bing chat feel a step above the other chatbots. However, it's understanding of ASCII art is clearly imperfect, as it only gets the general spacing and aesthetic, but not any specific characters.
+The integration with image generation makes Bing chat feel a step above the other chatbots. However, its understanding of ASCII art is clearly imperfect as it gets the general spacing and aesthetic, but not any specific characters.
 
-And after seeing Bard's mangled monsters, the carrot emoji almost feels like showing off.
+But after seeing Bard's mangled monsters, the response with the carrot emoji almost feels like showing off.
 
 Let's ask Bing for some more bunnies!
 
