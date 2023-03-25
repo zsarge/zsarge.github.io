@@ -11,7 +11,7 @@ require 'erb'
 include ERB::Util
 
 SOURCE_PATH = File.join(__dir__, 'content')
-OUTPUT_PATH = File.join(__dir__, 'build')
+OUTPUT_PATH = File.join(__dir__, 'docs')
 ARTICLES_PATH = File.join(SOURCE_PATH, 'blog')
 CURRENT_YEAR = Time.new.year
 
