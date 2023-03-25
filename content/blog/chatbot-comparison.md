@@ -385,7 +385,7 @@ and does not include important factors such as price.
 
 I was surprised to see how similar ChatGPT and Bard were, while Bing's table seemed underwhelming.
 
-# Creative Responses
+# Creative responses
 
 ## Act as a Linux Terminal
 
