@@ -132,11 +132,14 @@ code span {
     background: #fcfcff;
 }
 
-pre.sourceCode {
+pre {
     padding: 10px;
     border: 1px solid #ddd8dd;
     display: inline-block;
     min-width: 100%;
+
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 code.sourceCode {
@@ -234,4 +237,38 @@ main {
 
 footer {
     padding: 2em 0;
+}
+
+/* tables */
+table {
+    border-collapse: collapse;
+    border-radius: var(--border-radius);
+}
+
+td,
+th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+/* details / summary */
+
+details {
+    background-color: var(--blue-background);
+    padding: 1em;
+}
+
+details[open] summary~* {
+    animation: fade .5s ease-in-out;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
