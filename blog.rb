@@ -196,6 +196,19 @@ Arguments:
   when "version", "-version", "--version"
     puts "blog.rb version 0.1.0"
     puts "by Zack Sargent"
+  when "new", "--new"
+    raise 'No file name provided. (e.g. "new-article.md")' unless ARGV[1]
+    filename = File.join(ARTICLES_PATH, ARGV[1])
+    puts "blog.rb: generating basic article in \"#{filename}\""
+    File.open(filename, 'w') do |file|
+      file.write "Title: TEMP
+Preview: TEMP
+Date: #{Date.today.iso8601}
+Tags: TEMP
+
+Hello World!
+"
+    end
   else 
     puts "blog.rb: command not recognized. use --help for details"
   end
