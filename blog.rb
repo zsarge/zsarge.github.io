@@ -111,7 +111,7 @@ class Article
   end
 
   def length_in_minutes
-    estimated_time = @content.split(/[^-a-zA-Z]/).size / 200
+    estimated_time = @content.split(/[^-a-zA-Z]/).size / 300
     @length_in_minutes ||= [estimated_time, 1].max
   end
   
