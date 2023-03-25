@@ -299,7 +299,7 @@ I think it's important to keep this type of thing in mind when discussing how la
 
 It sure seems reasonable, but it's still wrong!
 
-## Creating comparison tables
+## Create comparison tables
 
 But sometimes walls of text aren't the best way to consume information, and additional formatting can go a long way. Let's see how these chatbots can utilize additional formatting techniques, like creating tables.
 
