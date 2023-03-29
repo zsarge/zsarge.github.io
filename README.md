@@ -10,6 +10,7 @@
   - add updated date list to articles (+ support in RSS)
   - add keywords to articles
   - rename "articles" to "blog"?
+  - move code highlighting to seperate stylesheets instead of embedded css
   - add support for Mermaid:
     - https://github.com/raghur/mermaid-filter
   - add math formatting with KaTeX:
