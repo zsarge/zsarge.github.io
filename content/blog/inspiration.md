@@ -9,7 +9,7 @@ Tags: meta
 
 Originally, when I first thought about creating a blog, I started creating a prototype in [Vue.js](https://vuejs.org/), using the static site generator [Gridsome](https://gridsome.org/). I figured that using a framework to handle of a lot of the difficulties of static site generation would make the experience more enjoyable, and I would be able to quickly create a quality website.
 
-However, bringing in web frameworks has its own problems. I still genuinely believe Gridsome + Vue is a very powerful option when it comes to static site generation, but I quickly found that once the codebase grew larger than what I could comfortably hold in my head, I stopped enjoying working on the site as much, and for a personal site that I'm doing for fun, that effectively killed the project for me.
+However, bringing in web frameworks had its own problems. I still genuinely believe Gridsome + Vue is a very powerful option when it comes to static site generation, but I quickly found that once the codebase grew larger than what I could comfortably hold in my head, I stopped enjoying working on the site as much, and for a personal site that I'm doing for fun, that effectively killed the project for me.
 
 Later, in a brief fascination with React, I tried to get a basic page started in a similar fashion, yet lost interest again.
 

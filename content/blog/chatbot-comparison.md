@@ -105,7 +105,7 @@ blockquote {
 </blockquote>
 
 <blockquote class="bard">
-</span class="bard-title">Bard</span>
+<span class="bard-title">Bard</span>
 
 Hi! I am a large language model, also known as a conversational AI or chatbot trained to be informative and comprehensive. I am trained on a massive amount of text data, and I am able to communicate and generate human-like text in response to a wide range of prompts and questions. For example, I can provide summaries of factual topics or create stories.
 
