@@ -1,6 +1,6 @@
 $if(table-of-contents)$
-<div id="$idprefix$TOC table-of-contents toc" role="doc-toc">
-<h3> Table of Contents <h3>
+<div id="table-of-contents" class="toc" role="doc-toc">
+<h3> Table of Contents </h3>
 
 <style>
 $highlighting-css$

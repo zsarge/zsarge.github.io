@@ -94,7 +94,7 @@ header {
 
 /* TABLE OF CONTENTS */
 
-#TOC\ table-of-contents\ toc {
+#table-of-contents {
     width: fit-content;
     padding: 1em 1.5em;
     background: var(--orange);
@@ -103,13 +103,13 @@ header {
     border-style: solid;
 }
 
-#TOC\ table-of-contents\ toc h3 {
+#table-of-contents h3 {
     padding: 0;
     margin: 0;
     font-size: 0.9em;
 }
 
-#TOC\ table-of-contents\ toc ul {
+#table-of-contents ul {
     padding: 0;
     padding-left: 1em;
     margin: 0;
