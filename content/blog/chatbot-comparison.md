@@ -3,6 +3,8 @@ Preview: A detailed comparison of Google's Bard, OpenAI's ChatGPT, and Microsoft
 Date: 2023-03-25
 Tags: ai, chatbot, bard, chatgpt, bing
 
+<link rel="stylesheet" href="/assets/chatbot-comparison/chatbot.css">
+
 This report will compare and contrast the outputs of the following chatbot services:
 
 | Service                                | Version Number                         | Date Released               |
@@ -17,86 +19,6 @@ This report will compare and contrast the outputs of the following chatbot servi
 Bing Chat has three modes (Creative, Balanced, Precise), and the mode I chose is indicated in the response.
 
 Bard also generates three drafts for each response, but I've elected to only choose the default draft, except for when all drafts are notable.
-
-<style>
-
-.human, .bard, .chatgpt, .bing {
-    padding: 0.5em 1em;
-    padding-top: 0;
-}
-
-.human {
-    margin: 1rem 1rem 1rem auto;
-    padding: 0.5rem;
-    width: fit-content;
-    border-radius: 1.125rem 1.125rem 0 1.125rem;
-    background: #333;
-    color: white;
-    display: block;
-}
-
-.human code, .human div.sourceCode, .human pre.sourceCode, .human span {
-    background: #333;
-    border: none;
-}
-
-.bard-title, .chatgpt-title, .bing-title {
-    line-height: 1em;
-    font-weight: bold;
-}
-
-.bard-title::before, .chatgpt-title::before, .bing-title::before {
-    vertical-align: middle;
-    content: "";
-    display: inline-block;
-    background-size: 32px 32px;
-    vertical-align: -50%;
-    width: 32px;
-    height: 32px;
-    margin-right: 0.4em;
-}
-
-.bard {
-    background: #f3f6fc;
-}
-
-.bard-title::before {
-    background-image: url(/assets/bard.gif);
-}
-
-.chatgpt {
-    background: #f7f7f8;
-}
-
-.chatgpt-title::before {
-    background-image: url(/assets/chatgpt.png);
-}
-
-.bing {
-    background: #eceefb;
-}
-
-.bing-title::before {
-    background-image: url(/assets/bing.png);
-}
-
-blockquote {
-    display: inline-block;
-    border-radius: 1.125rem 1.125rem 1.125rem 0;
-    margin: 0;
-    margin-bottom: 0.5em;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
-    max-width: 100%;
-    overflow: auto;
-}
-
-.human details {
-    background: none;
-    color: white;
-}
-
-</style>
 
 # Introduce yourself
 
@@ -978,3 +900,5 @@ I think ChatGPT can also be a good tool when Bing's content policy gets in the w
 There's a ton I didn't get to, including more practical searches and code generation, so there's still plenty more I want to do.
 
 If I ever do a "part 2", I'll link it below!
+
+[Part 2: Comparison of Bard, ChatGPT, and Bing Chat responding to CVEs](/blog/chatbot-comparison-cve.html)
