@@ -175,4 +175,4 @@ However, in the bigger picture, it is important to remember that none of these c
 
 As with [my last comparison](/blog/chatbot-comparison.html), Bing is my personal favorite. This time, I think that Bard had a promising showing, and it's clear that ChatGPT performed the worst.
 
-It will be very interesting to continue to follow these chatbots as they grow and develop, and see if it is possible to extract consistently accurate information from a Large Language Model. After all, there's no algorithm for truth.
+It will be very interesting to continue to follow these chatbots as they grow and develop, and see if it is possible to consistently extract accurate information from a Large Language Model. After all, there's no algorithm for truth.
