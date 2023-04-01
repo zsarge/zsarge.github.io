@@ -48,7 +48,7 @@ The vulnerability affects a wide range of Linux distributions and products, incl
 
 </blockquote>
 
-Well, that's just not true at all. This CVE does not has nothing to do with the Linux Kernel. All of ChatGPT's information about how this vulnerability affects a wide range of systems is entirely made up. However, Bard and Bing are both intended to help much more with this type of factual search, so let's see how they fare.
+Well, that's just not true at all. This CVE does not has nothing to do with the Linux Kernel. All of ChatGPT's information about how this vulnerability targets the kernel's packet filter is completely made up. However, Bard and Bing are both intended to help much more with this type of factual search, so let's see how they fare.
 
 <blockquote class="bard">
 <span class="bard-title">Bard</span>
