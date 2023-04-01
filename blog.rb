@@ -189,6 +189,8 @@ Arguments:
         show this help text
     --generate
         transform the content from ./content into the html files in ./build
+    --new FILENAME.md
+        generate new blog post with the specified filename. Be sure to include `.md`.
     "
   when "generate", "--generate"
     raise 'pandoc could not be found' unless which("pandoc")
