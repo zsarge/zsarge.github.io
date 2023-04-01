@@ -56,17 +56,18 @@
         </span>
       </div>
 
-    <div id="table-of-contents" class="toc" role="doc-toc">
-<h3> Table of Contents </h3>
-
-<style>
+    <style>
 
 </style>
+
+<div id="table-of-contents" class="toc" role="doc-toc">
+<h3 id="table-of-contents-header"> Table of Contents </h3>
 
 <ul>
 <li><a href="#website-technologies">Website Technologies</a></li>
 <li><a href="#website-design">Website Design</a></li>
 </ul>
+
 </div>
 
 <!-- TODO: get grammarly extension for VSCode  -->
@@ -97,7 +98,7 @@ I’m just not doing that right now.
 </footer>
 
   <script>
-    anchors.add("h1,h2,h3:nth-child(n+3),h4,h5,h6");
+    anchors.add("h1,h2,h3:not(#table-of-contents-header),h4,h5,h6");
   </script>
 </body>
 

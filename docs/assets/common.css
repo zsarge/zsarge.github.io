@@ -10,6 +10,9 @@
     --blue-border: #6666CC;
     --text: #212427;
     --less-prominent-text: #3d4348;
+    --gray-background: #fcf2f2;
+    --gray-border: darkgray;
+}
 }
 
 nav,
@@ -79,6 +82,7 @@ header {
 .post-title {
     margin-bottom: 0.2em;
     font-size: 2em;
+    line-height: 1.1em;
 }
 
 #post-meta {
@@ -229,6 +233,13 @@ aside {
     background: var(--blue-background);
     padding: 0.5em 1.5em;
     border-left: solid var(--blue-border);
+}
+
+blockquote,
+.blockquote {
+    background: var(--gray-background);
+    padding: 0.5em 1.5em;
+    border-left: solid var(--gray-border);
 }
 
 main {

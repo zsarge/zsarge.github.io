@@ -49,17 +49,14 @@
         </span>
         <span id="reading-time">
           <i class="fa fa-clock-o" aria-hidden="true"></i> 
-          44 mins
+          42 mins
         </span>
         <span class="tags">
           <a href="/tag/ai.html" class="tag">ai</a> <a href="/tag/chatbot.html" class="tag">chatbot</a> <a href="/tag/bard.html" class="tag">bard</a> <a href="/tag/chatgpt.html" class="tag">chatgpt</a> <a href="/tag/bing.html" class="tag">bing</a>
         </span>
       </div>
 
-    <div id="table-of-contents" class="toc" role="doc-toc">
-<h3> Table of Contents </h3>
-
-<style>
+    <style>
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -125,6 +122,9 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<div id="table-of-contents" class="toc" role="doc-toc">
+<h3 id="table-of-contents-header"> Table of Contents </h3>
+
 <ul>
 <li><a href="#introduce-yourself">Introduce yourself</a></li>
 <li><a href="#factual-responses">Factual responses</a>
@@ -141,8 +141,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
+
 </div>
 
+<p><link rel="stylesheet" href="/assets/chatbot-comparison/chatbot.css"></p>
 <p>This report will compare and contrast the outputs of the following chatbot services:</p>
 <table>
 <thead>
@@ -172,85 +174,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>Bing Chat has three modes (Creative, Balanced, Precise), and the mode I chose is indicated in the response.</p>
 <p>Bard also generates three drafts for each response, but I’ve elected to only choose the default draft, except for when all drafts are notable.</p>
-<style>
-
-.human, .bard, .chatgpt, .bing {
-    padding: 0.5em 1em;
-    padding-top: 0;
-}
-
-.human {
-    margin: 1rem 1rem 1rem auto;
-    padding: 0.5rem;
-    width: fit-content;
-    border-radius: 1.125rem 1.125rem 0 1.125rem;
-    background: #333;
-    color: white;
-    display: block;
-}
-
-.human code, .human div.sourceCode, .human pre.sourceCode, .human span {
-    background: #333;
-    border: none;
-}
-
-.bard-title, .chatgpt-title, .bing-title {
-    line-height: 1em;
-    font-weight: bold;
-}
-
-.bard-title::before, .chatgpt-title::before, .bing-title::before {
-    vertical-align: middle;
-    content: "";
-    display: inline-block;
-    background-size: 32px 32px;
-    vertical-align: -50%;
-    width: 32px;
-    height: 32px;
-    margin-right: 0.4em;
-}
-
-.bard {
-    background: #f3f6fc;
-}
-
-.bard-title::before {
-    background-image: url(/assets/bard.gif);
-}
-
-.chatgpt {
-    background: #f7f7f8;
-}
-
-.chatgpt-title::before {
-    background-image: url(/assets/chatgpt.png);
-}
-
-.bing {
-    background: #eceefb;
-}
-
-.bing-title::before {
-    background-image: url(/assets/bing.png);
-}
-
-blockquote {
-    display: inline-block;
-    border-radius: 1.125rem 1.125rem 1.125rem 0;
-    margin: 0;
-    margin-bottom: 0.5em;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
-    max-width: 100%;
-    overflow: auto;
-}
-
-.human details {
-    background: none;
-    color: white;
-}
-
-</style>
 <h1 id="introduce-yourself">Introduce yourself</h1>
 <blockquote class="human">
 Hi! Tell me a bit about yourself.
@@ -949,6 +872,7 @@ They are so cute! Can you please use a different, larger design?
 <p>In conclusion, I was never particularly impressed with Bard. It mostly works, but it is missing a lot of the integrations of Bing, and doesn’t seem to provide the creative results of ChatGPT. Bing’s integration with search, image generation, and citing sources make it feel like the best go-to chatbot overall. I think ChatGPT can also be a good tool when Bing’s content policy gets in the way, or when more long-form content is required.</p>
 <p>There’s a ton I didn’t get to, including more practical searches and code generation, so there’s still plenty more I want to do.</p>
 <p>If I ever do a “part 2”, I’ll link it below!</p>
+<p><a href="/blog/chatbot-comparison-cve.html">Part 2: Comparison of Bard, ChatGPT, and Bing Chat responding to CVEs</a></p>
 
 
     </article>
@@ -959,7 +883,7 @@ They are so cute! Can you please use a different, larger design?
 </footer>
 
   <script>
-    anchors.add("h1,h2,h3:nth-child(n+3),h4,h5,h6");
+    anchors.add("h1,h2,h3:not(#table-of-contents-header),h4,h5,h6");
   </script>
 </body>
 
