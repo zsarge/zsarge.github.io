@@ -177,6 +177,20 @@ def generate_blog
   FileUtils.copy_entry(File.join(SOURCE_PATH, 'assets'), File.join(OUTPUT_PATH, 'assets'), preserve: false, remove_destination: true)
 end
 
+def prepare filepath # transcode to formats appropriate for the web
+  def convert_to_webp target
+    without_extension = File.join(File.dirname(target), File.basename(target, ".*" ))
+    webp_filename = "#{without_extension}.webp"
+    puts `cwebp -mt #{target} -o #{webp_filename}`
+  end
+  assets_path = File.join(SOURCE_PATH, 'assets')
+  unless Dir.glob("#{SOURCE_PATH}/**/#{File.basename(filepath)}")
+    FileUtils.cp(filepath, assets_path)
+    filepath = File.join(SOURCE_PATH, 'assets', File.basename(filepath))
+  end
+  convert_to_webp filepath
+end
+
 
 if ARGV.size == 0
   puts "blog.rb: command not recognized. use --help for details"
@@ -189,11 +203,18 @@ Arguments:
         show this help text
     --generate
         transform the content from ./content into the html files in ./build
+    --prepare FILEPATH
+        take a file, copy it to ./content/assets, and transcode it to web-compatible formats (webp)
     --new FILENAME.md
         generate new blog post with the specified filename. Be sure to include `.md`.
     "
+  when "prepare", "--prepare"
+    filepath = ARGV[1]
+    raise 'blog.rb: filepath must be a file' unless File.exists? filepath
+    raise 'blog.rb: cwebp is not installed. consider something like "apt install webp" or "dnf install libwebp-tools"' unless which 'cwebp'
+    prepare filepath
   when "generate", "--generate"
-    raise 'pandoc could not be found' unless which("pandoc")
+    raise 'blog.rb: pandoc could not be found' unless which 'pandoc'
     generate_blog
   when "version", "-version", "--version"
     puts "blog.rb version 0.1.0"
