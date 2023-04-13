@@ -777,10 +777,26 @@ Sure, I’ll try to create that.
 <span class="bing-title">Bing (Creative)</span>
 
 <div>
-<img src="/assets/chatbot-comparison/response1.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art">
-<img src="/assets/chatbot-comparison/response2.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet">
-<img src="/assets/chatbot-comparison/response3.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet">
-<img src="/assets/chatbot-comparison/response4.jpeg" alt="a realistic monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet">
+<picture>
+    <source srcset="/assets/chatbot-comparison/response1.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response1.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response1.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art" loading="lazy">
+</picture>
+<picture>
+    <source srcset="/assets/chatbot-comparison/response2.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response2.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response2.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
+</picture>
+<picture>
+    <source srcset="/assets/chatbot-comparison/response3.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response3.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response3.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
+</picture>
+<picture>
+    <source srcset="/assets/chatbot-comparison/response4.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response4.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response4.jpeg" alt="a realistic monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
+</picture>
 </div>
 
 "ASCII art of a bunny"
@@ -858,10 +874,26 @@ Sure, I’ll try to create that.
 <span class="bing-title">Bing (Creative)</span>
 
 <div>
-<img src="/assets/chatbot-comparison/response5.jpeg" alt="a simple black on white silhouette of a bunny, where the silhouette is composed of text-like blocks">
-<img src="/assets/chatbot-comparison/response6.jpeg" alt="a cartoony bunny with droopy ears">
-<img src="/assets/chatbot-comparison/response7.jpeg" alt="a blocky image of a rabbit head">
-<img src="/assets/chatbot-comparison/response8.jpeg" alt="a monochrome image of a bunny that could probably be mistaken for a gummy bear. it has vague numbers in its body, but clearly is not generated with a strong understanding of ascii">
+<picture>
+    <source srcset="/assets/chatbot-comparison/response5.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response5.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response5.jpeg" alt="a simple black on white silhouette of a bunny, where the silhouette is composed of text-like blocks" loading="lazy">
+</picture>
+<picture>
+    <source srcset="/assets/chatbot-comparison/response6.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response6.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response6.jpeg" alt="a cartoony bunny with droopy ears" loading="lazy">
+</picture>
+<picture>
+    <source srcset="/assets/chatbot-comparison/response7.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response7.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response7.jpeg" alt="a blocky image of a rabbit head" loading="lazy">
+</picture>
+<picture>
+    <source srcset="/assets/chatbot-comparison/response8.webp" type="image/webp">
+    <source srcset="/assets/chatbot-comparison/response8.jpeg" type="image/jpeg"> 
+    <img src="/assets/chatbot-comparison/response8.jpeg" alt="a monochrome image of a bunny that could probably be mistaken for a gummy bear. it has vague numbers in its body, but clearly is not generated with a strong understanding of ascii" loading="lazy">
+</picture>
 </div>
 
 "ASCII art of a bunny using a different, larger design"
