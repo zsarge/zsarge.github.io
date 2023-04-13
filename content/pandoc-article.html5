@@ -4,7 +4,7 @@ $highlighting-css$
 </style>
 
 <div id="table-of-contents" class="toc" role="doc-toc">
-<h3 id="table-of-contents-header"> Table of Contents </h3>
+<b id="table-of-contents-header"> Table of Contents </b>
 
 $table-of-contents$
 
