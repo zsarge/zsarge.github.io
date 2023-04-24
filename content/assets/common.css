@@ -89,6 +89,7 @@ header {
     color: var(--less-prominent-text);
     line-height: 1.8em;
     padding: 0.5em 0;
+    font-size: 0.8em;
 }
 
 #post-meta span {

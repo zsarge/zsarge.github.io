@@ -20,4 +20,5 @@
     - https://github.com/Masquerade-Circus/pandoc-plantuml
   - add more "juice" to buttons and tags
     - https://garden.bradwoods.io/notes/design/juice
+  - add "next post", "articles", and "previous post" links at bottom of a page
 - write good content
