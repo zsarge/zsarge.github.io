@@ -13,7 +13,6 @@
     --gray-background: #fcf2f2;
     --gray-border: darkgray;
 }
-}
 
 nav,
 header {
@@ -25,7 +24,7 @@ html {
 }
 
 body {
-    font-family: "Lucida Sans", sans-serif;
+    font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
     height: 100%;
 }
 
@@ -89,7 +88,7 @@ header {
     color: var(--less-prominent-text);
     line-height: 1.8em;
     padding: 0.5em 0;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 #post-meta span {
@@ -120,9 +119,6 @@ header {
     margin: 0;
 }
 
-* {
-    font-family: 'Merriweather', Georgia, serif;
-}
 
 /* Code Styling */
 
