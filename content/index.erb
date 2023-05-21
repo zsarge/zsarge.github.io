@@ -1,9 +1,62 @@
 <%= header "Zack Sargent's Blog | Home" %>
 
-<main>
-    <h1> Index </h1>
-    <%= $articles %>
-    <%= $tags %>
-</main>
+  <style>
+    #age {
+      display: inline-block;
+      width: 6.4em !important;
+      min-width: 6.4em;
+      max-width: 6.4em;
+    }
+  </style>
 
-<%= $footer %>
+  <main>
+    <h1>Hi! &#128075; My name is Zack Sargent.</h1>
+
+    <p>
+      I am an
+      <span id="age">
+        18
+      </span> year old student and software engineer from Cincinnati, Ohio.
+    </p>
+    <p>I am currently attending Northern Kentucky University, majoring in Computer Science</p>
+
+  </main>
+
+  <script>
+    // A quick script to show my age in a ridiculous amount of precision.
+    const birthday = new Date("2004-06-11");
+    function getAgeString() {
+      const msPerYear = 1000 * 60 * 60 * 24 * 365.25;
+      const differenceInMs = new Date() - birthday;
+      const differenceInYears = differenceInMs / msPerYear;
+      return differenceInYears.toFixed(9);
+    }
+
+    let animationInterval;
+    function animateAge() {
+      const age = document.getElementById("age");
+      animationInterval = setInterval(() => {
+        age.textContent = getAgeString();
+      }, 50)
+    }
+    // Grab the prefers reduced media query.
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    // Check if the media query matches or is not available.
+    if (!mediaQuery || mediaQuery.matches) {
+      console.log("prefers-reduced-motion is enabled");
+    } else {
+      animateAge();
+    }
+
+    // Ads an event listener to check for changes in the media query's value.
+    mediaQuery.addEventListener("change", () => {
+      if (mediaQuery.matches) {
+        clearInterval(animationInterval)
+      } else {
+        animateAge();
+      }
+    });
+  </script>
+
+  <%= $footer %>
