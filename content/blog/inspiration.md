@@ -28,6 +28,6 @@ So, I slapped together a quick Ruby script, heavily reliant on [Pandoc](https://
 
 ## Website Design
 
-When designing the actual look of the site, I drew heavily from [orlp.net](https://orlp.net/). I really like his code blocks, and overall aesthetic.
+When designing the actual look of the site, I drew heavily from [orlp.net](https://orlp.net/). I really like his code blocks, and overall aesthetic. [bazhenov.me](https://www.bazhenov.me/) was also inspirational as well.
 
 I also took inspiration from the blogroll format from [perfectionkills.com](http://perfectionkills.com/).

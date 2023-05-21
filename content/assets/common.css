@@ -1,6 +1,7 @@
 :root {
     --orange: #F7D4BC;
     --dark-orange: #f2b78e;
+    --burnt-orange: #CC5500;
     --orange-border: #c6aa96;
     --text-on-orange: black;
     --blue: #846b8a;
@@ -195,22 +196,32 @@ pre.rb::before {
 /* TODO: have hover effects */
 /* TODO: Make it look good on pc & mobile (responsive :O) */
 
-nav#top-nav {
-    padding-top: 1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem
+#top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5em;
 }
 
-nav.prev-next {
-    margin-top: 2em
+.logo {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-nav .gray {
-    color: #bbb9c6
+.logo a {
+    color: white;
+    background: black;
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 10px;
 }
 
-nav a {
-    color: #100921 !important;
+.logo a:hover {
+    background: var(--burnt-orange);
+}
+
+.links a {
+    margin-left: 20px;
 }
 
 nav a::after {
