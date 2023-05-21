@@ -28,60 +28,66 @@
     </nav>
 </header>
 
-<main>
-    <h1> Index </h1>
-    <h2> Articles </h2>
-<!-- TODO: yoink this style: http://perfectionkills.com/ -->
-<table>
-    <thead>
-        <tr> 
-            <th scope="col">Date</th> 
-            <th scope="col">Length</th> 
-            <th scope="col">Title</th> 
-        </tr>
-    </thead>
-    <tbody>
-        
-        <tr>
-            <td> 2023-03-31 </td>
-            <td> 9 mins </td>
-            <td> <a href="/blog/chatbot-comparison-cve.html"> Bard, ChatGPT, and Bing Chat explaining a CVE </a> </td>
-        </tr>
-        
-        <tr>
-            <td> 2023-03-25 </td>
-            <td> 44 mins </td>
-            <td> <a href="/blog/chatbot-comparison.html"> Comparison of Bard, ChatGPT, and Bing Chat </a> </td>
-        </tr>
-        
-        <tr>
-            <td> 2023-03-24 </td>
-            <td> 2 mins </td>
-            <td> <a href="/blog/inspiration.html"> About this site </a> </td>
-        </tr>
-        
-    </tbody>
-</table>
-    <h3> Filter by Tag </h3>
-<ul>
-    
-        <li> <a href="/tag/ai.html"> ai </a> (2) </li>
-    
-        <li> <a href="/tag/bard.html"> bard </a> (2) </li>
-    
-        <li> <a href="/tag/bing.html"> bing </a> (2) </li>
-    
-        <li> <a href="/tag/chatbot.html"> chatbot </a> (2) </li>
-    
-        <li> <a href="/tag/chatgpt.html"> chatgpt </a> (2) </li>
-    
-        <li> <a href="/tag/meta.html"> meta </a> (1) </li>
-    
-</ul>
+  <style>
+    #age {
+      display: inline-block;
+      width: 6.4em !important;
+      min-width: 6.4em;
+      max-width: 6.4em;
+    }
+  </style>
 
-</main>
+  <main>
+    <h1>Hi! &#128075; My name is Zack Sargent.</h1>
 
+    <p>
+      I am an
+      <span id="age">
+        18
+      </span> year old student and software engineer from Cincinnati, Ohio.
+    </p>
+    <p>I am currently attending Northern Kentucky University, majoring in Computer Science</p>
 
+  </main>
+
+  <script>
+    // A quick script to show my age in a ridiculous amount of precision.
+    const birthday = new Date("2004-06-11");
+    function getAgeString() {
+      const msPerYear = 1000 * 60 * 60 * 24 * 365.25;
+      const differenceInMs = new Date() - birthday;
+      const differenceInYears = differenceInMs / msPerYear;
+      return differenceInYears.toFixed(9);
+    }
+
+    let animationInterval;
+    function animateAge() {
+      const age = document.getElementById("age");
+      animationInterval = setInterval(() => {
+        age.textContent = getAgeString();
+      }, 50)
+    }
+    // Grab the prefers reduced media query.
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    // Check if the media query matches or is not available.
+    if (!mediaQuery || mediaQuery.matches) {
+      console.log("prefers-reduced-motion is enabled");
+    } else {
+      animateAge();
+    }
+
+    // Ads an event listener to check for changes in the media query's value.
+    mediaQuery.addEventListener("change", () => {
+      if (mediaQuery.matches) {
+        clearInterval(animationInterval)
+      } else {
+        animateAge();
+      }
+    });
+  </script>
+
+  
 
 </body>
 
