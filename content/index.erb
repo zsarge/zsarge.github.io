@@ -7,6 +7,8 @@
       min-width: 6.4em;
       max-width: 6.4em;
     }
+
+    /* TODO: add media query for reduced motion */
   </style>
 
   <main>
@@ -19,6 +21,8 @@
       </span> year old student and software engineer from Cincinnati, Ohio.
     </p>
     <p>I am currently attending Northern Kentucky University, majoring in Computer Science</p>
+    <p>I'm really interested in ...</p>
+    <p>my professional experience is ...</p>
 
   </main>
 
@@ -35,6 +39,8 @@
     let animationInterval;
     function animateAge() {
       const age = document.getElementById("age");
+      if (animationInterval)
+        clearInterval(animationInterval);
       animationInterval = setInterval(() => {
         age.textContent = getAgeString();
       }, 50)

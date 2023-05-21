@@ -51,6 +51,14 @@ header {
     }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1em;
+}
 
 .tag {
     padding: 10px;
@@ -208,6 +216,7 @@ pre.rb::before {
     font-weight: bold;
 }
 
+/* TODO: Mobile CSS : put links below name */
 .logo a {
     color: white;
     background: black;
@@ -222,6 +231,21 @@ pre.rb::before {
 
 .links a {
     margin-left: 20px;
+}
+
+.links a:first-child {
+    margin-left: 0;
+}
+
+@media (max-width: 600px) {
+    #top-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .links {
+        margin-top: 10px;
+    }
 }
 
 nav a::after {
