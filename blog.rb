@@ -15,7 +15,7 @@ OUTPUT_PATH = File.join(__dir__, 'docs')
 ARTICLES_PATH = File.join(SOURCE_PATH, 'blog')
 CURRENT_YEAR = Time.new.year
 
-DOMAIN_NAME = "zsarge.github.io"
+DOMAIN_NAME = "zack.fyi"
 
 # Cross-platform way of finding an executable in the $PATH.
 #
