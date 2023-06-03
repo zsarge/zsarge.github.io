@@ -86,6 +86,10 @@ blockquote {
     overflow: auto;
 }
 
+.blockquote code {
+    word-wrap: break-word;
+}
+
 .human details {
     background: none;
     color: white;
