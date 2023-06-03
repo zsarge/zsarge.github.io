@@ -1,20 +1,33 @@
-<h2> Articles </h2>
-<!-- TODO: yoink this style: http://perfectionkills.com/ -->
+<style>
+.articles .title {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 800px) {
+    .title {
+        flex-direction: column;
+    }
+}
+
+.articles dd {
+    margin-bottom: 1em;
+}
+</style>
+
 <table>
-    <thead>
-        <tr> 
-            <th scope="col">Date</th> 
-            <th scope="col">Length</th> 
-            <th scope="col">Title</th> 
-        </tr>
-    </thead>
-    <tbody>
+    <dl class="articles">
         <% for article in articles %>
-        <tr>
-            <td> <%= article.date %> </td>
-            <td> <%= article.reading_time %> </td>
-            <td> <a href="<%=article.url%>"> <%= article.title %> </a> </td>
-        </tr>
+        <dt class="title">
+            <a href="<%=article.url%>"><%= article.title %></a> 
+            <small class="article-info">
+                <i>(<%= article.reading_time %>)</i>
+                <%= article.date %>
+            </small>
+        </dt>
+        <dd>
+            <%= article.preview %> 
+        </dd>
         <% end %>
-    </tbody>
+    </dl>
 </table>
