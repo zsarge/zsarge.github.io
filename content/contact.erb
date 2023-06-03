@@ -1,0 +1,38 @@
+<%= header "Blog Posts | Zack Sargent" %>
+<%
+def obfuscate(text)
+    # put garbage in between all letters in a string
+    def snippet(letter, class_name)
+        "<span class=\"obfuscated #{class_name}\">#{letter}</span>"
+    end
+    text.chars.map{ snippet(_1, 'letter') }.reduce { |acc, ele|
+        random_letter = ('a'..'z').to_a.sample
+        acc << snippet(random_letter, 'garbage') << ele
+    }
+end
+%>
+
+<main>
+    <style>
+    .obfuscated.garbage {
+        display: none;
+    }
+    </style>
+    <h1>Contact</h1>
+    <p>Feel free to reach out if you have questions, comments, concerns, or just wanna tell me something cool. &#128522;</p>
+    <dl>
+        <dt>Email</dt>
+        <dd><%= obfuscate ['contact', DOMAIN_NAME].join ?@ %></dd>
+        <dt>LinkedIn</dt>
+        <dd>
+        <a href="https://linkedin.com/in/zsarge">linkedin.com/in/zsarge</a>
+        </dd>
+        <dt>GitHub</dt>
+        <dd>
+            <a href="https://github.com/zsarge">github.com/zsarge</a> <br>
+            (if you want to submit a PR or something)
+        </dd>
+    </dl>
+</main>
+
+<%= $footer %>
