@@ -1,7 +1,7 @@
 Title: Comparison of Bard, ChatGPT, and Bing Chat
 Preview: A detailed comparison of Google's Bard, OpenAI's ChatGPT, and Microsoft's Bing Chat
 Date: 2023-03-25
-Tags: ai, chatbot, bard, chatgpt, bing
+Tags: chatbot
 
 <link rel="stylesheet" href="/assets/chatbot-comparison/chatbot.css">
 

@@ -53,7 +53,48 @@
   </main>
 
 <footer>
-&copy; <%= CURRENT_YEAR %> <%= author %>
+  <style>
+    .edit {
+      margin-bottom: 1em;
+    }
+    .page-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2em;
+    }
+  </style>
+
+  <div class="page-bottom">
+    <div class="copyright">
+      &copy; <%= CURRENT_YEAR %> <%= author %>
+    </div>
+    <div class="top">
+      <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' })">
+        Go to Top
+      </a>
+    </div>
+  </div>
+
+  <% unless edit_times.empty? %>
+    <details>
+      <summary>See edit history for "<%= title %>"</summary>
+      <dl class="edits">
+        <% for commit in commit_history %>
+          <div class="edit">
+            <dt>
+              <%= commit.author %> edited this page on 
+              <time datetime="<%= commit.date.iso8601 %>">
+                <%= commit.date.strftime("%A, %B %d, %Y at %I:%M %p") %>
+              </time>
+            </dt>
+            <dd>
+              <%= commit.changes %>
+            </dd>
+          </div>
+        <% end %>
+      </dl>
+    </details>
+  <% end %>
 </footer>
 
   <script>

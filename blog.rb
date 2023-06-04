@@ -50,11 +50,14 @@ def create path
   Dir.mkdir(path) unless Dir.exist?(path)
 end
 
+GitCommit = Struct.new(:author, :date, :message, :changes)
+
 class Article 
   attr_reader :title, :url, :filename, :filepath, :date, :tags, :author, :content, :preview
   def initialize(filepath:)
     @html = nil
     @length_in_minutes = nil
+    @git_commits = nil
     @filepath = filepath
     @author = 'Zack Sargent'
     @filename = File.basename(filepath, ".md")
@@ -119,6 +122,21 @@ class Article
     "#{length_in_minutes} min#{length_in_minutes == 1 ? '' : ?s}"
   end
 
+  def commit_history
+    return @git_commits if @git_commits
+    history = `git log --format="---commit-start---%n%an%n%aI%n%s" --shortstat  -- #{@filepath}`
+    @git_commits = history.split("\n").each_slice(6).map { |lines|
+      raise "Malformed git history" unless lines.first == "---commit-start---"
+      GitCommit.new(lines[1], DateTime.parse(lines[2]), lines[3], lines[5].strip)
+    }.reject { |commit|
+      commit.date < @date # ignore edits before publication date
+    }
+  end
+
+  def edit_times
+    commit_history.map(&:date)
+  end
+
   def get_tags_formatted = @tags.map { format_tag(_1) }.join(" ")
   def format_tag(tag) = "<a href=\"/tag/#{tag}.html\" class=\"tag\">#{tag}</a>"
   def full_url = "https://#{DOMAIN_NAME}#{@url}"
@@ -136,6 +154,7 @@ end
 
 def generate_indicies(articles, tags)
   build_template from: 'index.erb', to: %w(index.html)
+  build_template from: 'contact.erb', to: %w(contact.html)
   build_template from: 'tags_index.erb', to: %w(tag index.html)
   build_template from: 'blog_index.erb', to: %w(blog index.html)
 end
@@ -159,6 +178,7 @@ def generate_blog
       tags[tag] << article
     end
   end
+
 
   tags = tags.sort { |(tag_name_1, articles_1), (tag_name_2, articles_2)| 
     # sort by count first, then alphabetically

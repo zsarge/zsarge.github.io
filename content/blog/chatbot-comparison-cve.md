@@ -1,12 +1,13 @@
 Title: Bard, ChatGPT, and Bing Chat explaining a CVE
-Preview: A quick comparison of how Bard, ChatGPT, and Bing Chat are able to evaluate CVE-2020-29143.
+Preview: A quick comparison of how Bard, ChatGPT, and Bing Chat are able to evaluate a CVE report, inspired by a conversation I had with a friend
 Date: 2023-03-31
-Tags: ai, chatbot, bard, chatgpt, bing
+Tags: chatbot
 
 <link rel="stylesheet" href="/assets/chatbot-comparison/chatbot.css">
 
-After [my last chatbot comparison](/blog/chatbot-comparison.html), this is a quick comparison of how Bard, ChatGPT, and
-Bing Chat are able to interpret and understand a <abbr title="Common Vulnerabilities and Exposures">CVE</abbr> report.
+After [my last chatbot comparison](/blog/chatbot-comparison.html), this is a quick, surface-level
+comparison of how Bard, ChatGPT, and Bing Chat are able to interpret and understand a
+<abbr title="Common Vulnerabilities and Exposures">CVE</abbr> report.
 
 This report will compare and contrast the outputs of the following chatbot services:
 

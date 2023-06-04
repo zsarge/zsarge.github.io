@@ -1,5 +1,5 @@
 Title: About this site
-Preview: Credit to all the people whose work inspired me when creating this site...
+Preview: Credit to all the people whose work inspired me when creating this site.
 Date: 2023-03-24
 Tags: meta
 
