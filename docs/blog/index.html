@@ -22,62 +22,69 @@
         </div>
         <div class="links">
             <a href="/blog/index.html">Blog</a>
-            <a href="/tag/index.html">Tags</a>
             <a href="/contact.html">Contact</a>
         </div>
     </nav>
 </header>
 
 <main>
-    <h2> Articles </h2>
-<!-- TODO: yoink this style: http://perfectionkills.com/ -->
-<table>
-    <thead>
-        <tr> 
-            <th scope="col">Date</th> 
-            <th scope="col">Length</th> 
-            <th scope="col">Title</th> 
-        </tr>
-    </thead>
-    <tbody>
-        
-        <tr>
-            <td> 2023-03-31 </td>
-            <td> 9 mins </td>
-            <td> <a href="/blog/chatbot-comparison-cve.html"> Bard, ChatGPT, and Bing Chat explaining a CVE </a> </td>
-        </tr>
-        
-        <tr>
-            <td> 2023-03-25 </td>
-            <td> 44 mins </td>
-            <td> <a href="/blog/chatbot-comparison.html"> Comparison of Bard, ChatGPT, and Bing Chat </a> </td>
-        </tr>
-        
-        <tr>
-            <td> 2023-03-24 </td>
-            <td> 2 mins </td>
-            <td> <a href="/blog/inspiration.html"> About this site </a> </td>
-        </tr>
-        
-    </tbody>
-</table>
-    <h3> Filter  Blog Posts by Tag </h3>
-<ul>
-    
-        <li> <a href="/tag/ai.html">ai</a> (2) </li>
-    
-        <li> <a href="/tag/bard.html">bard</a> (2) </li>
-    
-        <li> <a href="/tag/bing.html">bing</a> (2) </li>
-    
-        <li> <a href="/tag/chatbot.html">chatbot</a> (2) </li>
-    
-        <li> <a href="/tag/chatgpt.html">chatgpt</a> (2) </li>
-    
-        <li> <a href="/tag/meta.html">meta</a> (1) </li>
-    
-</ul>
+    <h1> Blog Posts </h1>
+    <b><a href="/tag/index.html">Sort by tags</a></b>
+    <style>
+.articles .title {
+    display: flex;
+    justify-content: space-between;
+}
 
+@media screen and (max-width: 800px) {
+    .title {
+        flex-direction: column;
+    }
+}
+
+.articles dd {
+    margin-bottom: 1em;
+}
+</style>
+
+<table>
+    <dl class="articles">
+        
+        <dt class="title">
+            <a href="/blog/chatbot-comparison-cve.html">Bard, ChatGPT, and Bing Chat explaining a CVE</a> 
+            <small class="article-info">
+                <i>(9 mins)</i>
+                2023-03-31
+            </small>
+        </dt>
+        <dd>
+            A quick comparison of how Bard, ChatGPT, and Bing Chat are able to evaluate a CVE report, inspired by a conversation I had with a friend 
+        </dd>
+        
+        <dt class="title">
+            <a href="/blog/chatbot-comparison.html">Comparison of Bard, ChatGPT, and Bing Chat</a> 
+            <small class="article-info">
+                <i>(44 mins)</i>
+                2023-03-25
+            </small>
+        </dt>
+        <dd>
+            A detailed comparison of Google's Bard, OpenAI's ChatGPT, and Microsoft's Bing Chat 
+        </dd>
+        
+        <dt class="title">
+            <a href="/blog/inspiration.html">About this site</a> 
+            <small class="article-info">
+                <i>(2 mins)</i>
+                2023-03-24
+            </small>
+        </dt>
+        <dd>
+            Credit to all the people whose work inspired me when creating this site. 
+        </dd>
+        
+    </dl>
+</table>
 </main>
 
 

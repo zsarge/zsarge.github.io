@@ -22,29 +22,71 @@
         </div>
         <div class="links">
             <a href="/blog/index.html">Blog</a>
-            <a href="/tag/index.html">Tags</a>
             <a href="/contact.html">Contact</a>
         </div>
     </nav>
 </header>
 
 <main>
-    <h3> Filter  Blog Posts by Tag </h3>
-<ul>
-    
-        <li> <a href="/tag/ai.html">ai</a> (2) </li>
-    
-        <li> <a href="/tag/bard.html">bard</a> (2) </li>
-    
-        <li> <a href="/tag/bing.html">bing</a> (2) </li>
-    
-        <li> <a href="/tag/chatbot.html">chatbot</a> (2) </li>
-    
-        <li> <a href="/tag/chatgpt.html">chatgpt</a> (2) </li>
-    
-        <li> <a href="/tag/meta.html">meta</a> (1) </li>
-    
-</ul>
+    <style>
+.articles .title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.articles .article-info {
+    margin-left: 0.4em;
+}
+
+.articles {
+    margin-left: 1em;
+    width: fit-content;
+}
+
+@media screen and (max-width: 800px) {
+    .title {
+        flex-direction: column;
+    }
+}
+</style>
+
+<h1>Blog Posts</h1>
+<b><a href="/blog/index.html">Sort chronologically</a></b>
+
+
+    <h3> <a href="/tag/chatbot.html">chatbot</a> (2) </h3>
+    <div class="articles">
+        
+        <div class="title">
+            <a href="/blog/chatbot-comparison-cve.html">Bard, ChatGPT, and Bing Chat explaining a CVE</a> 
+            <small class="article-info">
+                <i>(9 mins)</i>
+                2023-03-31
+            </small>
+        </div>
+        
+        <div class="title">
+            <a href="/blog/chatbot-comparison.html">Comparison of Bard, ChatGPT, and Bing Chat</a> 
+            <small class="article-info">
+                <i>(44 mins)</i>
+                2023-03-25
+            </small>
+        </div>
+        
+    </div>
+
+    <h3> <a href="/tag/meta.html">meta</a> (1) </h3>
+    <div class="articles">
+        
+        <div class="title">
+            <a href="/blog/inspiration.html">About this site</a> 
+            <small class="article-info">
+                <i>(2 mins)</i>
+                2023-03-24
+            </small>
+        </div>
+        
+    </div>
 
 </main>
 
