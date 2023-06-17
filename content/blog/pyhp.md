@@ -355,7 +355,7 @@ Imagine a situation where someone wanted to put their email on their blog, but d
 {%
 import random
 import string
-define(random)  # could be nested in function as well
+define(random)  # could be nested in get_garbage as well
 define(string)
 
 @define
