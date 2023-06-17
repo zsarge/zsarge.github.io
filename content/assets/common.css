@@ -143,6 +143,10 @@ code span {
     background: #fcfcff;
 }
 
+code span.bu {
+    color: forestgreen;
+}
+
 pre {
     padding: 10px;
     border: 1px solid #ddd8dd;
@@ -152,6 +156,8 @@ pre {
     overflow-x: auto;
     max-width: 100%;
 }
+
+
 
 code.sourceCode {
     overflow-x: overlay;
