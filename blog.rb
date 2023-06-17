@@ -101,6 +101,7 @@ class Article
     @html ||= `pandoc -f markdown -t html --table-of-contents  \
     --template \"#{File.join(SOURCE_PATH, 'pandoc-article.html5')}\" \
     --metadata title="#{@title}" \
+    --filter mermaid-filter \
     --highlight-style pygments <(tail -n +5 \"#{@filepath}\")`
   end
 
