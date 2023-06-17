@@ -147,6 +147,9 @@ div.sourceCode {
     border: 1px solid #ddd8dd;
 }
 
+pre.sourceCode.py {
+    border: none;
+}
 
 code.python span.bu {
     color: forestgreen;
