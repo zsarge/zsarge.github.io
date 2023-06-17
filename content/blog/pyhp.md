@@ -13,11 +13,11 @@ So, the other day, I was at [a local Python meetup](https://cincypy.com/), where
 
 **Create a minimalist static site generator using only the Python standard library.**
 
-Of course, one option is to just write a tokenizer and parser from scratch, parsing your template language of choice quickly and efficiently. This has the merit of being the most technically challenging way to approach this that I can think of, and it would allow for boundless creativity. However, this approach seems to carry a significant amount of work for a fun hobby project.
+Of course, one option would be to write a tokenizer and parser from scratch, parsing your template language of choice quickly and efficiently. This has the merit of being the most technically challenging way to approach this that I can think of, and allowing for complete creative control. However, this approach _also_ seems to carry a significant amount of work for a fun hobby project.
 
-The person who introduced the prompt took it in an interesting direction, using Python's native XML parsing capabilities to generate documents which were then output as XHTML, championing XML's validity in 2023. I like this approach, as I believe it was a good learning experience regarding Python's XML support, though he said that he did end up writing more error-checking code for invalid XML structures than he would have liked.
+The person who introduced the prompt took it in an interesting direction, choosing XML as the templating language, and then using Python's native XML parsing capabilities to generate XHTML documents, championing XML's validity in 2023. I like this approach, as I believe it was a good learning experience regarding Python's XML support, though he said that he did end up writing more error-checking code for invalid XML structures than he would have liked.
 
-On the other hand, I felt inspired to take this approach in an ultra-minimalist direction: Using the Python parser itself to handle template generation.
+On the other hand, I felt inspired to take this approach in an more minimalist direction: Using the Python parser itself to handle template generation.
 
 ## Ruby Inspiration
 
@@ -52,6 +52,8 @@ With whitespace removed, this produces:
 <h2>Hello World</h2>
 <h3>Hello World</h3>
 ```
+
+Instead of having a separate templating language, you just use normal Ruby code. I wanted to find an easy way to get the same vibe in Python.
 
 ## PHP Inspiration
 
@@ -344,14 +346,14 @@ def f(x):
 def g(x):
     return f(x) + 1
 %}
-{{g(1)}}
+{{g(1) # returns 3 }}
 ```
 
 ### Email obfuscation example
 
-Imagine a situation where someone wanted to put their email on their blog, but didn't want their email to be accessible by scammers, so they put a bunch of garbage in their email.
+Imagine a situation where someone wanted to put their email on their blog, but didn't want their email to be accessible by people scraping the website, so they put a bunch of garbage in the text and then clean it up with CSS.
 
-```
+```djangotemplate
 {%
 import random
 import string
@@ -422,4 +424,10 @@ Anyway, that's all I have for now! I hope you found this at least mildly interes
 
 This is still a super janky project, but I thought it was interesting how it's possible to get pretty useful results from such as simple approach.
 
-Just don't create a template that deletes any files!
+Just don't create a template that deletes everything!
+
+```
+<!-- This file deletes main.py -->
+{% import os %}
+{% os.remove(__file__) %}
+```
