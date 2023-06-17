@@ -369,8 +369,7 @@ def obfuscate(letter: str, garbage: bool = False) -> str:
 
 @define
 def get_garbage() -> str:
-    alphabet = string.ascii_letters
-    return random.choice(alphabet)
+    return random.choice(string.ascii_letters)
 
 def obfuscate_email(email: str) -> str:
     result = ""
