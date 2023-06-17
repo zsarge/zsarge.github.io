@@ -85,10 +85,11 @@ h6 {
 
 #reading-time {
     margin-left: 10px;
+    margin-right: 5px;
 }
 
 .post-title {
-    margin-bottom: 0.2em;
+    margin-bottom: 0em;
     font-size: 2em;
     line-height: 1.1em;
 }
@@ -100,9 +101,9 @@ h6 {
     font-size: 0.9em;
 }
 
-#post-meta span {
+/* #post-meta span {
     margin-right: 0.5em;
-}
+} */
 
 
 /* TABLE OF CONTENTS */
@@ -142,6 +143,10 @@ code span {
     background: #fcfcff;
 }
 
+code span.bu {
+    color: forestgreen;
+}
+
 pre {
     padding: 10px;
     border: 1px solid #ddd8dd;
@@ -151,6 +156,8 @@ pre {
     overflow-x: auto;
     max-width: 100%;
 }
+
+
 
 code.sourceCode {
     overflow-x: overlay;

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Zack Sargent">
+  <meta property="article:author" content="Zack Sargent">
+  <meta name="keywords" content="python">
+  <title> PyHP: Python Home Page </title>
+  <meta name="twitter:title" content="PyHP: Python Home Page">
+  <meta name="twitter:text:title" content="PyHP: Python Home Page">
+  <meta name="twitter:description" content="What if we used Python&#39;s eval and exec as HTML template generators?">
+  <meta name="description" content="What if we used Python&#39;s eval and exec as HTML template generators?">
+  <meta name="og:description" content="What if we used Python&#39;s eval and exec as HTML template generators?">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zack.fyi/blog/pyhp.html">
+  <link rel="canonical" href="https://zack.fyi/blog/pyhp.html">
+  <meta property="article:published_time" content="2023-06-17T00:00:00+00:00">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/assets/common.css" > 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav id="top-nav">
+        <div class="logo">
+            <a href="/">
+                Zack Sargent
+            </a>
+        </div>
+        <div class="links">
+            <a href="/blog/index.html">Blog</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
+</header>
+
+  <main>
+    <article class="post">
+      <h1 class="post-title"> PyHP: Python Home Page</h1>
+      <div id="post-meta">
+        <span id="date-published">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <time datetime="2023-06-17" pubdate="pubdate">Saturday, June 17, 2023</time>
+        </span>
+        <span id="reading-time">
+          <i class="fa fa-clock-o" aria-hidden="true"></i> 
+          13 mins
+        </span>
+        <span class="tags">
+          <a href="/tag/python.html" class="tag">python</a>
+        </span>
+      </div>
+
+    <style>
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<div id="table-of-contents" class="toc" role="doc-toc">
+<b id="table-of-contents-header"> Table of Contents </b>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#ruby-inspiration">Ruby Inspiration</a></li>
+<li><a href="#php-inspiration">PHP Inspiration</a></li>
+<li><a href="#my-solution">My Solution</a></li>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#basic-example">Basic Example</a></li>
+<li><a href="#including-templates">Including templates</a></li>
+<li><a href="#putting-files-together">Putting files together</a></li>
+<li><a href="#defining-functions">Defining functions</a></li>
+<li><a href="#email-obfuscation-example">Email obfuscation example</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+</div>
+
+<h2 id="introduction">Introduction</h2>
+<aside>
+All the code for this project is <a href="https://github.com/zsarge/PyHP">on Github</a>. (There’s not really that much.)
+</aside>
+<p>So, the other day, I was at <a href="https://cincypy.com/">a local Python meetup</a>, where one of the members shared an interesting project prompt:</p>
+<p><strong>Create a minimalist static site generator using only the Python standard library.</strong></p>
+<p>Of course, one option is to just write a tokenizer and parser from scratch, parsing your template language of choice quickly and efficiently. This has the merit of being the most technically challenging way to approach this that I can think of, and it would allow for boundless creativity. However, this approach seems to carry a significant amount of work for a fun hobby project.</p>
+<p>The person who introduced the prompt took it in an interesting direction, using Python’s native XML parsing capabilities to generate documents which were then output as XHTML, championing XML’s validity in 2023. I like this approach, as I believe it was a good learning experience regarding Python’s XML support, though he said that he did end up writing more error-checking code for invalid XML structures than he would have liked.</p>
+<p>On the other hand, I felt inspired to take this approach in an ultra-minimalist direction: Using the Python parser itself to handle template generation.</p>
+<h2 id="ruby-inspiration">Ruby Inspiration</h2>
+<p>It was interesting to me to see what is required to build template generators in Python, as, in my experience, Ruby makes this type of project trivial. The site you’re reading right now is generated by a bodged-together static site generator I wrote using Ruby’s standard library.</p>
+<p>Notably, Ruby’s standard library includes the templating system <a href="https://en.wikipedia.org/wiki/ERuby">ERB</a>, so including a template is as simple as including just a few lines.</p>
+<p>ERB has two main features that let you use Ruby code to produce HTML:</p>
+<ol type="1">
+<li>Execution tags: <code>&lt;% ... %&gt;</code>
+<ul>
+<li>Used for loops, comments, if statements, function definitions, and anything that shouldn’t end up in the result.</li>
+</ul></li>
+<li>Expression tags: <code>&lt;%= ... %&gt;</code>
+<ul>
+<li>Used to produce values for your HTML</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> <span class="vs">&#39;erb&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>template <span class="kw">=</span> <span class="cn">ERB</span><span class="at">.new</span>(<span class="st">&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;% 1.upto(3) do |i| %&gt;  &lt;%# execution tag  %&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;h&lt;%= i %&gt;&gt;          &lt;%# expression tag %&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;%= phrase %&gt;       &lt;%# expression tag %&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">   &lt;/h&lt;%= i %&gt;&gt;         &lt;%# expression tag %&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;% end %&gt;               &lt;%# execution tag  %&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>phrase <span class="kw">=</span> <span class="st">&quot;Hello World&quot;</span> <span class="co"># the variable used in the template above</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> template<span class="at">.result</span>(<span class="fu">binding</span>)</span></code></pre></div>
+<p>With whitespace removed, this produces:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>Hello World<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h2&gt;</span>Hello World<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h3&gt;</span>Hello World<span class="kw">&lt;/h3&gt;</span></span></code></pre></div>
+<h2 id="php-inspiration">PHP Inspiration</h2>
+<p>As a disclaimer, I really haven’t used PHP very much, so I didn’t take any influences from PHP beyond the name.</p>
+<p>Originally, I wanted to call this project “PHP”, but I found it caused more confusion than laughs, so PyHP felt like a good compromise.</p>
+<p>I’m nowhere near the first person to think of this pun, so credit to the following people for getting there first:</p>
+<ul>
+<li><a href="https://pyhp.sourceforge.net/">axant</a></li>
+<li><a href="https://github.com/bendemott/pyhp">bendemott</a></li>
+<li><a href="https://github.com/juokaz/pyhp">juokaz</a></li>
+<li><a href="https://pyhp-pph.github.io/">PyHP++#</a></li>
+<li><a href="http://love-python.blogspot.com/2008/04/pyhp-python-hypertext-preprocessor.html">Tamim Shahriar</a> (from 2008!)</li>
+<li><a href="https://github.com/yuvipanda/pyhp">yuvipanda</a></li>
+</ul>
+<h2 id="my-solution">My Solution</h2>
+<p>While it’s totally possible to try to build out a full static site generator under this prompt, I was mostly inspired to find an elegant, minimalist solution to produce basic templates.</p>
+<p>However, because I’m working in Python, I choose to loosely base the project on <a href="https://palletsprojects.com/p/jinja/">Jinja templates</a>:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Syntax</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>{{ ... }}</code></td>
+<td style="text-align: left;">expression tag</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>{% ... %}</code></td>
+<td style="text-align: left;">execution tag</td>
+</tr>
+</tbody>
+</table>
+<p>In general, I figured the flow should go as follows:</p>
+<style>
+img {
+   max-width: 100%;
+}
+</style>
+<p><img src="data:image/png;base64,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" alt="" /></p>
+<p>Given this framework, Python gives us two really useful tools for processing strings as Python code, and they happen to be exactly what we want!</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Function</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://docs.python.org/3/library/functions.html#eval"><code>eval</code></a></td>
+<td style="text-align: left;">evaluate a string, and return a result</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://docs.python.org/3/library/functions.html#exec"><code>exec</code></a></td>
+<td style="text-align: left;">execute a string tag</td>
+</tr>
+</tbody>
+</table>
+<p>Basic usage is as follows:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># eval returns native Python types</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">eval</span>(<span class="st">&quot;1 + 2&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">type</span>(x) <span class="kw">is</span> <span class="bu">int</span> <span class="kw">and</span> x <span class="op">==</span> <span class="dv">3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># exec has side effects</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span>(<span class="st">&quot;x += 1&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span>(<span class="st">&quot;print(x)&quot;</span>)  <span class="co"># =&gt; prints 4</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># these functions can be called recursively</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> <span class="bu">eval</span>(<span class="st">&quot;[eval(&#39;f(i)&#39;) for i in range(x)]&quot;</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr) <span class="co"># =&gt; prints [0, 2, 4, 6]</span></span></code></pre></div>
+<p><code>exec</code> and <code>eval</code> both take three parameters:</p>
+<ol type="1">
+<li>The code we’re executing</li>
+<li>the <strong>global</strong> definitions the code has access to</li>
+<li>the <strong>local</strong> definitions the code has access to</li>
+</ol>
+<p>In our case, we want to be able to call global functions with ease, so we pass in all <code>globals()</code> for parameter 2. We also want to be able to define new methods and variables on the fly, so we pass in a shared namespace for all templates as well.</p>
+<p>Based on this reasoning, we get the following core solution:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>EXECUTE_REGEX <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r&#39;\{\%(.*?)\%\}&#39;</span>, re.DOTALL)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>EVALUATE_REGEX <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r&#39;\{\{(.*?)\}\}&#39;</span>, re.DOTALL)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>template_namespace <span class="op">=</span> {}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse(template: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> make_replacer(handler: Callable) <span class="op">-&gt;</span> Callable[[<span class="bu">str</span>], <span class="bu">str</span>]:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> replace(match: Match) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># extract the code inside the template</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            code <span class="op">=</span> <span class="bu">str</span>(match[<span class="dv">1</span>]).strip()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># recursively parse, then execute that code</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="bu">str</span>(handler(parse(code), <span class="bu">globals</span>(), template_namespace) <span class="kw">or</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> replace</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    executor <span class="op">=</span> make_replacer(<span class="bu">exec</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    evaluator <span class="op">=</span> make_replacer(<span class="bu">eval</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># execute everything between &#39;{%&#39; and &#39;%}&#39; and replace it with nothing</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    template <span class="op">=</span> EXECUTE_REGEX.sub(executor, template)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># evaluate everything between &#39;{{&#39; and &#39;}}&#39; and recursively replace it with its result</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EVALUATE_REGEX.sub(evaluator, template)</span></code></pre></div>
+<p><a href="https://github.com/zsarge/PyHP/blob/51d26dfb5ba921d77f85d312d71b64905ed25809/src/main.py#LL11C1-L25C51">(Source on Github)</a></p>
+<p>I felt like this was a pretty elegant solution to this prompt.</p>
+<p>Let’s see what it can do!</p>
+<h2 id="examples">Examples</h2>
+<aside>
+In all of these examples, whitespace has been cleaned up for a better reading experience.
+</aside>
+<h3 id="basic-example">Basic Example</h3>
+<pre><code>&lt;p&gt;
+    {% from datetime import datetime %}
+    {{ datetime.now().strftime(&quot;%Y-%m-%d&quot;) }}
+&lt;/p&gt;</code></pre>
+<p>When evaluated with <code>python3 src/main.py --file $(realpath example_site/example.php)</code>, this will print out:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>2023-06-17<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<h3 id="including-templates">Including templates</h3>
+<p>To handle templates, we just have to define a function that looks for a filename, and returns the file as a string.</p>
+<p>Something like</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> include(path: <span class="bu">str</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> os.path.isfile(path)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path) <span class="im">as</span> f:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> parse(f.read())</span></code></pre></div>
+<p>will allow us to easily include other files in templates.</p>
+<pre><code>{{ include(&#39;./head.php&#39;) }}</code></pre>
+<p>This example will include the entire “./head.php” file in whatever template we’re using.</p>
+<p>Given these basic building blocks, it should be possible to create many types of static sites.</p>
+<h3 id="putting-files-together">Putting files together</h3>
+<pre><code>.
+├── footer.php
+├── head.php
+└── index.php</code></pre>
+<p><code>footer.php</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{% from datetime import datetime %}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;footer&gt;</span>{{ f&#39;<span class="dv">&amp;copy;</span> {datetime.now().strftime(&quot;%Y&quot;)} {author_name}&#39;}}<span class="kw">&lt;/footer&gt;</span></span></code></pre></div>
+<p><code>head.php</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;X-UA-Compatible&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;IE=edge&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;title&gt;</span>Example Document<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span></code></pre></div>
+<p><code>index.php</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  {{ include(&#39;./head.php&#39;) }}</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- These variables are included in ./footer.php --&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  {% author_name = &quot;Zack Sargent&quot; %}</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello World!<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    {% import time %}</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>Generated at {{ time.time() }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    {{ include(&#39;./footer.php&#39;) }}</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<p>When <code>index.php</code> is processed, it will print:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">http-equiv</span><span class="ot">=</span><span class="st">&quot;X-UA-Compatible&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;IE=edge&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;viewport&quot;</span> <span class="er">content</span><span class="ot">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>Example Document<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Hello World!<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;p&gt;</span>Generated at 1686989964.6053464<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;footer&gt;</span><span class="dv">&amp;copy;</span> 2023 Zack Sargent<span class="kw">&lt;/footer&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
+<h3 id="defining-functions">Defining functions</h3>
+<p>I was initially wary about using a whitespace-sensitive language for use in html templating, as I wasn’t sure if HTML indentation would cause problems.</p>
+<p>Luckily, Python does not require that all levels of indentation be consistent.</p>
+<p>The following is a <em>weird</em>, but still valid, function definition:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate(x: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                         <span class="cf">return</span> <span class="st">&quot;even&quot;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">else</span>:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                         <span class="cf">return</span> <span class="st">&quot;odd&quot;</span></span></code></pre></div>
+<p>This gives a certain level of freedom to how functions are defined in PyHP.</p>
+<p>Additionally, there are some annoying scoping limitations when working with <code>exec</code>. For example, the following code works as expected, between <code>exec</code> and <code>eval</code>:</p>
+<pre><code>{% def f(x):
+    return x + 1
+%}
+{{f(1) # returns 2}}</code></pre>
+<p>but the following code errors out:</p>
+<pre><code>{%
+def f(x):
+    return x + 1
+def g(x):
+    return f(x) + 1
+%}
+{{g(1)}}</code></pre>
+<pre><code>NameError: name &#39;f&#39; is not defined</code></pre>
+<p>The best way I’ve found to resolve this is to force the definition by assigning it to <code>globals()</code>:</p>
+<pre><code>{%
+def f(x):
+    return x + 1
+globals()[&#39;f&#39;] = f
+
+def g(x):
+    return f(x) + 1
+%}
+{{g(1) # returns 3 }}</code></pre>
+<p>But, that’s a bit ugly. To resolve this scoping issue, there’s a simple decorator you can use instead!</p>
+<pre><code>{%
+@define
+def f(x):
+    return x + 1
+
+def g(x):
+    return f(x) + 1
+%}
+{{g(1)}}</code></pre>
+<h3 id="email-obfuscation-example">Email obfuscation example</h3>
+<p>Imagine a situation where someone wanted to put their email on their blog, but didn’t want their email to be accessible by scammers, so they put a bunch of garbage in their email.</p>
+<pre><code>{%
+import random
+import string
+define(random)  # could be nested in get_garbage as well
+define(string)
+
+@define
+def obfuscate(letter: str, garbage: bool = False) -&gt; str:
+    if garbage:
+        return f&quot;&lt;span class=\&quot;garbage\&quot;&gt;{letter}&lt;/span&gt;&quot;
+    else:
+        return f&quot;&lt;span&gt;{letter}&lt;/span&gt;&quot;
+
+@define
+def get_garbage() -&gt; str:
+    alphabet = string.ascii_letters
+    return random.choice(alphabet)
+
+def obfuscate_email(email: str) -&gt; str:
+    result = &quot;&quot;
+    for letter in email:
+        result += obfuscate(letter)
+        result += obfuscate(get_garbage(), garbage=True)
+    return result
+%}
+
+&lt;style&gt;
+.garbage {
+    display: none;
+}
+&lt;/style&gt;
+
+&lt;div id=&quot;my-email-i-want-to-protect-from-scammers&quot;&gt;
+    {{ obfuscate_email(&quot;e@a.com&quot;) }}
+&lt;/div&gt;</code></pre>
+<p>produces:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.garbage</span> {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span>: <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;my-email-i-want-to-protect-from-scammers&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>e<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;garbage&quot;</span><span class="kw">&gt;</span>w<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>@<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;garbage&quot;</span><span class="kw">&gt;</span>h<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>a<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;garbage&quot;</span><span class="kw">&gt;</span>i<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>.<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;garbage&quot;</span><span class="kw">&gt;</span>T<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>c<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;garbage&quot;</span><span class="kw">&gt;</span>g<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>o<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;garbage&quot;</span><span class="kw">&gt;</span>Y<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>m<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;garbage&quot;</span><span class="kw">&gt;</span>J<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>Anyway, that’s all I have for now! I hope you found this at least mildly interesting. 😊</p>
+<p>This is still a super janky project, but I thought it was interesting how it’s possible to get pretty useful results from such as simple approach.</p>
+<p>Just don’t create a template that deletes any files!</p>
+
+
+    </article>
+  </main>
+
+<footer>
+  <style>
+    .edit {
+      margin-bottom: 1em;
+    }
+    .page-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2em;
+    }
+  </style>
+
+  <div class="page-bottom">
+    <div class="copyright">
+      &copy; 2023 Zack Sargent
+    </div>
+    <div class="top">
+      <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' })">
+        Go to Top
+      </a>
+    </div>
+  </div>
+
+  
+    <details>
+      <summary>See edit history for "PyHP: Python Home Page"</summary>
+      <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-06-17T04:35:59-04:00">
+                Saturday, June 17, 2023 at 04:35 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-06-17T04:33:28-04:00">
+                Saturday, June 17, 2023 at 04:33 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 5 insertions(+), 4 deletions(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-06-17T04:29:32-04:00">
+                Saturday, June 17, 2023 at 04:29 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 276 insertions(+), 7 deletions(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-06-17T02:20:50-04:00">
+                Saturday, June 17, 2023 at 02:20 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 149 insertions(+), 4 deletions(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-06-16T23:34:07-04:00">
+                Friday, June 16, 2023 at 11:34 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 10 insertions(+)
+            </dd>
+          </div>
+        
+      </dl>
+    </details>
+  
+</footer>
+
+  <script>
+    anchors.add('h1:not(.post-title), h2, h3, h4, h5, h6');
+  </script>
+</body>
+
+</html>
