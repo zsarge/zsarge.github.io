@@ -27,9 +27,9 @@ Notably, Ruby's standard library includes the templating system [ERB](https://en
 
 ERB has two main features that let you use Ruby code to produce HTML:
 
-1. Execution tags
+1. Execution tags: `<% ... %>`
    - Used for loops, comments, if statements, function definitions, and anything that shouldn't end up in the result.
-2. Expression tags
+2. Expression tags: `<%= ... %>`
    - Used to produce values for your HTML
 
 ```ruby
@@ -61,11 +61,12 @@ Originally, I wanted to call this project "PHP", but I found it caused more conf
 
 I'm nowhere near the first person to think of this pun, so credit to the following people for getting there first:
 
-- [juokaz](https://github.com/juokaz/pyhp)
 - [axant](https://pyhp.sourceforge.net/)
-- [yuvipanda](https://github.com/yuvipanda/pyhp)
+- [bendemott](https://github.com/bendemott/pyhp)
+- [juokaz](https://github.com/juokaz/pyhp)
 - [PyHP++#](https://pyhp-pph.github.io/)
 - [Tamim Shahriar](http://love-python.blogspot.com/2008/04/pyhp-python-hypertext-preprocessor.html) (from 2008!)
+- [yuvipanda](https://github.com/yuvipanda/pyhp)
 
 ## My Solution
 
