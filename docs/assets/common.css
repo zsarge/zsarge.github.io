@@ -134,7 +134,7 @@ h6 {
 
 pre,
 code,
-.sourceCode,
+div.sourceCode,
 code span {
     font-family: 'Fira Code', monospace;
     font-size: 0.98em;
@@ -143,7 +143,12 @@ code span {
     background: #fcfcff;
 }
 
-code span.bu {
+div.sourceCode {
+    border: 1px solid #ddd8dd;
+}
+
+
+code.python span.bu {
     color: forestgreen;
 }
 
@@ -157,14 +162,13 @@ pre {
     max-width: 100%;
 }
 
-
-
 code.sourceCode {
     overflow-x: overlay;
     display: block;
     min-width: fit-content;
 }
 
+/* 
 pre.sourceCode::before {
     float: right;
     color: grey;
@@ -204,7 +208,7 @@ pre.ts::before {
 pre.ruby::before,
 pre.rb::before {
     content: "Ruby";
-}
+} */
 
 /* TOP NAV */
 /* TODO: have cool logo */
