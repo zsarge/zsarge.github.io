@@ -351,7 +351,7 @@ def g(x):
 
 ### Email obfuscation example
 
-Imagine a situation where someone wanted to put their email on their blog, but didn't want their email to be accessible by people scraping the website, so they put a bunch of garbage in the text and then clean it up with CSS.
+Imagine a situation where someone wanted to put their email on their blog, but didn't want their email to be accessible by people scraping the website, so they put a bunch of garbage in the text and then cleaned it up with CSS.
 
 ```djangotemplate
 {%

@@ -1,3 +1,10 @@
 {
-    "liveServer.settings.root": "./docs"
+  "liveServer.settings.root": "./docs",
+  "grammarly.selectors": [
+    {
+      "language": "markdown",
+      "scheme": "file",
+      "pattern": "content/blog/pyhp.md"
+    }
+  ]
 }
