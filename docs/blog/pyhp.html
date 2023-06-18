@@ -269,7 +269,7 @@ img {
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>template_namespace <span class="op">=</span> {}</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse(template: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> make_replacer(handler: Callable) <span class="op">-&gt;</span> Callable[[<span class="bu">str</span>], <span class="bu">str</span>]:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> make_replacer(handler: Callable) <span class="op">-&gt;</span> Callable[[Match], <span class="bu">str</span>]:</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> replace(match: Match) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># extract the code inside the template</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            code <span class="op">=</span> <span class="bu">str</span>(match[<span class="dv">1</span>]).strip()</span>
@@ -501,6 +501,18 @@ def g(x):
     <details>
       <summary>See edit history for "PyHP: Python Home Page"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-06-18T12:07:39-04:00">
+                Sunday, June 18, 2023 at 12:07 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
