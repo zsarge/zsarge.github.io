@@ -159,7 +159,7 @@ def parse(template: str) -> str:
     return EVALUATE_REGEX.sub(evaluator, template)
 ```
 
-[(Source on Github)](https://github.com/zsarge/PyHP/blob/51d26dfb5ba921d77f85d312d71b64905ed25809/src/main.py#LL11C1-L25C51)
+[(Source on Github)](https://github.com/zsarge/PyHP/blob/5b738cfbb1a9f8398317cb67b6416766934a4ae6/src/main.py#L6-L25)
 
 I felt like this was a pretty elegant solution to this prompt.
 
