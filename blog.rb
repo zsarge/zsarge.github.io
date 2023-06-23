@@ -169,6 +169,7 @@ end
 
 def generate_blog
   articles = Dir["#{ARTICLES_PATH}/*"].map {|file| Article.new(filepath: file)}
+  articles.filter!{|article| article.date <= DateTime.now } # don't publish future articles
   articles.sort_by!{|article| article.date }.reverse!
 
   tags = Hash.new { |h, k| h[k] = [] }
