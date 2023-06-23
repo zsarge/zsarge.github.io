@@ -74,7 +74,7 @@ I'm nowhere near the first person to think of this pun, so credit to the followi
 
 While it's totally possible to try to build out a full static site generator under this prompt, I was mostly inspired to find an elegant, minimalist solution to produce basic templates.
 
-However, because I'm working in Python, I choose to loosely base the project on [Jinja templates](https://palletsprojects.com/p/jinja/):
+However, because I'm working in Python, I chose to loosely base the project on [Jinja templates](https://palletsprojects.com/p/jinja/):
 
 |   Syntax    | Description    |
 | :---------: | :------------- |
@@ -102,8 +102,8 @@ Given this framework, Python gives us two really useful tools for processing str
 
 |    Function    | Description                            |
 | :------------: | :------------------------------------- |
-| [`eval`][eval] | evaluate a string, and return a result |
-| [`exec`][exec] | execute a string tag                   |
+| [`eval`][eval] | evaluate a string and return a result |
+| [`exec`][exec] | execute a string and return `None`    |
 
 [eval]: https://docs.python.org/3/library/functions.html#eval
 [exec]: https://docs.python.org/3/library/functions.html#exec
