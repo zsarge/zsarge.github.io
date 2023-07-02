@@ -20,7 +20,7 @@ DOMAIN_NAME = "zack.fyi"
 # Cross-platform way of finding an executable in the $PATH.
 #
 #   which('ruby') #=> /usr/bin/ruby
-# 
+#
 # FROM: https://stackoverflow.com/a/5471032
 def which(cmd)
   exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
@@ -33,7 +33,7 @@ def which(cmd)
   nil
 end
 
-def get_template(name) 
+def get_template(name)
    ERB.new(File.read(File.join(SOURCE_PATH, name)))
 end
 
@@ -52,7 +52,7 @@ end
 
 GitCommit = Struct.new(:author, :date, :message, :changes)
 
-class Article 
+class Article
   attr_reader :title, :url, :filename, :filepath, :date, :tags, :author, :content, :preview
   def initialize(filepath:)
     @html = nil
@@ -62,7 +62,7 @@ class Article
     @author = 'Zack Sargent'
     @filename = File.basename(filepath, ".md")
     @url = "/blog/#{@filename}.html"
-  
+
     File.open(filepath) do |file|
       # title
       if file.readline =~ /^Title: (.*)$/
@@ -108,7 +108,7 @@ class Article
   def save_as_html
     create OUTPUT_PATH
     create File.join(OUTPUT_PATH, 'blog')
-    
+
     File.open(File.join(OUTPUT_PATH, 'blog', "#{@filename}.html"), 'w') do |file|
       file.write get_template('blog.erb').result(binding)
     end
@@ -118,7 +118,7 @@ class Article
     estimated_time = @content.split(/[^-a-zA-Z]/).size / 300
     @length_in_minutes ||= [estimated_time, 1].max
   end
-  
+
   def reading_time
     "#{length_in_minutes} min#{length_in_minutes == 1 ? '' : ?s}"
   end
@@ -167,7 +167,15 @@ def generate_tags(tags)
   end
 end
 
-def generate_blog
+def generate_blog(article_name=nil)
+  unless article_name.nil? # save one page
+    Article.new(filepath: File.join(ARTICLES_PATH, article_name))
+      .save_as_html
+    FileUtils.copy_entry(File.join(SOURCE_PATH, 'assets'), File.join(OUTPUT_PATH, 'assets'), preserve: false, remove_destination: true)
+    return
+  end
+
+  # save all pages
   articles = Dir["#{ARTICLES_PATH}/*"].map {|file| Article.new(filepath: file)}
   articles.filter!{|article| article.date <= DateTime.now } # don't publish future articles
   articles.sort_by!{|article| article.date }.reverse!
@@ -182,9 +190,9 @@ def generate_blog
   end
 
 
-  tags = tags.sort { |(tag_name_1, articles_1), (tag_name_2, articles_2)| 
+  tags = tags.sort { |(tag_name_1, articles_1), (tag_name_2, articles_2)|
     # sort by count first, then alphabetically
-    count_order = articles_1.size <=> articles_2.size 
+    count_order = articles_1.size <=> articles_2.size
     next count_order unless count_order == 0
     next tag_name_2 <=> tag_name_1
   }.reverse
@@ -235,9 +243,23 @@ Arguments:
     raise 'blog.rb: filepath must be a file' unless File.exists? filepath
     raise 'blog.rb: cwebp is not installed. consider something like "apt install webp" or "dnf install libwebp-tools"' unless which 'cwebp'
     prepare filepath
+  # when "prepare-latest-screenshot", "--prepare-latest-screenshot"
+    # raise 'blog.rb: needs new filename as argument' if ARGV[1].nil?
+    # pictures_path = "/home/sarge/Pictures/Screenshots/"
+    # most_recent_screenshot = Dir.glob("/home/sarge/Pictures/Screenshots/*").max_by {|f| File.mtime(f)}
+    # new_name = File.join(pictures_path, "#{ARGV[1]}.png")
+    # File.rename(most_recent_screenshot, new_name)
+    # prepare(new_name)
+    # puts <<-HTML 
+# <picture>
+  # <source srcset="/assets/#{ARGV[1]}.webp" type="image/webp">
+  # <source srcset="/assets/#{ARGV[1]}.png" type="image/png">
+  # <img src="/assets/#{ARGV[1]}.png" alt="FILL ME IN" loading="lazy">
+# </picture>
+    # HTML
   when "generate", "--generate"
     raise 'blog.rb: pandoc could not be found' unless which 'pandoc'
-    generate_blog
+    generate_blog ARGV[1]
   when "version", "-version", "--version"
     puts "blog.rb version 0.1.0"
     puts "by Zack Sargent"
@@ -252,9 +274,9 @@ Date: #{Date.today.iso8601}
 Tags: TEMP
 
 Hello World!
-"
+      "
     end
-  else 
+  else
     puts "blog.rb: command not recognized. use --help for details"
   end
 end
