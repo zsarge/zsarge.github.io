@@ -147,6 +147,111 @@ Switching to Rust: https://blog.logrocket.com/complete-guide-running-rust-arduin
 
 Using this library: https://github.com/mjhouse/ag-lcd
 
+I've decided to just use a 4x2 of characters, using all 8 characters at max resolution.
 
+I want to have a general translation from `draw(x,y)` to applying to a specific character.
 
+I want to keep the process of drawing to the screen relatively efficient, in terms of just copying everything 1:1.
 
+I could have one 2d buffer which would then be chunked, but that seems like it would create unnecessary copies every time we write to the screen.
+In this instance, I'd prefer more complex logic for fewer copies.
+
+I need to:
+1. Find which character needs to change.
+2. Find which pixel in that character needs to change.
+
+one character is a `byte[8]`, so having eight characters gives me an array of characters: `byte charBuffer[8][8]`.
+
+One pixel is one bit in a character, so effectively I have to find a position in a 3d array.
+
+| **x** | **y** | **index**                   |
+|:-----:|:-----:|-----------------------------|
+|   0   |   0   | `charBuffer[0][0] = 0b10000;` |
+|   1   |   0   | `charBuffer[0][0] = 0b01000;` |
+|   0   |   1   | `charBuffer[0][1] = 0b10000;` |
+|   2   |   2   | `charBuffer[0][2] = 0b00100;` |
+|   10  |   10  | `charBuffer[5][1] = 0b00001;` |
+|   20  |   16  | `charBuffer[7][7] = 0b00001;` |
+
+used bitwise operators:
+
+```cpp
+byte getPattern(uint8_t x) {
+  switch (x % character.pixelsWide) {
+	case 0:
+	  return 0b10000;
+	case 1:
+	  return 0b01000;
+	case 2:
+	  return 0b00100;
+	case 3:
+	  return 0b00010;
+	case 4:
+	  return 0b00001;
+	default:
+	  return 0;
+  }
+}
+```
+
+is the same as
+
+```cpp
+byte getPattern(uint8_t x) {
+  return getPattern(x, 0b10000);
+}
+
+byte getPattern(uint8_t x, uint8_t initialState) {
+  return initialState >> x % character.pixelsWide;
+}
+```
+
+which is much more flexible.
+
+### Blinking Face Example:
+
+```cpp
+
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+Display display = Display();
+
+const uint8_t offset = 6;
+void setup() {
+  Serial.begin(9600);  // open the serial port at 9600 bps:
+  lcd.begin(16, 2);
+
+  // design stored as bits
+  bool myDesign[8][7] = {
+    { 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 1, 0, 0, 0, 1, 0 },
+    { 0, 1, 0, 0, 0, 1, 0 },
+    { 0, 0, 0, 0, 0, 0, 0 },
+    { 1, 0, 0, 0, 0, 0, 1 },
+    { 0, 1, 0, 0, 0, 1, 0 },
+    { 0, 0, 1, 1, 1, 0, 0 },
+    { 0, 0, 0, 0, 0, 0, 0 },
+  };
+
+  for (int y = 0; y < 8; y++)
+    for (int x = 0; x < 7; x++)
+      if (myDesign[y][x])
+        display.draw(x + offset, y);
+
+  display.printToLcd(lcd);
+}
+
+void loop() {
+  // design stored as coords
+  uint8_t coords[4][2] = {
+    { 1, 1 },
+    { 1, 2 },
+    { 5, 1 },
+    { 5, 2 },
+  };
+  for (auto [x, y] : coords)
+    display.toggle(x + offset, y);
+
+  display.printToLcd(lcd);
+  delay(1000);
+}
+```
