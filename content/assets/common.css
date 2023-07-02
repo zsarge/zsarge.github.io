@@ -329,3 +329,10 @@ details[open] summary~* {
         opacity: 1;
     }
 }
+
+/* Images */
+
+img {
+    max-width: 100%;
+}
+
