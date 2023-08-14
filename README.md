@@ -26,3 +26,6 @@
 - write good content
   - create asthetically pleasing history of everything I've worked on
   - https://uses.tech
+  - add quote from engineer tf2
+  - add list of cool things I've done
+    - timeline border: https://codepen.io/havardob/pen/xxPqXdO
