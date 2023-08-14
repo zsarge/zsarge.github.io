@@ -1,7 +1,36 @@
 Title: Microtris
 Preview: TEMP
-Date: 2024-07-21
+Date: 2029-07-10
 Tags: arduino
+
+## Meet the Shield
+
+<picture>
+    <source srcset="/assets/microtris/hello-world.webp" type="image/webp">
+    <source srcset="/assets/microtris/hello-world.jpg" type="image/jpg">
+    <img src="/assets/microtris/hello-world.jpg" alt="&quot;Hello, World!&quot; followed by a smiley face, as displayed on a LCD text screen." loading="lazy">
+</picture>
+
+At first glance, the [1602 LCD Keypad Shield For Arduino](https://www.dfrobot.com/product-51.html)
+seems like a powerful screen.
+
+16 characters wide, 2 characters tall. 6 input buttons. 1 contrast control.
+
+From $3 to $9, depending on where you get it, this display can stand out as an easy way to make simple games on an Arduino.
+
+Or rather, it would, if it weren't for one major limitation:
+
+<div class="indent">These displays only have 8 custom characters.</div>
+
+And this is a common limitation among LCD text displays.
+
+<picture>
+    <source srcset="/assets/microtris/comparison1.webp" type="image/webp">
+    <source srcset="/assets/microtris/comparison1.jpg" type="image/jpg">
+    <img src="/assets/microtris/comparison1.jpg" alt="Three LCD text displays, arranged haphazardly" loading="lazy">
+</picture>
+
+## Gaming on a Text Display
 
 Hello World:
 
@@ -142,7 +171,6 @@ void setup() {
 void loop() {}
 ```
 
-
 Switching to Rust: https://blog.logrocket.com/complete-guide-running-rust-arduino/#rust-embedded-systems
 
 Using this library: https://github.com/mjhouse/ag-lcd
@@ -157,6 +185,7 @@ I could have one 2d buffer which would then be chunked, but that seems like it w
 In this instance, I'd prefer more complex logic for fewer copies.
 
 I need to:
+
 1. Find which character needs to change.
 2. Find which pixel in that character needs to change.
 
@@ -164,14 +193,14 @@ one character is a `byte[8]`, so having eight characters gives me an array of ch
 
 One pixel is one bit in a character, so effectively I have to find a position in a 3d array.
 
-| **x** | **y** | **index**                   |
-|:-----:|:-----:|-----------------------------|
+| **x** | **y** | **index**                     |
+| :---: | :---: | ----------------------------- |
 |   0   |   0   | `charBuffer[0][0] = 0b10000;` |
 |   1   |   0   | `charBuffer[0][0] = 0b01000;` |
 |   0   |   1   | `charBuffer[0][1] = 0b10000;` |
 |   2   |   2   | `charBuffer[0][2] = 0b00100;` |
-|   10  |   10  | `charBuffer[5][1] = 0b00001;` |
-|   20  |   16  | `charBuffer[7][7] = 0b00001;` |
+|  10   |  10   | `charBuffer[5][1] = 0b00001;` |
+|  20   |  16   | `charBuffer[7][7] = 0b00001;` |
 
 used bitwise operators:
 
@@ -255,3 +284,7 @@ void loop() {
   delay(1000);
 }
 ```
+
+other rotate implementation:
+
+https://code.rocketnine.space/tslocum/netris/src/commit/417d9a6ce7ba31a5e56bf10d06fffb9b1a5e85dd/pkg/mino/piece.go#L120-L172

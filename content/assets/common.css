@@ -346,3 +346,7 @@ a[role=doc-noteref] {
     line-height: 1em;
     text-decoration: none;
 }
+
+.indent {
+    text-indent: 2em;
+}
