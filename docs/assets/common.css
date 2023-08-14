@@ -329,3 +329,24 @@ details[open] summary~* {
         opacity: 1;
     }
 }
+
+/* Images */
+
+img {
+    max-width: 100%;
+}
+
+
+/* footnotes */
+a[role=doc-backlink] {
+    margin-left: 0.5em;
+}
+
+a[role=doc-noteref] {
+    line-height: 1em;
+    text-decoration: none;
+}
+
+.indent {
+    text-indent: 2em;
+}
