@@ -29,3 +29,4 @@
   - add quote from engineer tf2
   - add list of cool things I've done
     - timeline border: https://codepen.io/havardob/pen/xxPqXdO
+  - Add: "This post is licensed under CC BY 4.0 by the author."
