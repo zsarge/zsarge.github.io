@@ -23,6 +23,7 @@
   - derive edit history from git history after published date
     - show git log of source pages at bottom of generated pages
   - add a favicon
+  - move age script into asynchronous asset, to improve load times
 - write good content
   - create asthetically pleasing history of everything I've worked on
   - https://uses.tech
