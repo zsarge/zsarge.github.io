@@ -285,6 +285,7 @@ blockquote,
 .blockquote {
     background: var(--gray-background);
     padding: 0.5em 1.5em;
+    margin: 0;
     border-left: solid var(--gray-border);
 }
 
