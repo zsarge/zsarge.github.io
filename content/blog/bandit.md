@@ -1331,7 +1331,7 @@ Password: OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
 >
 > Clone the repository and find the password for the next level.
 
-`git gud` is not a command :pensive:
+`git gud` is not a command 😔
 
 ```
 bandit31@bandit:~$ cd $(mktemp -d)
