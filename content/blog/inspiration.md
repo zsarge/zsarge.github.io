@@ -32,5 +32,5 @@ When designing the actual look of the site, I drew heavily from [orlp.net](https
 
 I also took inspiration from the blogroll format from [perfectionkills.com](http://perfectionkills.com/).
 
-I got the idea to display my name in a ridiculous amount of precision from [ottomated.net](https://ottomated.net/).
+I got the idea to display my age in a ridiculous amount of precision from [ottomated.net](https://ottomated.net/).
 
