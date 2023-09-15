@@ -36,7 +36,7 @@ ssh bandit1@bandit.labs.overthewire.org -p 2220
 Password: NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
 ```
 
-Ls produces one file: `-`
+`ls` produces one file: `-`
 
 ```bash
 bandit1@bandit:~$ cat ./-
@@ -52,7 +52,7 @@ ssh bandit2@bandit.labs.overthewire.org -p 2220
 Password: rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
 ```
 
-ls produces the file `spaces in this filename`
+`ls` produces the file `spaces in this filename`
 
 ```bash
 bandit2@bandit:~$ cat spaces\ in\ this\ filename
