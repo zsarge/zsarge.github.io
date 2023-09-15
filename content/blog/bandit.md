@@ -573,7 +573,6 @@ bandit17@bandit:~$
 
 ```bash
 ssh bandit18@bandit.labs.overthewire.org -p 2220 -t 'cat readme; bash -login'
-
 Password: hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
 ```
 
