@@ -31,3 +31,6 @@ So, I slapped together a quick Ruby script, heavily reliant on [Pandoc](https://
 When designing the actual look of the site, I drew heavily from [orlp.net](https://orlp.net/). I really like his code blocks, and overall aesthetic. [bazhenov.me](https://www.bazhenov.me/) was also inspirational as well.
 
 I also took inspiration from the blogroll format from [perfectionkills.com](http://perfectionkills.com/).
+
+I got the idea to display my name in a ridiculous amount of precision from [ottomated.net](https://ottomated.net/).
+
