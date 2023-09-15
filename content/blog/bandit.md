@@ -559,9 +559,9 @@ bandit17@bandit:~$ ls
 passwords.new  passwords.old
 bandit17@bandit:~$ diff *
 42c42
-< kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+< hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
 ---
-> w0Yfolrc5bwjS4qw5mq1nnQi6mF03bii
+> glZreTEH1V3cGKL6g4conYqZqaEj0mte
 bandit17@bandit:~$
 ```
 
