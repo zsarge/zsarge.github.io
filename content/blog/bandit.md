@@ -273,8 +273,7 @@ We can use `tr` to rotate all characters 13 positions back.
 ```
 bandit11@bandit:~$ cat data.txt
 Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh
-bandit11@bandit:~$ cat data.txt | tr "$(echo -n {A..Z} {a..z} | tr -d
-' ')" "$(echo -n {N..Z} {A..M} {n..z} {a..m} | tr -d ' ')"
+bandit11@bandit:~$ cat data.txt | tr "$(echo -n {A..Z} {a..z} | tr -d ' ')" "$(echo -n {N..Z} {A..M} {n..z} {a..m} | tr -d ' ')"
 The password is JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
 ```
 
