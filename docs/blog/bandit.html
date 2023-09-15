@@ -313,8 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can use <code>tr</code> to rotate all characters 13 positions back.</p>
 <pre><code>bandit11@bandit:~$ cat data.txt
 Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh
-bandit11@bandit:~$ cat data.txt | tr &quot;$(echo -n {A..Z} {a..z} | tr -d
-&#39; &#39;)&quot; &quot;$(echo -n {N..Z} {A..M} {n..z} {a..m} | tr -d &#39; &#39;)&quot;
+bandit11@bandit:~$ cat data.txt | tr &quot;$(echo -n {A..Z} {a..z} | tr -d &#39; &#39;)&quot; &quot;$(echo -n {N..Z} {A..M} {n..z} {a..m} | tr -d &#39; &#39;)&quot;
 The password is JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv</code></pre>
 <hr />
 <h2 id="level-12">Level 12</h2>
@@ -1181,6 +1180,18 @@ If you have an idea for an awesome new level, please let us know!</code></pre>
     <details>
       <summary>See edit history for "OverTheWire Bandit Box Walkthrough"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-09-15T00:43:27-04:00">
+                Friday, September 15, 2023 at 12:43 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 2 deletions(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
