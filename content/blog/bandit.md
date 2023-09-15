@@ -5,9 +5,9 @@ Tags: cybersecurity, nkcyber
 
 [OverTheWire](https://overthewire.org/) is a fantastic website for learning about hacking and cybersecurity. For the first session in [my school's cybersecurity club](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html), we're getting started with the [Bandit box](https://overthewire.org/wargames/bandit/).
 
-Thanks so much to the team at OverTheWire for putting all of this together, and hosting it for free. I hope these solutions may be helpful to you.
+Thanks so much to the team at OverTheWire for putting all of this together, and hosting it for free. I hope these solutions may be helpful to you, the reader.
 
-I've come to find that there are lots of solutions out there, but these are mine.
+I've come to find that there are lots of solutions out there. If mine are not satisfactory, you might also want to check out [one](https://hackmd.io/@cacF2jEkTu2zEKdDrp6t0A/ry-VyPABj) [of](https://jpsalado.dev/cybersecurity/play-and-learn-journey-through-cybersecurity-with-bandit/) [these](https://5afagy.github.io/posts/bandit0/).
 
 # Bandit Solutions
 
