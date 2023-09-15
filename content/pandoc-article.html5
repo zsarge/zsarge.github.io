@@ -3,12 +3,12 @@ $if(table-of-contents)$
 $highlighting-css$
 </style>
 
-<div id="table-of-contents" class="toc" role="doc-toc">
-<b id="table-of-contents-header"> Table of Contents </b>
+<details id="table-of-contents" class="toc" role="doc-toc">
+<summary id="table-of-contents-header"> Table of Contents </summary>
 
 $table-of-contents$
 
-</div>
+</details>
 $endif$
 
 $body$
