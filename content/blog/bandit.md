@@ -330,14 +330,6 @@ There are a lot of different levels of compression, but they are all either `tar
 > ```
 >
 > ```bash
-> mv data.out data.in && xxd -r data.txt data.out
-> ```
->
-> ```bash
-> mv data.out data.in && xxd -r data.txt data.out
-> ```
->
-> ```bash
 > mv data.out data.gz && gzip -d data.gz
 > ```
 >
