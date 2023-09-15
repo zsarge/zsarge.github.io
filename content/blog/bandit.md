@@ -457,7 +457,7 @@ Password: JQttfApK4SeyHwDlI9SXGR50qclOAil1
 
 We have a range of ports, and I want to scan.
 
-Nmap it is. https://hackertarget.com/nmap-cheatsheet-a-quick-reference-guide/
+Nmap it is. Here's a good guide if you're not familiar: <https://hackertarget.com/nmap-cheatsheet-a-quick-reference-guide/>
 
 ```
 bandit16@bandit:~$ nmap -p 31000-32000 localhost
