@@ -13,7 +13,7 @@ I've come to find that there are lots of solutions out there, but these are mine
 
 Start here for level 0:
 
-- https://overthewire.org/wargames/bandit/bandit0.html
+- <https://overthewire.org/wargames/bandit/bandit0.html>
 
 ## Level 0
 
