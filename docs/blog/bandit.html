@@ -188,14 +188,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 id="level-1">Level 1</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> bandit1@bandit.labs.overthewire.org <span class="at">-p</span> 2220</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Password:</span> NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL</span></code></pre></div>
-<p>Ls produces one file: <code>-</code></p>
+<p><code>ls</code> produces one file: <code>-</code></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bandit1@bandit:~$</span> cat ./-</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi</span></span></code></pre></div>
 <hr />
 <h2 id="level-2">Level 2</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> bandit2@bandit.labs.overthewire.org <span class="at">-p</span> 2220</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Password:</span> rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi</span></code></pre></div>
-<p>ls produces the file <code>spaces in this filename</code></p>
+<p><code>ls</code> produces the file <code>spaces in this filename</code></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bandit2@bandit:~$</span> cat spaces<span class="dt">\ </span>in<span class="dt">\ </span>this<span class="dt">\ </span>filename</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG</span></span></code></pre></div>
 <hr />
@@ -1024,7 +1024,7 @@ Some notes for bandit30 of bandit.
 <p>There is a git repository at <code>ssh://bandit31-git@localhost/home/bandit31-git/repo</code> via the port <code>2220</code>. The password for the user <code>bandit31-git</code> is the same as for the user <code>bandit31</code>.</p>
 <p>Clone the repository and find the password for the next level.</p>
 </blockquote>
-<p><code>git gud</code> is not a command :pensive:</p>
+<p><code>git gud</code> is not a command 😔</p>
 <pre><code>bandit31@bandit:~$ cd $(mktemp -d)
 bandit31@bandit:/tmp/tmp.BE1pSk6O9E$ git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
 Cloning into &#39;repo&#39;...
@@ -1181,6 +1181,30 @@ If you have an idea for an awesome new level, please let us know!</code></pre>
     <details>
       <summary>See edit history for "OverTheWire Bandit Box Walkthrough"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-09-15T00:42:12-04:00">
+                Friday, September 15, 2023 at 12:42 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 2 insertions(+), 2 deletions(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-09-15T00:15:38-04:00">
+                Friday, September 15, 2023 at 12:15 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
