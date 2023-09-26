@@ -212,6 +212,13 @@ If you copy and paste the flag, and it says that the flag is incorrect, you like
 
 If you hit submit and nothing happens, you likely need to log in.
 
-# Conclusion
+# Hosting multple instances
 
-Hopefully we'll be able to do this.
+Juice Shop isn't intended to have multiple people on one instance.
+
+[Multi Juicer](https://github.com/juice-shop/multi-juicer) exists to solve this issue, but I think it's easier for our setup to host a bunch of VMs instead.
+
+## Setup needed
+
+1. A bunch (e.g. 20) of VMs set up for each user, set up to start an instance of Juice Shop on startup.
+2. 1 instance of CTFd running for everyone
