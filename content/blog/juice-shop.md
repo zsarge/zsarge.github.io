@@ -113,6 +113,41 @@ However, the instructions can still be found [on the Internet Archive](https://w
 
 Unfortunately, there are some bugs with the current import version (see [#1988](https://github.com/CTFd/CTFd/issues/1988) and [#131](https://github.com/juice-shop/juice-shop-ctf/issues/131)). As such, we can't import the
 
+# Filtering these challenges
+
+By default, there are _quite a lot_ of challenges to get through.
+
+Thus, it's worth filtering them down for this Friday.
+
+I wrote this Python script to filter everything down by topic:
+
+```python
+# process.py
+
+"""
+This script takes challenges.csv and filters it into filtered.csv
+"""
+
+import csv # csv is a python built-in; no installation required
+
+# choose topics and challenge names to filter for
+topics = ("XSS")
+selected_challenge_names = ("Score Board")
+
+with open('challenges.csv', newline='') as input_file:
+    with open('filtered.csv', 'w', newline='') as output_file:
+        csv_reader = csv.reader(input_file, delimiter=',', quotechar='"')
+        csv_writer = csv.writer(output_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        # copy header from challenges
+        header = next(csv_reader)
+        csv_writer.writerow(header)
+        # filter rows
+        for row in csv_reader:
+            if row[0] in selected_challenge_names or row[2] in topics:
+                csv_writer.writerow(row)
+
+```
+
 ## Installing and running CTFd
 
 We can pull CTFd from [their docker image](https://hub.docker.com/r/ctfd/ctfd/):
@@ -143,7 +178,7 @@ After you get it set up, go to `http://localhost:8000/admin/config` to load the 
 
 ![Make sure to "Import CSV"](/assets/juice-shop/Screenshot from 2023-09-25 19-33-11.png)
 
-Use "Import CSV" to import the generated `challenges.csv` from above.
+Use "Import CSV" to import the generated `filtered.csv` from above.
 
 This will give us all of the challenges for our teams to work through:
 
