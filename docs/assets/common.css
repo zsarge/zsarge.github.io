@@ -351,3 +351,12 @@ a[role=doc-noteref] {
 .indent {
     text-indent: 2em;
 }
+
+/* default markdown images */
+figure {
+    display: inline-block;
+}
+
+figcaption {
+    text-align: center;
+}
