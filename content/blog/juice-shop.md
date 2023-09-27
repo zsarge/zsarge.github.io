@@ -111,7 +111,7 @@ Note that [the url it gives you](https://pwning.owasp-juice.shop/part1/ctf.html#
 
 However, the instructions can still be found [on the Internet Archive](https://web.archive.org/web/20230828202658/https://pwning.owasp-juice.shop/part1/ctf.html).
 
-Unfortunately, there are some bugs with the current import version (see [#1988](https://github.com/CTFd/CTFd/issues/1988) and [#131](https://github.com/juice-shop/juice-shop-ctf/issues/131)). As such, we can't import the
+Unfortunately, there are some bugs with the current import version (see [#1988](https://github.com/CTFd/CTFd/issues/1988) and [#131](https://github.com/juice-shop/juice-shop-ctf/issues/131)). As such, we can't import a full zip file from `juice-shop-ctf-cli`, and can only import specific elements by `.csv` file.
 
 # Filtering these challenges
 
@@ -167,6 +167,10 @@ Note that you may want to consider running ctfd as a daemon, so it persists in t
 ```bash
 docker run -d -p 8000:8000 -it ctfd/ctfd
 ```
+
+Other docker parameters to consider:
+- You only need `-it` for an **i**nteractive **t**erminal. Consider removing it if you're not running interactively.
+- You might want to add `--restart always` or `--restart unless-stopped` to ensure that the container restarts if anything goes wrong. ([Read more](https://docs.docker.com/config/containers/start-containers-automatically/#use-a-restart-policy))
 
 Now, we should see the "Setup" page for CTFd.
 
