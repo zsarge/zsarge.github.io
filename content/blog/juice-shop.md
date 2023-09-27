@@ -3,7 +3,7 @@ Preview: Documentation for setting up OWASP Juice Shop with NKCyber.
 Date: 2023-09-25
 Tags: nkcyber
 
-This is not a full-fledged post, but more of a public reference of commands and steps I used to get [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/) running with CTFd. Thanks so much to all the open source contributers that make this process both possible and straightforward.
+This is not a full-fledged post, but more of a public reference of commands and steps I used to get [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/) running with [CTFd](https://ctfd.io/). Thanks so much to all the open source contributers that make this process both possible and straightforward.
 
 Juice Shop does have a scoreboard built in, but CTFd allows support for teams, and better hints.
 
