@@ -3,7 +3,7 @@ Preview: A walkthrough for all of the XSS problems in OWASP's Juice Shop
 Date: 2023-09-26
 Tags: nkcyber, cybersecurity
 
-This writeup is to help [NKCyber](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html) Club Members walk through the steps for [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/). To be clear, a bunch of the solutions described are not my own, but rather compiled in one place for easy access. See each problem for appropriate credit. See [this page](https://zack.fyi/blog/juice-shop.html) for instructions on administering OWASP's Juice Shop.
+This writeup is to help [NKCyber](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html) Club Members walk through the steps for the first 4 solutions to the XSS section of [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/). See [this page](https://zack.fyi/blog/juice-shop.html) for instructions on administering OWASP's Juice Shop.
 
 # Solutions
 
@@ -147,7 +147,7 @@ Can you do HTML formatting?
 
 Unfortunately not :(
 
-At this point, I checked out [this solution on GitHub](https://github.com/refabr1k/owasp-juiceshop-solutions/blob/master/Level1/reflected-xss.md#reflected-xss), and found that you need to order an item in the Juice Shop. I've added this as a hint for the competition, because I think there's a lot of surface area on the application, that makes this less than obvious.
+At this point, I checked out [this solution on GitHub](https://github.com/refabr1k/owasp-juiceshop-solutions/blob/master/Level1/reflected-xss.md#reflected-xss), and found that you need to order an item in the Juice Shop. I've added this as a hint for the competition, because I think there's a lot of surface area on the application, that makes this attack vector less than obvious.
 
 Basically, you need to add an item to your cart.
 
@@ -377,9 +377,13 @@ curl -XPOST -H "Content-type: application/json" -H "Authorization: Bearer {token
 }' 'http://localhost:3000/api/Products'
 ```
 
-
-
 And we get our flag.
 
-## Client-Side XXS Protection
+# Conclusion
 
+These are the solutions for the first 5 problems out of 10. If I have more time, I'll solve the other 50% on my own.
+
+If you're looking for solutions, you might want to check out these writeups:
+
+- <https://github.com/refabr1k/owasp-juiceshop-solutions>
+- <https://help.owasp-juice.shop/appendix/solutions.html>
