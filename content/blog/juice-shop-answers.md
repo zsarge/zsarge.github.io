@@ -110,7 +110,7 @@ and see the result pop up on the page to get the flag:
 
 **Troubleshooting:**
 
-If you're not receiving the flag, ensure you're navigating to "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/771984076&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true" in the iframe. You might want to directly copy this from the Juice Shop Score Board.
+If you're not receiving the flag, ensure you're navigating to the correct url in the iframe. You might want to directly copy this from the Juice Shop Score Board.
 
 ## Reflected XSS Attack
 
