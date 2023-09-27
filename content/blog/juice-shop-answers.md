@@ -3,7 +3,7 @@ Preview: A walkthrough for all of the XSS problems in OWASP's Juice Shop
 Date: 2023-09-26
 Tags: nkcyber, cybersecurity
 
-This writeup is to help [NKCyber](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html) Club Members walk through the steps for the first 4 solutions to the XSS section of [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/). See [this page](https://zack.fyi/blog/juice-shop.html) for instructions on administering OWASP's Juice Shop.
+This writeup is to help [NKCyber](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html) Club Members walk through the steps for the first 5 solutions to the XSS section of [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/). See [this page](https://zack.fyi/blog/juice-shop.html) for instructions on administering OWASP's Juice Shop.
 
 # Solutions
 
