@@ -125,6 +125,8 @@ So, we know that we're going to have to:
 
 Note that we don't need the server to actually store the data.
 
+I don't know the solution yet, so let's just try a few injection locations to start.
+
 Let's create an account at `/#/login`. Then, we navigate to `/#/register`, because we're not a customer.
 
 ![Juice Shop Registration](../assets/juice-shop/image-20230926201914743.png)
