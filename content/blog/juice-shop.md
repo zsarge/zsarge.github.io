@@ -226,3 +226,30 @@ Juice Shop isn't intended to have multiple people on one instance.
 
 1. A bunch (e.g. 20) of VMs set up for each user, set up to start an instance of Juice Shop on startup.
 2. 1 instance of CTFd running for everyone
+
+### To install Virtual Machines onto Ubuntu Machines
+
+If you don't have your Proxmox cluster isn't ready in time, you can install all of the images onto Ubuntu machines using the following script. It will download VirtualBox onto the machine, and add Juice Shop as a virtual machine.
+
+```
+#!/bin/bash
+
+set -e
+
+install_path="/tmp/install_juice"
+mkdir -p "$install_path"
+cd "$install_path"
+echo "installing Virtual Box & Juice Shop VM"
+sudo apt-get update -y 
+sudo apt-get install virtualbox -y
+echo "downloading..."
+wget "YOUR_ONEDRIVE_SHARE_LINK&download=1" -O JuiceShop.ova
+echo "importing..."
+vboxmanage import JuiceShop.ova 
+
+echo "Done!"
+date
+```
+
+If you're hosting the `.ova` file on OneDrive, then ensure you're using `&download=1` is appended to the end of your share link for a direct download.
+
