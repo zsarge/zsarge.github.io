@@ -17,7 +17,7 @@ In the end, what really prompted me to make a blog was stumbling across Brad Tau
 
 <aside>
     <p>
-        That being said, I think blogs like [Josh Comeau's](https://www.joshwcomeau.com/) and [Bartosz Ciechanowski's](https://ciechanow.ski/) are a great examples of going above and beyond with visualizations and tools embedded directly into their blog posts.
+        That being said, I think blogs like [Amit Patel's](https://www.redblobgames.com/), [Josh Comeau's](https://www.joshwcomeau.com/) and [Bartosz Ciechanowski's](https://ciechanow.ski/) are a great examples of going above and beyond with visualizations and tools embedded directly into their blog posts.
     </p>
     <p>
         I'm just not doing that right now.
