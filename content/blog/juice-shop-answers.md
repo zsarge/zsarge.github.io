@@ -106,7 +106,7 @@ and see the result pop up on the page to get the flag:
 
 ![SoundCloud Embed is injected properly](../assets/juice-shop/image-20230926195914598.png)
 
-
+The takeaway here is that `iframe` elements can be used to load dynamic content, potentially including malicious scripts.
 
 **Troubleshooting:**
 
