@@ -241,7 +241,7 @@ Juice Shop isn't intended to have multiple people on one instance.
 
 ### To install Virtual Machines onto Ubuntu Machines
 
-If you don't have your Proxmox cluster isn't ready in time, you can install all of the images onto Ubuntu machines using the following script. It will download VirtualBox onto the machine, and add Juice Shop as a virtual machine.
+If you don't have your Proxmox cluster ready in time, you can install all of the images onto Ubuntu machines using the following script. It will download VirtualBox onto the machine, and add Juice Shop as a virtual machine.
 
 ```bash
 #!/bin/bash
