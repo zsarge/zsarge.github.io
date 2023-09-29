@@ -188,6 +188,18 @@ This will give us all of the challenges for our teams to work through:
 
 ![Success! The challenges are listed.](/assets/juice-shop/image-20230925194112268.png)
 
+To resolve the issues with importing into CTFd, we need to stop using the docker container's default SQLite, and use something like MySQL instead. From [the documentation](https://docs.ctfd.io/docs/deployment/installation/#docker), it should be as simple as:
+
+```bash
+# Install Docker ...
+# Install Docker Compose ...
+git clone https://github.com/CTFd/CTFd.git
+head -c 64 /dev/urandom > .ctfd_secret_key
+docker compose up
+```
+
+You should now be able to view CTFd, and upload previous `.zip` backups.
+
 ## The End
 
 From here, you should be able to submit flags from Juice Shop into CTFd.
