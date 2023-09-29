@@ -265,3 +265,11 @@ date
 
 If you're hosting the `.ova` file on OneDrive, then ensure you're using `&download=1` is appended to the end of your share link for a direct download.
 
+### Setting up HTTPS on Digital Ocean for CTFd
+
+Imagine, because your Proxmox server wasn't up in time, that you had to host CTFd on a cheap Digital Ocean Droplet.
+
+To ensure CTFd has an authenticated connection, and all your users get the little padlock that makes the site feel official, you're going to need to add HTTPS to CTFd.
+
+Following [this tutorial](https://dev.to/roeeyn/how-to-setup-your-ctfd-platform-with-https-and-ssl-3fda) worked perfectly for me. I have no notes.
+
