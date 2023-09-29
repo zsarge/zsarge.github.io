@@ -142,13 +142,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><a href="#hosting-multple-instances">Hosting multple instances</a>
 <ul>
-<li><a href="#setup-needed">Setup needed</a></li>
+<li><a href="#setup-needed">Setup needed</a>
+<ul>
+<li><a href="#to-install-virtual-machines-onto-ubuntu-machines">To install Virtual Machines onto Ubuntu Machines</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
 </details>
 
-<p>This is not a full-fledged post, but more of a public reference of commands and steps I used to get <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a> running with CTFd. Thanks so much to all the open source contributers that make this process both possible and straightforward.</p>
+<p>This is not a full-fledged post, but more of a public reference of commands and steps I used to get <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a> running with <a href="https://ctfd.io/">CTFd</a>. Thanks so much to all the open source contributers that make this process both possible and straightforward.</p>
 <p>Juice Shop does have a scoreboard built in, but CTFd allows support for teams, and better hints.</p>
 <h1 id="installation-steps">Installation Steps</h1>
 <h2 id="installing-and-running-juice-shop-via-docker-image">Installing and running Juice Shop via docker image</h2>
@@ -286,6 +289,26 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
 <li>A bunch (e.g. 20) of VMs set up for each user, set up to start an instance of Juice Shop on startup.</li>
 <li>1 instance of CTFd running for everyone</li>
 </ol>
+<h3 id="to-install-virtual-machines-onto-ubuntu-machines">To install Virtual Machines onto Ubuntu Machines</h3>
+<p>If you don’t have your Proxmox cluster isn’t ready in time, you can install all of the images onto Ubuntu machines using the following script. It will download VirtualBox onto the machine, and add Juice Shop as a virtual machine.</p>
+<pre><code>#!/bin/bash
+
+set -e
+
+install_path=&quot;/tmp/install_juice&quot;
+mkdir -p &quot;$install_path&quot;
+cd &quot;$install_path&quot;
+echo &quot;installing Virtual Box &amp; Juice Shop VM&quot;
+sudo apt-get update -y 
+sudo apt-get install virtualbox -y
+echo &quot;downloading...&quot;
+wget &quot;YOUR_ONEDRIVE_SHARE_LINK&amp;download=1&quot; -O JuiceShop.ova
+echo &quot;importing...&quot;
+vboxmanage import JuiceShop.ova 
+
+echo &quot;Done!&quot;
+date</code></pre>
+<p>If you’re hosting the <code>.ova</code> file on OneDrive, then ensure you’re using <code>&amp;download=1</code> is appended to the end of your share link for a direct download.</p>
 
 
     </article>
@@ -318,6 +341,30 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
     <details>
       <summary>See edit history for "Setting up OWASP Juice Shop"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-09-28T21:32:22-04:00">
+                Thursday, September 28, 2023 at 09:32 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 27 insertions(+)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-09-27T09:39:10-04:00">
+                Wednesday, September 27, 2023 at 09:39 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
