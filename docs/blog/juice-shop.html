@@ -145,6 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#setup-needed">Setup needed</a>
 <ul>
 <li><a href="#to-install-virtual-machines-onto-ubuntu-machines">To install Virtual Machines onto Ubuntu Machines</a></li>
+<li><a href="#setting-up-https-on-digital-ocean-for-ctfd">Setting up HTTPS on Digital Ocean for CTFd</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -297,7 +298,7 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
 <li>1 instance of CTFd running for everyone</li>
 </ol>
 <h3 id="to-install-virtual-machines-onto-ubuntu-machines">To install Virtual Machines onto Ubuntu Machines</h3>
-<p>If you don’t have your Proxmox cluster isn’t ready in time, you can install all of the images onto Ubuntu machines using the following script. It will download VirtualBox onto the machine, and add Juice Shop as a virtual machine.</p>
+<p>If you don’t have your Proxmox cluster ready in time, you can install all of the images onto Ubuntu machines using the following script. It will download VirtualBox onto the machine, and add Juice Shop as a virtual machine.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
@@ -316,6 +317,10 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Done!&quot;</span></span>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code></pre></div>
 <p>If you’re hosting the <code>.ova</code> file on OneDrive, then ensure you’re using <code>&amp;download=1</code> is appended to the end of your share link for a direct download.</p>
+<h3 id="setting-up-https-on-digital-ocean-for-ctfd">Setting up HTTPS on Digital Ocean for CTFd</h3>
+<p>Imagine, because your Proxmox server wasn’t up in time, that you had to host CTFd on a cheap Digital Ocean Droplet.</p>
+<p>To ensure CTFd has an authenticated connection, and all your users get the little padlock that makes the site feel official, you’re going to need to add HTTPS to CTFd.</p>
+<p>Following <a href="https://dev.to/roeeyn/how-to-setup-your-ctfd-platform-with-https-and-ssl-3fda">this tutorial</a> worked perfectly for me. I have no notes.</p>
 
 
     </article>
@@ -348,6 +353,30 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
     <details>
       <summary>See edit history for "Setting up OWASP Juice Shop"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-09-29T11:17:17-04:00">
+                Friday, September 29, 2023 at 11:17 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 8 insertions(+)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-09-29T01:03:20-04:00">
+                Friday, September 29, 2023 at 01:03 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
