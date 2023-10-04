@@ -18,7 +18,7 @@ The description alone doesn't give a lot to work with, so it's worth taking a lo
 > app.use("/ftp", serveIndexMiddleware, serveIndex("ftp", { icons: true }));
 > app.use("/ftp(?!/quarantine)/:file", fileServer());
 > app.use("/ftp/quarantine/:file", quarantineServer());
-> 
+>
 > /* /encryptionkeys directory browsing */
 > app.use(
 >   "/encryptionkeys",
@@ -26,7 +26,7 @@ The description alone doesn't give a lot to work with, so it's worth taking a lo
 >   serveIndex("encryptionkeys", { icons: true, view: "details" })
 > );
 > app.use("/encryptionkeys/:file", keyServer());
-> 
+>
 > /* /logs directory browsing */
 > app.use(
 >   "/support/logs",
@@ -34,15 +34,15 @@ The description alone doesn't give a lot to work with, so it's worth taking a lo
 >   serveIndex("logs", { icons: true, view: "details" })
 > );
 > app.use("/support/logs/:file", logFileServer());
-> 
+>
 > /* Swagger documentation for B2B v2 endpoints */
 > app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-> 
+>
 > app.use(express.static(path.resolve("frontend/dist/frontend")));
 > app.use(cookieParser("kekse"));
 > ```
 
-Here, we see a lot of routes defined on an [Express.js](https://expressjs.com/) router, with [app.use](https://expressjs.com/en/4x/api.html#app.use). 
+Here, we see a lot of routes defined on an [Express.js](https://expressjs.com/) router, with [app.use](https://expressjs.com/en/4x/api.html#app.use).
 
 <aside>
 **What is Express.js?**
@@ -53,13 +53,13 @@ In basic terms, websites have two main parts:
 2. The backend (the servers that send the data to the client)
 
 When picking frontend and backend technologies, there are many options to choose from, but many frontends involve writing JavaScript, as it is the most commonly supported language to add interactivity to webpages.
-    
+
 It's possible to write the backend in a different language (e.g. Java, C#, Python, Go, etc.), but for convinence it can be nice to keep everything in the same language (i.e. JavaScript).
-    
+
 From there, we need to run JavaScript on the backend, which we can do with [Node.js](https://nodejs.org/en), which is based on [the same engine](https://v8.dev/) that makes Chrome execute JavaScript quickly on the frontend.
-    
+
 From there, [Express.js](https://expressjs.com/) is a library that makes it simple to create a server in JavaScript.
-    
+
 Here is an example web server:
 
 ```javascript
@@ -68,7 +68,7 @@ const app = express() // create a server that will respond to requests
 const port = 3000 // The port to listen for requests on
 
 // listen on the base route `/` and respond "Hello World!" to all requests
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { // req stands for request, res stands for result
   res.send('Hello World!')
 })
 
@@ -78,7 +78,7 @@ app.listen(port, () => {
 })
 ```
 &mdash; <cite><a href="https://expressjs.com/en/starter/hello-world.html">Hello world example</a></cite> (comments mine)
-    
+
 </aside>
 
 
@@ -101,7 +101,7 @@ So, great! Let's try going to `/ftp` on the server, and seeing what happens.
 
 ![We find an FTP server!](../assets/juice-shop/sensitive-data/image-20231003213243469.png)
 
-Woah, neat! It creates an index of all of the files on the FTP server. 
+Woah, neat! It creates an index of all of the files on the FTP server.
 
 Some of them are pretty boring. Here's `legal.md`, for example:
 
@@ -138,7 +138,7 @@ Looking at the problem description, I saw that there was a link to the Prometheu
 
 I searched "where is prometheus default endpoint" on Google, and got the featured snippet:
 
-> Starting Prometheus 
+> Starting Prometheus
 > You can also verify that Prometheus is serving metrics about itself by navigating to its own metrics endpoint: http**://localhost:9090/metrics**.
 >
 > &mdash; <cite><a href="https://prometheus.io/docs/introduction/first_steps/#:~:text=Starting%20Prometheus,-To%20start%20Prometheus&text=You%20can%20also%20verify%20that,%3A%2F%2Flocalhost%3A9090%2Fmetrics.">Prometheus.io</a></cite>
@@ -148,7 +148,7 @@ So, I went to `/metrics`, and got the flag.
 Looking through the code they provided in the hint, we can find the route defined on line 4.
 
 <details>
-<summary>See full code</summary>   
+<summary>See full code</summary>
 ```typescript
 /* Serve metrics */
 let metricsUpdateLoop: any;
@@ -359,7 +359,7 @@ to complete this challenge.
 
 Congratulations! 🎉
 
-I hope you learned something new today. 
+I hope you learned something new today.
 
 Come back next week for our foreign exchange meeting, where we'll be learning more about other injection techniques.
 
