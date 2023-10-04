@@ -153,12 +153,17 @@ code.python span.bu {
 
 pre {
     padding: 10px;
-    border: none;
+    border: 2px solid #ddd8dd;
     display: inline-block;
     min-width: 100%;
 
     overflow-x: auto;
     max-width: 100%;
+}
+
+div.sourceCode pre {
+    border: none;
+    /* ensure we don't have nested borders for text boxes */
 }
 
 code.sourceCode {
@@ -167,7 +172,7 @@ code.sourceCode {
     min-width: fit-content;
 }
 
-/* 
+/*
 pre.sourceCode::before {
     float: right;
     color: grey;
@@ -356,3 +361,4 @@ figure {
 figcaption {
     text-align: center;
 }
+
