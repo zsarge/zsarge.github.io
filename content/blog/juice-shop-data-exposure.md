@@ -68,7 +68,7 @@ const app = express() // create a server that will respond to requests
 const port = 3000 // The port to listen for requests on
 
 // listen on the base route `/` and respond "Hello World!" to all requests
-app.get('/', (req, res) => { // req stands for request, res stands for result
+app.get('/', (req, res) => { // req stands for request, res stands for response
   res.send('Hello World!')
 })
 
