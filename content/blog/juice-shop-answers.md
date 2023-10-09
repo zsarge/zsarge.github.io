@@ -1,5 +1,5 @@
 Title: OWASP Juice Shop XSS Walkthrough
-Preview: A walkthrough for all of the XSS problems in OWASP's Juice Shop
+Preview: A walkthrough for some of the XSS problems in OWASP's Juice Shop
 Date: 2023-09-26
 Tags: nkcyber, cybersecurity
 
