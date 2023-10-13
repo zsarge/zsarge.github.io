@@ -4,7 +4,7 @@ Date: 2023-10-10
 Tags: nkcyber, cybersecurity
 
 This writeup is to help [NKCyber](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html) Club Members walk through the steps for the first few solutions to the Sensitive Data Exposure section of [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/). Similar articles include [instructions for administering OWASP’s Juice Shop](https://zack.fyi/blog/juice-shop.html), the [Data Exposure solutions](https://zack.fyi/blog/juice-shop-data-exposure.html), and the [XSS solutions](https://zack.fyi/blog/juice-shop-answers.html).
-      
+
 
 # Solutions
 
@@ -108,7 +108,7 @@ When we entered `email` and `password`, this is the query the database received 
 
 Unfortunately, no users are found with that email and password. However, it'd be great if there was a way to manipulate this query to find a user for us to log in with.
 
-If we change were to execute a query like 
+If we change were to execute a query like
 
 ```sql
 SELECT * FROM Users WHERE email = 'email' OR 1
@@ -122,11 +122,40 @@ However, we have to do something about all the text at the end of the line. So, 
 SELECT * FROM Users WHERE email = '' OR 1 -- AND password = 'THE PASSWORD HASH' AND deletedAt IS NULL
 ```
 
-So, if we were to enter `' OR 1 --` into the login box, then it will find all the users in the database, and the first one will be the admin user. 
+So, if we were to enter `' OR 1 --` into the login box, then it will find all the users in the database, and the first one will be the admin user.
 
 We should see the admin user account now, as well as the flag:
 
 ![successfully logged in as the admin](../assets/juice-shop/injection/image-20231010211205639.png)
+
+To resolve this vulnerability, the user must not be able to directly manipulate the query sent to the database.
+
+In general, the way to address this is to escape all user inputs, so that they can only be processed as data, and never as commands.
+
+```ts
+// change this:
+models.sequelize
+      .query(
+        `SELECT * FROM Users WHERE email = '${
+          req.body.email || ""
+        }' AND password = '${security.hash(
+          req.body.password || ""
+        )}' AND deletedAt IS NULL`,
+        { model: UserModel, plain: true }
+      )
+// to something like this:
+models.sequelize
+      .query(
+        "SELECT * FROM Users WHERE email = :email AND password = :hash AND deletedAt IS NULL",
+        {
+          replacements: { // automatically escape user input
+            email: req.body.email || "",
+            hash: security.hash(req.body.password || "")
+          },
+          model: UserModel, plain: true
+        }
+      )
+```
 
 ## Login Bender
 
@@ -241,7 +270,7 @@ Then, we're going to need to append more data to the end of the query, so that w
 
 How do we append data to the end of a query?
 
-> In [SQL](https://en.wikipedia.org/wiki/SQL) the **`UNION`** clause combines the results of two SQL queries into a single [table](https://en.wikipedia.org/wiki/Table_(database)) of all matching [rows](https://en.wikipedia.org/wiki/Row_(database)). 
+> In [SQL](https://en.wikipedia.org/wiki/SQL) the **`UNION`** clause combines the results of two SQL queries into a single [table](https://en.wikipedia.org/wiki/Table_(database)) of all matching [rows](https://en.wikipedia.org/wiki/Row_(database)).
 >
 > &mdash; <cite><a href="https://en.wikipedia.org/wiki/Set_operations_(SQL)#UNION_operator">Wikipedia</a></cite>
 
