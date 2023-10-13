@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </details>
 
-<p>This writeup is to help <a href="https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html">NKCyber</a> Club Members walk through the steps for the first few solutions to the Sensitive Data Exposure section of <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a>. Similar articles include <a href="https://zack.fyi/blog/juice-shop.html">instructions for administering OWASP’s Juice Shop</a>, the <a href="https://zack.fyi/blog/juice-shop-data-exposure.html">Data Exposure solutions</a>, and the <a href="https://zack.fyi/blog/juice-shop-answers.html">XSS solutions</a>.</p>
+<p>This writeup is to help <a href="https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html">NKCyber</a> Club Members walk through the steps for the first few solutions to the SQL Injection section of <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a>. Similar articles include <a href="https://zack.fyi/blog/juice-shop.html">instructions for administering OWASP’s Juice Shop</a>, the <a href="https://zack.fyi/blog/juice-shop-data-exposure.html">Sensitive Data Exposure solutions</a>, and the <a href="https://zack.fyi/blog/juice-shop-answers.html">XSS solutions</a>.</p>
 <h1 id="solutions">Solutions</h1>
 <h2 id="login-admin">Login Admin</h2>
 <p>Let’s take a look at the login page:</p>
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="../assets/juice-shop/injection/image-20231010210211780.png" alt="We see our email and password sent to the server." /><figcaption aria-hidden="true">We see our email and password sent to the server.</figcaption>
 </figure>
 <p>Cool. So, how are the email and password handled in the server?</p>
-<p>Let’s take a look at the code snippet for this challenge (slightly <em>modified</em> from the original):</p>
+<p>Let’s take a look at the code snippet for this challenge (<em>slightly</em> modified from the original):</p>
 <details>
 <summary>
 View full code
@@ -443,6 +443,30 @@ View full code
     <details>
       <summary>See edit history for "OWASP Juice Shop Injection Walkthrough"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-10-13T11:59:14-04:00">
+                Friday, October 13, 2023 at 11:59 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-10-13T11:56:34-04:00">
+                Friday, October 13, 2023 at 11:56 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
