@@ -20,7 +20,7 @@ Looking at the Network tab in our developer tools, I wonder what is being sent t
 
 Cool. So, how are the email and password handled in the server?
 
-Let's take a look at the code snippet for this challenge (slightly *modified* from the original):
+Let's take a look at the code snippet for this challenge (*slightly* modified from the original):
 
 <details>
 <summary>View full code</summary>
