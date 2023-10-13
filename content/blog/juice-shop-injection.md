@@ -3,7 +3,7 @@ Preview: A walkthrough for some of the Injection problems in OWASP's Juice Shop
 Date: 2023-10-10
 Tags: nkcyber, cybersecurity
 
-This writeup is to help [NKCyber](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html) Club Members walk through the steps for the first few solutions to the Sensitive Data Exposure section of [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/). Similar articles include [instructions for administering OWASP’s Juice Shop](https://zack.fyi/blog/juice-shop.html), the [Data Exposure solutions](https://zack.fyi/blog/juice-shop-data-exposure.html), and the [XSS solutions](https://zack.fyi/blog/juice-shop-answers.html).
+This writeup is to help [NKCyber](https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html) Club Members walk through the steps for the first few solutions to the SQL Injection section of [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/). Similar articles include [instructions for administering OWASP’s Juice Shop](https://zack.fyi/blog/juice-shop.html), the [Sensitive Data Exposure solutions](https://zack.fyi/blog/juice-shop-data-exposure.html), and the [XSS solutions](https://zack.fyi/blog/juice-shop-answers.html).
 
 
 # Solutions
