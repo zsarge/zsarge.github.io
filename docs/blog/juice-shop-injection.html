@@ -352,7 +352,7 @@ View full code
 <p>So, we’re going to need get use something like <code>')) UNION SELECT something FROM somewhere</code> to make our query work.</p>
 <p>According to the sqlite docs:</p>
 <blockquote>
-<p>The schema table can always be referenced using the name “<strong>sqlite_schema</strong>”, especially if qualifed by the schema name like “main.sqlite_schema” or “temp.sqlite_schema”. But for historical compatibility, some alternative names are also recognized, including:</p>
+<p>The schema table can always be referenced using the name “<strong>sqlite_schema</strong>”, especially if qualifed by the schema name like “main.sqlite_schema” or “temp.sqlite_schema”.</p>
 <p>— <cite><a href="https://www.sqlite.org/schematab.html">SQLite Docs</a></cite></p>
 </blockquote>
 <p>So, it’s going to be something like <code>')) UNION SELECT something FROM sqlite_schema</code>.</p>
@@ -443,6 +443,18 @@ View full code
     <details>
       <summary>See edit history for "OWASP Juice Shop Injection Walkthrough"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-10-18T11:33:37-04:00">
+                Wednesday, October 18, 2023 at 11:33 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 1 insertion(+), 1 deletion(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
