@@ -278,7 +278,7 @@ So, we're going to need get use something like `')) UNION SELECT something FROM 
 
 According to the sqlite docs:
 
-> The schema table can always be referenced using the name "**sqlite_schema**", especially if qualifed by the schema name like "main.sqlite_schema" or "temp.sqlite_schema". But for historical compatibility, some alternative names are also recognized, including:
+> The schema table can always be referenced using the name "**sqlite_schema**", especially if qualifed by the schema name like "main.sqlite_schema" or "temp.sqlite_schema".
 >
 > &mdash; <cite><a href="https://www.sqlite.org/schematab.html">SQLite Docs</a></cite>
 
