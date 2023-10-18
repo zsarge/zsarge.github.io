@@ -18,16 +18,13 @@
 <table>
     <dl class="articles">
         <% for article in articles %>
-        <dt class="title">
+        <div class="title">
             <a href="<%=article.url%>"><%= article.title %></a> 
             <small class="article-info">
                 <i>(<%= article.reading_time %>)</i>
                 <%= article.date %>
             </small>
-        </dt>
-        <dd>
-            <%= article.preview %> 
-        </dd>
+        </div>
         <% end %>
     </dl>
 </table>
