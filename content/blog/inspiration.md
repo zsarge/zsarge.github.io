@@ -24,7 +24,7 @@ In the end, what really prompted me to make a blog was stumbling across Brad Tau
     </p>
 </aside>
 
-So, I slapped together a quick Ruby script, heavily reliant on [Pandoc](https://pandoc.org/), to convert markdown articles into a website. The script may not be "quality code", and it's certianly longer than both blog.sh and barf, but it's still short enough for me to enjoy working with it, and that's what matters to me.
+So, I slapped together [a quick Ruby script](https://github.com/zsarge/zsarge.github.io/blob/master/blog.rb), heavily reliant on [Pandoc](https://pandoc.org/), to convert markdown articles into a website. The script may not be "quality code", and it's certianly longer than both blog.sh and barf, but it's still short enough for me to enjoy working with it, and that's what matters to me.
 
 ## Website Design
 
