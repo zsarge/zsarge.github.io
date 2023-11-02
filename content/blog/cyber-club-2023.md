@@ -26,3 +26,7 @@ When running a club, it's always great to join free events hosted by professiona
 - Square CTF
 
 **TODO: ** paste all the links I've shared in Discord
+
+
+
+**TODO** add section at the end about configuring recurring events in CampusGroups and scheduling emails
