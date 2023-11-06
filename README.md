@@ -4,7 +4,8 @@
   - style blockquotes
   - style aside
   - style article headers
-  - make text not quite black & not quite white
+  - make text not quite black & not quite white?
+  - [dark mode](https://blog.paavo.me/how-i-built-this-site/#night-mode-with-modern-css-and-a-bit-of-js)
 - code
   - add rss support
   - add updated date list to articles (+ support in RSS)
