@@ -7,6 +7,8 @@
   - make text not quite black & not quite white?
   - [dark mode](https://blog.paavo.me/how-i-built-this-site/#night-mode-with-modern-css-and-a-bit-of-js)
 - code
+  - add bibtex citations at bottom of page
+      - [example](https://blog.djnavarro.net/posts/2022-11-03_what-i-know-about-mastodon/#citation)
   - add rss support
   - add updated date list to articles (+ support in RSS)
   - move code highlighting to seperate stylesheets instead of embedded css
