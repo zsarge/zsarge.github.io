@@ -772,12 +772,12 @@ I write a new hosting script:
 ```python
 """
 This script assumes it is next to a directory structure like:
-    approved
-    ├── DevelopersHubris
-    ├── ez-pwn-1
-    ├── ez-pwn-2
-    ├── hugeprimes
-    └── inv-characters
+        approved
+        ├── DevelopersHubris
+        ├── ez-pwn-1
+        ├── ez-pwn-2
+        ├── hugeprimes
+        └── inv-characters
 """
 import os
 from pathlib import Path
@@ -791,20 +791,25 @@ host_ports = {
 }
 
 def go_to_script_dir():
-    os.chdir(os.path.dirname(__file__))
+        os.chdir(os.path.dirname(__file__))
 
 for folder, port in host_ports.items():
-    print(f"starting {folder} on port {port} ", end="")
-    go_to_script_dir()
-    os.chdir(f"approved/{folder}")
-    if os.path.isfile('run.sh'):
-        print("using run.sh")
-        os.system(f"chmod +x run.sh && HOST_PORT={port} ./run.sh")
-    else: # build with Dockerfile
-        path_to_dockerfile = os.path.dirname(list(Path('.').glob('**/Dockerfile'))[0].absolute())
-        os.chdir(path_to_dockerfile)
-        print("using docker")
-        os.system(f"docker build -t {folder} . && docker run -d --restart unless-stopped -p {port}:8000 {folder}")
+        print(f"starting {folder} on port {port} ", end="")
+        go_to_script_dir()
+        os.chdir(f"approved/{folder}")
+        if os.path.isfile('run.sh'):
+                print("using run.sh")
+                os.system(f"chmod +x run.sh && HOST_PORT={port} ./run.sh")
+        else:
+                path_to_dockerfile = os.path.dirname(list(Path('.').glob('**/Dockerfile'))[0].absolute())
+                os.chdir(path_to_dockerfile)
+                print("using docker")
+                if folder in ('hugeprimes', 'inv-characters'):
+                        docker_port = 8080
+                else:
+                        docker_port = 8000
+
+                os.system(f"docker build -t {folder} . && docker run -d --restart unless-stopped -p {port}:{docker_port} {folder}")
 ```
 
 Running all of these Docker images bumps our RAM up from 400M/1G to 700M/1G, so we're kinda pushing our Droplet to its limits. I'm sure it'll be fine.
