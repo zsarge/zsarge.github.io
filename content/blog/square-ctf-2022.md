@@ -822,4 +822,4 @@ sudo ufw allow 8001:8005/tcp # warning: this opens our insecure apps to the worl
 
 # CTFd resources
 
-
+Club members should check the Google Drive for the CTFd resources for this event.
