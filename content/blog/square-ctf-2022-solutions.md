@@ -448,8 +448,6 @@ What happens when we visit `/help.html`?
 
 ![What can I help you with? Contact, Report, Time, or Show](../assets/square-ctf/image-20231110165720384.png)
 
-
-
 If we use our browser's developer tools to edit the page to replace
 
 ```
@@ -464,10 +462,48 @@ with
 
 We can see the help page.
 
+In the source code distributed with the challenge, we see the following file:
 
+```java
+// AppSec team doesn't want us implementing hidden Command endpoints for remote administration
+// They said to delete it altogether, but I don't see why commenting out just this Controller
+// would be any less secure
+//@Controller
+public class CommandController {
 
-**THIS IS NOT FINISHED EITHER**
+  @GetMapping("/command")
+  @ResponseBody
+  public String getCommand (@RequestParam() String command) throws IOException {
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(byteArrayOutputStream);
+    oos.writeObject(new Command(command));
+    oos.close();
+    return Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
+  }
 
+  @PostMapping("/command")
+  @ResponseBody
+  public String postCommand (@RequestParam() String commandObjectSerializedEncoded)
+      throws IOException, ClassNotFoundException {
+
+    String fileName = java.util.UUID.randomUUID().toString();
+    byte[] commandObjectSerialized = Base64.getDecoder().decode(commandObjectSerializedEncoded);
+    try (ByteArrayInputStream commandIn = new ByteArrayInputStream(commandObjectSerialized);
+         ObjectInputStream in = new ObjectInputStream(commandIn);) {
+      Command commandObject = (Command)in.readObject();
+
+      try (FileOutputStream fileOut = new FileOutputStream(PathSecurityUtil.GetSafePath("Errors/" + fileName).toFile());
+           ObjectOutputStream out = new ObjectOutputStream(fileOut);) {
+        out.writeObject(commandObject);
+      }
+    }
+
+    return fileName;
+  }
+}
+```
+
+**This is not finished either.**
 
 
 ## Korean Space Program
