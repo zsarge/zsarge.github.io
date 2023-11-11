@@ -83,25 +83,12 @@ However, because I'm working in Python, I chose to loosely base the project on [
 
 In general, I figured the flow should go as follows:
 
-<style>
-img {
-   max-width: 100%;
-}
-</style>
-
-```mermaid
-flowchart LR
-   A{{process HTML template}} --> B([normal HTML]) & C([expression tags]) & D([execution tags])
-   B --> L[do nothing]
-   C --> E[evaluate and produce a result] --> R[replace with result]
-   D --> X[execute and produce nothing] --> R
-   R --> A
-```
+<img style="max-width: 100%;" src="/assets/pyhp/flowchart.png" type="image/png" alt="Parser flowchart">
 
 Given this framework, Python gives us two really useful tools for processing strings as Python code, and they happen to be exactly what we want!
 
-|    Function    | Description                            |
-| :------------: | :------------------------------------- |
+|    Function    | Description                           |
+| :------------: | :------------------------------------ |
 | [`eval`][eval] | evaluate a string and return a result |
 | [`exec`][exec] | execute a string and return `None`    |
 
