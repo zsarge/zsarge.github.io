@@ -366,3 +366,7 @@ figcaption {
     text-align: center;
 }
 
+/* reduce spacing for p tags in asides */
+aside p:first-of-type {
+    margin-top: 0.1em;
+}
