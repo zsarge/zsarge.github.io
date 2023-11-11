@@ -40,6 +40,10 @@ header {
     color: var(--text);
 }
 
+article {
+    word-wrap: break-word;
+}
+
 @media only screen and (min-width: 50em) {
     /* 50em = calc(var(--max-width) + 2em) */
 
