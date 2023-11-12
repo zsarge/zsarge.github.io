@@ -571,9 +571,9 @@ Show full code
 <p>Thus, if we can control the value of that variable, we can make the environment comparison evaluate to <code>true</code>, and we can get access.</p>
 <p>Looking at the values we’re comparing to, we’d need to produce one of 1, 2, 4, 8, 16, or 32.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_STAGE_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span>ENV_STAGE_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span>ENV_DEV_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span>ENV_DEV_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT<span class="op">;</span></span></code></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_STAGE_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_DEV_EAST   <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_DEV_WEST   <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT<span class="op">;</span></span></code></pre></div>
 <p>In the final comparison, we can see that <code>ENV_DEV_WEST</code> equals <code>32</code>, and we know that <code>ENVIRONMENT</code> is set to <code>2</code>.</p>
 <p>As such, if we set the Hangul whitespace to 3, we’ll make <code>"32"</code>, which is equal to <code>32</code> when compared with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality"><code>==</code></a>.</p>
 <p>We can start with a request saying that <code>\u3164</code> must equal <code>3</code>, such as:</p>
@@ -615,6 +615,18 @@ Show full code
     <details>
       <summary>See edit history for "Square Practice CTF selected solutions"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-11-11T22:14:35-05:00">
+                Saturday, November 11, 2023 at 10:14 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 3 insertions(+), 3 deletions(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>

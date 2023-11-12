@@ -402,3 +402,12 @@ figcaption {
 aside p:first-of-type {
     margin-top: 0.1em;
 }
+
+/* katex support */
+.katex-html {
+    display: none;
+}
+
+.katex-mathml {
+    font-size: 1.5em;
+}
