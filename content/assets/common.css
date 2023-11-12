@@ -1,18 +1,48 @@
 :root {
+    --max-width: 40em;
+    --border-radius: 1em;
+    /* Colors */
+    --page-background: white;
     --orange: #F7D4BC;
     --dark-orange: #f2b78e;
     --burnt-orange: #CC5500;
     --orange-border: #c6aa96;
     --text-on-orange: black;
     --blue: #846b8a;
-    --max-width: 40em;
-    --border-radius: 1em;
     --blue-background: #e7f0f9;
     --blue-border: #6666CC;
     --text: #212427;
+    --link: #5d2490;
     --less-prominent-text: #3d4348;
     --gray-background: #fcf2f2;
     --gray-border: darkgray;
+    --code-background: #fcfcff;
+    --code-border: #ddd8dd;
+    --code-python: forestgreen;
+    --header-border: #999;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --page-background: #272822;
+        --orange: #41352a;
+        --dark-orange: #111111;
+        --burnt-orange: magenta;
+        --orange-border: #5d3f30;
+        --text-on-orange: magenta;
+        --link: #cd9df8;
+        --blue: magenta;
+        --blue-background: magenta;
+        --blue-border: magenta;
+        --text: #dedede;
+        --less-prominent-text: #cba5bd;
+        --gray-background: #3a3636;
+        --gray-border: #4e4e4e;
+        --code-background: #303030;
+        --code-border: #371f0e;
+        --code-python: magenta;
+        --header-border: magenta;
+    }
 }
 
 nav,
@@ -22,6 +52,7 @@ header {
 
 html {
     height: 100%;
+    background: var(--page-background);
 }
 
 body {
@@ -62,6 +93,10 @@ h4,
 h5,
 h6 {
     line-height: 1em;
+}
+
+a {
+    color: var(--link);
 }
 
 .tag {
@@ -144,20 +179,20 @@ code span {
     font-size: 0.98em;
     word-spacing: normal;
     box-sizing: border-box;
-    background: #fcfcff;
+    background: var(--code-background);
 }
 
 div.sourceCode {
-    border: 2px solid #ddd8dd;
+    border: 2px solid var(--code-border);
 }
 
 code.python span.bu {
-    color: forestgreen;
+    color: var(--code-python);
 }
 
 pre {
     padding: 10px;
-    border: 2px solid #ddd8dd;
+    border: 2px solid var(--code-border);
     display: inline-block;
     min-width: 100%;
 
@@ -310,7 +345,7 @@ table {
 
 td,
 th {
-    border: 1px solid #999;
+    border: 1px solid var(--header-border);
     padding: 0.5rem;
     text-align: left;
 }
