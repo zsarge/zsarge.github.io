@@ -101,7 +101,9 @@ class Article
     @html ||= `pandoc -f markdown -t html --table-of-contents  \
     --template \"#{File.join(SOURCE_PATH, 'pandoc-article.html5')}\" \
     --metadata title="#{@title}" \
-    --filter mermaid-filter \
+    --filter pandoc-katex \
+    --css "https://cdn.jsdelivr.net/npm/katex@$(pandoc-katex --katex-version)/dist/katex.min.css" \
+    --css "https://pandoc.org/demo/pandoc.css" \
     --highlight-style pygments <(tail -n +5 \"#{@filepath}\")`
   end
 
