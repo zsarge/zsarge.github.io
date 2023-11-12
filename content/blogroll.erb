@@ -15,16 +15,14 @@
 }
 </style>
 
-<table>
-    <dl class="articles">
-        <% for article in articles %>
-        <div class="title">
-            <a href="<%=article.url%>"><%= article.title %></a> 
-            <small class="article-info">
-                <i>(<%= article.reading_time %>)</i>
-                <%= article.date %>
-            </small>
-        </div>
-        <% end %>
-    </dl>
-</table>
+<dl class="articles">
+    <% for article in articles %>
+    <div class="title">
+        <a href="<%=article.url%>"><%= article.title %></a> 
+        <small class="article-info">
+            <i>(<%= article.reading_time %>)</i>
+            <%= article.date %>
+        </small>
+    </div>
+    <% end %>
+</dl>
