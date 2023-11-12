@@ -13,7 +13,8 @@ Related: [Hosting these challenges](/blog/square-ctf-2022.html)
 >
 > Memory safety? Whats that?
 > Required Reading:
-> \- https://en.wikipedia.org/wiki/Stack_buffer_overflow
+>
+> - <https://en.wikipedia.org/wiki/Stack_buffer_overflow>
 
 Along with this challenge, we are given the following C program:
 
@@ -134,19 +135,18 @@ Challenge Description:
 > **Required reading:**
 >
 > - [intro to x86](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html)
-> 
->- [x86-64 stack layout](https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64)
-> 
+>
+> - [x86-64 stack layout](https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64)
+>
 > - [Stack Canaries](https://www.sans.org/blog/stack-canaries-gingerly-sidestepping-the-cage/)
-> 
->- [stack based buffer overflows]( https://en.wikipedia.org/wiki/Stack_buffer_overflow )
-> 
->- [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization)
-> 
->**Optional Reading:**
-> 
+>
+> - [stack based buffer overflows](https://en.wikipedia.org/wiki/Stack_buffer_overflow)
+>
+> - [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization)
+>
+> **Optional Reading:**
+>
 > - [pwntools](https://docs.pwntools.com/en/stable/intro.html#making-connections)
-> 
 
 And we are given the following C program:
 
@@ -316,51 +316,49 @@ for offset in range(13, 25):
 
 This challenge is designed to trick you.
 
-Factoring this really large number is going to be incredibly difficult. 
+Factoring this really large number is going to be incredibly difficult.
 
 This is really a challenge about binary numbers in JavaScript.
 
 We are provided with the file `sourcecode.js`:
 
 ```js
-const express = require('express');
-const bodyParser= require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
-const hugeProductOfPrimes = 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477
-const flag = ";)"
-const correct = "Correct! Here is your flag: " + flag
-const incorrect = "Incorrect factors! Try again"
+const hugeProductOfPrimes = 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477;
+const flag = ";)";
+const correct = "Correct! Here is your flag: " + flag;
+const incorrect = "Incorrect factors! Try again";
 
 // Constants
 const PORT = 8080;
-const HOST = '0.0.0.0';
+const HOST = "0.0.0.0";
 
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs");
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
-})
-
-app.post('/factors', (req, res) => {
-  a = req.body['a']
-  b = req.body['b']
-  if (a * b == hugeProductOfPrimes && a >= 2 && b >= 2) {
-    res.render('index.ejs', { flag: correct })
-    console.log()
-  } else {
-    res.render('index.ejs', { flag: incorrect })
-  }
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
+app.post("/factors", (req, res) => {
+  a = req.body["a"];
+  b = req.body["b"];
+  if (a * b == hugeProductOfPrimes && a >= 2 && b >= 2) {
+    res.render("index.ejs", { flag: correct });
+    console.log();
+  } else {
+    res.render("index.ejs", { flag: incorrect });
+  }
+});
 ```
 
 Here is the solution provided by the challenge author:
-
 
 <blockquote>
 One solution is to find the actual prime factors of 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477 by actually factorizing it.
@@ -369,7 +367,7 @@ This is nontrivial however, and not even I know the prime factors :P
 
 However, all numbers in JavaScript are floats, and beyond 2^53 - 1, all numbers in js are floats. With a number as large as the one above, this means that the double precision representation of the number is:
 
-1.0011100010111011111000001010110110101011111111100001 * 2^363
+1.0011100010111011111000001010110110101011111111100001 \* 2^363
 
 Which is equal to 22952152323332505416587153773067821404219604570062873267600242062142093944707836288883856033656043372550291456
 (which is definitely NOT the same number!). In fact, with numbers that large, all numbers in js are actually just powers of 2 and thus, are even!
@@ -380,9 +378,10 @@ We could thus bypass the check with something like this:
 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477 / 2 = 1.1476076161666253e+109
 
 Note that this returns true:
-1.1476076161666253e+109 * 2 == 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477
+1.1476076161666253e+109 \* 2 == 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477
 
 (see https://www.exploringbinary.com/the-spacing-of-binary-float)
+
 </blockquote>
 
 To solve this one, I recommend used WolframAlpha to handle the math for me, in scientific notation, with the query "number / 2 in scientific notation" ([link](https://www.wolframalpha.com/input?i=22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477%2F2+in+scientific+notation))
@@ -417,28 +416,28 @@ Sorry, a new folder couldn't be created for your reports
 
 Hmm. Unfortunate.
 
-Checking the source code (<kbd>Ctrl</kbd>+<kbd>U</kbd>)  of the main page, we see:
+Checking the source code (<kbd>Ctrl</kbd>+<kbd>U</kbd>) of the main page, we see:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Report Submission</title>
-</head>
-<body>
-<h1>Please fill out the form below to submit a report</h1>
-<form action="/reports/submit" method="post">
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name"><br>
-  <label for="subject">Subject:</label><br>
-  <input type="text" id="subject" name="subject"><br>
-  <label for="message">Message:</label><br>
-  <textarea id="message" name="message" rows="5" cols="60"></textarea><br>
-  <input type="submit">
-</form>
-<!--<iframe src="/help.html" title="Help Menu"></iframe>-->
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Report Submission</title>
+  </head>
+  <body>
+    <h1>Please fill out the form below to submit a report</h1>
+    <form action="/reports/submit" method="post">
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" name="name" /><br />
+      <label for="subject">Subject:</label><br />
+      <input type="text" id="subject" name="subject" /><br />
+      <label for="message">Message:</label><br />
+      <textarea id="message" name="message" rows="5" cols="60"></textarea><br />
+      <input type="submit" />
+    </form>
+    <!--<iframe src="/help.html" title="Help Menu"></iframe>-->
+  </body>
 </html>
 ```
 
@@ -457,7 +456,11 @@ If we use our browser's developer tools to edit the page to replace
 with
 
 ```html
-<iframe src="/help.html" style="width: 100%; height:20em;" title="Help Menu"></iframe>
+<iframe
+  src="/help.html"
+  style="width: 100%; height:20em;"
+  title="Help Menu"
+></iframe>
 ```
 
 We can see the help page.
@@ -505,8 +508,7 @@ public class CommandController {
 
 **This is not finished either.**
 
-
-## Korean Space Program
+## Korean Space Program (2021)
 
 <https://squarectf.com/2021/koreanspaceprogram.html>
 
@@ -518,20 +520,26 @@ This problem includes the following Express app:
 <summary>Show full code</summary>
 
 ```js
-const express = require('express');
-const { timingSafeEqual } = require('crypto');
+const express = require("express");
+const { timingSafeEqual } = require("crypto");
 
 // TODO: What were we optimizing by using bitflags for the environments again?
 // Note: values are 1, 2, 4, 8, 16, 32
-const [ENV_PROD_EAST, ENV_PROD_WEST, ENV_STAGE_EAST, ENV_STAGE_WEST, ENV_DEV_EAST, ENV_DEV_WEST] =
-      [0b000001,      0b000010,      0b000100,       0b001000,        0b010000,     0b100000];
+const [
+  ENV_PROD_EAST,
+  ENV_PROD_WEST,
+  ENV_STAGE_EAST,
+  ENV_STAGE_WEST,
+  ENV_DEV_EAST,
+  ENV_DEV_WEST,
+] = [0b000001, 0b000010, 0b000100, 0b001000, 0b010000, 0b100000];
 
 // Unicode in the username makes it more secure, thankfully we can have unicode characters in source
-const [USERNAME, PASSWORD] = ['root🚀', 'ROOT_PASSWORD_NOT_SHARED'];
-const FLAG = 'FLAG_NOT_SHARED'
+const [USERNAME, PASSWORD] = ["root🚀", "ROOT_PASSWORD_NOT_SHARED"];
+const FLAG = "FLAG_NOT_SHARED";
 
 const app = express();
-const ENVIRONMENT = '2'; // Note: We are deployed in production-west
+const ENVIRONMENT = "2"; // Note: We are deployed in production-west
 
 function stringsEqual(str1, str2) {
   if (str1 === undefined || str2 === undefined || str1.length !== str2.length) {
@@ -540,25 +548,26 @@ function stringsEqual(str1, str2) {
   return timingSafeEqual(Buffer.from(str1, "utf8"), Buffer.from(str2, "utf8"));
 }
 
-app.get('/login', async (req, res) => {
-    const {
-      username,
-      password,
-   ㅤ} = req.query;
+app.get("/login", async (req, res) => {
+  const { username, password, ㅤ } = req.query;
 
-   // Note: Auth check here, only bypassable in staging or dev envs
-    if ((stringsEqual(USERNAME, username) && stringsEqual(PASSWORD, password)) ||
-        (+ENV_STAGE_EAST ==ㅤ+ENVIRONMENT || +ENV_STAGE_WEST ==ㅤ+ENVIRONMENT) ||
-        (+ENV_DEV_EAST ==ㅤ+ENVIRONMENT || +ENV_DEV_WEST ==ㅤ+ENVIRONMENT)) {
-      res.status(200);
-      res.send(FLAG);
-    } else {
-      res.status(401);
-      res.send('UNAUTHORIZED');
-    }
+  // Note: Auth check here, only bypassable in staging or dev envs
+  if (
+    (stringsEqual(USERNAME, username) && stringsEqual(PASSWORD, password)) ||
+    +ENV_STAGE_EAST == ㅤ + ENVIRONMENT ||
+    +ENV_STAGE_WEST == ㅤ + ENVIRONMENT ||
+    +ENV_DEV_EAST == ㅤ + ENVIRONMENT ||
+    +ENV_DEV_WEST == ㅤ + ENVIRONMENT
+  ) {
+    res.status(200);
+    res.send(FLAG);
+  } else {
+    res.status(401);
+    res.send("UNAUTHORIZED");
+  }
 });
 
-app.get('/', async (req, res) => {
+app.get("/", async (req, res) => {
   res.status(200);
   res.send(`
   <html>
@@ -576,10 +585,10 @@ app.get('/', async (req, res) => {
   </form>
   </body>
   </html>
-  `)
+  `);
 });
 
-app.listen(8080, '0.0.0.0');
+app.listen(8080, "0.0.0.0");
 ```
 
 </details>
@@ -600,23 +609,20 @@ This is a theme for all of the [unary plus expressions](https://developer.mozill
 
 > The Hangul Filler character is used to introduce eight-byte Hangul composition sequences and to stand in for an absent element (usually an empty final) in such a sequence.
 >
-> &mdash; <cite href="https://en.wikipedia.org/wiki/KS_X_1001#Hangul_Filler">Wikipedia</cite>
+> &mdash; <cite><a href="https://en.wikipedia.org/wiki/KS_X_1001#Hangul_Filler">Wikipedia</a></cite>
 
 There's also a Hangul Filler character in the object destructuring:
 
 ```js
-const {
-  username,
-  password,
-ㅤ} = req.query;
+const { username, password, ㅤ } = req.query;
 ```
 
 meaning that three request parameters are destructured into local variables:
 
 ```js
-req.query.username
-req.query.password
-req.query.ㅤ// HANGUL FILLER
+req.query.username;
+req.query.password;
+req.query.ㅤ; // HANGUL FILLER
 ```
 
 As such, we can control the value of the filler character via URL parameters.
@@ -632,21 +638,23 @@ Thus, if we can control the value of that variable, we can make the environment 
 Looking at the values we're comparing to, we'd need to produce one of 1, 2, 4, 8, 16, or 32.
 
 ```js
-(+ENV_STAGE_EAST ==ㅤ+ENVIRONMENT || +ENV_STAGE_WEST ==ㅤ+ENVIRONMENT) ||
-(+ENV_DEV_EAST ==  ㅤ+ENVIRONMENT || +ENV_DEV_WEST ==  ㅤ+ENVIRONMENT)
++ENV_STAGE_EAST == ㅤ + ENVIRONMENT ||
+  +ENV_STAGE_WEST == ㅤ + ENVIRONMENT ||
+  +ENV_DEV_EAST == ㅤ + ENVIRONMENT ||
+  +ENV_DEV_WEST == ㅤ + ENVIRONMENT;
 ```
 
 In the final comparison, we can see that `ENV_DEV_WEST` equals `32`, and we know that `ENVIRONMENT` is set to `2`.
 
 As such, if we set the Hangul whitespace to 3, we'll make `"32"`, which is equal to `32` when compared with [`==`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality).
 
-We can start with a request saying that ``\u3164`` must equal `3`, such as:
+We can start with a request saying that `\u3164` must equal `3`, such as:
 
 ```javascript
-const character = 'ㅤ';
+const character = "ㅤ";
 // use Chrome/FireFox/nodejs to convert this for you:
 const encoded = encodeURIComponent(character);
-console.log(`/login?${encoded}=3`) // prints /login?%E3%85%A4=3
+console.log(`/login?${encoded}=3`); // prints /login?%E3%85%A4=3
 ```
 
 In the provided code, the Hangul whitespace character ‘ㅤ’ is being used as a property name in `req.query`. When you visit `/login?%E3%85%A4=3`, the URL is decoded to `/login?ㅤ=3`, and `req.query.ㅤ` is set to `'3'`.
