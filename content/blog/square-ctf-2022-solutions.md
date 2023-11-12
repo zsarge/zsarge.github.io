@@ -639,9 +639,9 @@ Looking at the values we're comparing to, we'd need to produce one of 1, 2, 4, 8
 
 ```js
 +ENV_STAGE_EAST == ㅤ + ENVIRONMENT ||
-  +ENV_STAGE_WEST == ㅤ + ENVIRONMENT ||
-  +ENV_DEV_EAST == ㅤ + ENVIRONMENT ||
-  +ENV_DEV_WEST == ㅤ + ENVIRONMENT;
++ENV_STAGE_WEST == ㅤ + ENVIRONMENT ||
++ENV_DEV_EAST   == ㅤ + ENVIRONMENT ||
++ENV_DEV_WEST   == ㅤ + ENVIRONMENT;
 ```
 
 In the final comparison, we can see that `ENV_DEV_WEST` equals `32`, and we know that `ENVIRONMENT` is set to `2`.
