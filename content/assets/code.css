@@ -326,8 +326,8 @@ code span.wa {
     }
 
     div.sourceCode {
-        color: #cccccc;
-        background-color: #303030;
+        color: #97d4f4;
+        background-color: #1f1f1f;
     }
 
     @media screen {
@@ -419,7 +419,9 @@ code span.wa {
     }
 
     /* Import */
-    code span.im {}
+    code span.im {
+        color: #aeeaae;
+    }
 
     /* Information */
     code span.in {
@@ -464,7 +466,9 @@ code span.wa {
     }
 
     /* Variable */
-    code span.va {}
+    code span.va {
+        color: #9a97ff;
+    }
 
     /* VerbatimString */
     code span.vs {
