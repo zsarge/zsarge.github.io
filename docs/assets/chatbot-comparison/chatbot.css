@@ -94,3 +94,18 @@ blockquote {
     background: none;
     color: white;
 }
+
+
+@media (prefers-color-scheme: dark) {
+    .bard {
+        background-color: #222327;
+    }
+
+    .chatgpt {
+        background-color: #343541;
+    }
+
+    .bing {
+        background-color: #242322;
+    }
+}

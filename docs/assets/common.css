@@ -1,18 +1,45 @@
 :root {
+    --max-width: 40em;
+    --border-radius: 1em;
+    /* Colors */
+    --page-background: white;
     --orange: #F7D4BC;
     --dark-orange: #f2b78e;
     --burnt-orange: #CC5500;
     --orange-border: #c6aa96;
-    --text-on-orange: black;
-    --blue: #846b8a;
-    --max-width: 40em;
-    --border-radius: 1em;
     --blue-background: #e7f0f9;
     --blue-border: #6666CC;
     --text: #212427;
+    --link: #5d2490;
     --less-prominent-text: #3d4348;
     --gray-background: #fcf2f2;
     --gray-border: darkgray;
+    --code-background: #fcfcff;
+    --code-border: #ddd8dd;
+    --code-python: forestgreen;
+    --table-border: #999;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Colors */
+        --page-background: #272822;
+        --orange: #41352a;
+        --dark-orange: #111111;
+        --burnt-orange: #CC5500;
+        --orange-border: #5d3f30;
+        --link: #cd9df8;
+        --blue-background: #2d383c;
+        --blue-border: #414c50;
+        --text: #dedede;
+        --less-prominent-text: #cba5bd;
+        --gray-background: #3a3636;
+        --gray-border: #4e4e4e;
+        --code-background: #1f1f1f;
+        --code-border: #3e332b;
+        --code-python: #d3d3a3;
+        --table-border: #685f68;
+    }
 }
 
 nav,
@@ -22,6 +49,7 @@ header {
 
 html {
     height: 100%;
+    background: var(--page-background);
 }
 
 body {
@@ -62,6 +90,10 @@ h4,
 h5,
 h6 {
     line-height: 1em;
+}
+
+a {
+    color: var(--link);
 }
 
 .tag {
@@ -144,20 +176,20 @@ code span {
     font-size: 0.98em;
     word-spacing: normal;
     box-sizing: border-box;
-    background: #fcfcff;
+    background: var(--code-background);
 }
 
 div.sourceCode {
-    border: 2px solid #ddd8dd;
+    border: 2px solid var(--code-border);
 }
 
 code.python span.bu {
-    color: forestgreen;
+    color: var(--code-python);
 }
 
 pre {
     padding: 10px;
-    border: 2px solid #ddd8dd;
+    border: 2px solid var(--code-border);
     display: inline-block;
     min-width: 100%;
 
@@ -310,7 +342,7 @@ table {
 
 td,
 th {
-    border: 1px solid #999;
+    border: 1px solid var(--table-border);
     padding: 0.5rem;
     text-align: left;
 }
@@ -366,3 +398,7 @@ figcaption {
     text-align: center;
 }
 
+/* reduce spacing for p tags in asides */
+aside p:first-of-type {
+    margin-top: 0.1em;
+}

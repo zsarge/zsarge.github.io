@@ -22,6 +22,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/assets/common.css" > 
+  <link rel="stylesheet" type="text/css" href="/assets/code.css" > 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
@@ -53,79 +54,14 @@
         </span>
         <span id="reading-time">
           <i class="fa fa-clock-o" aria-hidden="true"></i> 
-          26 mins
+          27 mins
         </span>
         <span class="tags">
           <a href="/tag/nkcyber.html" class="tag">nkcyber</a> <a href="/tag/cybersecurity.html" class="tag">cybersecurity</a>
         </span>
       </div>
 
-    <style>
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
+    
 <details id="table-of-contents" class="toc" role="doc-toc">
 <summary id="table-of-contents-header"> Table of Contents </summary>
 
@@ -134,7 +70,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#ez-pwn-2-2022">EZ pwn 2 (2022)</a></li>
 <li><a href="#huge-primes-2021">Huge Primes (2021)</a></li>
 <li><a href="#developers-hubris-2022">Developer’s Hubris (2022)</a></li>
-<li><a href="#korean-space-program">Korean Space Program</a></li>
+<li><a href="#korean-space-program-2021">Korean Space Program (2021)</a></li>
 </ul>
 
 </details>
@@ -144,7 +80,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://squarectf.com/2022/ezpwn1.html" class="uri">https://squarectf.com/2022/ezpwn1.html</a></p>
 <blockquote>
 <p><strong>Challenge Description:</strong></p>
-<p>Memory safety? Whats that? Required Reading: - https://en.wikipedia.org/wiki/Stack_buffer_overflow</p>
+<p>Memory safety? Whats that? Required Reading:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow" class="uri">https://en.wikipedia.org/wiki/Stack_buffer_overflow</a></li>
+</ul>
 </blockquote>
 <p>Along with this challenge, we are given the following C program:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
@@ -382,37 +321,37 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <p>Factoring this really large number is going to be incredibly difficult.</p>
 <p>This is really a challenge about binary numbers in JavaScript.</p>
 <p>We are provided with the file <code>sourcecode.js</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> bodyParser<span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;body-parser&#39;</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;express&quot;</span>)<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> bodyParser <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;body-parser&quot;</span>)<span class="op">;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> hugeProductOfPrimes <span class="op">=</span> <span class="dv">22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> flag <span class="op">=</span> <span class="st">&quot;;)&quot;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> correct <span class="op">=</span> <span class="st">&quot;Correct! Here is your flag: &quot;</span> <span class="op">+</span> flag</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> incorrect <span class="op">=</span> <span class="st">&quot;Incorrect factors! Try again&quot;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> hugeProductOfPrimes <span class="op">=</span> <span class="dv">22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</span><span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> flag <span class="op">=</span> <span class="st">&quot;;)&quot;</span><span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> correct <span class="op">=</span> <span class="st">&quot;Correct! Here is your flag: &quot;</span> <span class="op">+</span> flag<span class="op">;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> incorrect <span class="op">=</span> <span class="st">&quot;Incorrect factors! Try again&quot;</span><span class="op">;</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Constants</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> PORT <span class="op">=</span> <span class="dv">8080</span><span class="op">;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> HOST <span class="op">=</span> <span class="st">&#39;0.0.0.0&#39;</span><span class="op">;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> HOST <span class="op">=</span> <span class="st">&quot;0.0.0.0&quot;</span><span class="op">;</span></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">set</span>(<span class="st">&#39;view engine&#39;</span><span class="op">,</span> <span class="st">&#39;ejs&#39;</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">set</span>(<span class="st">&quot;view engine&quot;</span><span class="op">,</span> <span class="st">&quot;ejs&quot;</span>)<span class="op">;</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(PORT<span class="op">,</span> HOST)<span class="op">;</span></span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Running on http://</span><span class="sc">${</span>HOST<span class="sc">}</span><span class="vs">:</span><span class="sc">${</span>PORT<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(bodyParser<span class="op">.</span><span class="fu">urlencoded</span>({ <span class="dt">extended</span><span class="op">:</span> <span class="kw">true</span> }))</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">use</span>(bodyParser<span class="op">.</span><span class="fu">urlencoded</span>({ <span class="dt">extended</span><span class="op">:</span> <span class="kw">true</span> }))<span class="op">;</span></span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">sendFile</span>(<span class="bu">__dirname</span> <span class="op">+</span> <span class="st">&#39;/index.html&#39;</span>)</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&quot;/&quot;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">sendFile</span>(<span class="bu">__dirname</span> <span class="op">+</span> <span class="st">&quot;/index.html&quot;</span>)<span class="op">;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/factors&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  a <span class="op">=</span> req<span class="op">.</span><span class="at">body</span>[<span class="st">&#39;a&#39;</span>]</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  b <span class="op">=</span> req<span class="op">.</span><span class="at">body</span>[<span class="st">&#39;b&#39;</span>]</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">&quot;/factors&quot;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  a <span class="op">=</span> req<span class="op">.</span><span class="at">body</span>[<span class="st">&quot;a&quot;</span>]<span class="op">;</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  b <span class="op">=</span> req<span class="op">.</span><span class="at">body</span>[<span class="st">&quot;b&quot;</span>]<span class="op">;</span></span>
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (a <span class="op">*</span> b <span class="op">==</span> hugeProductOfPrimes <span class="op">&amp;&amp;</span> a <span class="op">&gt;=</span> <span class="dv">2</span> <span class="op">&amp;&amp;</span> b <span class="op">&gt;=</span> <span class="dv">2</span>) {</span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">render</span>(<span class="st">&#39;index.ejs&#39;</span><span class="op">,</span> { <span class="dt">flag</span><span class="op">:</span> correct })</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>()</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">render</span>(<span class="st">&quot;index.ejs&quot;</span><span class="op">,</span> { <span class="dt">flag</span><span class="op">:</span> correct })<span class="op">;</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>()<span class="op">;</span></span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">render</span>(<span class="st">&#39;index.ejs&#39;</span><span class="op">,</span> { <span class="dt">flag</span><span class="op">:</span> incorrect })</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">render</span>(<span class="st">&quot;index.ejs&quot;</span><span class="op">,</span> { <span class="dt">flag</span><span class="op">:</span> incorrect })<span class="op">;</span></span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <p>Here is the solution provided by the challenge author:</p>
@@ -424,7 +363,7 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <p>This leads to weird quirks, such as the fact that 22952152323332505416587153773067821404219604570062873267600242062142093944707836288883856033656043372550291456 == 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477 returns true</p>
 <p>We could thus bypass the check with something like this: 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477 / 2 = 1.1476076161666253e+109</p>
 <p>Note that this returns true: 1.1476076161666253e+109 * 2 == 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</p>
-(see https://www.exploringbinary.com/the-spacing-of-binary-float)
+<p>(see https://www.exploringbinary.com/the-spacing-of-binary-float)</p>
 </blockquote>
 <p>To solve this one, I recommend used WolframAlpha to handle the math for me, in scientific notation, with the query “number / 2 in scientific notation” (<a href="https://www.wolframalpha.com/input?i=22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477%2F2+in+scientific+notation">link</a>)</p>
 <figure>
@@ -452,23 +391,23 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <p>Checking the source code (<kbd>Ctrl</kbd>+<kbd>U</kbd>) of the main page, we see:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;title&gt;</span>Report Submission<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>Please fill out the form below to submit a report<span class="kw">&lt;/h1&gt;</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;form</span> <span class="er">action</span><span class="ot">=</span><span class="st">&quot;/reports/submit&quot;</span> <span class="er">method</span><span class="ot">=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>Name:<span class="kw">&lt;/label&gt;&lt;br&gt;</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;&lt;br&gt;</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span><span class="kw">&gt;</span>Subject:<span class="kw">&lt;/label&gt;&lt;br&gt;</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span><span class="kw">&gt;&lt;br&gt;</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;message&quot;</span><span class="kw">&gt;</span>Message:<span class="kw">&lt;/label&gt;&lt;br&gt;</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;textarea</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">rows</span><span class="ot">=</span><span class="st">&quot;5&quot;</span> <span class="er">cols</span><span class="ot">=</span><span class="st">&quot;60&quot;</span><span class="kw">&gt;&lt;/textarea&gt;&lt;br&gt;</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/form&gt;</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--&lt;iframe src=&quot;/help.html&quot; title=&quot;Help Menu&quot;&gt;&lt;/iframe&gt;--&gt;</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>Report Submission<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Please fill out the form below to submit a report<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;form</span> <span class="er">action</span><span class="ot">=</span><span class="st">&quot;/reports/submit&quot;</span> <span class="er">method</span><span class="ot">=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>Name:<span class="kw">&lt;/label&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="kw">/&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span><span class="kw">&gt;</span>Subject:<span class="kw">&lt;/label&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span> <span class="kw">/&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;message&quot;</span><span class="kw">&gt;</span>Message:<span class="kw">&lt;/label&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;textarea</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">rows</span><span class="ot">=</span><span class="st">&quot;5&quot;</span> <span class="er">cols</span><span class="ot">=</span><span class="st">&quot;60&quot;</span><span class="kw">&gt;&lt;/textarea&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/form&gt;</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!--&lt;iframe src=&quot;/help.html&quot; title=&quot;Help Menu&quot;&gt;&lt;/iframe&gt;--&gt;</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
 <p>Looks like someone commented out an iframe linking to the help menu!</p>
 <p>What happens when we visit <code>/help.html</code>?</p>
@@ -478,7 +417,11 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <p>If we use our browser’s developer tools to edit the page to replace</p>
 <pre><code>&lt;!--&lt;iframe src=&quot;/help.html&quot; title=&quot;Help Menu&quot;&gt;&lt;/iframe&gt;--&gt;</code></pre>
 <p>with</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;iframe</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;/help.html&quot;</span> <span class="er">style</span><span class="ot">=</span><span class="st">&quot;width: 100%; height:20em;&quot;</span> <span class="er">title</span><span class="ot">=</span><span class="st">&quot;Help Menu&quot;</span><span class="kw">&gt;&lt;/iframe&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;iframe</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;/help.html&quot;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  style=</span><span class="st">&quot;width: 100%; height:20em;&quot;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ot">  title=</span><span class="st">&quot;Help Menu&quot;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&lt;/iframe&gt;</span></span></code></pre></div>
 <p>We can see the help page.</p>
 <p>In the source code distributed with the challenge, we see the following file:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// AppSec team doesn&#39;t want us implementing hidden Command endpoints for remote administration</span></span>
@@ -518,7 +461,7 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><strong>This is not finished either.</strong></p>
-<h2 id="korean-space-program">Korean Space Program</h2>
+<h2 id="korean-space-program-2021">Korean Space Program (2021)</h2>
 <p><a href="https://squarectf.com/2021/koreanspaceprogram.html" class="uri">https://squarectf.com/2021/koreanspaceprogram.html</a></p>
 <blockquote>
 <p>The Korean Space Program’s login portal is having trouble with unauthorized access to their systems. You can find their login page linked. Can you take a look at it and the included source file to figure out what is wrong?</p>
@@ -528,68 +471,75 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <summary>
 Show full code
 </summary>
-<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { timingSafeEqual } <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;crypto&#39;</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;express&quot;</span>)<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { timingSafeEqual } <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;crypto&quot;</span>)<span class="op">;</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="al">TODO</span><span class="co">: What were we optimizing by using bitflags for the environments again?</span></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Note: values are 1, 2, 4, 8, 16, 32</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [ENV_PROD_EAST<span class="op">,</span> ENV_PROD_WEST<span class="op">,</span> ENV_STAGE_EAST<span class="op">,</span> ENV_STAGE_WEST<span class="op">,</span> ENV_DEV_EAST<span class="op">,</span> ENV_DEV_WEST] <span class="op">=</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      [<span class="bn">0b000001</span><span class="op">,</span>      <span class="bn">0b000010</span><span class="op">,</span>      <span class="bn">0b000100</span><span class="op">,</span>       <span class="bn">0b001000</span><span class="op">,</span>        <span class="bn">0b010000</span><span class="op">,</span>     <span class="bn">0b100000</span>]<span class="op">;</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Unicode in the username makes it more secure, thankfully we can have unicode characters in source</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [USERNAME<span class="op">,</span> PASSWORD] <span class="op">=</span> [<span class="st">&#39;root🚀&#39;</span><span class="op">,</span> <span class="st">&#39;ROOT_PASSWORD_NOT_SHARED&#39;</span>]<span class="op">;</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> FLAG <span class="op">=</span> <span class="st">&#39;FLAG_NOT_SHARED&#39;</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ENVIRONMENT <span class="op">=</span> <span class="st">&#39;2&#39;</span><span class="op">;</span> <span class="co">// Note: We are deployed in production-west</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">stringsEqual</span>(str1<span class="op">,</span> str2) {</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (str1 <span class="op">===</span> <span class="kw">undefined</span> <span class="op">||</span> str2 <span class="op">===</span> <span class="kw">undefined</span> <span class="op">||</span> str1<span class="op">.</span><span class="at">length</span> <span class="op">!==</span> str2<span class="op">.</span><span class="at">length</span>) {</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">timingSafeEqual</span>(<span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(str1<span class="op">,</span> <span class="st">&quot;utf8&quot;</span>)<span class="op">,</span> <span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(str2<span class="op">,</span> <span class="st">&quot;utf8&quot;</span>))<span class="op">;</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/login&#39;</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> {</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>      username<span class="op">,</span></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>      password<span class="op">,</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>   ㅤ} <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  ENV_PROD_EAST<span class="op">,</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  ENV_PROD_WEST<span class="op">,</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ENV_STAGE_EAST<span class="op">,</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  ENV_STAGE_WEST<span class="op">,</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  ENV_DEV_EAST<span class="op">,</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  ENV_DEV_WEST<span class="op">,</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>] <span class="op">=</span> [<span class="bn">0b000001</span><span class="op">,</span> <span class="bn">0b000010</span><span class="op">,</span> <span class="bn">0b000100</span><span class="op">,</span> <span class="bn">0b001000</span><span class="op">,</span> <span class="bn">0b010000</span><span class="op">,</span> <span class="bn">0b100000</span>]<span class="op">;</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">// Unicode in the username makes it more secure, thankfully we can have unicode characters in source</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [USERNAME<span class="op">,</span> PASSWORD] <span class="op">=</span> [<span class="st">&quot;root🚀&quot;</span><span class="op">,</span> <span class="st">&quot;ROOT_PASSWORD_NOT_SHARED&quot;</span>]<span class="op">;</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> FLAG <span class="op">=</span> <span class="st">&quot;FLAG_NOT_SHARED&quot;</span><span class="op">;</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ENVIRONMENT <span class="op">=</span> <span class="st">&quot;2&quot;</span><span class="op">;</span> <span class="co">// Note: We are deployed in production-west</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">stringsEqual</span>(str1<span class="op">,</span> str2) {</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (str1 <span class="op">===</span> <span class="kw">undefined</span> <span class="op">||</span> str2 <span class="op">===</span> <span class="kw">undefined</span> <span class="op">||</span> str1<span class="op">.</span><span class="at">length</span> <span class="op">!==</span> str2<span class="op">.</span><span class="at">length</span>) {</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">timingSafeEqual</span>(<span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(str1<span class="op">,</span> <span class="st">&quot;utf8&quot;</span>)<span class="op">,</span> <span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(str2<span class="op">,</span> <span class="st">&quot;utf8&quot;</span>))<span class="op">;</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>   <span class="co">// Note: Auth check here, only bypassable in staging or dev envs</span></span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ((<span class="fu">stringsEqual</span>(USERNAME<span class="op">,</span> username) <span class="op">&amp;&amp;</span> <span class="fu">stringsEqual</span>(PASSWORD<span class="op">,</span> password)) <span class="op">||</span></span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>        (<span class="op">+</span>ENV_STAGE_EAST <span class="op">==</span>ㅤ<span class="op">+</span>ENVIRONMENT <span class="op">||</span> <span class="op">+</span>ENV_STAGE_WEST <span class="op">==</span>ㅤ<span class="op">+</span>ENVIRONMENT) <span class="op">||</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>        (<span class="op">+</span>ENV_DEV_EAST <span class="op">==</span>ㅤ<span class="op">+</span>ENVIRONMENT <span class="op">||</span> <span class="op">+</span>ENV_DEV_WEST <span class="op">==</span>ㅤ<span class="op">+</span>ENVIRONMENT)) {</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>      res<span class="op">.</span><span class="fu">status</span>(<span class="dv">200</span>)<span class="op">;</span></span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>      res<span class="op">.</span><span class="fu">send</span>(FLAG)<span class="op">;</span></span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>      res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">;</span></span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>      res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;UNAUTHORIZED&#39;</span>)<span class="op">;</span></span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">200</span>)<span class="op">;</span></span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="vs">`</span></span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;html&gt;</span></span>
-<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;head&gt;&lt;title&gt;Korean Space Agency Login Portal&lt;/title&gt;&lt;/head&gt;</span></span>
-<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;style type=&quot;text/css&quot;&gt;</span></span>
-<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="vs">  body{max-width: 800px; margin: 0 auto;}</span></span>
-<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="vs">  label{display: block;margin-bottom: 0.25em;}</span></span>
-<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="vs">  input{display:block;padding: 10px;width:100%;}&lt;/style&gt;</span></span>
-<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;body&gt;</span></span>
-<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;h1&gt;Korean Space Agency Login Form 🚀&lt;/h1&gt;</span></span>
-<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;form action=&quot;/login&quot; method=&quot;GET&quot;&gt;</span></span>
-<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;label for=&quot;username&quot;&gt;Username:&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;</span></span>
-<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;&lt;br&gt;</span></span>
-<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;input type=&quot;submit&quot;&gt;</span></span>
-<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/form&gt;</span></span>
-<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/body&gt;</span></span>
-<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/html&gt;</span></span>
-<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span>)</span>
-<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">8080</span><span class="op">,</span> <span class="st">&#39;0.0.0.0&#39;</span>)<span class="op">;</span></span></code></pre></div>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&quot;/login&quot;</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> { username<span class="op">,</span> password<span class="op">,</span> ㅤ } <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">;</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Note: Auth check here, only bypassable in staging or dev envs</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">stringsEqual</span>(USERNAME<span class="op">,</span> username) <span class="op">&amp;&amp;</span> <span class="fu">stringsEqual</span>(PASSWORD<span class="op">,</span> password)) <span class="op">||</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>ENV_STAGE_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>ENV_STAGE_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>ENV_DEV_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>ENV_DEV_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>  ) {</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">200</span>)<span class="op">;</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">send</span>(FLAG)<span class="op">;</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">;</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>    res<span class="op">.</span><span class="fu">send</span>(<span class="st">&quot;UNAUTHORIZED&quot;</span>)<span class="op">;</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&quot;/&quot;</span><span class="op">,</span> <span class="kw">async</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">status</span>(<span class="dv">200</span>)<span class="op">;</span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="vs">`</span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;html&gt;</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;head&gt;&lt;title&gt;Korean Space Agency Login Portal&lt;/title&gt;&lt;/head&gt;</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;style type=&quot;text/css&quot;&gt;</span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a><span class="vs">  body{max-width: 800px; margin: 0 auto;}</span></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="vs">  label{display: block;margin-bottom: 0.25em;}</span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a><span class="vs">  input{display:block;padding: 10px;width:100%;}&lt;/style&gt;</span></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;body&gt;</span></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;h1&gt;Korean Space Agency Login Form 🚀&lt;/h1&gt;</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;form action=&quot;/login&quot; method=&quot;GET&quot;&gt;</span></span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;label for=&quot;username&quot;&gt;Username:&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;br&gt;</span></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;&lt;br&gt;</span></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;input type=&quot;submit&quot;&gt;</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/form&gt;</span></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/body&gt;</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/html&gt;</span></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span>)<span class="op">;</span></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">8080</span><span class="op">,</span> <span class="st">&quot;0.0.0.0&quot;</span>)<span class="op">;</span></span></code></pre></div>
 </details>
 <p>This looks pretty innocent to begin with. They’re even making sure that it’s secure against timing attacks. That’s great.</p>
 <p>However, if you’re in Vim and you do <a href="https://stackoverflow.com/a/1675752"><code>:set list</code></a>, you’ll notice something off:</p>
@@ -604,17 +554,14 @@ Show full code
 <p>This is a theme for all of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus">unary plus expressions</a>. They are prefixed by the Unicode Character “ㅤ” (<a href="https://www.compart.com/en/unicode/U+3164">U+3164</a>)</p>
 <blockquote>
 <p>The Hangul Filler character is used to introduce eight-byte Hangul composition sequences and to stand in for an absent element (usually an empty final) in such a sequence.</p>
-<p>— <cite href="https://en.wikipedia.org/wiki/KS_X_1001#Hangul_Filler">Wikipedia</cite></p>
+<p>— <cite><a href="https://en.wikipedia.org/wiki/KS_X_1001#Hangul_Filler">Wikipedia</a></cite></p>
 </blockquote>
 <p>There’s also a Hangul Filler character in the object destructuring:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> {</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  username<span class="op">,</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  password<span class="op">,</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>ㅤ} <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { username<span class="op">,</span> password<span class="op">,</span> ㅤ } <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">;</span></span></code></pre></div>
 <p>meaning that three request parameters are destructured into local variables:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">username</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">password</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">ㅤ</span><span class="co">// HANGUL FILLER</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">username</span><span class="op">;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">password</span><span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">ㅤ</span><span class="op">;</span> <span class="co">// HANGUL FILLER</span></span></code></pre></div>
 <p>As such, we can control the value of the filler character via URL parameters.</p>
 <p>If we throw this into <a href="https://astexplorer.net/" class="uri">https://astexplorer.net/</a>, we can see that the left expression is properly interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus">UnaryExpression</a>, which is what we wanted. It’s going to make any number positive.</p>
 <figure>
@@ -623,15 +570,17 @@ Show full code
 <p>However, the right hand side of <code>+ENV_STAGE_WEST ==ㅤ+ENVIRONMENT</code> gets interpreted as a binary expression, concatenating the variable named <code>\u3164</code> (whitespace) to <code>ENVIRONMENT</code>.</p>
 <p>Thus, if we can control the value of that variable, we can make the environment comparison evaluate to <code>true</code>, and we can get access.</p>
 <p>Looking at the values we’re comparing to, we’d need to produce one of 1, 2, 4, 8, 16, or 32.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">+</span>ENV_STAGE_EAST <span class="op">==</span>ㅤ<span class="op">+</span>ENVIRONMENT <span class="op">||</span> <span class="op">+</span>ENV_STAGE_WEST <span class="op">==</span>ㅤ<span class="op">+</span>ENVIRONMENT) <span class="op">||</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">+</span>ENV_DEV_EAST <span class="op">==</span>  ㅤ<span class="op">+</span>ENVIRONMENT <span class="op">||</span> <span class="op">+</span>ENV_DEV_WEST <span class="op">==</span>  ㅤ<span class="op">+</span>ENVIRONMENT)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_STAGE_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span>ENV_STAGE_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span>ENV_DEV_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span>ENV_DEV_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT<span class="op">;</span></span></code></pre></div>
 <p>In the final comparison, we can see that <code>ENV_DEV_WEST</code> equals <code>32</code>, and we know that <code>ENVIRONMENT</code> is set to <code>2</code>.</p>
 <p>As such, if we set the Hangul whitespace to 3, we’ll make <code>"32"</code>, which is equal to <code>32</code> when compared with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality"><code>==</code></a>.</p>
 <p>We can start with a request saying that <code>\u3164</code> must equal <code>3</code>, such as:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> character <span class="op">=</span> <span class="st">&#39;ㅤ&#39;</span><span class="op">;</span></span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> character <span class="op">=</span> <span class="st">&quot;ㅤ&quot;</span><span class="op">;</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">// use Chrome/FireFox/nodejs to convert this for you:</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> encoded <span class="op">=</span> <span class="pp">encodeURIComponent</span>(character)<span class="op">;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`/login?</span><span class="sc">${</span>encoded<span class="sc">}</span><span class="vs">=3`</span>) <span class="co">// prints /login?%E3%85%A4=3</span></span></code></pre></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`/login?</span><span class="sc">${</span>encoded<span class="sc">}</span><span class="vs">=3`</span>)<span class="op">;</span> <span class="co">// prints /login?%E3%85%A4=3</span></span></code></pre></div>
 <p>In the provided code, the Hangul whitespace character ‘ㅤ’ is being used as a property name in <code>req.query</code>. When you visit <code>/login?%E3%85%A4=3</code>, the URL is decoded to <code>/login?ㅤ=3</code>, and <code>req.query.ㅤ</code> is set to <code>'3'</code>.</p>
 <p>It’s worth being aware of <a href="https://en.wikipedia.org/wiki/Whitespace_character#Non-space_blanks">Non-space blank characters</a> for situations like this.</p>
 
@@ -666,6 +615,18 @@ Show full code
     <details>
       <summary>See edit history for "Square Practice CTF selected solutions"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2023-11-11T21:22:01-05:00">
+                Saturday, November 11, 2023 at 09:22 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 103 insertions(+), 95 deletions(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
