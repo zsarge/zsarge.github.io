@@ -7,8 +7,6 @@
     --dark-orange: #f2b78e;
     --burnt-orange: #CC5500;
     --orange-border: #c6aa96;
-    --text-on-orange: black;
-    --blue: #846b8a;
     --blue-background: #e7f0f9;
     --blue-border: #6666CC;
     --text: #212427;
@@ -30,9 +28,7 @@
         --dark-orange: #111111;
         --burnt-orange: #CC5500;
         --orange-border: #5d3f30;
-        --text-on-orange: magenta;
         --link: #cd9df8;
-        --blue: magenta;
         --blue-background: #2d383c;
         --blue-border: #414c50;
         --text: #dedede;
