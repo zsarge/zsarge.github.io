@@ -52,7 +52,7 @@ TryHackMe has great free and paid material.
 - PicoCTF  <https://picoctf.org/>  -> Good, free ctf 
 	- <https://primer.picoctf.org/>  -> Primer, become a hacker from nothing  
 - VulnHub  <https://www.vulnhub.com/> A collection of vulnerable virtual machines  
-- Ring0CTF  <https://ringzer0ctf.com/>  "Jeopardy" style ctf (edited)
+- Ring0CTF  <https://ringzer0ctf.com/>  "Jeopardy" style ctf
 
 - <https://www.smashthestack.org/main.html>  
 - <https://linuxsurvival.com/> 
@@ -83,7 +83,7 @@ OverTheWire is for Linux & Bash -> <https://overthewire.org/wargames/>
 I really enjoyed this, and I think it's accesible to anyone who can use SSH:  <https://overthewire.org/wargames/bandit/>  
 </aside>
 
-UnderTheWire is for Powershell -> <https://underthewire.tech/wargames> (edited)
+UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
 
 ### Virtual Machines available for download:
 
@@ -202,25 +202,20 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 Guides:
 
-- https://www.hackingloops.com/metasploitable-2/
-- https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/
+- <https://www.hackingloops.com/metasploitable-2/>
+- <https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/>
 - and more...
 
 ### OWASP resources
 
--   https://owasp.org/www-project-vulnerableapp/
--   https://owasp.org/www-project-webgoat/
--   https://owasp.org/www-project-vulnerable-web-applications-directory/
+-   <https://owasp.org/www-project-vulnerableapp/>
+-   <https://owasp.org/www-project-webgoat/>
+-   <https://owasp.org/www-project-vulnerable-web-applications-directory/>
 
 ### DSVW Docker Container
 
 -   <https://blog.appsecco.com/damn-small-vulnerable-web-in-docker-fd850ee129d5>
 -   <https://hub.docker.com/r/appsecco/dsvw>
-
-### DSVW Docker Container
-
--   https://blog.appsecco.com/damn-small-vulnerable-web-in-docker-fd850ee129d5
--   https://hub.docker.com/r/appsecco/dsvw
 
 ### Cryptography
 
