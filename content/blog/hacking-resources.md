@@ -33,8 +33,8 @@ It can be difficult to learn when you don't know what you don't know. [Roadmap.s
 
 > **The #1 cybersecurity upskilling platform.**  Hack The Box gives individuals, businesses and universities the tools they need to continuously improve their cybersecurity capabilities — all in one place.
 
-- Hack The Box <https://www.hackthebox.com/>  
-- Hack The Box - Universities - <https://www.hackthebox.com/universities>  
+- Hack The Box <https://www.hackthebox.com/>
+- Hack The Box - Universities - <https://www.hackthebox.com/universities>
 
 #### Try Hack Me
 
@@ -46,18 +46,20 @@ TryHackMe has great free and paid material.
 - Try Hack Me Activities <https://tryhackme.com/hacktivities>
 - Try Hack Me Classrooms <https://tryhackme.com/classrooms>
 	- [350+ Free rooms](https://sm4rty.medium.com/free-350-tryhackme-rooms-f3b7b2954b8d)
-	- $20/user -> a bit pricey for hosting, but pretty good material 
+	- $20/user -> a bit pricey for hosting, but pretty good material
 
-#### Other CTFs
+----
 
-- CrackMes.one  <https://crackmes.one/> Free. Great for binary exploitation, and not much else. Good if we do a lesson on Ghidra.  
-- PicoCTF  <https://picoctf.org/>  -> Good, free ctf 
-	- <https://primer.picoctf.org/>  -> Primer, become a hacker from nothing  
-- VulnHub  <https://www.vulnhub.com/> A collection of vulnerable virtual machines  
+### Other CTFs
+
+- CrackMes.one  <https://crackmes.one/> Free. Great for binary exploitation, and not much else. Good if we do a lesson on Ghidra.
+- PicoCTF  <https://picoctf.org/>  -> Good, free ctf
+	- <https://primer.picoctf.org/>  -> Primer, become a hacker from nothing
+- VulnHub  <https://www.vulnhub.com/> A collection of vulnerable virtual machines
 - Ring0CTF  <https://ringzer0ctf.com/>  "Jeopardy" style ctf
 
-- <https://www.smashthestack.org/main.html>  
-- <https://linuxsurvival.com/> 
+- <https://www.smashthestack.org/main.html>
+- <https://linuxsurvival.com/>
 - <https://io.netgarage.org/>
 - [Square CTF](https://squarectf.com/)
 	- <aside>
@@ -81,10 +83,10 @@ TryHackMe has great free and paid material.
 
 ### `/(Over|Under)TheWire/`
 
-OverTheWire is for Linux & Bash -> <https://overthewire.org/wargames/> 
+OverTheWire is for Linux & Bash -> <https://overthewire.org/wargames/>
 
 <aside>
-I really enjoyed this, and I think it's accesible to anyone who can use SSH:  <https://overthewire.org/wargames/bandit/>  
+I really enjoyed this, and I think it's accesible to anyone who can use SSH:  <https://overthewire.org/wargames/bandit/>
 </aside>
 
 UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
@@ -213,7 +215,7 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 ----
 
-### JWT Security 
+### JWT Security
 
 - https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91
 - <https://infosecwriteups.com/jawt-scratchpad-picoctf-93766d81fd8e>
@@ -256,7 +258,7 @@ Guides:
 
 ### Cryptography
 
-- <https://cryptohack.org/challenges/>  ⭐  
+- <https://cryptohack.org/challenges/>  ⭐
 - <https://cryptopals.com/>  ⭐
 
 ----
@@ -279,7 +281,7 @@ Guides:
 
 ### Introductory Resources
 
-<https://ctf101.org/> 
+<https://ctf101.org/>
 
 <!-- No longer online: <https://huntress.ctf.games/resources>  -->
 
@@ -305,7 +307,7 @@ Guides:
 
 ----
 
-### Windows Privilege Escalation Workshop with MetaSploit  
+### Windows Privilege Escalation Workshop with MetaSploit
 
 <https://github.com/sagishahar/lpeworkshop>
 
@@ -315,14 +317,14 @@ Guides:
 
 ### Binary Exploitation Resources
 
-<https://guyinatuxedo.github.io/>  
+<https://guyinatuxedo.github.io/>
 
 >  Nightmare is an intro to binary exploitation / reverse engineering course based around ctf challenges. I call it that because it's a lot of people's nightmare to get hit by weaponized 0 days, which these skills directly translate into doing that type of work (plus it's a really cool song).
 
 ----
 
 ### DreamHack (EN+KR)
-- Really great UI  <https://dreamhack.io/wargame>  
+- Really great UI  <https://dreamhack.io/wargame>
 - <https://dreamhack.io/ctf/all>  - Lots of active CTFs
 
 	----
@@ -358,7 +360,7 @@ CTFd resources:
 -   [Medium Article on scaling CTFd](https://medium.com/@sam.calamos/how-to-run-a-ctf-that-survives-the-first-5-minutes-fded87d26d53)
 
 
-CTFd resources: 
+CTFd resources:
 
 -   <https://github.com/bsidessf>
 -   <https://owasp.org/www-project-juice-shop/>
