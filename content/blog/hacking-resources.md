@@ -117,12 +117,6 @@ Not enough ideas for you? Check out these lists!
 
 ----
 
-### JWT Security
-
--   <https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91>
-
-----
-
 ### YouTube CyberSecurity
 
 These are my personal recommendations.
@@ -217,8 +211,12 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 ### JWT Security
 
-- https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91
+> JSON Web Token (<abbr>JWT</abbr>) is an internet standard for creating data with optional signature and/or optional encryption whose payload holds JSON that asserts some number of claims. The tokens are signed either using a private secret or a public/private key.
+> - <https://en.wikipedia.org/wiki/JSON_Web_Token>
+
+- <https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91>
 - <https://infosecwriteups.com/jawt-scratchpad-picoctf-93766d81fd8e>
+- <https://portswigger.net/web-security/jwt>
 
 ----
 
