@@ -4,16 +4,12 @@
   - style blockquotes
   - style aside
   - style article headers
-  - make text not quite black & not quite white?
-  - [dark mode](https://blog.paavo.me/how-i-built-this-site/#night-mode-with-modern-css-and-a-bit-of-js)
 - code
   - add bibtex citations at bottom of page
-      - [example](https://blog.djnavarro.net/posts/2022-11-03_what-i-know-about-mastodon/#citation)
+    - [example](https://blog.djnavarro.net/posts/2022-11-03_what-i-know-about-mastodon/#citation)
   - add rss support
   - add updated date list to articles (+ support in RSS)
   - move code highlighting to seperate stylesheets instead of embedded css
-  - add support for Mermaid:
-    - https://github.com/raghur/mermaid-filter
   - add math formatting with KaTeX:
     - https://github.com/KaTeX/KaTeX
     - https://github.com/xu-cheng/pandoc-katex
@@ -27,6 +23,10 @@
     - show git log of source pages at bottom of generated pages
   - add a favicon
   - move age script into asynchronous asset, to improve load times
+  - add nutshell embeddings, like gwern:
+    - https://ncase.me/nutshell/
+  - move to Astro?
+    - https://astro.build/
 - write good content
   - create asthetically pleasing history of everything I've worked on
   - https://uses.tech
