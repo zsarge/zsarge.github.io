@@ -19,6 +19,8 @@ It can be difficult to learn when you don't know what you don't know. [Roadmap.s
 
 > Step by step guide to becoming a Cyber Security Expert in 2024
 
+----
+
 ### CTFs and Wargames
 
 #### Upcoming CTFs
@@ -75,6 +77,8 @@ TryHackMe has great free and paid material.
 			- Good starting point: <https://www.root-me.org/en/Challenges/Web-Server/>
 
 
+----
+
 ### `/(Over|Under)TheWire/`
 
 OverTheWire is for Linux & Bash -> <https://overthewire.org/wargames/> 
@@ -84,6 +88,8 @@ I really enjoyed this, and I think it's accesible to anyone who can use SSH:  <h
 </aside>
 
 UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
+
+----
 
 ### Virtual Machines available for download:
 
@@ -98,6 +104,8 @@ UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
 > exploit.education provides a variety of resources that can be used to learn about vulnerability analysis, exploit development, software debugging, binary analysis, and general cyber security issues.
 
 
+----
+
 ### List of resources
 
 Not enough ideas for you? Check out these lists!
@@ -105,9 +113,13 @@ Not enough ideas for you? Check out these lists!
 - <https://github.com/CSIRT-MU/edu-resources>  <- this is a pretty good assortment of resources
 - [Awesome CTF github repo](https://c4pr1c3.github.io/awesome-ctf/)  ([jump to wargames list](https://c4pr1c3.github.io/awesome-ctf/#wargames))
 
+----
+
 ### JWT Security
 
 -   <https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91>
+
+----
 
 ### YouTube CyberSecurity
 
@@ -122,6 +134,8 @@ Related:
 - [Ben Eater](https://www.youtube.com/beneater) - <https://eater.net/> - Hardware
 - [PirateSoftware](https://www.youtube.com/@PirateSoftware) - Hacker, turned GameDev YouTuber
 - [Which is your favourite cybersecurity youtube channel? And why?](https://www.reddit.com/r/hacking/comments/nj68g2/which_is_your_favourite_cybersecurity_youtube)
+
+----
 
 ### LiveOverflow
 
@@ -141,6 +155,8 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 -   [ctftime.org](https://ctftime.org/)
 -   <https://picoctf.com/>  - more CTFs
 
+----
+
 ### OSINT Hotspots
 
 <https://wigle.net/>  - a website for collecting information about the different wireless hotspots around the world. - OSint
@@ -149,11 +165,18 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 <https://0xffsec.com/handbook/>
 
+----
+
 ### RISCV assembly hacking boardgame
+
 [RISCV assembly hacking boardgame](https://punkx.org/overflow/)
+
+----
 
 ### C pointer board game
 [C pointer board game](https://punkx.org/c-pointer-game/)
+
+----
 
 ### Living off the land
 
@@ -170,11 +193,15 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 > -   Exceptions are application whitelisting bypasses
 > -   Have functionality that would be useful to an APT or red team
 
+----
+
 ### OWASP resources
 
 -   <https://owasp.org/www-project-vulnerableapp/>
 -   <https://owasp.org/www-project-webgoat/>
 -   <https://owasp.org/www-project-vulnerable-web-applications-directory/>
+
+----
 
 ### More vulnerable virtual macines:
 
@@ -184,10 +211,14 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 - <https://www.doyler.net/security-not-included/vulnhub-sunset-decoy-walkthrough>
 - <https://www.hackingloops.com/kali-linux-virtualbox-pentest-lab/>
 
+----
+
 ### JWT Security 
 
 - https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91
 - <https://infosecwriteups.com/jawt-scratchpad-picoctf-93766d81fd8e>
+
+----
 
 ### Metasploit and Metasploitable
 
@@ -206,21 +237,29 @@ Guides:
 - <https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/>
 - and more...
 
+----
+
 ### OWASP resources
 
 -   <https://owasp.org/www-project-vulnerableapp/>
 -   <https://owasp.org/www-project-webgoat/>
 -   <https://owasp.org/www-project-vulnerable-web-applications-directory/>
 
+----
+
 ### DSVW Docker Container
 
 -   <https://blog.appsecco.com/damn-small-vulnerable-web-in-docker-fd850ee129d5>
 -   <https://hub.docker.com/r/appsecco/dsvw>
 
+----
+
 ### Cryptography
 
 - <https://cryptohack.org/challenges/>  ⭐  
 - <https://cryptopals.com/>  ⭐
+
+----
 
 ### Downfall.page
 
@@ -228,11 +267,15 @@ Guides:
 
 > Downfall attacks targets a critical weakness found in billions of modern processors used in personal and cloud computers. This vulnerability, identified as CVE-2022-40982, enables a user to access and steal data from other users who share the same computer. For instance, a malicious app obtained from an app store could use the Downfall attack to steal sensitive information like passwords, encryption keys, and private data such as banking details, personal emails, and messages. Similarly, in cloud computing environments, a malicious customer could exploit the Downfall vulnerability to steal data and credentials from other customers who share the same cloud computer.
 
+----
+
 ### Social Engineer Toolkit
 
 <https://github.com/trustedsec/social-engineer-toolkit>
 
 > The Social-Engineer Toolkit is an open-source penetration testing framework designed for social engineering. SET has a number of custom attack vectors that allow you to make a believable attack quickly. SET is a product of TrustedSec, LLC -- an information security consulting firm located in Cleveland, Ohio.
+
+----
 
 ### Introductory Resources
 
@@ -240,9 +283,13 @@ Guides:
 
 <!-- No longer online: <https://huntress.ctf.games/resources>  -->
 
+----
+
 ### Random Number Manipulation
 
 [Random number manipulation](https://www.reddit.com/r/programminghorror/s/NpZTLupRXk)
+
+----
 
 ### Hosting CTFd with challenge VMs and virtualization:
 
@@ -250,9 +297,13 @@ Guides:
 
 -   [Demo video](https://youtu.be/IFbzwALrIwI)
 
+	----
+
 ### Create Randomly Insecure Virtual Machines
 
 <https://github.com/cliffe/SecGen>
+
+----
 
 ### Windows Privilege Escalation Workshop with MetaSploit  
 
@@ -260,15 +311,21 @@ Guides:
 
 -   [Videos](https://www.youtube.com/playlist?list=PLjG9EfEtwbvIrGFTx4XctK8IxkUJkAEqP)
 
+	----
+
 ### Binary Exploitation Resources
 
 <https://guyinatuxedo.github.io/>  
 
 >  Nightmare is an intro to binary exploitation / reverse engineering course based around ctf challenges. I call it that because it's a lot of people's nightmare to get hit by weaponized 0 days, which these skills directly translate into doing that type of work (plus it's a really cool song).
 
+----
+
 ### DreamHack (EN+KR)
 - Really great UI  <https://dreamhack.io/wargame>  
 - <https://dreamhack.io/ctf/all>  - Lots of active CTFs
+
+	----
 
 ### Oldest site I've found
 
@@ -278,10 +335,7 @@ Guides:
 -   <https://www.hackthissite.org/missions/basic/>
 -   <https://www.hackthissite.org/missions/playit/extbasic/0/>
 
-### Plan for Nov 10
-
-Today, we will be working through the problems from the 2022  <https://squarectf.com/2022/>
-
+----
 
 ### How to integrate Flipper Zero?
 
@@ -290,6 +344,8 @@ I have a [Flipper Zero](https://flipperzero.one/). What can I do with it for the
 -   <https://github.com/justcallmekoko/ESP32Marauder/wiki/flipper-zero>
 -   Host fake Wifi login to steal auth credentials <https://youtu.be/kNLlvTB5zHs>
 -   Use qFlipper as demo screen
+
+----
 
 ### CTFd
 
@@ -308,6 +364,8 @@ CTFd resources: 
 -   <https://owasp.org/www-project-juice-shop/>
 -   <https://github.com/mishrasunny174/encrypt-ctf>
 
+----
+
 ### Netris
 
 Want a basic activity that anyone can do over SSH? Play tetris!
@@ -322,6 +380,8 @@ Want a basic activity that anyone can do over SSH? Play tetris!
 <aside>
 **Note:** Apparently this breaks when ~30 people play it at once.
 </aside>
+
+----
 
 ### Github Hacking List
 
