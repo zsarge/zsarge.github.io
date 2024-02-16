@@ -66,50 +66,95 @@
 <summary id="table-of-contents-header"> Table of Contents </summary>
 
 <ul>
-<li><a href="#installation-steps">Installation Steps</a>
+<li><a href="#installation-steps"
+id="toc-installation-steps">Installation Steps</a>
 <ul>
-<li><a href="#installing-and-running-juice-shop-via-docker-image">Installing and running Juice Shop via docker image</a></li>
-<li><a href="#installing-juice-shop-ctf-cli">Installing juice-shop-ctf-cli</a></li>
+<li><a href="#installing-and-running-juice-shop-via-docker-image"
+id="toc-installing-and-running-juice-shop-via-docker-image">Installing
+and running Juice Shop via docker image</a></li>
+<li><a href="#installing-juice-shop-ctf-cli"
+id="toc-installing-juice-shop-ctf-cli">Installing
+juice-shop-ctf-cli</a></li>
 </ul></li>
-<li><a href="#filtering-these-challenges">Filtering these challenges</a>
+<li><a href="#filtering-these-challenges"
+id="toc-filtering-these-challenges">Filtering these challenges</a>
 <ul>
-<li><a href="#installing-and-running-ctfd">Installing and running CTFd</a></li>
-<li><a href="#the-end">The End</a></li>
+<li><a href="#installing-and-running-ctfd"
+id="toc-installing-and-running-ctfd">Installing and running
+CTFd</a></li>
+<li><a href="#the-end" id="toc-the-end">The End</a></li>
 </ul></li>
-<li><a href="#hosting-multple-instances">Hosting multple instances</a>
+<li><a href="#hosting-multple-instances"
+id="toc-hosting-multple-instances">Hosting multple instances</a>
 <ul>
-<li><a href="#setup-needed">Setup needed</a>
+<li><a href="#setup-needed" id="toc-setup-needed">Setup needed</a>
 <ul>
-<li><a href="#to-install-virtual-machines-onto-ubuntu-machines">To install Virtual Machines onto Ubuntu Machines</a></li>
-<li><a href="#setting-up-https-on-digital-ocean-for-ctfd">Setting up HTTPS on Digital Ocean for CTFd</a></li>
+<li><a href="#to-install-virtual-machines-onto-ubuntu-machines"
+id="toc-to-install-virtual-machines-onto-ubuntu-machines">To install
+Virtual Machines onto Ubuntu Machines</a></li>
+<li><a href="#setting-up-https-on-digital-ocean-for-ctfd"
+id="toc-setting-up-https-on-digital-ocean-for-ctfd">Setting up HTTPS on
+Digital Ocean for CTFd</a></li>
 </ul></li>
 </ul></li>
 </ul>
 
 </details>
 
-<p>This is not a full-fledged post, but more of a public reference of commands and steps I used to get <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a> running with <a href="https://ctfd.io/">CTFd</a>. Thanks so much to all the open source contributers that make this process both possible and straightforward.</p>
-<p>Juice Shop does have a scoreboard built in, but CTFd allows support for teams, and better hints.</p>
+<p>This is not a full-fledged post, but more of a public reference of
+commands and steps I used to get <a
+href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a>
+running with <a href="https://ctfd.io/">CTFd</a>. Thanks so much to all
+the open source contributers that make this process both possible and
+straightforward.</p>
+<p>Juice Shop does have a scoreboard built in, but CTFd allows support
+for teams, and better hints.</p>
 <h1 id="installation-steps">Installation Steps</h1>
-<h2 id="installing-and-running-juice-shop-via-docker-image">Installing and running Juice Shop via docker image</h2>
-<p>In order to make sure that your CTF flags are the same in Juice Shop as CTFd, make sure to set <code>CTF_KEY</code>. For use in CTFd, I’d recommend putting it in a URL on Pastebin/Github Gist/whatever. I put mine at <a href="https://pastebin.com/raw/vc5av96m" class="uri">https://pastebin.com/raw/vc5av96m</a>.</p>
-<p>You can pull the project from <a href="https://hub.docker.com/r/bkimminich/juice-shop">their docker image</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull bkimminich/juice-shop</span></code></pre></div>
+<h2 id="installing-and-running-juice-shop-via-docker-image">Installing
+and running Juice Shop via docker image</h2>
+<p>In order to make sure that your CTF flags are the same in Juice Shop
+as CTFd, make sure to set <code>CTF_KEY</code>. For use in CTFd, I’d
+recommend putting it in a URL on Pastebin/Github Gist/whatever. I put
+mine at <a href="https://pastebin.com/raw/vc5av96m"
+class="uri">https://pastebin.com/raw/vc5av96m</a>.</p>
+<p>You can pull the project from <a
+href="https://hub.docker.com/r/bkimminich/juice-shop">their docker
+image</a>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull bkimminich/juice-shop</span></code></pre></div>
 <p>Then, run the docker image:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> <span class="st">&quot;CTF_KEY=Tfs3GfbiwYxy1C4jHEYo8wV4xqoqeJSQ7YW8CvCm&quot;</span> <span class="at">-e</span> <span class="st">&quot;NODE_ENV=ctf&quot;</span> <span class="at">-p</span> 3000:3000 bkimminich/juice-shop</span></code></pre></div>
-<p>Note that you may want to consider running ctfd as a daemon, so it persists in the background (you can view the logs of the instance with <code>docker logs $INSTANCE_HASH</code> where <code>INSTANCE_HASH</code> is the output from the command below):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-e</span> <span class="st">&quot;CTF_KEY=Tfs3GfbiwYxy1C4jHEYo8wV4xqoqeJSQ7YW8CvCm&quot;</span> <span class="at">-e</span> <span class="st">&quot;NODE_ENV=ctf&quot;</span> <span class="at">-p</span> 3000:3000 bkimminich/juice-shop</span></code></pre></div>
-<p>Great! Now we should be able to see the juice shop webpage when we navigate to <code>http://localhost:3000</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> <span class="st">&quot;CTF_KEY=Tfs3GfbiwYxy1C4jHEYo8wV4xqoqeJSQ7YW8CvCm&quot;</span> <span class="at">-e</span> <span class="st">&quot;NODE_ENV=ctf&quot;</span> <span class="at">-p</span> 3000:3000 bkimminich/juice-shop</span></code></pre></div>
+<p>Note that you may want to consider running ctfd as a daemon, so it
+persists in the background (you can view the logs of the instance with
+<code>docker logs $INSTANCE_HASH</code> where <code>INSTANCE_HASH</code>
+is the output from the command below):</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-e</span> <span class="st">&quot;CTF_KEY=Tfs3GfbiwYxy1C4jHEYo8wV4xqoqeJSQ7YW8CvCm&quot;</span> <span class="at">-e</span> <span class="st">&quot;NODE_ENV=ctf&quot;</span> <span class="at">-p</span> 3000:3000 bkimminich/juice-shop</span></code></pre></div>
+<p>Great! Now we should be able to see the juice shop webpage when we
+navigate to <code>http://localhost:3000</code>:</p>
 <p><img src="https://raw.githubusercontent.com/juice-shop/juice-shop/master/screenshots/slideshow.gif" alt="OWASP Juice Shop Slideshow"></p>
-<h2 id="installing-juice-shop-ctf-cli">Installing juice-shop-ctf-cli</h2>
+<h2 id="installing-juice-shop-ctf-cli">Installing
+juice-shop-ctf-cli</h2>
 <p>Assuming you have npm installed, you can run:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> npm install <span class="at">-g</span> juice-shop-ctf-cli</span></code></pre></div>
-<p>to globally install the <a href="https://www.npmjs.com/package/juice-shop-ctf-cli">CLI for Juice Shop</a>.</p>
-<p>The <a href="https://www.npmjs.com/package/juice-shop-ctf-cli#docker-container-----">docker container</a> section has more information on ways to link your configurations to the juice shop instance.</p>
-<p>In our case, we should navigate to a directory we’re comfortable storing new files in:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> YOUR_PATH</span></code></pre></div>
-<p>Then, you can create your <code>nkcyberconfig.yml</code> based on <a href="https://www.npmjs.com/package/juice-shop-ctf-cli#configuration-file">the example configuration file</a>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ctfFramework</span><span class="kw">:</span><span class="at"> CTFd</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> npm install <span class="at">-g</span> juice-shop-ctf-cli</span></code></pre></div>
+<p>to globally install the <a
+href="https://www.npmjs.com/package/juice-shop-ctf-cli">CLI for Juice
+Shop</a>.</p>
+<p>The <a
+href="https://www.npmjs.com/package/juice-shop-ctf-cli#docker-container-----">docker
+container</a> section has more information on ways to link your
+configurations to the juice shop instance.</p>
+<p>In our case, we should navigate to a directory we’re comfortable
+storing new files in:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> YOUR_PATH</span></code></pre></div>
+<p>Then, you can create your <code>nkcyberconfig.yml</code> based on <a
+href="https://www.npmjs.com/package/juice-shop-ctf-cli#configuration-file">the
+example configuration file</a>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ctfFramework</span><span class="kw">:</span><span class="at"> CTFd</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">juiceShopUrl</span><span class="kw">:</span><span class="at"> http://localhost:3000</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ctfKey</span><span class="kw">:</span><span class="at"> https://pastebin.com/raw/vc5av96m</span><span class="co"> # can also be URL instead of key</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">insertHints</span><span class="kw">:</span><span class="at"> free</span><span class="co"> # we make hints free for beginner CTFs</span></span>
@@ -119,7 +164,8 @@
 <summary>
 Bash command to generate <code>nkcyberconfig.yml</code>
 </summary>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;&lt; &#39;EOF&#39;</span> <span class="op">&gt;</span> nkcyberconfig.yml</span>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;&lt; &#39;EOF&#39;</span> <span class="op">&gt;</span> nkcyberconfig.yml</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">ctfFramework: CTFd</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">juiceShopUrl: http://localhost:3000</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">ctfKey: https://pastebin.com/raw/vc5av96m # can also be URL instead of key</span></span>
@@ -129,7 +175,8 @@ Bash command to generate <code>nkcyberconfig.yml</code>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
 </details>
 <p>(ensure that juice-shop is running at this time)</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">juice-shop-ctf</span> <span class="at">--config</span> nkcyberconfig.yml <span class="at">--output</span> challenges.csv</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">juice-shop-ctf</span> <span class="at">--config</span> nkcyberconfig.yml <span class="at">--output</span> challenges.csv</span></code></pre></div>
 <p>You should see:</p>
 <pre><code>Generate OWASP Juice Shop challenge archive for setting up CTFd, FBCTF or RootTheBox score server
 
@@ -139,19 +186,33 @@ After the import you will have to set up the CTF name and administrator credenti
 
 For a step-by-step guide to import the ZIP-archive into CTFd, please refer to
 https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> file challenges.csv</span>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> file challenges.csv</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">challenges.csv:</span> CSV text</span></code></pre></div>
-<p>Note that <a href="https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd">the url it gives you</a> currently returns a 404.</p>
+<p>Note that <a
+href="https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd">the
+url it gives you</a> currently returns a 404.</p>
 <figure>
-<img src="/assets/juice-shop/image-20230925191952906.png" alt="The URL returns a 404" /><figcaption aria-hidden="true">The URL returns a 404</figcaption>
+<img src="/assets/juice-shop/image-20230925191952906.png"
+alt="The URL returns a 404" />
+<figcaption aria-hidden="true">The URL returns a 404</figcaption>
 </figure>
-<p>However, the instructions can still be found <a href="https://web.archive.org/web/20230828202658/https://pwning.owasp-juice.shop/part1/ctf.html">on the Internet Archive</a>.</p>
-<p>Unfortunately, there are some bugs with the current import version (see <a href="https://github.com/CTFd/CTFd/issues/1988">#1988</a> and <a href="https://github.com/juice-shop/juice-shop-ctf/issues/131">#131</a>). As such, we can’t import a full zip file from <code>juice-shop-ctf-cli</code>, and can only import specific elements by <code>.csv</code> file.</p>
+<p>However, the instructions can still be found <a
+href="https://web.archive.org/web/20230828202658/https://pwning.owasp-juice.shop/part1/ctf.html">on
+the Internet Archive</a>.</p>
+<p>Unfortunately, there are some bugs with the current import version
+(see <a href="https://github.com/CTFd/CTFd/issues/1988">#1988</a> and <a
+href="https://github.com/juice-shop/juice-shop-ctf/issues/131">#131</a>).
+As such, we can’t import a full zip file from
+<code>juice-shop-ctf-cli</code>, and can only import specific elements
+by <code>.csv</code> file.</p>
 <h1 id="filtering-these-challenges">Filtering these challenges</h1>
-<p>By default, there are <em>quite a lot</em> of challenges to get through.</p>
+<p>By default, there are <em>quite a lot</em> of challenges to get
+through.</p>
 <p>Thus, it’s worth filtering them down for this Friday.</p>
 <p>I wrote this Python script to filter everything down by topic:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># process.py</span></span>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># process.py</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">This script takes challenges.csv and filters it into filtered.csv</span></span>
@@ -175,67 +236,117 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> row[<span class="dv">0</span>] <span class="kw">in</span> selected_challenge_names <span class="kw">or</span> row[<span class="dv">2</span>] <span class="kw">in</span> topics:</span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>                csv_writer.writerow(row)</span></code></pre></div>
 <h2 id="installing-and-running-ctfd">Installing and running CTFd</h2>
-<p>We can pull CTFd from <a href="https://hub.docker.com/r/ctfd/ctfd/">their docker image</a>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ctfd/ctfd</span></code></pre></div>
+<p>We can pull CTFd from <a
+href="https://hub.docker.com/r/ctfd/ctfd/">their docker image</a>:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull ctfd/ctfd</span></code></pre></div>
 <p>Then, we can run CTFd:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-p</span> 8000:8000 <span class="at">-it</span> ctfd/ctfd</span></code></pre></div>
-<p>Note that you may want to consider running ctfd as a daemon, so it persists in the background:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 8000:8000 <span class="at">-it</span> ctfd/ctfd</span></code></pre></div>
-<p>Other docker parameters to consider: - You only need <code>-it</code> for an <strong>i</strong>nteractive <strong>t</strong>erminal. Consider removing it if you’re not running interactively. - You might want to add <code>--restart always</code> or <code>--restart unless-stopped</code> to ensure that the container restarts if anything goes wrong. (<a href="https://docs.docker.com/config/containers/start-containers-automatically/#use-a-restart-policy">Read more</a>)</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-p</span> 8000:8000 <span class="at">-it</span> ctfd/ctfd</span></code></pre></div>
+<p>Note that you may want to consider running ctfd as a daemon, so it
+persists in the background:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> 8000:8000 <span class="at">-it</span> ctfd/ctfd</span></code></pre></div>
+<p>Other docker parameters to consider: - You only need <code>-it</code>
+for an <strong>i</strong>nteractive <strong>t</strong>erminal. Consider
+removing it if you’re not running interactively. - You might want to add
+<code>--restart always</code> or <code>--restart unless-stopped</code>
+to ensure that the container restarts if anything goes wrong. (<a
+href="https://docs.docker.com/config/containers/start-containers-automatically/#use-a-restart-policy">Read
+more</a>)</p>
 <p>Now, we should see the “Setup” page for CTFd.</p>
 <figure>
-<img src="/assets/juice-shop/image-20230925182456834.png" alt="Setup Page" /><figcaption aria-hidden="true">Setup Page</figcaption>
+<img src="/assets/juice-shop/image-20230925182456834.png"
+alt="Setup Page" />
+<figcaption aria-hidden="true">Setup Page</figcaption>
 </figure>
-<p>Make sure to enter valid data for all of this. Despite what other sources may claim, we’re not going to be overwriting this.</p>
-<p>After you get it set up, go to <code>http://localhost:8000/admin/config</code> to load the <code>nkcyberconfig.yml</code> as a backup:</p>
+<p>Make sure to enter valid data for all of this. Despite what other
+sources may claim, we’re not going to be overwriting this.</p>
+<p>After you get it set up, go to
+<code>http://localhost:8000/admin/config</code> to load the
+<code>nkcyberconfig.yml</code> as a backup:</p>
 <figure>
-<img src="/assets/juice-shop/Screenshot%20from%202023-09-25%2019-33-11.png" alt="Make sure to “Import CSV”" /><figcaption aria-hidden="true">Make sure to “Import CSV”</figcaption>
+<img
+src="/assets/juice-shop/Screenshot%20from%202023-09-25%2019-33-11.png"
+alt="Make sure to “Import CSV”" />
+<figcaption aria-hidden="true">Make sure to “Import CSV”</figcaption>
 </figure>
-<p>Use “Import CSV” to import the generated <code>filtered.csv</code> from above.</p>
-<p>This will give us all of the challenges for our teams to work through:</p>
+<p>Use “Import CSV” to import the generated <code>filtered.csv</code>
+from above.</p>
+<p>This will give us all of the challenges for our teams to work
+through:</p>
 <figure>
-<img src="/assets/juice-shop/image-20230925194112268.png" alt="Success! The challenges are listed." /><figcaption aria-hidden="true">Success! The challenges are listed.</figcaption>
+<img src="/assets/juice-shop/image-20230925194112268.png"
+alt="Success! The challenges are listed." />
+<figcaption aria-hidden="true">Success! The challenges are
+listed.</figcaption>
 </figure>
-<p>To resolve the issues with importing into CTFd, we need to stop using the docker container’s default SQLite, and use something like MySQL instead. From <a href="https://docs.ctfd.io/docs/deployment/installation/#docker">the documentation</a>, it should be as simple as:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Docker ...</span></span>
+<p>To resolve the issues with importing into CTFd, we need to stop using
+the docker container’s default SQLite, and use something like MySQL
+instead. From <a
+href="https://docs.ctfd.io/docs/deployment/installation/#docker">the
+documentation</a>, it should be as simple as:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Docker ...</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Docker Compose ...</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/CTFd/CTFd.git</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-c</span> 64 /dev/urandom <span class="op">&gt;</span> .ctfd_secret_key</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up</span></code></pre></div>
-<p>You should now be able to view CTFd, and upload previous <code>.zip</code> backups.</p>
+<p>You should now be able to view CTFd, and upload previous
+<code>.zip</code> backups.</p>
 <h2 id="the-end">The End</h2>
-<p>From here, you should be able to submit flags from Juice Shop into CTFd.</p>
+<p>From here, you should be able to submit flags from Juice Shop into
+CTFd.</p>
 <p><strong>Example:</strong></p>
 <p>Solve a challenge in Juice Shop:</p>
 <figure>
-<img src="/assets/juice-shop/image-20230925205047631.png" alt="Copy the flag" /><figcaption aria-hidden="true">Copy the flag</figcaption>
+<img src="/assets/juice-shop/image-20230925205047631.png"
+alt="Copy the flag" />
+<figcaption aria-hidden="true">Copy the flag</figcaption>
 </figure>
 <p>Then go to CTFd:</p>
 <figure>
-<img src="/assets/juice-shop/image-20230925205136733.png" alt="Select the challenge" /><figcaption aria-hidden="true">Select the challenge</figcaption>
+<img src="/assets/juice-shop/image-20230925205136733.png"
+alt="Select the challenge" />
+<figcaption aria-hidden="true">Select the challenge</figcaption>
 </figure>
 <p>Enter the Flag:</p>
 <figure>
-<img src="/assets/juice-shop/image-20230925205219766.png" alt="Paste the flag" /><figcaption aria-hidden="true">Paste the flag</figcaption>
+<img src="/assets/juice-shop/image-20230925205219766.png"
+alt="Paste the flag" />
+<figcaption aria-hidden="true">Paste the flag</figcaption>
 </figure>
 <p>Get the score:</p>
 <figure>
-<img src="/assets/juice-shop/image-20230925205228656.png" alt="Success!" /><figcaption aria-hidden="true">Success!</figcaption>
+<img src="/assets/juice-shop/image-20230925205228656.png"
+alt="Success!" />
+<figcaption aria-hidden="true">Success!</figcaption>
 </figure>
 <p><strong>Troubleshooting</strong></p>
-<p>If you copy and paste the flag, and it says that the flag is incorrect, you likely need to sync the CTF_KEY between CTFd and Juice Shop.</p>
+<p>If you copy and paste the flag, and it says that the flag is
+incorrect, you likely need to sync the CTF_KEY between CTFd and Juice
+Shop.</p>
 <p>If you hit submit and nothing happens, you likely need to log in.</p>
 <h1 id="hosting-multple-instances">Hosting multple instances</h1>
-<p>Juice Shop isn’t intended to have multiple people on one instance.</p>
-<p><a href="https://github.com/juice-shop/multi-juicer">Multi Juicer</a> exists to solve this issue, but I think it’s easier for our setup to host a bunch of VMs instead.</p>
+<p>Juice Shop isn’t intended to have multiple people on one
+instance.</p>
+<p><a href="https://github.com/juice-shop/multi-juicer">Multi Juicer</a>
+exists to solve this issue, but I think it’s easier for our setup to
+host a bunch of VMs instead.</p>
 <h2 id="setup-needed">Setup needed</h2>
 <ol type="1">
-<li>A bunch (e.g. 20) of VMs set up for each user, set up to start an instance of Juice Shop on startup.</li>
+<li>A bunch (e.g. 20) of VMs set up for each user, set up to start an
+instance of Juice Shop on startup.</li>
 <li>1 instance of CTFd running for everyone</li>
 </ol>
-<h3 id="to-install-virtual-machines-onto-ubuntu-machines">To install Virtual Machines onto Ubuntu Machines</h3>
-<p>If you don’t have your Proxmox cluster ready in time, you can install all of the images onto Ubuntu machines using the following script. It will download VirtualBox onto the machine, and add Juice Shop as a virtual machine.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<h3 id="to-install-virtual-machines-onto-ubuntu-machines">To install
+Virtual Machines onto Ubuntu Machines</h3>
+<p>If you don’t have your Proxmox cluster ready in time, you can install
+all of the images onto Ubuntu machines using the following script. It
+will download VirtualBox onto the machine, and add Juice Shop as a
+virtual machine.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -252,11 +363,19 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Done!&quot;</span></span>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code></pre></div>
-<p>If you’re hosting the <code>.ova</code> file on OneDrive, then ensure you’re using <code>&amp;download=1</code> is appended to the end of your share link for a direct download.</p>
-<h3 id="setting-up-https-on-digital-ocean-for-ctfd">Setting up HTTPS on Digital Ocean for CTFd</h3>
-<p>Imagine, because your Proxmox server wasn’t up in time, that you had to host CTFd on a cheap Digital Ocean Droplet.</p>
-<p>To ensure CTFd has an authenticated connection, and all your users get the little padlock that makes the site feel official, you’re going to need to add HTTPS to CTFd.</p>
-<p>Following <a href="https://dev.to/roeeyn/how-to-setup-your-ctfd-platform-with-https-and-ssl-3fda">this tutorial</a> worked perfectly for me. I have no notes.</p>
+<p>If you’re hosting the <code>.ova</code> file on OneDrive, then ensure
+you’re using <code>&amp;download=1</code> is appended to the end of your
+share link for a direct download.</p>
+<h3 id="setting-up-https-on-digital-ocean-for-ctfd">Setting up HTTPS on
+Digital Ocean for CTFd</h3>
+<p>Imagine, because your Proxmox server wasn’t up in time, that you had
+to host CTFd on a cheap Digital Ocean Droplet.</p>
+<p>To ensure CTFd has an authenticated connection, and all your users
+get the little padlock that makes the site feel official, you’re going
+to need to add HTTPS to CTFd.</p>
+<p>Following <a
+href="https://dev.to/roeeyn/how-to-setup-your-ctfd-platform-with-https-and-ssl-3fda">this
+tutorial</a> worked perfectly for me. I have no notes.</p>
 
 
     </article>
@@ -276,7 +395,7 @@ https://pwning.owasp-juice.shop/part1/ctf.html#running-ctfd</code></pre>
 
   <div class="page-bottom">
     <div class="copyright">
-      &copy; 2023 Zack Sargent
+      &copy; 2024 Zack Sargent
     </div>
     <div class="top">
       <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' })">

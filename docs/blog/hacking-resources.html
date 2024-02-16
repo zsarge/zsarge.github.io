@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <meta name="author" content="Zack Sargent">
+  <meta property="article:author" content="Zack Sargent">
+  <meta name="keywords" content="nkcyber, cybersecurity">
+  <title> NKCyber Club Resources </title>
+  <meta name="twitter:title" content="NKCyber Club Resources">
+  <meta name="twitter:text:title" content="NKCyber Club Resources">
+  <meta name="twitter:description" content="A list of the resources I&#39;ve found when preparing club activities.">
+  <meta name="description" content="A list of the resources I&#39;ve found when preparing club activities.">
+  <meta name="og:description" content="A list of the resources I&#39;ve found when preparing club activities.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://zack.fyi/blog/hacking-resources.html">
+  <link rel="canonical" href="https://zack.fyi/blog/hacking-resources.html">
+  <meta property="article:published_time" content="2024-02-15T00:00:00+00:00">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/assets/common.css" > 
+  <link rel="stylesheet" type="text/css" href="/assets/code.css" > 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav id="top-nav">
+        <div class="logo">
+            <a href="/">
+                Zack Sargent
+            </a>
+        </div>
+        <div class="links">
+            <a href="/blog/index.html">Blog</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
+</header>
+
+  <main>
+    <article class="post">
+      <h1 class="post-title"> NKCyber Club Resources</h1>
+      <div id="post-meta">
+        <span id="date-published">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <time datetime="2024-02-15" pubdate="pubdate">Thursday, February 15, 2024</time>
+        </span>
+        <span id="reading-time">
+          <i class="fa fa-clock-o" aria-hidden="true"></i> 
+          11 mins
+        </span>
+        <span class="tags">
+          <a href="/tag/nkcyber.html" class="tag">nkcyber</a> <a href="/tag/cybersecurity.html" class="tag">cybersecurity</a>
+        </span>
+      </div>
+
+    
+<details id="table-of-contents" class="toc" role="doc-toc">
+<summary id="table-of-contents-header"> Table of Contents </summary>
+
+<ul>
+<li><a href="#intro" id="toc-intro">Intro</a></li>
+<li><a href="#all-resources" id="toc-all-resources">All Resources</a>
+<ul>
+<li><a href="#general-roadmap" id="toc-general-roadmap">General
+Roadmap</a></li>
+<li><a href="#ctfs-and-wargames" id="toc-ctfs-and-wargames">CTFs and
+Wargames</a></li>
+<li><a href="#overunderthewire"
+id="toc-overunderthewire"><code>/(Over|Under)TheWire/</code></a></li>
+<li><a href="#virtual-machines-available-for-download"
+id="toc-virtual-machines-available-for-download">Virtual Machines
+available for download:</a></li>
+<li><a href="#list-of-resources" id="toc-list-of-resources">List of
+resources</a></li>
+<li><a href="#jwt-security" id="toc-jwt-security">JWT Security</a></li>
+<li><a href="#youtube-cybersecurity"
+id="toc-youtube-cybersecurity">YouTube CyberSecurity</a></li>
+<li><a href="#liveoverflow" id="toc-liveoverflow">LiveOverflow</a></li>
+<li><a href="#liveoverflow-recommends"
+id="toc-liveoverflow-recommends">LiveOverflow Recommends</a></li>
+<li><a href="#osint-hotspots" id="toc-osint-hotspots">OSINT
+Hotspots</a></li>
+<li><a href="#riscv-assembly-hacking-boardgame"
+id="toc-riscv-assembly-hacking-boardgame">RISCV assembly hacking
+boardgame</a></li>
+<li><a href="#c-pointer-board-game" id="toc-c-pointer-board-game">C
+pointer board game</a></li>
+<li><a href="#living-off-the-land" id="toc-living-off-the-land">Living
+off the land</a></li>
+<li><a href="#owasp-resources" id="toc-owasp-resources">OWASP
+resources</a></li>
+<li><a href="#more-vulnerable-virtual-macines"
+id="toc-more-vulnerable-virtual-macines">More vulnerable virtual
+macines:</a></li>
+<li><a href="#jwt-security-1" id="toc-jwt-security-1">JWT
+Security </a></li>
+<li><a href="#metasploit-and-metasploitable"
+id="toc-metasploit-and-metasploitable">Metasploit and
+Metasploitable</a></li>
+<li><a href="#owasp-resources-1" id="toc-owasp-resources-1">OWASP
+resources</a></li>
+<li><a href="#dsvw-docker-container" id="toc-dsvw-docker-container">DSVW
+Docker Container</a></li>
+<li><a href="#cryptography" id="toc-cryptography">Cryptography</a></li>
+<li><a href="#downfall.page"
+id="toc-downfall.page">Downfall.page</a></li>
+<li><a href="#social-engineer-toolkit"
+id="toc-social-engineer-toolkit">Social Engineer Toolkit</a></li>
+<li><a href="#introductory-resources"
+id="toc-introductory-resources">Introductory Resources</a></li>
+<li><a href="#random-number-manipulation"
+id="toc-random-number-manipulation">Random Number Manipulation</a></li>
+<li><a href="#hosting-ctfd-with-challenge-vms-and-virtualization"
+id="toc-hosting-ctfd-with-challenge-vms-and-virtualization">Hosting CTFd
+with challenge VMs and virtualization:</a></li>
+<li><a href="#create-randomly-insecure-virtual-machines"
+id="toc-create-randomly-insecure-virtual-machines">Create Randomly
+Insecure Virtual Machines</a></li>
+<li><a href="#windows-privilege-escalation-workshop-with-metasploit"
+id="toc-windows-privilege-escalation-workshop-with-metasploit">Windows
+Privilege Escalation Workshop with MetaSploit</a></li>
+<li><a href="#binary-exploitation-resources"
+id="toc-binary-exploitation-resources">Binary Exploitation
+Resources</a></li>
+<li><a href="#dreamhack-enkr" id="toc-dreamhack-enkr">DreamHack
+(EN+KR)</a></li>
+<li><a href="#oldest-site-ive-found"
+id="toc-oldest-site-ive-found">Oldest site I’ve found</a></li>
+<li><a href="#plan-for-nov-10" id="toc-plan-for-nov-10">Plan for Nov
+10</a></li>
+<li><a href="#how-to-integrate-flipper-zero"
+id="toc-how-to-integrate-flipper-zero">How to integrate Flipper
+Zero?</a></li>
+<li><a href="#ctfd" id="toc-ctfd">CTFd</a></li>
+<li><a href="#netris" id="toc-netris">Netris</a></li>
+<li><a href="#github-hacking-list" id="toc-github-hacking-list">Github
+Hacking List</a></li>
+</ul></li>
+</ul>
+
+</details>
+
+<h2 id="intro">Intro</h2>
+<p>During my time finding things to do for our meetings, I’ve stumbled
+across quite a few cybersecurity resources.</p>
+<p>Here is my list.</p>
+<h2 id="all-resources">All Resources</h2>
+<h3 id="general-roadmap">General Roadmap</h3>
+<p>It can be difficult to learn when you don’t know what you don’t know.
+<a href="https://roadmap.sh">Roadmap.sh</a> is great at turning
+<em>unknown</em> unknowns into <em>known</em> unknowns.</p>
+<p><a href="https://roadmap.sh/cyber-security"
+class="uri">https://roadmap.sh/cyber-security</a></p>
+<blockquote>
+<p>Step by step guide to becoming a Cyber Security Expert in 2024</p>
+</blockquote>
+<h3 id="ctfs-and-wargames">CTFs and Wargames</h3>
+<h4 id="upcoming-ctfs">Upcoming CTFs</h4>
+<p><strong>C</strong>apture <strong>T</strong>he <strong>F</strong>lags
+are a super valuable way to learn about hacking and cybersecurity. Check
+CTFTime to see when they are being hosted:</p>
+<p><a href="https://ctftime.org/calendar/"
+class="uri">https://ctftime.org/calendar/</a></p>
+<h4 id="hack-the-box">Hack The Box</h4>
+<blockquote>
+<p><strong>The #1 cybersecurity upskilling platform.</strong> Hack The
+Box gives individuals, businesses and universities the tools they need
+to continuously improve their cybersecurity capabilities — all in one
+place.</p>
+</blockquote>
+<ul>
+<li>Hack The Box <a href="https://www.hackthebox.com/"
+class="uri">https://www.hackthebox.com/</a><br />
+</li>
+<li>Hack The Box - Universities - <a
+href="https://www.hackthebox.com/universities"
+class="uri">https://www.hackthebox.com/universities</a></li>
+</ul>
+<h4 id="try-hack-me">Try Hack Me</h4>
+<blockquote>
+<p><strong>Anyone can learn cyber security with TryHackMe</strong>
+Hands-on cyber security training through real-world scenarios.</p>
+</blockquote>
+<p>TryHackMe has great free and paid material.</p>
+<ul>
+<li>Try Hack Me Activities <a href="https://tryhackme.com/hacktivities"
+class="uri">https://tryhackme.com/hacktivities</a></li>
+<li>Try Hack Me Classrooms <a href="https://tryhackme.com/classrooms"
+class="uri">https://tryhackme.com/classrooms</a>
+<ul>
+<li><a
+href="https://sm4rty.medium.com/free-350-tryhackme-rooms-f3b7b2954b8d">350+
+Free rooms</a></li>
+<li>$20/user -&gt; a bit pricey for hosting, but pretty good
+material</li>
+</ul></li>
+</ul>
+<h4 id="other-ctfs">Other CTFs</h4>
+<ul>
+<li><p>CrackMes.one <a href="https://crackmes.one/"
+class="uri">https://crackmes.one/</a> Free. Great for binary
+exploitation, and not much else. Good if we do a lesson on Ghidra.<br />
+</p></li>
+<li><p>PicoCTF <a href="https://picoctf.org/"
+class="uri">https://picoctf.org/</a> -&gt; Good, free ctf</p>
+<ul>
+<li><a href="https://primer.picoctf.org/"
+class="uri">https://primer.picoctf.org/</a> -&gt; Primer, become a
+hacker from nothing<br />
+</li>
+</ul></li>
+<li><p>VulnHub <a href="https://www.vulnhub.com/"
+class="uri">https://www.vulnhub.com/</a> A collection of vulnerable
+virtual machines<br />
+</p></li>
+<li><p>Ring0CTF <a href="https://ringzer0ctf.com/"
+class="uri">https://ringzer0ctf.com/</a> “Jeopardy” style ctf</p></li>
+<li><p><a href="https://www.smashthestack.org/main.html"
+class="uri">https://www.smashthestack.org/main.html</a><br />
+</p></li>
+<li><p><a href="https://linuxsurvival.com/"
+class="uri">https://linuxsurvival.com/</a></p></li>
+<li><p><a href="https://io.netgarage.org/"
+class="uri">https://io.netgarage.org/</a></p></li>
+<li><p><a href="https://squarectf.com/">Square CTF</a></p>
+<ul>
+<li><aside>
+We did this in 2023, and we enjoyed it.
+</aside></li>
+</ul></li>
+<li><p><a href="https://pwn.college/"
+class="uri">https://pwn.college/</a></p></li>
+<li><p><a href="https://pwnable.kr/"
+class="uri">https://pwnable.kr/</a></p>
+<ul>
+<li><a href="https://pwnable.kr/play.php"
+class="uri">https://pwnable.kr/play.php</a></li>
+<li>Recommends:
+<ul>
+<li><a href="http://io.netgarage.org/"
+class="uri">http://io.netgarage.org/</a></li>
+<li><a href="https://w3challs.com/"
+class="uri">https://w3challs.com/</a></li>
+<li><a href="http://ghostintheshellcode.com/"
+class="uri">http://ghostintheshellcode.com/</a></li>
+<li><a href="http://codegate.org/"
+class="uri">http://codegate.org/</a></li>
+<li><a href="https://legitbs.net/"
+class="uri">https://legitbs.net/</a></li>
+<li><a href="https://www.root-me.org/?lang=en"
+class="uri">https://www.root-me.org/?lang=en</a> (EN+FR)
+<ul>
+<li>Good starting point: <a
+href="https://www.root-me.org/en/Challenges/Web-Server/"
+class="uri">https://www.root-me.org/en/Challenges/Web-Server/</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="overunderthewire"><code>/(Over|Under)TheWire/</code></h3>
+<p>OverTheWire is for Linux &amp; Bash -&gt; <a
+href="https://overthewire.org/wargames/"
+class="uri">https://overthewire.org/wargames/</a></p>
+<aside>
+I really enjoyed this, and I think it’s accesible to anyone who can use
+SSH: <a href="https://overthewire.org/wargames/bandit/"
+class="uri">https://overthewire.org/wargames/bandit/</a>
+</aside>
+<p>UnderTheWire is for Powershell -&gt; <a
+href="https://underthewire.tech/wargames"
+class="uri">https://underthewire.tech/wargames</a></p>
+<h3 id="virtual-machines-available-for-download">Virtual Machines
+available for download:</h3>
+<p><a href="https://exploit.education/"
+class="uri">https://exploit.education/</a></p>
+<ol type="1">
+<li>Phoenix</li>
+<li>Nebula</li>
+<li>Fusion</li>
+<li>Main Sequence</li>
+<li>Protostar</li>
+</ol>
+<blockquote>
+<p>exploit.education provides a variety of resources that can be used to
+learn about vulnerability analysis, exploit development, software
+debugging, binary analysis, and general cyber security issues.</p>
+</blockquote>
+<h3 id="list-of-resources">List of resources</h3>
+<p>Not enough ideas for you? Check out these lists!</p>
+<ul>
+<li><a href="https://github.com/CSIRT-MU/edu-resources"
+class="uri">https://github.com/CSIRT-MU/edu-resources</a> &lt;- this is
+a pretty good assortment of resources</li>
+<li><a href="https://c4pr1c3.github.io/awesome-ctf/">Awesome CTF github
+repo</a> (<a href="https://c4pr1c3.github.io/awesome-ctf/#wargames">jump
+to wargames list</a>)</li>
+</ul>
+<h3 id="jwt-security">JWT Security</h3>
+<ul>
+<li><a
+href="https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91"
+class="uri">https://medium.com/@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91</a></li>
+</ul>
+<h3 id="youtube-cybersecurity">YouTube CyberSecurity</h3>
+<p>These are my personal recommendations.</p>
+<ul>
+<li><a
+href="https://www.youtube.com/channel/UCVeW9qkBjo3zosnqUbG7CFw">John
+Hammond</a></li>
+<li><a href="https://www.youtube.com/@LiveOverflow">LiveOverflow</a> -
+<a href="https://liveoverflow.com/"
+class="uri">https://liveoverflow.com/</a></li>
+<li><a href="https://www.youtube.com/@ippsec">IppSec</a> - <a
+href="https://ippsec.rocks/" class="uri">https://ippsec.rocks/</a></li>
+</ul>
+<p>Related:</p>
+<ul>
+<li><a href="https://www.youtube.com/beneater">Ben Eater</a> - <a
+href="https://eater.net/" class="uri">https://eater.net/</a> -
+Hardware</li>
+<li><a href="https://www.youtube.com/@PirateSoftware">PirateSoftware</a>
+- Hacker, turned GameDev YouTuber</li>
+<li><a
+href="https://www.reddit.com/r/hacking/comments/nj68g2/which_is_your_favourite_cybersecurity_youtube">Which
+is your favourite cybersecurity youtube channel? And why?</a></li>
+</ul>
+<h3 id="liveoverflow">LiveOverflow</h3>
+<p>I really like the hacking educator LiveOverflow.</p>
+<p>I totally recommend going to <a href="https://liveoverflow.com/">his
+website</a> and searching for a hacking topic you’re interested in.</p>
+<h4 id="sudo-vulnerability">SUDO Vulnerability</h4>
+<p><a
+href="https://www.youtube.com/playlist?list=PLhixgUqwRTjy0gMuT4C3bmjeZjuNQyqdx">Sudo
+Vulnerability Walkthrough</a> (3 hours, 22 minutes, 27 seconds)</p>
+<h3 id="liveoverflow-recommends">LiveOverflow Recommends</h3>
+<p><a href="https://liveoverflow.com/">LiveOverflow</a> recommends:</p>
+<ul>
+<li><a href="https://exploit.education/"
+class="uri">https://exploit.education/</a> - more virtual machines</li>
+<li><a href="https://ctftime.org/">ctftime.org</a></li>
+<li><a href="https://picoctf.com/" class="uri">https://picoctf.com/</a>
+- more CTFs</li>
+</ul>
+<h3 id="osint-hotspots">OSINT Hotspots</h3>
+<p><a href="https://wigle.net/" class="uri">https://wigle.net/</a> - a
+website for collecting information about the different wireless hotspots
+around the world. - OSint</p>
+<ul>
+<li><a href="https://ctftime.org/writeup/37711">referenced by this
+CTFtime writeup</a></li>
+</ul>
+<p><a href="https://0xffsec.com/handbook/"
+class="uri">https://0xffsec.com/handbook/</a></p>
+<h3 id="riscv-assembly-hacking-boardgame">RISCV assembly hacking
+boardgame</h3>
+<p><a href="https://punkx.org/overflow/">RISCV assembly hacking
+boardgame</a></p>
+<h3 id="c-pointer-board-game">C pointer board game</h3>
+<p><a href="https://punkx.org/c-pointer-game/">C pointer board
+game</a></p>
+<h3 id="living-off-the-land">Living off the land</h3>
+<p><a href="https://github.com/LOLBAS-Project/LOLBAS"
+class="uri">https://github.com/LOLBAS-Project/LOLBAS</a></p>
+<blockquote>
+<p>The goal of the LOLBAS project is to document every binary, script,
+and library that can be used for <a href="#living-off-the-land">Living
+Off The
+Land</a>(https://www.crowdstrike.com/cybersecurity-101/living-off-the-land-attacks-lotl/
+“Living Off The Land</p>
+<p>(https://www.crowdstrike.com/cybersecurity-101/living-off-the-land-attacks-lotl/)“)
+techniques.</p>
+</blockquote>
+<blockquote>
+<p>A LOLBin/Lib/Script must:</p>
+<ul>
+<li>Be a Microsoft-signed file, either native to the OS or downloaded
+from Microsoft.</li>
+<li>Have extra “unexpected” functionality. It is not interesting to
+document intended use cases.</li>
+<li>Exceptions are application whitelisting bypasses</li>
+<li>Have functionality that would be useful to an APT or red team</li>
+</ul>
+</blockquote>
+<h3 id="owasp-resources">OWASP resources</h3>
+<ul>
+<li><a href="https://owasp.org/www-project-vulnerableapp/"
+class="uri">https://owasp.org/www-project-vulnerableapp/</a></li>
+<li><a href="https://owasp.org/www-project-webgoat/"
+class="uri">https://owasp.org/www-project-webgoat/</a></li>
+<li><a
+href="https://owasp.org/www-project-vulnerable-web-applications-directory/"
+class="uri">https://owasp.org/www-project-vulnerable-web-applications-directory/</a></li>
+</ul>
+<h3 id="more-vulnerable-virtual-macines">More vulnerable virtual
+macines:</h3>
+<ul>
+<li><a
+href="https://andreafortuna.org/2020/07/22/vulnerable-webapps-and-vms-for-penetration-testing-practice-my-own-list/">Vulnerable
+webapps and VMs for penetration testing practice: my own list</a></li>
+<li><a href="https://github.com/OWASP/OWASP-VWAD">The OWASP Vulnerable
+Web Applications Directory project</a></li>
+<li><a href="https://www.vulnhub.com/entry/ripper-1,706/"
+class="uri">https://www.vulnhub.com/entry/ripper-1,706/</a></li>
+<li><a
+href="https://www.doyler.net/security-not-included/vulnhub-sunset-decoy-walkthrough"
+class="uri">https://www.doyler.net/security-not-included/vulnhub-sunset-decoy-walkthrough</a></li>
+<li><a
+href="https://www.hackingloops.com/kali-linux-virtualbox-pentest-lab/"
+class="uri">https://www.hackingloops.com/kali-linux-virtualbox-pentest-lab/</a></li>
+</ul>
+<h3 id="jwt-security-1">JWT Security </h3>
+<ul>
+<li>https://medium.com/<span class="citation"
+data-cites="m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91">@m____b____/demystifying-jwt-authentication-with-python-b4302c39bf91</span></li>
+<li><a
+href="https://infosecwriteups.com/jawt-scratchpad-picoctf-93766d81fd8e"
+class="uri">https://infosecwriteups.com/jawt-scratchpad-picoctf-93766d81fd8e</a></li>
+</ul>
+<h3 id="metasploit-and-metasploitable">Metasploit and
+Metasploitable</h3>
+<p><a href="https://www.metasploit.com/">Metasploit</a></p>
+<blockquote>
+<p><strong>The world’s most used penetration testing framework</strong>
+Knowledge is power, especially when it’s shared. A collaboration between
+the open source community and Rapid7, Metasploit helps security teams do
+more than just verify vulnerabilities, manage security assessments, and
+improve security awareness; it empowers and arms defenders to always
+stay one step (or two) ahead of the game.</p>
+</blockquote>
+<p><a
+href="https://docs.rapid7.com/metasploit/metasploitable-2/">Metasploitable</a></p>
+<blockquote>
+<p>A test environment provides a secure place to perform penetration
+testing and security research. For your test environment, you need a
+Metasploit instance that can access a vulnerable target. The following
+sections describe the requirements and instructions for setting up a
+vulnerable target.</p>
+</blockquote>
+<p>Guides:</p>
+<ul>
+<li><a href="https://www.hackingloops.com/metasploitable-2/"
+class="uri">https://www.hackingloops.com/metasploitable-2/</a></li>
+<li><a
+href="https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/"
+class="uri">https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/</a></li>
+<li>and more…</li>
+</ul>
+<h3 id="owasp-resources-1">OWASP resources</h3>
+<ul>
+<li><a href="https://owasp.org/www-project-vulnerableapp/"
+class="uri">https://owasp.org/www-project-vulnerableapp/</a></li>
+<li><a href="https://owasp.org/www-project-webgoat/"
+class="uri">https://owasp.org/www-project-webgoat/</a></li>
+<li><a
+href="https://owasp.org/www-project-vulnerable-web-applications-directory/"
+class="uri">https://owasp.org/www-project-vulnerable-web-applications-directory/</a></li>
+</ul>
+<h3 id="dsvw-docker-container">DSVW Docker Container</h3>
+<ul>
+<li><a
+href="https://blog.appsecco.com/damn-small-vulnerable-web-in-docker-fd850ee129d5"
+class="uri">https://blog.appsecco.com/damn-small-vulnerable-web-in-docker-fd850ee129d5</a></li>
+<li><a href="https://hub.docker.com/r/appsecco/dsvw"
+class="uri">https://hub.docker.com/r/appsecco/dsvw</a></li>
+</ul>
+<h3 id="cryptography">Cryptography</h3>
+<ul>
+<li><a href="https://cryptohack.org/challenges/"
+class="uri">https://cryptohack.org/challenges/</a> ⭐<br />
+</li>
+<li><a href="https://cryptopals.com/"
+class="uri">https://cryptopals.com/</a> ⭐</li>
+</ul>
+<h3 id="downfall.page">Downfall.page</h3>
+<p><a href="https://downfall.page/"
+class="uri">https://downfall.page/</a></p>
+<blockquote>
+<p>Downfall attacks targets a critical weakness found in billions of
+modern processors used in personal and cloud computers. This
+vulnerability, identified as CVE-2022-40982, enables a user to access
+and steal data from other users who share the same computer. For
+instance, a malicious app obtained from an app store could use the
+Downfall attack to steal sensitive information like passwords,
+encryption keys, and private data such as banking details, personal
+emails, and messages. Similarly, in cloud computing environments, a
+malicious customer could exploit the Downfall vulnerability to steal
+data and credentials from other customers who share the same cloud
+computer.</p>
+</blockquote>
+<h3 id="social-engineer-toolkit">Social Engineer Toolkit</h3>
+<p><a href="https://github.com/trustedsec/social-engineer-toolkit"
+class="uri">https://github.com/trustedsec/social-engineer-toolkit</a></p>
+<blockquote>
+<p>The Social-Engineer Toolkit is an open-source penetration testing
+framework designed for social engineering. SET has a number of custom
+attack vectors that allow you to make a believable attack quickly. SET
+is a product of TrustedSec, LLC – an information security consulting
+firm located in Cleveland, Ohio.</p>
+</blockquote>
+<h3 id="introductory-resources">Introductory Resources</h3>
+<p><a href="https://ctf101.org/" class="uri">https://ctf101.org/</a></p>
+<!-- No longer online: <https://huntress.ctf.games/resources>  -->
+<h3 id="random-number-manipulation">Random Number Manipulation</h3>
+<p><a
+href="https://www.reddit.com/r/programminghorror/s/NpZTLupRXk">Random
+number manipulation</a></p>
+<h3 id="hosting-ctfd-with-challenge-vms-and-virtualization">Hosting CTFd
+with challenge VMs and virtualization:</h3>
+<p><a href="https://github.com/aau-network-security/haaukins"
+class="uri">https://github.com/aau-network-security/haaukins</a></p>
+<ul>
+<li><a href="https://youtu.be/IFbzwALrIwI">Demo video</a></li>
+</ul>
+<h3 id="create-randomly-insecure-virtual-machines">Create Randomly
+Insecure Virtual Machines</h3>
+<p><a href="https://github.com/cliffe/SecGen"
+class="uri">https://github.com/cliffe/SecGen</a></p>
+<h3 id="windows-privilege-escalation-workshop-with-metasploit">Windows
+Privilege Escalation Workshop with MetaSploit</h3>
+<p><a href="https://github.com/sagishahar/lpeworkshop"
+class="uri">https://github.com/sagishahar/lpeworkshop</a></p>
+<ul>
+<li><a
+href="https://www.youtube.com/playlist?list=PLjG9EfEtwbvIrGFTx4XctK8IxkUJkAEqP">Videos</a></li>
+</ul>
+<h3 id="binary-exploitation-resources">Binary Exploitation
+Resources</h3>
+<p><a href="https://guyinatuxedo.github.io/"
+class="uri">https://guyinatuxedo.github.io/</a></p>
+<blockquote>
+<p>Nightmare is an intro to binary exploitation / reverse engineering
+course based around ctf challenges. I call it that because it’s a lot of
+people’s nightmare to get hit by weaponized 0 days, which these skills
+directly translate into doing that type of work (plus it’s a really cool
+song).</p>
+</blockquote>
+<h3 id="dreamhack-enkr">DreamHack (EN+KR)</h3>
+<ul>
+<li>Really great UI <a href="https://dreamhack.io/wargame"
+class="uri">https://dreamhack.io/wargame</a><br />
+</li>
+<li><a href="https://dreamhack.io/ctf/all"
+class="uri">https://dreamhack.io/ctf/all</a> - Lots of active CTFs</li>
+</ul>
+<h3 id="oldest-site-ive-found">Oldest site I’ve found</h3>
+<p><a href="https://www.hackthissite.org/"
+class="uri">https://www.hackthissite.org/</a> - HackThisSite.org is a
+free, safe and legal training ground for hackers to test and expand
+their ethical hacking skills with challenges, CTFs, and more. Active
+since 2003, we are more than just another hacker wargames site…</p>
+<ul>
+<li><a href="https://www.hackthissite.org/missions/javascript/"
+class="uri">https://www.hackthissite.org/missions/javascript/</a></li>
+<li><a href="https://www.hackthissite.org/missions/basic/"
+class="uri">https://www.hackthissite.org/missions/basic/</a></li>
+<li><a href="https://www.hackthissite.org/missions/playit/extbasic/0/"
+class="uri">https://www.hackthissite.org/missions/playit/extbasic/0/</a></li>
+</ul>
+<h3 id="plan-for-nov-10">Plan for Nov 10</h3>
+<p>Today, we will be working through the problems from the 2022 <a
+href="https://squarectf.com/2022/"
+class="uri">https://squarectf.com/2022/</a></p>
+<h3 id="how-to-integrate-flipper-zero">How to integrate Flipper
+Zero?</h3>
+<p>I have a <a href="https://flipperzero.one/">Flipper Zero</a>. What
+can I do with it for the club?</p>
+<ul>
+<li><a
+href="https://github.com/justcallmekoko/ESP32Marauder/wiki/flipper-zero"
+class="uri">https://github.com/justcallmekoko/ESP32Marauder/wiki/flipper-zero</a></li>
+<li>Host fake Wifi login to steal auth credentials <a
+href="https://youtu.be/kNLlvTB5zHs"
+class="uri">https://youtu.be/kNLlvTB5zHs</a></li>
+<li>Use qFlipper as demo screen</li>
+</ul>
+<h3 id="ctfd">CTFd</h3>
+<p>CTFd resources:</p>
+<ul>
+<li><a href="https://github.com/bsidessf"
+class="uri">https://github.com/bsidessf</a></li>
+<li><a href="https://owasp.org/www-project-juice-shop/"
+class="uri">https://owasp.org/www-project-juice-shop/</a></li>
+<li><a href="https://squarectf.com/">Square CTF</a></li>
+<li><a href="https://github.com/mishrasunny174/encrypt-ctf"
+class="uri">https://github.com/mishrasunny174/encrypt-ctf</a></li>
+<li><a
+href="https://medium.com/@sam.calamos/how-to-run-a-ctf-that-survives-the-first-5-minutes-fded87d26d53">Medium
+Article on scaling CTFd</a></li>
+</ul>
+<p>CTFd resources: </p>
+<ul>
+<li><a href="https://github.com/bsidessf"
+class="uri">https://github.com/bsidessf</a></li>
+<li><a href="https://owasp.org/www-project-juice-shop/"
+class="uri">https://owasp.org/www-project-juice-shop/</a></li>
+<li><a href="https://github.com/mishrasunny174/encrypt-ctf"
+class="uri">https://github.com/mishrasunny174/encrypt-ctf</a></li>
+</ul>
+<h3 id="netris">Netris</h3>
+<p>Want a basic activity that anyone can do over SSH? Play tetris!</p>
+<ul>
+<li><a href="https://code.rocket9labs.com/tslocum/netris"
+class="uri">https://code.rocket9labs.com/tslocum/netris</a></li>
+<li><a href="https://playnetris.com"
+class="uri">https://playnetris.com</a></li>
+<li><div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ssh</span> YOUR_NAME@netris.rocketnine.space <span class="co"># OR</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ssh</span> YOUR_NAME@playnetris.com</span></code></pre></div></li>
+</ul>
+<aside>
+<strong>Note:</strong> Apparently this breaks when ~30 people play it at
+once.
+</aside>
+<h3 id="github-hacking-list">Github Hacking List</h3>
+<p><a href="https://github.com/stars/zsarge/lists/hacks">My Github List
+for Hacking</a>:</p>
+<ul>
+<li><a href="https://github.com/kkuchta/css-only-chat"
+class="uri">https://github.com/kkuchta/css-only-chat</a></li>
+<li><a href="https://github.com/LOLBAS-Project/LOLBAS"
+class="uri">https://github.com/LOLBAS-Project/LOLBAS</a></li>
+<li><a href="https://github.com/0xffsec/handbook"
+class="uri">https://github.com/0xffsec/handbook</a></li>
+<li><a href="https://github.com/pwndbg/pwndbg"
+class="uri">https://github.com/pwndbg/pwndbg</a></li>
+<li><a href="https://github.com/Gallopsled/pwntools"
+class="uri">https://github.com/Gallopsled/pwntools</a></li>
+<li><a href="https://github.com/radareorg/radare2"
+class="uri">https://github.com/radareorg/radare2</a></li>
+<li><a href="https://github.com/NationalSecurityAgency/ghidra"
+class="uri">https://github.com/NationalSecurityAgency/ghidra</a></li>
+<li><a href="https://github.com/facebookarchive/fbctf"
+class="uri">https://github.com/facebookarchive/fbctf</a></li>
+<li><a href="https://github.com/moloch--/RootTheBox"
+class="uri">https://github.com/moloch--/RootTheBox</a></li>
+<li><a href="https://github.com/judge0/judge0"
+class="uri">https://github.com/judge0/judge0</a></li>
+<li><a href="https://github.com/apsdehal/awesome-ctf"
+class="uri">https://github.com/apsdehal/awesome-ctf</a></li>
+<li><a href="https://github.com/UberGuidoZ/Flipper"
+class="uri">https://github.com/UberGuidoZ/Flipper</a></li>
+<li><a href="https://github.com/google/kctf"
+class="uri">https://github.com/google/kctf</a></li>
+<li><a href="https://github.com/mcpa-stlouis/hack-the-arch"
+class="uri">https://github.com/mcpa-stlouis/hack-the-arch</a></li>
+<li><a href="https://github.com/aau-network-security/haaukins"
+class="uri">https://github.com/aau-network-security/haaukins</a></li>
+<li><a href="https://github.com/cliffe/SecGen"
+class="uri">https://github.com/cliffe/SecGen</a></li>
+<li><a href="https://github.com/DMOJ/judge-server"
+class="uri">https://github.com/DMOJ/judge-server</a></li>
+<li><a href="https://github.com/adnanaziz/EPIJudge"
+class="uri">https://github.com/adnanaziz/EPIJudge</a></li>
+<li><a href="https://github.com/judge0/ide"
+class="uri">https://github.com/judge0/ide</a></li>
+<li><a href="https://github.com/sagishahar/lpeworkshop"
+class="uri">https://github.com/sagishahar/lpeworkshop</a></li>
+<li><a href="https://github.com/rapid7/metasploit-framework"
+class="uri">https://github.com/rapid7/metasploit-framework</a></li>
+<li><a href="https://github.com/danluu/post-mortems"
+class="uri">https://github.com/danluu/post-mortems</a></li>
+<li><a href="https://github.com/fportantier/vulpy"
+class="uri">https://github.com/fportantier/vulpy</a></li>
+<li><a href="https://github.com/onlurking/awesome-infosec"
+class="uri">https://github.com/onlurking/awesome-infosec</a></li>
+<li><a href="https://github.com/xtiankisutsa/awesome-mobile-CTF"
+class="uri">https://github.com/xtiankisutsa/awesome-mobile-CTF</a></li>
+<li><a href="https://github.com/GTFOBins/GTFOBins.github.io"
+class="uri">https://github.com/GTFOBins/GTFOBins.github.io</a></li>
+</ul>
+
+
+    </article>
+  </main>
+
+<footer>
+  <style>
+    .edit {
+      margin-bottom: 1em;
+    }
+    .page-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2em;
+    }
+  </style>
+
+  <div class="page-bottom">
+    <div class="copyright">
+      &copy; 2024 Zack Sargent
+    </div>
+    <div class="top">
+      <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' })">
+        Go to Top
+      </a>
+    </div>
+  </div>
+
+  
+    <details>
+      <summary>See edit history for "NKCyber Club Resources"</summary>
+      <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2024-02-15T18:35:30-05:00">
+                Thursday, February 15, 2024 at 06:35 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 7 insertions(+), 12 deletions(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2024-02-15T18:13:08-05:00">
+                Thursday, February 15, 2024 at 06:13 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 362 insertions(+)
+            </dd>
+          </div>
+        
+      </dl>
+    </details>
+  
+</footer>
+
+  <script>
+    anchors.add('h1:not(.post-title), h2, h3, h4, h5, h6');
+  </script>
+</body>
+
+</html>

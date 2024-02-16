@@ -66,50 +66,84 @@
 <summary id="table-of-contents-header"> Table of Contents </summary>
 
 <ul>
-<li><a href="#the-challenges-were-going-to-host">The challenges we’re going to host:</a></li>
-<li><a href="#getting-the-zip-files">Getting the zip files</a></li>
-<li><a href="#using-docker">Using Docker?</a>
+<li><a href="#the-challenges-were-going-to-host"
+id="toc-the-challenges-were-going-to-host">The challenges we’re going to
+host:</a></li>
+<li><a href="#getting-the-zip-files"
+id="toc-getting-the-zip-files">Getting the zip files</a></li>
+<li><a href="#using-docker" id="toc-using-docker">Using Docker?</a>
 <ul>
-<li><a href="#nojs-modifications">nojs modifications</a></li>
+<li><a href="#nojs-modifications" id="toc-nojs-modifications">nojs
+modifications</a></li>
 </ul></li>
-<li><a href="#deployment-fights-back">Deployment fights back</a>
+<li><a href="#deployment-fights-back"
+id="toc-deployment-fights-back">Deployment fights back</a>
 <ul>
-<li><a href="#fixing-nojs">Fixing nojs</a></li>
+<li><a href="#fixing-nojs" id="toc-fixing-nojs">Fixing nojs</a></li>
 </ul></li>
-<li><a href="#are-challenges-from-2021-easy-to-host">Are challenges from 2021 easy to host?</a>
+<li><a href="#are-challenges-from-2021-easy-to-host"
+id="toc-are-challenges-from-2021-easy-to-host">Are challenges from 2021
+easy to host?</a>
 <ul>
-<li><a href="#hugeprimes">HugePrimes</a></li>
+<li><a href="#hugeprimes" id="toc-hugeprimes">HugePrimes</a></li>
 </ul></li>
-<li><a href="#inv-characters">inv-characters</a></li>
-<li><a href="#our-status-so-far">Our status so far:</a></li>
-<li><a href="#a-new-hope">A new hope</a></li>
-<li><a href="#resource-limiations-part-2">Resource limiations, part 2</a></li>
-<li><a href="#back-to-ez-pwn-1">Back to ez-pwn-1</a></li>
-<li><a href="#allow-all-solutions-on-the-firewall">Allow all solutions on the firewall</a></li>
-<li><a href="#ctfd-resources">CTFd resources</a></li>
+<li><a href="#inv-characters"
+id="toc-inv-characters">inv-characters</a></li>
+<li><a href="#our-status-so-far" id="toc-our-status-so-far">Our status
+so far:</a></li>
+<li><a href="#a-new-hope" id="toc-a-new-hope">A new hope</a></li>
+<li><a href="#resource-limiations-part-2"
+id="toc-resource-limiations-part-2">Resource limiations, part 2</a></li>
+<li><a href="#back-to-ez-pwn-1" id="toc-back-to-ez-pwn-1">Back to
+ez-pwn-1</a></li>
+<li><a href="#allow-all-solutions-on-the-firewall"
+id="toc-allow-all-solutions-on-the-firewall">Allow all solutions on the
+firewall</a></li>
+<li><a href="#ctfd-resources" id="toc-ctfd-resources">CTFd
+resources</a></li>
 </ul>
 
 </details>
 
-<p>Next Friday (Nov 17, 2023) is the <a href="https://2023.squarectf.com/">2023 Square CTF</a>, and I’ve decided that <a href="https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html">my school’s cybersecurity club</a> is going to participate. In an effort to prepare, we’re going to work through a selection of the <a href="https://squarectf.com/2022/index.html">2022 challenges</a>.</p>
-<p>I want to sincerely say thank you to all of <a href="https://squarectf.com/#:~:text=Credits">the Square CTF contributors</a> for hosting such a great event. 🙏</p>
+<p>Next Friday (Nov 17, 2023) is the <a
+href="https://2023.squarectf.com/">2023 Square CTF</a>, and I’ve decided
+that <a
+href="https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html">my
+school’s cybersecurity club</a> is going to participate. In an effort to
+prepare, we’re going to work through a selection of the <a
+href="https://squarectf.com/2022/index.html">2022 challenges</a>.</p>
+<p>I want to sincerely say thank you to all of <a
+href="https://squarectf.com/#:~:text=Credits">the Square CTF
+contributors</a> for hosting such a great event. 🙏</p>
 <aside>
-<strong>Warning:</strong> This is a stream-of-consciousness work log, for use as future reference, mostly written while waiting for Docker images to build on underpowered hardware.
+<strong>Warning:</strong> This is a stream-of-consciousness work log,
+for use as future reference, mostly written while waiting for Docker
+images to build on underpowered hardware.
 </aside>
-<h2 id="the-challenges-were-going-to-host">The challenges we’re going to host:</h2>
-<p>Spoiler! I wasn’t able to get all of the challenges to host easily. I’ve specifically chosen:</p>
+<h2 id="the-challenges-were-going-to-host">The challenges we’re going to
+host:</h2>
+<p>Spoiler! I wasn’t able to get all of the challenges to host easily.
+I’ve specifically chosen:</p>
 <ul>
 <li><a href="https://squarectf.com/2022/ezpwn1.html">EZ pwn 1</a></li>
 <li><a href="https://squarectf.com/2022/ezpwn2.html">EZ pwn 2</a></li>
-<li><a href="https://squarectf.com/2022/developershubris.html">Developer’s Hubris</a></li>
-<li><a href="https://squarectf.com/2021/hugeprimes.html">Huge Primes</a></li>
-<li><a href="https://squarectf.com/2021/koreanspaceprogram.html">Korean Space Program</a> A.K.A. Inv-characters</li>
+<li><a
+href="https://squarectf.com/2022/developershubris.html">Developer’s
+Hubris</a></li>
+<li><a href="https://squarectf.com/2021/hugeprimes.html">Huge
+Primes</a></li>
+<li><a href="https://squarectf.com/2021/koreanspaceprogram.html">Korean
+Space Program</a> A.K.A. Inv-characters</li>
 </ul>
-<p>It’s very possible that I’m missing something obvious, and that I shouldn’t’ve had the errors I did. I’m still putting this document out there, just for future reference.</p>
-<p>Future club members may find these modified challenges zipped in <u>NKCyber Documents/CST/Meeting Resources/2023-11-10</u>.</p>
+<p>It’s very possible that I’m missing something obvious, and that I
+shouldn’t’ve had the errors I did. I’m still putting this document out
+there, just for future reference.</p>
+<p>Future club members may find these modified challenges zipped in
+<u>NKCyber Documents/CST/Meeting Resources/2023-11-10</u>.</p>
 <hr />
 <h2 id="getting-the-zip-files">Getting the zip files</h2>
-<p>Square has generously provided archives of past challenges as zip files:</p>
+<p>Square has generously provided archives of past challenges as zip
+files:</p>
 <pre><code>https://squarectf.com/2022/data/ezpwn1.zip
 https://squarectf.com/2022/data/ezpwn2.zip
 https://squarectf.com/2022/data/ezre1.zip
@@ -130,15 +164,22 @@ https://squarectf.com/2022/data/developershubris.zip
 https://squarectf.com/2022/data/blockchain.zip</code></pre>
 <aside>
 <p>This list was obtained by running:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(</span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>(<span class="bu">document</span><span class="op">.</span><span class="fu">getElementsByClassName</span>(<span class="st">&#39;text-muted&#39;</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     <span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">firstChild</span>)<span class="op">.</span><span class="fu">filter</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">href</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>     <span class="op">.</span><span class="fu">map</span>(e<span class="kw">=&gt;</span>e<span class="op">.</span><span class="at">href</span><span class="op">.</span><span class="fu">replace</span>(<span class="st">&#39;.html&#39;</span><span class="op">,</span> <span class="st">&#39;.zip&#39;</span>))</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>     <span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>))</span></code></pre></div>
-on <a href="https://squarectf.com/2022/index.html" class="uri">https://squarectf.com/2022/index.html</a>, and filtering out the Pulse Check and changing <code>3itemmenu</code> to <code>threeitemmenu</code>, and then adding <code>/data</code> after <code>2022</code>.
+on <a href="https://squarectf.com/2022/index.html"
+class="uri">https://squarectf.com/2022/index.html</a>, and filtering out
+the Pulse Check and changing <code>3itemmenu</code> to
+<code>threeitemmenu</code>, and then adding <code>/data</code> after
+<code>2022</code>.
 </aside>
-<p>We can download all of the zip files and extract them with this script:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<p>We can download all of the zip files and extract them with this
+script:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -182,8 +223,10 @@ on <a href="https://squarectf.com/2022/index.html" class="uri">https://squarectf
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> zipfile.ZipFile(downloaded_file, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> zip_ref:</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        zip_ref.extractall(unzip_dir)</span></code></pre></div>
 <h2 id="using-docker">Using Docker?</h2>
-<p>Of these, it’s important to note that not every directory comes with a Dockerfile. We can check this with Python:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> os.listdir(unzip_dir): <span class="co"># unzip all zip files</span></span>
+<p>Of these, it’s important to note that not every directory comes with
+a Dockerfile. We can check this with Python:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> os.listdir(unzip_dir): <span class="co"># unzip all zip files</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    target <span class="op">=</span> os.path.join(unzip_dir, <span class="bu">file</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    has_dockerfile <span class="op">=</span> <span class="bu">len</span>(<span class="bu">list</span>(Path(target).glob(<span class="st">&#39;**/Dockerfile&#39;</span>))) <span class="op">&gt;</span> <span class="dv">0</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    dockerfile_status <span class="op">=</span> <span class="st">&#39;✅&#39;</span> <span class="cf">if</span> has_dockerfile <span class="cf">else</span> <span class="st">&#39;❌&#39;</span></span>
@@ -206,36 +249,45 @@ on <a href="https://squarectf.com/2022/index.html" class="uri">https://squarectf
 ✅ nojs
 ✅ DevelopersHubris
 ❌ BLOCKchain</code></pre>
-<p>Given that my club is only going to have a few hours to work through the problems, I’ve chosen to not worry about hosting the challenges that don’t come with Docker containers.</p>
+<p>Given that my club is only going to have a few hours to work through
+the problems, I’ve chosen to not worry about hosting the challenges that
+don’t come with Docker containers.</p>
 <p>So, what happens if we host one of these Dockerfiles?</p>
 <p>Let’s start with <code>ez-pwn-1</code> as an example.</p>
 <p>There are a couple files:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> file <span class="pp">*</span></span>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> file <span class="pp">*</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dist:</span>                directory</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Dockerfile:</span>          ASCII text</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ez-pwn-1:</span>            ELF 64-bit LSB pie executable, x86-64, version 1 <span class="er">(</span><span class="ex">SYSV</span><span class="kw">)</span><span class="ex">,</span> dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=26217945613bd2e86e73d01ae50a82c592549ccc, not stripped</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ez-pwn-1:</span>            ELF 64-bit LSB pie executable, x86-64, version 1 <span class="er">(</span><span class="ex">SYSV</span><span class="kw">)</span><span class="ex">,</span> dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID<span class="pp">[</span><span class="ss">sha1</span><span class="pp">]</span>=26217945613bd2e86e73d01ae50a82c592549ccc, not stripped</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ez-pwn-1.c:</span>          C source, ASCII text</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">README.md:</span>           HTML document, ASCII text, with very long lines <span class="er">(</span><span class="ex">460</span><span class="kw">)</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">run.sh:</span>              Bourne-Again shell script, ASCII text executable</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">the_flag_is_in_here:</span> directory</span></code></pre></div>
 <p>And if we are in the directory, we can build it with:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker build <span class="at">-t</span> ez-pwn-1 . </span>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker build <span class="at">-t</span> ez-pwn-1 . </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> docker run <span class="at">--rm</span> <span class="at">-d</span> <span class="at">-p</span> 8001:8000 ez-pwn-1</span></code></pre></div>
-<p>Visiting the url hosted by the Docker container returns <code>ERR_INVALID_HTTP_RESPONSE</code>, and populates the logs with:</p>
+<p>Visiting the url hosted by the Docker container returns
+<code>ERR_INVALID_HTTP_RESPONSE</code>, and populates the logs with:</p>
 <pre><code>: not found.1
 sh: 2: Host:: not found</code></pre>
 <p>I don’t know why this is.</p>
-<p>We can try again with <code>ez-pwn-2</code>. Let’s use the <code>run.sh</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<p>We can try again with <code>ez-pwn-2</code>. Let’s use the
+<code>run.sh</code>:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build . <span class="at">-t</span> ez-pwn-2</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">-p</span> <span class="va">${HOST_PORT}</span>:8000 ez-pwn-2</span></code></pre></div>
 <p>So, we can use:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> export HOST_PORT=8001</span>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> export HOST_PORT=8001</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> chmod +x run.sh</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./run.sh</span></code></pre></div>
 <p>This has the same issue, and returns:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> curl <span class="at">-v</span> 127.0.0.1:8001</span>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> curl <span class="at">-v</span> 127.0.0.1:8001</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span>   Trying 127.0.0.1:8001...</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> Connected to 127.0.0.1 <span class="er">(</span><span class="ex">127.0.0.1</span><span class="kw">)</span> <span class="ex">port</span> 8001 <span class="er">(</span><span class="co">#0)</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> GET <span class="ex">/</span> HTTP/1.1</span>
@@ -259,13 +311,25 @@ sh: 2: Host:: not found</code></pre>
 ✅ nojs - works after modifying Dockerfile (see below)
 ✅ DevelopersHubris - worked first try, ironically</code></pre>
 <h3 id="nojs-modifications">nojs modifications</h3>
-<p><code>nojs</code> errored out in the Dockerfile on line <code>ADD keys/deploy_id_rsa /root/.ssh/id_rsa</code>, but after commenting out the lines 5-8, it then errored out on installing <code>openjdk-11-jre</code>. I removed the requirement for <code>openjdk-11-jre</code>, and it worked perfectly. I’m not sure why these were required, but everything seems to work fine without them. I ran with <code>./run.sh</code> with no errors. <strong>Spoiler: it would not <em>always</em> work without errors.</strong></p>
+<p><code>nojs</code> errored out in the Dockerfile on line
+<code>ADD keys/deploy_id_rsa /root/.ssh/id_rsa</code>, but after
+commenting out the lines 5-8, it then errored out on installing
+<code>openjdk-11-jre</code>. I removed the requirement for
+<code>openjdk-11-jre</code>, and it worked perfectly. I’m not sure why
+these were required, but everything seems to work fine without them. I
+ran with <code>./run.sh</code> with no errors. <strong>Spoiler: it would
+not <em>always</em> work without errors.</strong></p>
 <aside>
-At this point I must mention it’s very possible I’m doing something blatantly wrong here. I’m not sure why so many Docker images are failing to work. However, given that we aren’t going to have time to get through many challenges, I only need a couple to work.
+At this point I must mention it’s very possible I’m doing something
+blatantly wrong here. I’m not sure why so many Docker images are failing
+to work. However, given that we aren’t going to have time to get through
+many challenges, I only need a couple to work.
 </aside>
-<p>Great! We now have the 5 challenges we’re going to do this Friday.</p>
+<p>Great! We now have the 5 challenges we’re going to do this
+Friday.</p>
 <p>We can move them into a separate directory with:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil                                                                                     </span>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shutil                                                                                     </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>approved <span class="op">=</span> (<span class="st">&#39;AlexHanlonHasTheFlag&#39;</span>, <span class="st">&#39;xark&#39;</span>, <span class="st">&#39;GoingInBlind&#39;</span>, <span class="st">&#39;nojs&#39;</span>, <span class="st">&#39;DevelopersHubris&#39;</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>approved_dir <span class="op">=</span> <span class="st">&#39;./approved&#39;</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>Path(approved_dir).mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>) <span class="co"># make directory if it doesn&#39;t exist</span></span>
@@ -281,9 +345,12 @@ At this point I must mention it’s very possible I’m doing something blatantl
 ├── GoingInBlind
 ├── nojs
 └── xark</code></pre>
-<p>All of these have a <code>run.sh</code> except for <code>xark</code>.</p>
-<p>So, we can add a <code>run.sh</code> to the <code>xark</code> folder:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<p>All of these have a <code>run.sh</code> except for
+<code>xark</code>.</p>
+<p>So, we can add a <code>run.sh</code> to the <code>xark</code>
+folder:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">approved/xark</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat <span class="op">&gt;</span> run.sh <span class="op">&lt;&lt; &#39;EOF&#39;</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">#!/bin/bash</span></span>
@@ -291,13 +358,19 @@ At this point I must mention it’s very possible I’m doing something blatantl
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> chmod +x run.sh</span></code></pre></div>
 <h2 id="deployment-fights-back">Deployment fights back</h2>
-<p>From there, I copied the file to a <a href="https://www.digitalocean.com/products/droplets">Digital Ocean Droplet</a> to host for this Friday.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> Square2022Approved.zip root@ctfd.zack.fyi:/root/square_ctf</span></code></pre></div>
-<p>(Where <code>Square2022Approved.zip</code> contains all of the modifications described above)</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> Square2022Approved.zip</span>
+<p>From there, I copied the file to a <a
+href="https://www.digitalocean.com/products/droplets">Digital Ocean
+Droplet</a> to host for this Friday.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> Square2022Approved.zip root@ctfd.zack.fyi:/root/square_ctf</span></code></pre></div>
+<p>(Where <code>Square2022Approved.zip</code> contains all of the
+modifications described above)</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> Square2022Approved.zip</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> host.py</span></code></pre></div>
 <p>On the Digital Ocean Droplet, I then wrote the script:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>host_ports <span class="op">=</span> {</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;AlexHanlonHasTheFlag&quot;</span>: <span class="dv">8001</span>,</span>
@@ -310,10 +383,12 @@ At this point I must mention it’s very possible I’m doing something blatantl
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> folder, port <span class="kw">in</span> host_ports.items():</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;running </span><span class="sc">{</span>folder<span class="sc">}</span><span class="ss"> on port :</span><span class="sc">{</span>port<span class="sc">}</span><span class="ss">&quot;</span>)</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    os.system(<span class="ss">f&quot;cd approved/</span><span class="sc">{</span>folder<span class="sc">}</span><span class="ss"> &amp;&amp; chmod +x run.sh &amp;&amp; HOST_PORT=</span><span class="sc">{</span>port<span class="sc">}</span><span class="ss"> ./run.sh&quot;</span>)</span></code></pre></div>
-<p>which was able to install almost all of the selected challenges. DevelopersHubris originally errored out with:</p>
+<p>which was able to install almost all of the selected challenges.
+DevelopersHubris originally errored out with:</p>
 <pre><code>Non-resolvable parent POM for com.example:DevelopersHubris:0.0.1-SNAPSHOT: Could not transfer artifact org.springframework.boot:spring-boot-starter-parent:pom:2.7.5 from/to central (https://repo.maven.apache.org/maven2): transfer failed for https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-parent/2.7.5/spring-boot-starter-parent-2.7.5.pom and &#39;parent.relativePath&#39; points at no local POM @ line 6, column 11: Remote host terminated the handshake: SSL peer shut down incorrectly</code></pre>
 <p>but, I ran again and it worked fine.</p>
-<p>However, despite all of these working fine on my laptop, we run into some issues on the Droplet:</p>
+<p>However, despite all of these working fine on my laptop, we run into
+some issues on the Droplet:</p>
 <table>
 <thead>
 <tr class="header">
@@ -350,7 +425,8 @@ At this point I must mention it’s very possible I’m doing something blatantl
 </tr>
 </tbody>
 </table>
-<p>So, it looks like the first two are crashing due to self signed certificates.</p>
+<p>So, it looks like the first two are crashing due to self signed
+certificates.</p>
 <details>
 <summary>
 Show all
@@ -410,19 +486,23 @@ Node.js v21.1.0
 error Command failed with exit code 1.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.</code></pre>
 </details>
-<p>I must appreciate the irony that DevelopersHubris was the only one working.</p>
-<p><strong>Current status:</strong> Our meeting is tomorrow, and only one challenge is properly hosted.</p>
+<p>I must appreciate the irony that DevelopersHubris was the only one
+working.</p>
+<p><strong>Current status:</strong> Our meeting is tomorrow, and only
+one challenge is properly hosted.</p>
 <h3 id="fixing-nojs">Fixing nojs</h3>
 <p>This one seems straightforward.</p>
-<p>So, it turns out that, despite the fact it worked on my machine, we need to adjust the docker image to include OpenJDK.</p>
+<p>So, it turns out that, despite the fact it worked on my machine, we
+need to adjust the docker image to include OpenJDK.</p>
 <details>
 <summary>
 See modified Dockerfile
 </summary>
-<div class="sourceCode" id="cb23"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> debian:bookworm as builder</span>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> debian:bookworm as builder</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">MAINTAINER</span> tnek</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> apt-get update &amp;&amp; apt-get -y install ca-certificates git golang</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> <span class="at">-y</span> install ca-certificates git golang</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ADD keys/deploy_id_rsa /root/.ssh/id_rsa</span></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># RUN chmod 700 /root/.ssh/id_rsa</span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># RUN echo &quot;Host github.com\n\tStrictHostKeyChecking no\n&quot; &gt;&gt; /root/.ssh/config</span></span>
@@ -433,30 +513,37 @@ See modified Dockerfile
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./go.sum ./</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> go mod tidy</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> go mod vendor</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> go mod download</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">go</span> mod tidy</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">go</span> mod vendor</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">go</span> mod download</span>
 <span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> go build -installsuffix <span class="st">&#39;static&#39;</span> -o /notes-site .</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">go</span> build <span class="at">-installsuffix</span> <span class="st">&#39;static&#39;</span> <span class="at">-o</span> /notes-site .</span>
 <span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> openjdk:11 AS final</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> --from=builder /notes-site ./notes-site</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> --from=builder /src/assets ./assets</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> openjdk:11 <span class="kw">AS</span> final</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /notes-site ./notes-site</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /src/assets ./assets</span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> apt-get update &amp;&amp; apt-get install -y curl xvfb software-properties-common unzip wget libc6-amd64-cross libc6-dev firefox-esr </span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> curl xvfb software-properties-common unzip wget libc6-amd64-cross libc6-dev firefox-esr </span>
 <span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Geckodriver</span></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> VERSION=$(curl -sL https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep tag_name | cut -d <span class="st">&#39;&quot;&#39;</span> -f 4) &amp;&amp; curl -sL <span class="st">&quot;https://github.com/mozilla/geckodriver/releases/download/$VERSION/geckodriver-$VERSION-linux-aarch64.tar.gz&quot;</span> | tar -xz -C /usr/local/bin</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="va">VERSION</span><span class="op">=</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-sL</span> https://api.github.com/repos/mozilla/geckodriver/releases/latest <span class="kw">|</span> <span class="fu">grep</span> tag_name <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">&#39;&quot;&#39;</span> <span class="at">-f</span> 4<span class="va">)</span> <span class="kw">&amp;&amp;</span> <span class="ex">curl</span> <span class="at">-sL</span> <span class="st">&quot;https://github.com/mozilla/geckodriver/releases/download/</span><span class="va">$VERSION</span><span class="st">/geckodriver-</span><span class="va">$VERSION</span><span class="st">-linux-aarch64.tar.gz&quot;</span> <span class="kw">|</span> <span class="fu">tar</span> <span class="at">-xz</span> <span class="at">-C</span> /usr/local/bin</span>
 <span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Get selenium&#39;s jar</span></span>
 <span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="kw">ENV</span> SELENIUM_JAR_ADDR=https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> curl -sL $SELENIUM_JAR_ADDR &gt; /usr/local/bin/selenium-server.jar</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">-sL</span> <span class="va">$SELENIUM_JAR_ADDR</span> <span class="op">&gt;</span> /usr/local/bin/selenium-server.jar</span>
 <span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;./notes-site&quot;</span>]</span></code></pre></div>
 </details>
-<p>I’ve waited for <code>go build -installsuffix 'static' -o /notes-site .</code> to finish for about 10 hours now. Go usually compiles super quickly, so I’m not sure what’s going wrong. I bet there’s an easy solution, but iterative development is hard when you have to wait hours on a slow machine. I’m giving up and trying a previous year. This feels like a performance limitation.</p>
-<h2 id="are-challenges-from-2021-easy-to-host">Are challenges from 2021 easy to host?</h2>
+<p>I’ve waited for
+<code>go build -installsuffix 'static' -o /notes-site .</code> to finish
+for about 10 hours now. Go usually compiles super quickly, so I’m not
+sure what’s going wrong. I bet there’s an easy solution, but iterative
+development is hard when you have to wait hours on a slow machine. I’m
+giving up and trying a previous year. This feels like a performance
+limitation.</p>
+<h2 id="are-challenges-from-2021-easy-to-host">Are challenges from 2021
+easy to host?</h2>
 <pre><code>https://squarectf.com/2021/data/its-just-an-xor.zip
 https://squarectf.com/2021/data/im-a-credential-ghoul.zip
 https://squarectf.com/2021/data/out-of-cash.zip
@@ -472,7 +559,8 @@ https://squarectf.com/2021/data/memory-safe-strcmp.zip</code></pre>
 <summary>
 See download script
 </summary>
-<div class="sourceCode" id="cb25"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -556,9 +644,15 @@ See download script
 ✅ burnt-bread
 ✅ gil-triangle
 ❌ rust-rev-1</code></pre>
-<p>I’m sad I don’t get to geek out about about Rust, as <code>rust-rev-1</code> and <code>rust-rev-2</code> don’t seem easy to host, but this is at least showing progress.</p>
-<p>Using an abomination of a Bash/Python one-liner, I found there’s quite a lot of socat-based challanges. These should all work as well. (Though, I haven’t tested them.) They’re just netcat based, and I want some browser-based challenges as well.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> find . <span class="at">-iname</span> <span class="st">&quot;Dockerfile&quot;</span> <span class="at">-exec</span> python3 <span class="at">-c</span> <span class="st">&quot;with open(&#39;{}&#39;) as f: print(&#39;🐱 {}&#39; if any(map(lambda x: &#39;socat&#39; in x, f.readlines())) else &#39;✅ {}&#39;)&quot;</span> <span class="dt">\;</span></span>
+<p>I’m sad I don’t get to geek out about about Rust, as
+<code>rust-rev-1</code> and <code>rust-rev-2</code> don’t seem easy to
+host, but this is at least showing progress.</p>
+<p>Using an abomination of a Bash/Python one-liner, I found there’s
+quite a lot of socat-based challanges. These should all work as well.
+(Though, I haven’t tested them.) They’re just netcat based, and I want
+some browser-based challenges as well.</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> find . <span class="at">-iname</span> <span class="st">&quot;Dockerfile&quot;</span> <span class="at">-exec</span> python3 <span class="at">-c</span> <span class="st">&quot;with open(&#39;{}&#39;) as f: print(&#39;🐱 {}&#39; if any(map(lambda x: &#39;socat&#39; in x, f.readlines())) else &#39;✅ {}&#39;)&quot;</span> <span class="dt">\;</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">🐱</span> ./re-its-just-an-xor/Dockerfile</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">✅</span> ./crypto-im-a-credential-ghoul/Dockerfile</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">🐱</span> ./out-of-cash/Dockerfile</span>
@@ -570,32 +664,47 @@ See download script
 <h3 id="hugeprimes">HugePrimes</h3>
 <p>Lets try <code>hugeprimes</code> 🤞.</p>
 <p>Let’s look at its Dockerfile (comments removed):</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:16</span>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> node:16</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /usr/src/app</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> package.json ./</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> npm install</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">npm</span> install</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPOSE</span> 8080</span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [ <span class="st">&quot;node&quot;</span>, <span class="st">&quot;server.js&quot;</span> ]</span></code></pre></div>
-<p>This is a tiny Dockerfile. There’s a chance this might not fight back…</p>
+<p>This is a tiny Dockerfile. There’s a chance this might not fight
+back…</p>
 <figure>
-<img src="../assets/square-ctf/image-20231109180221535.png" alt="HugePrimes works!" /><figcaption aria-hidden="true">HugePrimes works!</figcaption>
+<img src="../assets/square-ctf/image-20231109180221535.png"
+alt="HugePrimes works!" />
+<figcaption aria-hidden="true">HugePrimes works!</figcaption>
 </figure>
 <p>This is huge! It works.🎉</p>
-<p>I’m currently at <strong>two</strong> non-netcat Dockerfiles, which is a <strong>100%</strong> improvement. At this rate, we’re going to have all of the browser challenges working in no time.</p>
+<p>I’m currently at <strong>two</strong> non-netcat Dockerfiles, which
+is a <strong>100%</strong> improvement. At this rate, we’re going to
+have all of the browser challenges working in no time.</p>
 <figure>
-<img src="https://imgs.xkcd.com/comics/extrapolating.png" alt="Extrapolating - XKCD.com" /><figcaption aria-hidden="true">Extrapolating - XKCD.com</figcaption>
+<img src="https://imgs.xkcd.com/comics/extrapolating.png"
+alt="Extrapolating - XKCD.com" />
+<figcaption aria-hidden="true">Extrapolating - XKCD.com</figcaption>
 </figure>
 <h2 id="inv-characters">inv-characters</h2>
 <p>This challenge has the same super simple Dockerfile listed above!</p>
 <p>And it runs!</p>
 <figure>
-<img src="../assets/square-ctf/image-20231109181715740.png" alt="Korean Space Agency Login Form" /><figcaption aria-hidden="true">Korean Space Agency Login Form</figcaption>
+<img src="../assets/square-ctf/image-20231109181715740.png"
+alt="Korean Space Agency Login Form" />
+<figcaption aria-hidden="true">Korean Space Agency Login
+Form</figcaption>
 </figure>
 <p>I’m calling that <strong>three</strong> total challenges. 🎉</p>
 <aside>
-<p>And yes, several hours later, my $6 Digital Ocean Droplet is still maxed out trying to build one the docker image for <a href="https://squarectf.com/2022/nojs.html">nojs</a>.</p>
-If you are represent a company interested in supporting college students passionate about cybersecurity, please feel free to <a href="/contact.html">contact me</a>.
+<p>And yes, several hours later, my $6 Digital Ocean Droplet is still
+maxed out trying to build one the docker image for <a
+href="https://squarectf.com/2022/nojs.html">nojs</a>.</p>
+If you are represent a company interested in supporting college students
+passionate about cybersecurity, please feel free to <a
+href="/contact.html">contact me</a>.
 </aside>
 <h2 id="our-status-so-far">Our status so far:</h2>
 <p><strong>Legend:</strong></p>
@@ -635,43 +744,75 @@ If you are represent a company interested in supporting college students passion
 ❌ yet-another-reversing-activity
 ❌ BLOCKchain</code></pre>
 <h2 id="a-new-hope">A new hope</h2>
-<p>I want at least 5 challenges to cover on Friday, but it bugs me that several challenges keep crashing on our droplet.</p>
+<p>I want at least 5 challenges to cover on Friday, but it bugs me that
+several challenges keep crashing on our droplet.</p>
 <p>I see three paths forward:</p>
 <ol type="1">
 <li>Go back another year</li>
 <li>Try and resolve the Docker issues</li>
 </ol>
-<p>Well, I liked what I saw of AlexHanlonHasTheFlag when it was working, so I’ll try that again.</p>
+<p>Well, I liked what I saw of AlexHanlonHasTheFlag when it was working,
+so I’ll try that again.</p>
 <h2 id="resource-limiations-part-2">Resource limiations, part 2</h2>
-<p>I’m giving up on nojs. I’ve waited for too many hours for the Docker image to build, to no avail.</p>
-<p>I’m going to try AlexHanlonHasTheFlag, because we’ve covered SQL injections before, and I might be able to fix the errors.</p>
+<p>I’m giving up on nojs. I’ve waited for too many hours for the Docker
+image to build, to no avail.</p>
+<p>I’m going to try AlexHanlonHasTheFlag, because we’ve covered SQL
+injections before, and I might be able to fix the errors.</p>
 <p>Just checking:</p>
 <figure>
-<img src="../assets/square-ctf/image-20231109185744020.png" alt="A form" /><figcaption aria-hidden="true">A form</figcaption>
+<img src="../assets/square-ctf/image-20231109185744020.png"
+alt="A form" />
+<figcaption aria-hidden="true">A form</figcaption>
 </figure>
-<p>Apparently, the logs I saw the last time I ran it are actually the exact same I see in my laptop. However, the db image is definitely failing.</p>
-<p>Going into each Dockerfile, I notice that both the db application and the Java application run without error. However, the db application closes immediately and exits.</p>
-<p>However, adding a bash command to the end of the Dockerfile works to keep the container alive, as long as the file is run with <code>-t</code>:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep alive</span></span>
+<p>Apparently, the logs I saw the last time I ran it are actually the
+exact same I see in my laptop. However, the db image is definitely
+failing.</p>
+<p>Going into each Dockerfile, I notice that both the db application and
+the Java application run without error. However, the db application
+closes immediately and exits.</p>
+<p>However, adding a bash command to the end of the Dockerfile works to
+keep the container alive, as long as the file is run with
+<code>-t</code>:</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep alive</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;bash&quot;</span>] </span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or consider https://stackoverflow.com/a/30209974</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;sleep&quot;</span>, <span class="st">&quot;infinity&quot;</span>] </span></code></pre></div>
-<p>I tested the second solution, and it seemed to keep the container alive with no worries.</p>
-<p>Unfortunately, this did not resolve my issue, and running <code>docker compose</code> continued to use 100% of my CPU repeatedly boot-looping the db container, with no errors to explain a crash.</p>
-<p><a href="https://serverfault.com/a/1091663">This StackOverflow response</a> says that these errors are produced when MySql is trying to run with too little RAM. Yeah, that checks out.</p>
-<p>However, we’re literally storing <em>one</em> record for these challenges, so the idea it needs more than a megabyte of RAM seems absurd.</p>
+<p>I tested the second solution, and it seemed to keep the container
+alive with no worries.</p>
+<p>Unfortunately, this did not resolve my issue, and running
+<code>docker compose</code> continued to use 100% of my CPU repeatedly
+boot-looping the db container, with no errors to explain a crash.</p>
+<p><a href="https://serverfault.com/a/1091663">This StackOverflow
+response</a> says that these errors are produced when MySql is trying to
+run with too little RAM. Yeah, that checks out.</p>
+<p>However, we’re literally storing <em>one</em> record for these
+challenges, so the idea it needs more than a megabyte of RAM seems
+absurd.</p>
 <p>They suggest:</p>
 <blockquote>
-<p>And then again, you could just increase RAM on your server if you can afford it.</p>
+<p>And then again, you could just increase RAM on your server if you can
+afford it.</p>
 </blockquote>
 <p>🥲</p>
-<p>So, I yoinky sploinkied <a href="https://serverfault.com/a/1091663">the configuration file</a> into <code>mysql.config</code>, and added the line:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./mysql.config /etc/mysql/conf.d</span></code></pre></div>
-<p>Here’s my testing command for the Dockerfile, for personal reference:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> host.py <span class="kw">&amp;&amp;</span> <span class="fu">sleep</span> 20 <span class="kw">&amp;&amp;</span> <span class="kw">(</span> <span class="ex">docker</span> ps <span class="kw">|</span> <span class="fu">grep</span> alexhanlonhastheflag-db <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{ print $1 }&#39;</span> <span class="kw">|</span> <span class="fu">xargs</span> docker logs <span class="kw">)</span> <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> approved/AlexHanlonHasTheFlag/ <span class="kw">&amp;&amp;</span> <span class="ex">docker</span> compose down <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ../..</span></code></pre></div>
-<p>Then, I stumbled upon <a href="https://github.com/alexanderkoller/low-memory-mysql">this GitHub repo</a> for configuring MySql to run with low memory, but even that wasn’t enough.</p>
-<p>If I had more time, I’d migrate everything to SQLite, and it would all work. However, I guess we’re just picking a different strategy now.</p>
-<p>It looks like the minimum system requirements for MySql is around 2 GB RAM, which is above the System RAM of 1GB.</p>
+<p>So, I yoinky sploinkied <a
+href="https://serverfault.com/a/1091663">the configuration file</a> into
+<code>mysql.config</code>, and added the line:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> ./mysql.config /etc/mysql/conf.d</span></code></pre></div>
+<p>Here’s my testing command for the Dockerfile, for personal
+reference:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> host.py <span class="kw">&amp;&amp;</span> <span class="fu">sleep</span> 20 <span class="kw">&amp;&amp;</span> <span class="kw">(</span> <span class="ex">docker</span> ps <span class="kw">|</span> <span class="fu">grep</span> alexhanlonhastheflag-db <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{ print $1 }&#39;</span> <span class="kw">|</span> <span class="fu">xargs</span> docker logs <span class="kw">)</span> <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> approved/AlexHanlonHasTheFlag/ <span class="kw">&amp;&amp;</span> <span class="ex">docker</span> compose down <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ../..</span></code></pre></div>
+<p>Then, I stumbled upon <a
+href="https://github.com/alexanderkoller/low-memory-mysql">this GitHub
+repo</a> for configuring MySql to run with low memory, but even that
+wasn’t enough.</p>
+<p>If I had more time, I’d migrate everything to SQLite, and it would
+all work. However, I guess we’re just picking a different strategy
+now.</p>
+<p>It looks like the minimum system requirements for MySql is around 2
+GB RAM, which is above the System RAM of 1GB.</p>
 <pre><code>OS: Ubuntu 22.04.3 LTS x86_64 
 Host: Droplet 20171212 
 Kernel: 5.15.0-84-generic 
@@ -684,19 +825,31 @@ CPU: DO-Regular (1) @ 2.199GHz
 GPU: 00:02.0 Red Hat, Inc. Virtio GPU 
 Memory: 572MiB / 957MiB</code></pre>
 <h2 id="back-to-ez-pwn-1">Back to ez-pwn-1</h2>
-<p>I looked at <a href="https://ctftime.org/writeup/35997">the solution</a>, and found that people were expected to use netcat to connect. That would have been helpful to put in the README.md, ngl. I had issues originally because I thought they expected people to use the browser. From netcat, it works perfectly. I’m sorry I doubted you, ez-pwn-1. 🙏</p>
-<p>Well, that’s a relief. I probably should have looked through the walkthroughs a while ago.</p>
+<p>I looked at <a href="https://ctftime.org/writeup/35997">the
+solution</a>, and found that people were expected to use netcat to
+connect. That would have been helpful to put in the README.md, ngl. I
+had issues originally because I thought they expected people to use the
+browser. From netcat, it works perfectly. I’m sorry I doubted you,
+ez-pwn-1. 🙏</p>
+<p>Well, that’s a relief. I probably should have looked through the
+walkthroughs a while ago.</p>
 <p>So, that gives us these challenges for Friday:</p>
 <ul>
 <li><a href="https://squarectf.com/2022/ezpwn1.html">EZ pwn 1</a></li>
 <li><a href="https://squarectf.com/2022/ezpwn2.html">EZ pwn 2</a></li>
-<li><a href="https://squarectf.com/2022/developershubris.html">Developer’s Hubris</a></li>
-<li><a href="https://squarectf.com/2021/hugeprimes.html">Huge Primes</a></li>
-<li><a href="https://squarectf.com/2021/koreanspaceprogram.html">Korean Space Program</a> A.K.A. Inv-characters</li>
+<li><a
+href="https://squarectf.com/2022/developershubris.html">Developer’s
+Hubris</a></li>
+<li><a href="https://squarectf.com/2021/hugeprimes.html">Huge
+Primes</a></li>
+<li><a href="https://squarectf.com/2021/koreanspaceprogram.html">Korean
+Space Program</a> A.K.A. Inv-characters</li>
 </ul>
-<p>At this point, I give everything a good old <code>rm * -rf</code> and I start with the challenges from above.</p>
+<p>At this point, I give everything a good old <code>rm * -rf</code> and
+I start with the challenges from above.</p>
 <p>I write a new hosting script:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">This script assumes it is next to a directory structure like:</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">        approved</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">        ├── DevelopersHubris</span></span>
@@ -736,11 +889,16 @@ Memory: 572MiB / 957MiB</code></pre>
 <span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>                        docker_port <span class="op">=</span> <span class="dv">8000</span></span>
 <span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>                os.system(<span class="ss">f&quot;docker build -t </span><span class="sc">{</span>folder<span class="sc">}</span><span class="ss"> . &amp;&amp; docker run -d --restart unless-stopped -p </span><span class="sc">{</span>port<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>docker_port<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>folder<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
-<p>Running all of these Docker images bumps our RAM up from 400M/1G to 700M/1G, so we’re kinda pushing our Droplet to its limits. I’m sure it’ll be fine.</p>
-<h2 id="allow-all-solutions-on-the-firewall">Allow all solutions on the firewall</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ufw allow 8001:8005/tcp <span class="co"># warning: this opens our insecure apps to the world</span></span></code></pre></div>
+<p>Running all of these Docker images bumps our RAM up from 400M/1G to
+700M/1G, so we’re kinda pushing our Droplet to its limits. I’m sure
+it’ll be fine.</p>
+<h2 id="allow-all-solutions-on-the-firewall">Allow all solutions on the
+firewall</h2>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ufw allow 8001:8005/tcp <span class="co"># warning: this opens our insecure apps to the world</span></span></code></pre></div>
 <h1 id="ctfd-resources">CTFd resources</h1>
-<p>Club members should check the Google Drive for the CTFd resources for this event.</p>
+<p>Club members should check the Google Drive for the CTFd resources for
+this event.</p>
 
 
     </article>
@@ -760,7 +918,7 @@ Memory: 572MiB / 957MiB</code></pre>
 
   <div class="page-bottom">
     <div class="copyright">
-      &copy; 2023 Zack Sargent
+      &copy; 2024 Zack Sargent
     </div>
     <div class="top">
       <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' })">

