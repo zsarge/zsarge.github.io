@@ -66,7 +66,8 @@ TryHackMe has great free and paid material.
 	We did this in 2023, and we enjoyed it.
 	</aside>
 - <https://pwn.college/>
-
+- <https://archive.ooo/> - Playable archive of [DEFCON](https://en.wikipedia.org/wiki/DEF_CON) capture the flag events from 2018 to 2021.
+	- See also: <https://oooverflow.io/> and <https://github.com/o-o-overflow>
 - <https://pwnable.kr/>
 	- <https://pwnable.kr/play.php>
 	- Recommends:
@@ -108,7 +109,7 @@ UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
 
 ----
 
-### List of resources
+### Lists of resources
 
 Not enough ideas for you? Check out these lists!
 
@@ -120,9 +121,9 @@ Not enough ideas for you? Check out these lists!
 <summary><b>See the Awesome CTF list of wargames</b></summary>
 
 <aside>
-**Note:** This is just their list of wargames. See <a href="https://c4pr1c3.github.io/awesome-ctf"> the website </a> for more links and information.
+**Note:** This is just their list of wargames. See <a href="https://c4pr1c3.github.io/awesome-ctf">the website</a> for more links and information.
 
-<a href="https://github.com/c4pr1c3/awesome-ctf/blob/cdc26cac8c6b51f48f7e15223d5445b7cc8a8b7a/README.md"> SOURCE </a>
+<a href="https://github.com/c4pr1c3/awesome-ctf/blob/cdc26cac8c6b51f48f7e15223d5445b7cc8a8b7a/README.md">SOURCE</a>
 </aside>
 
 **Wargames**
