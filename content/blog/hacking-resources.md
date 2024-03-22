@@ -79,7 +79,6 @@ TryHackMe has great free and paid material.
 		- <https://www.root-me.org/?lang=en> (EN+FR)
 			- Good starting point: <https://www.root-me.org/en/Challenges/Web-Server/>
 
-
 ----
 
 ### `/(Over|Under)TheWire/`
@@ -91,6 +90,28 @@ I really enjoyed this, and I think it's accesible to anyone who can use SSH:  <h
 </aside>
 
 UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
+
+----
+
+### Cross Site Scripting (XSS)
+
+Both of these sites are useful for practicing XSS in a gamified format:
+- <https://alf.nu/alert1>
+- <https://prompt.ml/>
+
+And, a reminder of why `alert(1)` may not be as useful as `alert(document.domain)` or `alert(window.origin)`:
+- <https://liveoverflow.com/do-not-use-alert-1-in-xss/>
+
+General XSS theory and resources:
+- <https://primer.picoctf.org/#_cross_site_scripting_xss>
+- <https://www.thehacker.recipes/web/inputs/xss>
+- <https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting>
+
+XSS resources recommended by [thehacker.recipes](https://www.thehacker.recipes/web/inputs/xss#resources):
+- <https://xss-game.appspot.com/>
+- <https://excess-xss.com/>
+- <https://owasp.org/www-community/attacks/DOM_Based_XSS>
+- <https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection>
 
 ----
 
@@ -106,6 +127,19 @@ UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
 
 > exploit.education provides a variety of resources that can be used to learn about vulnerability analysis, exploit development, software debugging, binary analysis, and general cyber security issues.
 
+----
+
+### Public hacking wikis
+
+Here are some wikis all about cybersecurity.  These are great resources to link people to, because there's no ads.
+
+- Hacker Recipies: <https://www.thehacker.recipes/>
+	- SQL Injection: <https://www.thehacker.recipes/web/inputs/sqli>
+	- Network Access Control: <https://www.thehacker.recipes/physical/networking/network-access-control>
+- <https://www.ired.team/>
+- <https://book.hacktricks.xyz/>
+- <https://redteam.wiki/>
+- <https://es7evam.gitbook.io/security-studies>
 
 ----
 
@@ -280,7 +314,7 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 -   <https://exploit.education/>  - more virtual machines
 -   [ctftime.org](https://ctftime.org/)
--   <https://picoctf.com/>  - more CTFs
+-   <https://picoctf.com/>  - more CTFs, hosted by [CMU](https://www.cmu.edu/)
 
 ----
 
@@ -449,6 +483,11 @@ Guides:
 <https://guyinatuxedo.github.io/>
 
 >  Nightmare is an intro to binary exploitation / reverse engineering course based around ctf challenges. I call it that because it's a lot of people's nightmare to get hit by weaponized 0 days, which these skills directly translate into doing that type of work (plus it's a really cool song).
+
+> ROPgadget is a tool that helps automate the process of finding gadgets and building an attack against a binary. ROPgadget searches a binary for useful gadgets and tries to assemble them into an attack payload that starts a shell that accepts commands from the attacker.
+
+- <https://docs.pwntools.com/en/stable/rop/rop.html>
+
 
 ----
 
