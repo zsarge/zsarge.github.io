@@ -5,11 +5,13 @@ Tags: nkcyber, cybersecurity
 
 ## Intro
 
-During my time finding things to do for our meetings, I've stumbled across quite a few cybersecurity resources.
+Hi! I'm Zack Sargent. I'm in charge of running weekly meetings for my university's cyber security and hacking club, [NKCyber](https://nkcyber-club.github.io/).
 
-Here is my list.
+During my time finding things to do for our meetings, I've stumbled across quite a few resources.
 
-## All Resources
+Here is the list that I personally reference when looking for inspiration. If you think it could be better, feel free to [let me know](/contact.html)!
+
+## Cyber Security Resources
 
 ### General Roadmap
 
@@ -179,7 +181,7 @@ Not enough ideas for you? Check out these lists!
 - [Hacking-Lab](https://hacking-lab.com/) - Ethical hacking, computer network and security challenge platform.
 - [Hone Your Ninja Skills](https://honeyourskills.ninja/) - Web challenges starting from basic ones.
 - [IO](http://io.netgarage.org/) - Wargame for binary challenges.
-- [jarvisoj](https://www.jarvisoj.com/) - A CTF training platform developed by Jarvis from USSLab in ZJU. 
+- [jarvisoj](https://www.jarvisoj.com/) - A CTF training platform developed by Jarvis from USSLab in ZJU.
 - [Microcorruption](https://microcorruption.com) - Embedded security CTF.
 - [Over The Wire](http://overthewire.org/wargames/) - Wargame maintained by OvertheWire Community.
 - [PentesterLab](https://pentesterlab.com/) - Variety of VM and online challenges (paid).
