@@ -98,18 +98,22 @@ UnderTheWire is for Powershell -> <https://underthewire.tech/wargames>
 ### Cross Site Scripting (XSS)
 
 Both of these sites are useful for practicing XSS in a gamified format:
+
 - <https://alf.nu/alert1>
 - <https://prompt.ml/>
 
 And, a reminder of why `alert(1)` may not be as useful as `alert(document.domain)` or `alert(window.origin)`:
+
 - <https://liveoverflow.com/do-not-use-alert-1-in-xss/>
 
 General XSS theory and resources:
+
 - <https://primer.picoctf.org/#_cross_site_scripting_xss>
 - <https://www.thehacker.recipes/web/inputs/xss>
 - <https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting>
 
 XSS resources recommended by [thehacker.recipes](https://www.thehacker.recipes/web/inputs/xss#resources):
+
 - <https://xss-game.appspot.com/>
 - <https://excess-xss.com/>
 - <https://owasp.org/www-community/attacks/DOM_Based_XSS>
