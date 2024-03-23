@@ -146,6 +146,7 @@ Here are some wikis all about cybersecurity.  These are great resources to link 
 - <https://book.hacktricks.xyz/>
 - <https://redteam.wiki/>
 - <https://es7evam.gitbook.io/security-studies>
+- <https://ir0nstone.gitbook.io/notes>
 
 ----
 
