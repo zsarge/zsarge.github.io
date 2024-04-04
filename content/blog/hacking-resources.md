@@ -80,6 +80,22 @@ TryHackMe has great free and paid material.
 		- <https://legitbs.net/>
 		- <https://www.root-me.org/?lang=en> (EN+FR)
 			- Good starting point: <https://www.root-me.org/en/Challenges/Web-Server/>
+- <https://sizeof.cat/links/#pentesting-sites> recommends:
+	- [OverTheWire wargames](https://overthewire.org/wargames)
+	- [Deus x64](https://deusx64.ai/)
+	- [W3Challs](https://w3challs.com/)
+	- [Hellbound Hacker](https://hbh.sh/)
+	- [Slavehack 2](http://www.slavehack.com/)
+	- [CTF365](https://ctf365.com/)
+	- [Reversing.kr](http://reversing.kr/)
+	- [DefendTheWeb](https://defendtheweb.net/?hackthis)
+	- [Crackmes.one](https://crackmes.one/)
+	- [RET2 WarGames](https://wargames.ret2.systems/)
+	- [pwnable.kr](https://pwnable.kr/)
+	- [ROP Emporium](https://ropemporium.com/)
+	- [0x0539](https://0x0539.net/)
+	- [Exploit Education](https://exploit.education/)
+	- [Pwn Adventure](https://pwnadventure.com/)
 
 ----
 
