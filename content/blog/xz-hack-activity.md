@@ -13,6 +13,24 @@ You may want to consult the materials from the "Further Reading" section for a m
 
 Today, we want to specifically answer the question: **"How can I exploit the XZ backdoor?"**.
 
+## Am I vulnerable?
+
+[Xe Iaso's inital report](https://xeiaso.net/notes/2024/xz-vuln/) contains very actionable information to determine if you are vulnerable to this exploit:
+
+> If you are using one of these distributions, you should check to see if you are using xz version 5.6.0 or 5.6.1. If you are, you should downgrade to 5.4.6. If you can't downgrade, you should disable public-facing SSH servers until you can downgrade.
+> 
+> At this time, we believe that version 5.4.6 is not vulnerable to this exploit. If you are using a different version, you should check with your distribution's security mailing list to see if you are vulnerable. If you are not already subscribed to your distribution's security mailing list, you should do so now.
+> 
+> Here is how you can tell if you're running the affected version:
+> ```bash
+> xz --version
+> ```
+> Here is what the output on the vulnerable version looks like:
+> ```bash
+> $ xz --version
+> xz (XZ Utils) 5.6.1
+> liblzma 5.6.1
+> ```
 
 ## Understanding the mechanics
 
@@ -42,6 +60,7 @@ Here's a compilation of the resources I found to be helpful, with the date they 
 - [Andres Freund's Announcement](https://www.openwall.com/lists/oss-security/2024/03/29/4) (2024-03-29)
     - [Andres Freund's Mastodon Post](https://mastodon.social/@AndresFreundTec/112180083704606941) (2024-03-29)
 - [CVE-2024-3094 published](https://nvd.nist.gov/vuln/detail/CVE-2024-3094) (2024-03-29)
+- [liblzma and xz version 5.6.0 and 5.6.1 are vulnerable to arbitrary code execution compromise](https://xeiaso.net/notes/2024/xz-vuln/) (2024-03-29)
 - ["Everything I Know About the XZ Backdoor"](https://boehs.org/node/everything-i-know-about-the-xz-backdoor) (2024-03-29)
 - [Low Level Learning's "secret backdoor found in open source software (xz situation breakdown)" -](https://youtu.be/jqjtNDtbDNI) (2024-03-29)
 - [Lasse Collin - XZ Utils backdoor](https://tukaani.org/xz-backdoor/) (2024-03-30)
