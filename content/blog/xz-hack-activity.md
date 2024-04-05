@@ -266,11 +266,15 @@ Here's a compilation of the resources I found to be helpful, with the date they 
 <!-- make list of links easier to read -->
 <style>
 section#further-reading li, 
+section#further-reading a, 
 section#further-reading p {
-    line-height: 1em;
+    line-height: 1.1em;
     text-decoration: none;
     margin: 0;
     padding: 0;
+}
+section#further-reading li {
+    margin-bottom: 0.2rem;
 }
 </style>
 
