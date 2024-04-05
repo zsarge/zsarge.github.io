@@ -36,11 +36,20 @@ Today, we want to specifically answer the question: **"How can I exploit the XZ 
 
 As has been covered extensively [elsewhere](#further-reading), this backdoor involved a sophisticated process in which the binaries distributed to users is different from what was on GitHub (before it was deleted), so that the backdoor could not be found by auditing the code.
 
-As such, if we want to exploit this vulnerability, it is important to first find
+Additionally, the attack was designed so that it's only vulnerable to people with the author's "private key". You can think of this like a password. In a sense, the goal of the attack was to hide some code in the most popular Linux distributions so that anyone with the "magic words" could have full control over the entire server.
 
-## Random Notes (to be organized)
+So, if we want to take advantage of their exploit, we have to edit their code slightly, so that we can control what magic words it is waiting for.
 
-- There are quite a lot of contingent factors
+To do this, we can use [xzbot by Anthony Weems](https://github.com/amlweems/xzbot), which has the following features:
+
+> - [honeypot](https://github.com/amlweems/xzbot#honeypot): fake vulnerable server to detect exploit attempts
+> - [ed448 patch](https://github.com/amlweems/xzbot#ed448-patch): patch liblzma.so to use our own ED448 public key
+> - [backdoor format](https://github.com/amlweems/xzbot#backdoor-format): format of the backdoor payload
+> - [backdoor demo](https://github.com/amlweems/xzbot#backdoor-demo): cli to trigger the RCE assuming knowledge of the ED448 private key
+
+We're going to be using the backdoor demo for today's activity.
+
+We can use Anthony's patches to control the "magic words"/"private key" that the server expects, so that we can control the exploit as if we were the attackers.
 
 ## Virtual Machine
 
@@ -48,9 +57,7 @@ To create a safe environment to work with this vulnerable code, I recommend work
 
 I'm personally going to create a Kali VM, because that's the standard for our club.
 
-TODO: screenshots
-
-Consider adding more ram to your VM before going further.
+Consider adding more RAM to your VM before going further. Also, set your clipboard to bi-directional.
 
 ### Docker installation
 
@@ -251,7 +258,7 @@ Nope! It's just establishing the SSH connection with the appropriate key!
 > 	client, err := ssh.Dial("tcp", *addr, config)   // establish an SSH connection
 > 	// ...
 > ```
-> 
+>
 > &mdash; [xzbot/main.go](https://github.com/amlweems/xzbot/blob/8ae5b706fb2c6040a91b233ea6ce39f9f09441d5/main.go#L193-L205) (comments are mine)
 
 ## How to exploit without using xzbot?
