@@ -3,6 +3,10 @@ Preview: Hands-on hacking activity with the XZ backdoor
 Date: 2024-04-02
 Tags: nkcyber, cybersecurity
 
+## Johnverstisment
+
+<iframe src="https://john.citrons.xyz/embed?ref=zack.fyi" style="margin-left:auto;display:block;margin-right:auto;max-width:732px;width:100%;height:94px;border:none;"></iframe>
+
 ## Introduction
 
 Hi! I'm Zack Sargent. I run the cybersecurity club at [NKU](https://www.nku.edu/),
