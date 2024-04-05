@@ -54,7 +54,7 @@
         </span>
         <span id="reading-time">
           <i class="fa fa-clock-o" aria-hidden="true"></i> 
-          21 mins
+          22 mins
         </span>
         <span class="tags">
           <a href="/tag/nkcyber.html" class="tag">nkcyber</a> <a href="/tag/cybersecurity.html" class="tag">cybersecurity</a>
@@ -72,9 +72,6 @@ vulnerable?</a></li>
 <li><a href="#understanding-the-mechanics"
 id="toc-understanding-the-mechanics">Understanding the
 mechanics</a></li>
-<li><a href="#random-notes-to-be-organized"
-id="toc-random-notes-to-be-organized">Random Notes (to be
-organized)</a></li>
 <li><a href="#virtual-machine" id="toc-virtual-machine">Virtual
 Machine</a>
 <ul>
@@ -140,20 +137,41 @@ href="#further-reading">elsewhere</a>, this backdoor involved a
 sophisticated process in which the binaries distributed to users is
 different from what was on GitHub (before it was deleted), so that the
 backdoor could not be found by auditing the code.</p>
-<p>As such, if we want to exploit this vulnerability, it is important to
-first find</p>
-<h2 id="random-notes-to-be-organized">Random Notes (to be
-organized)</h2>
+<p>Additionally, the attack was designed so that it’s only vulnerable to
+people with the author’s “private key”. You can think of this like a
+password. In a sense, the goal of the attack was to hide some code in
+the most popular Linux distributions so that anyone with the “magic
+words” could have full control over the entire server.</p>
+<p>So, if we want to take advantage of their exploit, we have to edit
+their code slightly, so that we can control what magic words it is
+waiting for.</p>
+<p>To do this, we can use <a
+href="https://github.com/amlweems/xzbot">xzbot by Anthony Weems</a>,
+which has the following features:</p>
+<blockquote>
 <ul>
-<li>There are quite a lot of contingent factors</li>
+<li><a href="https://github.com/amlweems/xzbot#honeypot">honeypot</a>:
+fake vulnerable server to detect exploit attempts</li>
+<li><a href="https://github.com/amlweems/xzbot#ed448-patch">ed448
+patch</a>: patch liblzma.so to use our own ED448 public key</li>
+<li><a href="https://github.com/amlweems/xzbot#backdoor-format">backdoor
+format</a>: format of the backdoor payload</li>
+<li><a href="https://github.com/amlweems/xzbot#backdoor-demo">backdoor
+demo</a>: cli to trigger the RCE assuming knowledge of the ED448 private
+key</li>
 </ul>
+</blockquote>
+<p>We’re going to be using the backdoor demo for today’s activity.</p>
+<p>We can use Anthony’s patches to control the “magic words”/“private
+key” that the server expects, so that we can control the exploit as if
+we were the attackers.</p>
 <h2 id="virtual-machine">Virtual Machine</h2>
 <p>To create a safe environment to work with this vulnerable code, I
 recommend working with it in a virtual machine.</p>
 <p>I’m personally going to create a Kali VM, because that’s the standard
 for our club.</p>
-<p>TODO: screenshots</p>
-<p>Consider adding more ram to your VM before going further.</p>
+<p>Consider adding more RAM to your VM before going further. Also, set
+your clipboard to bi-directional.</p>
 <h3 id="docker-installation">Docker installation</h3>
 <p>In your hacking environment, you can test if you have
 <code>docker</code> set up properly with:</p>
@@ -489,6 +507,18 @@ on distrusting xz”</a> (2024-04-03)</p></li>
     <details>
       <summary>See edit history for "Using the XZ backdoor"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2024-04-05T12:13:52-04:00">
+                Friday, April 05, 2024 at 12:13 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 14 insertions(+), 7 deletions(-)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
