@@ -9,7 +9,7 @@ Tags: nkcyber, cybersecurity
 
 ## Introduction
 
-Hi! I'm Zack Sargent. I run the cybersecurity club at [NKU](https://www.nku.edu/),
+Hi! I'm Zack Sargent. I run the [cybersecurity training division of NKCyber](https://nkcyber.github.io/#CST),
 and our members were interested in getting a hands-on experience with the recently
 exposed [XZ backdoor](https://arstechnica.com/security/2024/04/what-we-know-about-the-xz-utils-backdoor-that-almost-infected-the-world/).
 
@@ -71,12 +71,14 @@ In your hacking environment, you can test if you have `docker` set up properly w
 docker ps
 ```
 
-Otherwise, refer to how to install docker for your distro. ([See Kali linux here.](https://www.kali.org/docs/containers/installing-docker-on-kali/#installing-docker-ce-on-kali-linux))
+Otherwise, refer to how to install docker for your distro. ([See Kali linux instructions here.](https://www.kali.org/docs/containers/installing-docker-on-kali/#installing-docker-ce-on-kali-linux))
 Remember that you may want to `sudo reboot` for docker to set up properly.
 
 ### Installing Docker Testbed
 
 To practice this exploit, we're going to use Davide Guerri's ["Small collection of famous exploits"](https://github.com/dguerri/exploits-collection/tree/main), which describes itself as a "Docker test beds for famous, high-severity, exploits". In this repo, Davide has done a great job of dockerizing [Anthony Weems's xzbot](https://github.com/amlweems/xzbot) for testing and practice. It looks like both Anthony and Davide work for Google, which isn't relevant, but it makes me feel better about not being able to figure this out on my own.
+
+We are going to be heavily utilizing from Davide's work for today's activity.
 
 In your hacking environment, run [the setup commands](https://github.com/dguerri/exploits-collection/tree/main?tab=readme-ov-file#how-to-use):
 
@@ -87,17 +89,17 @@ In your hacking environment, run [the setup commands](https://github.com/dguerri
 > git submodule update --init --recursive
 > ```
 
+Then, navigate to the backdoor directory.
 
 ```bash
 cd xz-5.6.1-backdoor
-git submodule update --init --recursive
 ```
 
 ### Running the containers
 
 Now, you should be in the [`xz-5.6.1-backdoor`](https://github.com/dguerri/exploits-collection/tree/main/xz-5.6.1-backdoor) folder.
 
-Then, start the vulnerable server in the background.
+Then, start the two servers in the background:
 
 ```bash
 docker compose up --build -d
@@ -108,7 +110,8 @@ This will create two networked containers:
     1. `xzbackdoor-vulnerable` - This is what we will attack
     2. `xzbackdoor-poc` - This is where we will attack from
 
-(note that [the Makefile](https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/Makefile#L2) specifies `docker-compose`, but you're probably going to want `docker compose`. [What's the difference?](https://stackoverflow.com/a/66516826))
+(note that [the Makefile](https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/Makefile#L2)
+specifies `docker-compose`, but you're might want `docker compose`. [There's a difference](https://stackoverflow.com/a/66516826), but both should work for today.)
 
 This will take care of ensuring that we download and set up the correct versions of `xz` and `liblzma`. Note the vulnerable `.deb` for `liblzma` [is in Davide's repo](https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/deb/liblzma5_5.6.1-1_amd64.deb).
 
@@ -128,7 +131,7 @@ From here, we can attack the system as if we were running commands on it normall
 > [Note:](https://github.com/dguerri/exploits-collection/blob/main/xz-5.6.1-backdoor/README.md)
 > The ed448 key pair is generated from a random seed. Info on the key and its seed are printed out and stored in `/exploit/ed448info.txt`
 
-We want to get the seed that it randomly generated during setup. In the real world, this is reminiscent of the private key that only the original creators of the exploit have.
+We want to get the key and seed that it randomly generated during setup. In the real world, this would be the private key that only the original creators of the exploit have.
 
 ```bash
 # this extracts the seed from the information printed during the challenge setup
@@ -259,19 +262,19 @@ Nope! It's just establishing the SSH connection with the appropriate key!
 > 		},
 > 		HostKeyCallback: xz.HostKeyCallback,        // takes the SSH public key and computes a hash
 > 	}
-> 	client, err := ssh.Dial("tcp", *addr, config)   // establish an SSH connection
+> 	client, err := ssh.Dial("tcp", *addr, config)   // establishes an SSH connection
 > 	// ...
 > ```
 >
 > &mdash; [xzbot/main.go](https://github.com/amlweems/xzbot/blob/8ae5b706fb2c6040a91b233ea6ce39f9f09441d5/main.go#L193-L205) (comments are mine)
 
-## How to exploit without using xzbot?
+## Futher Activities:
 
-TODO
-
-## What's this about a killswitch?
-
-TODO
+- What's this about a killswitch?
+    - [Killswitch Thread](https://social.hackerspace.pl/@q3k/112184695043115759) - [Killswitch Post](https://social.hackerspace.pl/@q3k/112184808331214658) (2024-03-30)
+        - <https://gist.github.com/q3k/af3d93b6a1f399de28fe194add452d01>
+    - <https://gist.github.com/sgammon/ec604c3fabd1a22dd3cdc381b736b03e>
+- How to exploit without using xzbot?
 
 ## Further Reading
 
