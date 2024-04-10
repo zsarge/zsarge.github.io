@@ -54,7 +54,7 @@
         </span>
         <span id="reading-time">
           <i class="fa fa-clock-o" aria-hidden="true"></i> 
-          22 mins
+          23 mins
         </span>
         <span class="tags">
           <a href="/tag/nkcyber.html" class="tag">nkcyber</a> <a href="/tag/cybersecurity.html" class="tag">cybersecurity</a>
@@ -88,12 +88,8 @@ id="toc-executing-the-attack">Executing the attack</a></li>
 <li><a href="#analysis-of-xzbot" id="toc-analysis-of-xzbot">Analysis of
 xzbot</a></li>
 </ul></li>
-<li><a href="#how-to-exploit-without-using-xzbot"
-id="toc-how-to-exploit-without-using-xzbot">How to exploit without using
-xzbot?</a></li>
-<li><a href="#whats-this-about-a-killswitch"
-id="toc-whats-this-about-a-killswitch">What’s this about a
-killswitch?</a></li>
+<li><a href="#futher-activities" id="toc-futher-activities">Futher
+Activities:</a></li>
 <li><a href="#further-reading" id="toc-further-reading">Further
 Reading</a></li>
 </ul>
@@ -104,9 +100,10 @@ Reading</a></li>
 <iframe src="https://john.citrons.xyz/embed?ref=zack.fyi" style="margin-left:auto;display:block;margin-right:auto;max-width:732px;width:100%;height:94px;border:none;">
 </iframe>
 <h2 id="introduction">Introduction</h2>
-<p>Hi! I’m Zack Sargent. I run the cybersecurity club at <a
-href="https://www.nku.edu/">NKU</a>, and our members were interested in
-getting a hands-on experience with the recently exposed <a
+<p>Hi! I’m Zack Sargent. I run the <a
+href="https://nkcyber.github.io/#CST">cybersecurity training division of
+NKCyber</a>, and our members were interested in getting a hands-on
+experience with the recently exposed <a
 href="https://arstechnica.com/security/2024/04/what-we-know-about-the-xz-utils-backdoor-that-almost-infected-the-world/">XZ
 backdoor</a>.</p>
 <p>You may want to consult the materials from the “Further Reading”
@@ -184,7 +181,7 @@ your clipboard to bi-directional.</p>
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps</span></code></pre></div>
 <p>Otherwise, refer to how to install docker for your distro. (<a
 href="https://www.kali.org/docs/containers/installing-docker-on-kali/#installing-docker-ce-on-kali-linux">See
-Kali linux here.</a>) Remember that you may want to
+Kali linux instructions here.</a>) Remember that you may want to
 <code>sudo reboot</code> for docker to set up properly.</p>
 <h3 id="installing-docker-testbed">Installing Docker Testbed</h3>
 <p>To practice this exploit, we’re going to use Davide Guerri’s <a
@@ -196,6 +193,8 @@ href="https://github.com/amlweems/xzbot">Anthony Weems’s xzbot</a> for
 testing and practice. It looks like both Anthony and Davide work for
 Google, which isn’t relevant, but it makes me feel better about not
 being able to figure this out on my own.</p>
+<p>We are going to be heavily utilizing from Davide’s work for today’s
+activity.</p>
 <p>In your hacking environment, run <a
 href="https://github.com/dguerri/exploits-collection/tree/main?tab=readme-ov-file#how-to-use">the
 setup commands</a>:</p>
@@ -205,14 +204,14 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> exploits-collection</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span> <span class="at">--recursive</span></span></code></pre></div>
 </blockquote>
+<p>Then, navigate to the backdoor directory.</p>
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> xz-5.6.1-backdoor</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--init</span> <span class="at">--recursive</span></span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> xz-5.6.1-backdoor</span></code></pre></div>
 <h3 id="running-the-containers">Running the containers</h3>
 <p>Now, you should be in the <a
 href="https://github.com/dguerri/exploits-collection/tree/main/xz-5.6.1-backdoor"><code>xz-5.6.1-backdoor</code></a>
 folder.</p>
-<p>Then, start the vulnerable server in the background.</p>
+<p>Then, start the two servers in the background:</p>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose up <span class="at">--build</span> <span class="at">-d</span></span></code></pre></div>
 <p>This will create two networked containers:</p>
@@ -220,10 +219,10 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 2. `xzbackdoor-poc` - This is where we will attack from</code></pre>
 <p>(note that <a
 href="https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/Makefile#L2">the
-Makefile</a> specifies <code>docker-compose</code>, but you’re probably
-going to want <code>docker compose</code>. <a
-href="https://stackoverflow.com/a/66516826">What’s the
-difference?</a>)</p>
+Makefile</a> specifies <code>docker-compose</code>, but you’re might
+want <code>docker compose</code>. <a
+href="https://stackoverflow.com/a/66516826">There’s a difference</a>,
+but both should work for today.)</p>
 <p>This will take care of ensuring that we download and set up the
 correct versions of <code>xz</code> and <code>liblzma</code>. Note the
 vulnerable <code>.deb</code> for <code>liblzma</code> <a
@@ -249,8 +248,8 @@ The ed448 key pair is generated from a random seed. Info on the key and
 its seed are printed out and stored in
 <code>/exploit/ed448info.txt</code></p>
 </blockquote>
-<p>We want to get the seed that it randomly generated during setup. In
-the real world, this is reminiscent of the private key that only the
+<p>We want to get the key and seed that it randomly generated during
+setup. In the real world, this would be the private key that only the
 original creators of the exploit have.</p>
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this extracts the seed from the information printed during the challenge setup</span></span>
@@ -359,18 +358,32 @@ class="sourceCode go"><code class="sourceCode go"><span id="cb17-1"><a href="#cb
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>      <span class="op">},</span></span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      HostKeyCallback<span class="op">:</span> xz<span class="op">.</span>HostKeyCallback<span class="op">,</span>        <span class="co">// takes the SSH public key and computes a hash</span></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  client<span class="op">,</span> err <span class="op">:=</span> ssh<span class="op">.</span>Dial<span class="op">(</span><span class="st">&quot;tcp&quot;</span><span class="op">,</span> <span class="op">*</span>addr<span class="op">,</span> config<span class="op">)</span>   <span class="co">// establish an SSH connection</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  client<span class="op">,</span> err <span class="op">:=</span> ssh<span class="op">.</span>Dial<span class="op">(</span><span class="st">&quot;tcp&quot;</span><span class="op">,</span> <span class="op">*</span>addr<span class="op">,</span> config<span class="op">)</span>   <span class="co">// establishes an SSH connection</span></span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ...</span></span></code></pre></div>
 <p>— <a
 href="https://github.com/amlweems/xzbot/blob/8ae5b706fb2c6040a91b233ea6ce39f9f09441d5/main.go#L193-L205">xzbot/main.go</a>
 (comments are mine)</p>
 </blockquote>
-<h2 id="how-to-exploit-without-using-xzbot">How to exploit without using
-xzbot?</h2>
-<p>TODO</p>
-<h2 id="whats-this-about-a-killswitch">What’s this about a
-killswitch?</h2>
-<p>TODO</p>
+<h2 id="futher-activities">Futher Activities:</h2>
+<ul>
+<li>What’s this about a killswitch?
+<ul>
+<li><a
+href="https://social.hackerspace.pl/@q3k/112184695043115759">Killswitch
+Thread</a> - <a
+href="https://social.hackerspace.pl/@q3k/112184808331214658">Killswitch
+Post</a> (2024-03-30)
+<ul>
+<li><a
+href="https://gist.github.com/q3k/af3d93b6a1f399de28fe194add452d01"
+class="uri">https://gist.github.com/q3k/af3d93b6a1f399de28fe194add452d01</a></li>
+</ul></li>
+<li><a
+href="https://gist.github.com/sgammon/ec604c3fabd1a22dd3cdc381b736b03e"
+class="uri">https://gist.github.com/sgammon/ec604c3fabd1a22dd3cdc381b736b03e</a></li>
+</ul></li>
+<li>How to exploit without using xzbot?</li>
+</ul>
 <h2 id="further-reading">Further Reading</h2>
 <p>I consulted a bunch of resources when building this list. Here’s a
 compilation of the resources I found to be helpful, with the date they
@@ -512,6 +525,30 @@ on distrusting xz”</a> (2024-04-03)</p></li>
     <details>
       <summary>See edit history for "Using the XZ backdoor"</summary>
       <dl class="edits">
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2024-04-10T15:39:51-04:00">
+                Wednesday, April 10, 2024 at 03:39 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 16 insertions(+), 13 deletions(-)
+            </dd>
+          </div>
+        
+          <div class="edit">
+            <dt>
+              Zack Sargent edited this page on 
+              <time datetime="2024-04-05T16:58:36-04:00">
+                Friday, April 05, 2024 at 04:58 PM
+              </time>
+            </dt>
+            <dd>
+              1 file changed, 4 insertions(+)
+            </dd>
+          </div>
         
           <div class="edit">
             <dt>
