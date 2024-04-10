@@ -107,8 +107,8 @@ docker compose up --build -d
 
 This will create two networked containers:
 
-    1. `xzbackdoor-vulnerable` - This is what we will attack
-    2. `xzbackdoor-poc` - This is where we will attack from
+1. `xzbackdoor-vulnerable` - This is what we will attack
+2. `xzbackdoor-poc` - This is where we will attack from
 
 (note that [the Makefile](https://github.com/dguerri/exploits-collection/blob/08b65b557e93a6a8e9936c36febc6e9ef7ccbd8b/xz-5.6.1-backdoor/Makefile#L2)
 specifies `docker-compose`, but you're might want `docker compose`. [There's a difference](https://stackoverflow.com/a/66516826), but both should work for today.)
