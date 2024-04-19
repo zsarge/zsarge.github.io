@@ -446,6 +446,8 @@ Guides:
 
 - <https://cryptohack.org/challenges/>  ⭐
 - <https://cryptopals.com/>  ⭐
+	- [easy example](https://cryptopals.com/sets/1/challenges/1)
+	- [difficult example](https://cryptopals.com/sets/8/challenges/62.txt)
 
 ----
 
@@ -527,6 +529,13 @@ Guides:
 -   <https://www.hackthissite.org/missions/javascript/>
 -   <https://www.hackthissite.org/missions/basic/>
 -   <https://www.hackthissite.org/missions/playit/extbasic/0/>
+
+----
+
+### Steganography
+
+- <https://fotoforensics.com/>
+- <https://book.hacktricks.xyz/crypto-and-stego/stego-tricks>
 
 ----
 
