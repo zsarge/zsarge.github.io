@@ -4,13 +4,13 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkReadingTime from "./src/plugins/remark-reading-time.mjs";
-import preact from "@astrojs/preact";
+import react from "@astrojs/react";
 import Icons from "unplugin-icons/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://zack.fyi",
-  integrations: [mdx(), sitemap(), tailwind(), preact()],
+  integrations: [mdx(), sitemap(), tailwind(), react()],
   markdown: {
     extendDefaultPlugins: true,
     syntaxHighlight: false,
@@ -21,7 +21,7 @@ export default defineConfig({
     plugins: [
       Icons({
         compiler: "jsx",
-        jsx: "preact",
+        jsx: "react",
         autoInstall: true,
       }),
     ],

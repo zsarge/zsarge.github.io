@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content";
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import MaterialSymbolsKeyboardArrowDownRounded from "~icons/material-symbols/keyboard-arrow-down-rounded";
 import MaterialSymbolsKeyboardArrowUpRounded from "~icons/material-symbols/keyboard-arrow-up-rounded";
 
@@ -17,21 +17,21 @@ export default function ({ series, posts, order }: Props) {
   };
 
   return (
-    <div class="bg-slate-300 dark:bg-slate-800 rounded-lg">
+    <div className="bg-slate-300 dark:bg-slate-800 rounded-lg">
       <button
-        class={`p-5 rounded-lg text-left space-y-2 hover:bg-slate-400 dark:hover:bg-slate-700 ${
+        className={`p-5 rounded-lg text-left space-y-2 hover:bg-slate-400 dark:hover:bg-slate-700 ${
           isOpen ? "border-b-4 border-blue-600 rounded-b-lg bg-slate-400 dark:bg-slate-700" : ""
         }`}
         onClick={handleOnClick}
       >
-        <div class="flex items-center justify-between">
-          <div class="flex items justify-center space-x-2">
-            <h2 class="text-xl text-black dark:text-white font-bold">{series.data.title}</h2>
-            <span class="text-xl">{`${
+        <div className="flex items-center justify-between">
+          <div className="flex items justify-center space-x-2">
+            <h2 className="text-xl text-black dark:text-white font-bold">{series.data.title}</h2>
+            <span className="text-xl">{`${
               order ? ` • ${order} of ${posts.length}` : ` • ${posts.length} Parts`
             }`}</span>
           </div>
-          <div class="text-black dark:text-white">
+          <div className="text-black dark:text-white">
             {isOpen ? (
               <MaterialSymbolsKeyboardArrowUpRounded style={{ fontSize: "1.5em" }} />
             ) : (
@@ -42,10 +42,10 @@ export default function ({ series, posts, order }: Props) {
         <p>{series.data.description}</p>
       </button>
       {isOpen && (
-        <ul class="p-5 space-y-2">
+        <ul className="p-5 space-y-2">
           {posts.map((post, index) => (
             <li
-              class={`relative pl-5 before:absolute before:left-0 before:top-3 before:h-1.5 before:w-1.5 before:rounded-full ${
+              className={`relative pl-5 before:absolute before:left-0 before:top-3 before:h-1.5 before:w-1.5 before:rounded-full ${
                 !post.data.planned && order
                   ? order == index + 1
                     ? "before:bg-blue-600 before:ring-[3px] before:ring-blue-600/40"
@@ -57,7 +57,7 @@ export default function ({ series, posts, order }: Props) {
             >
               <a
                 href={!post.data.planned ? `/blog/${post.slug}` : undefined}
-                class={`space-x-2 font-medium ${
+                className={`space-x-2 font-medium ${
                   !post.data.planned
                     ? "underline underline-offset-2 text-black dark:text-white decoration-blue-600"
                     : "text-white0"
@@ -65,7 +65,7 @@ export default function ({ series, posts, order }: Props) {
               >
                 <span>{post.data.title}</span>
                 {post.data.planned && (
-                  <span class="inline-flex items-center justify-center p-0.5 px-2 bg-yellow-400 rounded-full text-black text-xs">
+                  <span className="inline-flex items-center justify-center p-0.5 px-2 bg-yellow-400 rounded-full text-black text-xs">
                     Planned
                   </span>
                 )}

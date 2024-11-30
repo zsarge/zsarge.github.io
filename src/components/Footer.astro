@@ -1,47 +1,34 @@
 ---
-import MdiTwitter from "~icons/mdi/twitter";
+import { RiBlueskyFill, RiMastodonFill } from "@remixicon/react";
 import MdiGithub from "~icons/mdi/github";
 import MdiRss from "~icons/mdi/rss";
-import MdiSitemap from "~icons/mdi/sitemap";
-import { GITHUB_HANDLE, TWITTER_HANDLE } from "../consts";
+import { GITHUB_HANDLE, BLUESKY_URL, FEDIVERSE_URL } from "../consts";
+import type { ComponentType } from "preact";
 
 const today = new Date();
+
+const socials: [string, string, ComponentType][] = [
+  ["BlueSky", BLUESKY_URL, RiBlueskyFill],
+  ["Fediverse", FEDIVERSE_URL, RiMastodonFill],
+  ["GitHub", GITHUB_HANDLE, MdiGithub],
+  ["RSS", "/rss.xml", MdiRss],
+];
 ---
 
 <footer class="flex items-center justify-between py-5">
   <p>&copy; {today.getFullYear()} Zack Sargent</p>
   <div class="flex items-center space-x-1">
-    <a
-      href={TWITTER_HANDLE}
-      target="_blank"
-      class="w-8 h-8 flex items-center justify-center rounded-md p-1.5 hover:bg-slate-300 dark:hover:bg-slate-800"
-    >
-      <MdiTwitter />
-      <span class="sr-only">Twitter</span>
-    </a>
-    <a
-      href={GITHUB_HANDLE}
-      target="_blank"
-      class="w-8 h-8 flex items-center justify-center rounded-md p-1.5 hover:bg-slate-300 dark:hover:bg-slate-800"
-    >
-      <MdiGithub />
-      <span class="sr-only">Github</span>
-    </a>
-    <a
-      href="/rss.xml"
-      target="_blank"
-      class="w-8 h-8 flex items-center justify-center rounded-md p-1.5 hover:bg-slate-300 dark:hover:bg-slate-800"
-    >
-      <MdiRss />
-      <span class="sr-only">RSS</span>
-    </a>
-    <a
-      href="/sitemap-index.xml"
-      target="_blank"
-      class="w-8 h-8 flex items-center justify-center rounded-md p-1.5 hover:bg-slate-300 dark:hover:bg-slate-800"
-    >
-      <MdiSitemap />
-      <span class="sr-only">Sitemap</span>
-    </a>
+    {
+      socials.map(([siteName, siteURL, SiteIcon]) => (
+        <a
+          href={siteURL}
+          target="_blank"
+          class="w-8 h-8 flex items-center justify-center rounded-md p-1.5 hover:bg-slate-300 dark:hover:bg-slate-800"
+        >
+          <SiteIcon />
+          <span class="sr-only">{siteName}</span>
+        </a>
+      ))
+    }
   </div>
 </footer>
