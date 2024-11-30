@@ -1,36 +1,23 @@
-# TODO
+# Zack's Blog
 
-- css
-  - style blockquotes
-  - style aside
-  - style article headers
-- code
-  - add bibtex citations at bottom of page
-    - [example](https://blog.djnavarro.net/posts/2022-11-03_what-i-know-about-mastodon/#citation)
-  - add rss support
-  - add updated date list to articles (+ support in RSS)
-  - move code highlighting to seperate stylesheets instead of embedded css
-  - add math formatting with KaTeX:
-    - https://github.com/KaTeX/KaTeX
-    - https://github.com/xu-cheng/pandoc-katex
-  - add support for UML:
-    - https://github.com/Masquerade-Circus/pandoc-plantuml
-  - add more "juice" to buttons and tags
-    - https://garden.bradwoods.io/notes/design/juice
-  - add navigation links at bottom of a page
-    - how to implement "next post"?
-  - derive edit history from git history after published date
-    - show git log of source pages at bottom of generated pages
-  - add a favicon
-  - move age script into asynchronous asset, to improve load times
-  - add nutshell embeddings, like gwern:
-    - https://ncase.me/nutshell/
-  - move to Astro?
-    - https://astro.build/
-- write good content
-  - create asthetically pleasing history of everything I've worked on
-  - https://uses.tech
-  - add quote from engineer tf2
-  - add list of cool things I've done
-    - timeline border: https://codepen.io/havardob/pen/xxPqXdO
-  - Add: "This post is licensed under CC BY 4.0 by the author."
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:3000`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## Blog Technologies
+
+Currntly: Using the [Nimbus Narratives](https://github.com/abdllahdev/nimbus-narratives) Astro theme by Abdullah Elsayed ([@abdllahdev](https://github.com/abdllahdev)).
+
+Previously:
+
+- Using a [diy Ruby script](https://github.com/zsarge/zsarge.github.io/blob/e7d29a4d936594469cf78524a08ba2df460f0696/blog.rb#L1-L284).
+- [Gridsome & Vue](https://github.com/zsarge/zsarge.github.io/blob/ef03949adb8616fb7315211e9d7b587f5b03bc80/blog/blogPostOne.md?plain=1#L1-L10)
