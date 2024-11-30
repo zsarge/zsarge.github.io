@@ -41,3 +41,8 @@ span[data-highlighted-line]::before {
 span[data-highlighted-line] {
   @apply bg-blue-400/20;
 }
+
+#age {
+  display: inline-block;
+  width: 6.3em;
+}

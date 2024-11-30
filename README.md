@@ -15,7 +15,7 @@ All commands are run from the root of the project, from a terminal:
 
 ## Blog Technologies
 
-Currntly: Using the [Nimbus Narratives](https://github.com/abdllahdev/nimbus-narratives) Astro theme by Abdullah Elsayed ([@abdllahdev](https://github.com/abdllahdev)).
+Currntly: Modified from the [Nimbus Narratives](https://github.com/abdllahdev/nimbus-narratives) Astro theme by Abdullah Elsayed ([@abdllahdev](https://github.com/abdllahdev)).
 
 Previously:
 
