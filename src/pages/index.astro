@@ -8,6 +8,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import SeriesList from "../components/SeriesList.astro";
 import { TWITTER_HANDLE, GITHUB_HANDLE } from "../consts";
+import Socials from "../components/Socials.astro";
 
 const posts = await getCollection("blog");
 
@@ -42,32 +43,7 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
         >, <span class="font-black">AI</span>, <span class="font-black">Web Development</span>, to
         <span class="font-black">Theoretical CS</span>.
       </p>
-      <div class="space-x-1">
-        <a
-          href={TWITTER_HANDLE}
-          target="_blank"
-          class="inline-flex items-center justify-center space-x-2 py-2 px-3 rounded-md bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700"
-        >
-          <MdiTwitter />
-          <span>Twitter</span>
-        </a>
-        <a
-          href={GITHUB_HANDLE}
-          target="_blank"
-          class="inline-flex items-center justify-center space-x-2 py-2 px-3 rounded-md bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700"
-        >
-          <MdiGithub />
-          <span>GitHub</span>
-        </a>
-        <a
-          href="/rss.xml"
-          target="_blank"
-          class="inline-flex items-center justify-center space-x-2 py-2 px-3 rounded-md bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700"
-        >
-          <MdiRss />
-          <span>RSS</span>
-        </a>
-      </div>
+      <Socials type="badges" />
     </div>
     {
       featuredPosts.length > 0 && (

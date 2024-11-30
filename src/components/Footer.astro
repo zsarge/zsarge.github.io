@@ -1,34 +1,10 @@
 ---
-import { RiBlueskyFill, RiMastodonFill } from "@remixicon/react";
-import MdiGithub from "~icons/mdi/github";
-import MdiRss from "~icons/mdi/rss";
-import { GITHUB_HANDLE, BLUESKY_URL, FEDIVERSE_URL } from "../consts";
-import type { ComponentType } from "preact";
+import Socials from "./Socials.astro";
 
 const today = new Date();
-
-const socials: [string, string, ComponentType][] = [
-  ["BlueSky", BLUESKY_URL, RiBlueskyFill],
-  ["Fediverse", FEDIVERSE_URL, RiMastodonFill],
-  ["GitHub", GITHUB_HANDLE, MdiGithub],
-  ["RSS", "/rss.xml", MdiRss],
-];
 ---
 
 <footer class="flex items-center justify-between py-5">
   <p>&copy; {today.getFullYear()} Zack Sargent</p>
-  <div class="flex items-center space-x-1">
-    {
-      socials.map(([siteName, siteURL, SiteIcon]) => (
-        <a
-          href={siteURL}
-          target="_blank"
-          class="w-8 h-8 flex items-center justify-center rounded-md p-1.5 hover:bg-slate-300 dark:hover:bg-slate-800"
-        >
-          <SiteIcon />
-          <span class="sr-only">{siteName}</span>
-        </a>
-      ))
-    }
-  </div>
+  <Socials type="icons" />
 </footer>
