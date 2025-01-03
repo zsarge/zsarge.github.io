@@ -6,6 +6,9 @@ import rehypePrettyCode from "rehype-pretty-code";
 import remarkReadingTime from "./src/plugins/remark-reading-time.mjs";
 import react from "@astrojs/react";
 import Icons from "unplugin-icons/vite";
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,8 +17,8 @@ export default defineConfig({
   markdown: {
     extendDefaultPlugins: true,
     syntaxHighlight: false,
-    rehypePlugins: [rehypePrettyCode],
-    remarkPlugins: [remarkReadingTime],
+    rehypePlugins: [rehypePrettyCode, rehypeKatex],
+    remarkPlugins: [remarkReadingTime,remarkMath],
   },
   vite: {
     plugins: [

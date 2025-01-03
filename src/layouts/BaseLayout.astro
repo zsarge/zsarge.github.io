@@ -20,6 +20,24 @@ const { title, description, postMeta } = Astro.props;
 <html lang="en" class="font-sans">
   <head>
     <BaseHead title={title} description={description} postMeta={postMeta} />
+    <!-- Support Katex : https://katex.org/docs/autorender -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css"
+      integrity="sha384-7lU0muIg/i1plk7MgygDUp3/bNRA65orrBub4/OSWHECgwEsY83HaS1x3bljA/XV"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js"
+      integrity="sha384-RdymN7NRJ+XoyeRY4185zXaxq9QWOOx3O7beyyrRK4KQZrPlCDQQpCu95FoCGPAE"
+      crossorigin="anonymous"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/contrib/auto-render.min.js"
+      integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>
   </head>
   <body
     class="relative container mx-auto md:max-w-4xl px-4 space-y-10 flex flex-col justify-between h-screen text-slate-700 bg-slate-100 dark:text-slate-300 dark:bg-slate-900"
