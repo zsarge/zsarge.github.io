@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import SeriesList from "../components/SeriesList.astro";
 import Socials from "../components/Socials.astro";
 import Age from "../components/Age";
+import QuoteBlock from "../components/QuoteBlock.astro";
 
 const posts = await getCollection("blog");
 
@@ -29,18 +30,14 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
         </span>
       </h1>
       <p>
-        Welcome to my blog! I'm a <Age client:load /> year-old software engineer with experience in <span
-          class="font-black">OCaml</span
-        >, <span class="font-black">JavaScript/Typescript</span>, <span class="font-black"
-          >Python</span
-        >, <span class="font-black">ReactJS</span>, and <span class="font-black">Node.js</span>. As
-        an enthusiastic learner, I aim to share my journey of exploration with you. Join me as I
-        write about various aspects of computer science, ranging from <span class="font-black"
-          >Programming Languages</span
-        >, <span class="font-black">AI</span>, <span class="font-black">Web Development</span>, to
-        <span class="font-black">Theoretical CS</span>.
+        Welcome to my blog! I'm a <Age client:load /> year-old software engineer who needs to finish
+        this bio.
       </p>
       <Socials type="badges" />
+
+      <QuoteBlock attribution="The Engineer" work="Team Fortress 2">
+        I'm an engineer. That means I solve problems.
+      </QuoteBlock>
     </div>
     {
       featuredPosts.length > 0 && (
