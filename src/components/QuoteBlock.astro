@@ -1,4 +1,12 @@
 ---
+/**
+ * This component could be improved by:
+ * - Customizing colors
+ * - Customizing titles
+ * - Customizing links to sources
+ * - Customizing icons (info, warning, etc)
+ *  - example: https://www.joshwcomeau.com/css/custom-css-reset/
+ */
 export interface Props {
   attribution?: string; // the person the quote is attibuted to
   work?: string; // the work the quote is from
@@ -7,7 +15,19 @@ export interface Props {
 const { attribution, work } = Astro.props;
 ---
 
-<!-- TODO: make better; add more colors; add option for logo, etc  -->
+<style>
+  blockquote p::before,
+  blockquote p::after {
+    content: none;
+  }
+
+  blockquote p {
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+  }
+</style>
+
 <blockquote
   class="p-4 my-4 border-s-4 rounded border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800"
 >

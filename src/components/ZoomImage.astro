@@ -1,0 +1,63 @@
+---
+import "react-medium-image-zoom/dist/styles.css";
+import Zoom from "react-medium-image-zoom";
+import { Image } from "astro:assets";
+
+export interface Props {
+  imageProps: typeof Image;
+  attributionLink: string;
+  attribution: string;
+}
+
+const { imageProps, attributionLink, attribution } = Astro.props;
+
+const fromBlog = new URL(imageProps.src).hostname === Astro.site?.hostname;
+const newTab = !fromBlog;
+---
+
+<style>
+  img {
+    padding: 0;
+    margin: 0;
+  }
+
+  figure {
+    width: fit-content;
+  }
+
+  figcaption {
+    text-align: center;
+  }
+</style>
+
+<figure>
+  <Zoom client:load>
+    <Image {...imageProps} />
+  </Zoom>
+  {
+    // you gotta love nested terenaries
+    (attribution || attributionLink) && (
+      <figcaption>
+        {attribution && attributionLink ? (
+          newTab ? (
+            <a href={attributionLink} target="_blank" rel="noopener noreferrer">
+              {attribution}
+            </a>
+          ) : (
+            <a href={attributionLink}>{attribution}</a>
+          )
+        ) : attributionLink && !attribution ? (
+          newTab ? (
+            <a href={attributionLink} target="_blank" rel="noopener noreferrer">
+              {attributionLink}
+            </a>
+          ) : (
+            <a href={attributionLink}>{attributionLink}</a>
+          )
+        ) : (
+          attribution && { attribution }
+        )}
+      </figcaption>
+    )
+  }
+</figure>
