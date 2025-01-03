@@ -14,16 +14,34 @@ tags:
 import QuoteBlock from "../../components/QuoteBlock.astro";
 import ZoomImage from "../../components/ZoomImage.astro";
 
-<ZoomImage
-  imageProps={{
-    height: "200",
-    width: "200",
-    alt: "'Automating' comes from the roots 'auto-' meaning 'self-', and 'mating', meaning 'screwing'",
-    src: "https://imgs.xkcd.com/comics/automation.png",
-  }}
-  attribution="XCKD 1319"
-  attributionLink="https://xkcd.com/1319/"
-/>
+I think about these XKCD comics a lot:
+
+<div style={{ display: "flex" }}>
+  <div style={{ flex: 1 }}>
+    <ZoomImage
+      imageProps={{
+        height: "300",
+        width: "300",
+        alt: "Don't forget the time you spend finding the chart to look up what you save. And the time spent reading this reminder about the time spent. And the time trying to figure out if either of those actually make sense. Remember, every second counts toward your life total, including these right now.",
+        src: "https://imgs.xkcd.com/comics/is_it_worth_the_time.png",
+      }}
+      attribution="XKCD 1205"
+      attributionLink="https://xkcd.com/1205/"
+    />
+  </div>
+  <div style={{ flex: 1 }}>
+    <ZoomImage
+      imageProps={{
+        height: "300",
+        width: "300",
+        alt: "'Automating' comes from the roots 'auto-' meaning 'self-', and 'mating', meaning 'screwing'",
+        src: "https://imgs.xkcd.com/comics/automation.png",
+      }}
+      attribution="XKCD 1319"
+      attributionLink="https://xkcd.com/1319/"
+    />
+  </div>
+</div>
 
 ## TODO - Story so far
 
