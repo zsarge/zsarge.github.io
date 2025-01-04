@@ -1,15 +1,13 @@
 ---
-import { RiBlueskyFill, RiMastodonFill } from "@remixicon/react";
-import MdiGithub from "~icons/mdi/github";
-import MdiRss from "~icons/mdi/rss";
+import { RiBlueskyFill, RiGithubFill, RiMastodonFill, RiRssFill } from "@remixicon/react";
 import type { ComponentType } from "preact";
 import { BLUESKY_URL, FEDIVERSE_URL, GITHUB_HANDLE } from "../consts";
 
 const socials: [string, string, ComponentType][] = [
   ["BlueSky", BLUESKY_URL, RiBlueskyFill],
   ["Fediverse", FEDIVERSE_URL, RiMastodonFill],
-  ["GitHub", GITHUB_HANDLE, MdiGithub],
-  ["RSS", "/rss.xml", MdiRss],
+  ["RSS", "/rss.xml", RiRssFill],
+  ["GitHub", GITHUB_HANDLE, RiGithubFill],
 ];
 
 interface Props {
@@ -17,8 +15,6 @@ interface Props {
 }
 
 const { type } = Astro.props;
-
-const isIcons = type == "icons";
 ---
 
 {
