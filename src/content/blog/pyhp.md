@@ -1,6 +1,6 @@
 ---
 title: "PyHP: Python Home Page"
-description: what if we used python's eval and exec as html template generators?
+description: What if we used python's eval and exec as html template generators?
 pubDate: 2023-06-17
 tags:
   - python
