@@ -1,4 +1,5 @@
 ---
+import { RiUser2Fill } from "@remixicon/react";
 import Socials from "../components/Socials.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
@@ -6,6 +7,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout title="All posts">
   <h1 class="text-black dark:text-white pb-5 text-4xl">Contact</h1>
   <Socials type="badges" />
+  <br />
+  <div
+    class="inline-flex items-center justify-center space-x-2 py-2 px-3 rounded-md bg-slate-300 dark:bg-slate-800"
+  >
+    <RiUser2Fill className="mr-1" />
+    Pronouns: He/Him
+  </div>
   <h2 class="text-black dark:text-white pv-3 my-8 text-4xl" id="cal">Calendar</h2>
   <div class="pb-5">
     <p>Feel free to check out my calendar to see if I'm busy.</p>
