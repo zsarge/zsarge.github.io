@@ -63,7 +63,7 @@ blockquote {
 }
 
 .bard-title::before {
-    background-image: url(/public/chatbot-comparison/bard.gif);
+    background-image: url(/chatbot-comparison/bard.gif);
 }
 
 .chatgpt {
@@ -71,7 +71,7 @@ blockquote {
 }
 
 .chatgpt-title::before {
-    background-image: url(/public/chatbot-comparison/chatgpt.png);
+    background-image: url(/chatbot-comparison/chatgpt.png);
 }
 
 .bing {
@@ -79,7 +79,7 @@ blockquote {
 }
 
 .bing-title::before {
-    background-image: url(/public/chatbot-comparison/bing.png);
+    background-image: url(/chatbot-comparison/bing.png);
 }
 
 blockquote {
@@ -102,17 +102,14 @@ blockquote {
     color: white;
 }
 
+html.dark .bard {
+    background-color: #222327;
+}
 
-@media (prefers-color-scheme: dark) {
-    .bard {
-        background-color: #222327;
-    }
+html.dark .chatgpt {
+    background-color: #343541;
+}
 
-    .chatgpt {
-        background-color: #343541;
-    }
-
-    .bing {
-        background-color: #242322;
-    }
+html.dark .bing {
+    background-color: #242322;
 }

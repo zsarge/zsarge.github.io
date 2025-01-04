@@ -7,7 +7,7 @@ tags:
   - chatbot
 ---
 
-<link rel="stylesheet" href="/public/chatbot-comparison/chatbot.css">
+<link rel="stylesheet" href="/chatbot-comparison/chatbot.css">
 
 This report will compare and contrast the outputs of the following chatbot services:
 
@@ -76,7 +76,7 @@ Originally a ChatGPT prompt from [James Blackwell](https://twitter.com/jwblackwe
 <blockquote class="human">
 What exactly does this weird looking regex do?
 
-```perl
+```regex
 /\b((([01]?\d)|(two[0-three])):([0-five]?\d))((:[0-five]?\d))?\s?(am|pm)?\b/i;
 ```
 
@@ -782,24 +782,24 @@ Sure, I’ll try to create that.
 
 <div>
 <picture>
-    <source srcset="/public/chatbot-comparison/response1.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response1.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response1.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art" loading="lazy">
+    <source srcset="/chatbot-comparison/response1.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response1.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response1.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art" loading="lazy">
 </picture>
 <picture>
-    <source srcset="/public/chatbot-comparison/response2.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response2.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response2.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
+    <source srcset="/chatbot-comparison/response2.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response2.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response2.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
 </picture>
 <picture>
-    <source srcset="/public/chatbot-comparison/response3.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response3.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response3.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
+    <source srcset="/chatbot-comparison/response3.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response3.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response3.jpeg" alt="a cartoony monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
 </picture>
 <picture>
-    <source srcset="/public/chatbot-comparison/response4.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response4.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response4.jpeg" alt="a realistic monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
+    <source srcset="/chatbot-comparison/response4.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response4.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response4.jpeg" alt="a realistic monochrome bunny rabbit with a titled pattern similar to ascii art. it has prominent ears and feet" loading="lazy">
 </picture>
 </div>
 
@@ -879,24 +879,24 @@ Sure, I’ll try to create that.
 
 <div>
 <picture>
-    <source srcset="/public/chatbot-comparison/response5.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response5.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response5.jpeg" alt="a simple black on white silhouette of a bunny, where the silhouette is composed of text-like blocks" loading="lazy">
+    <source srcset="/chatbot-comparison/response5.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response5.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response5.jpeg" alt="a simple black on white silhouette of a bunny, where the silhouette is composed of text-like blocks" loading="lazy">
 </picture>
 <picture>
-    <source srcset="/public/chatbot-comparison/response6.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response6.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response6.jpeg" alt="a cartoony bunny with droopy ears" loading="lazy">
+    <source srcset="/chatbot-comparison/response6.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response6.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response6.jpeg" alt="a cartoony bunny with droopy ears" loading="lazy">
 </picture>
 <picture>
-    <source srcset="/public/chatbot-comparison/response7.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response7.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response7.jpeg" alt="a blocky image of a rabbit head" loading="lazy">
+    <source srcset="/chatbot-comparison/response7.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response7.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response7.jpeg" alt="a blocky image of a rabbit head" loading="lazy">
 </picture>
 <picture>
-    <source srcset="/public/chatbot-comparison/response8.webp" type="image/webp">
-    <source srcset="/public/chatbot-comparison/response8.jpeg" type="image/jpeg"> 
-    <img src="/public/chatbot-comparison/response8.jpeg" alt="a monochrome image of a bunny that could probably be mistaken for a gummy bear. it has vague numbers in its body, but clearly is not generated with a strong understanding of ascii" loading="lazy">
+    <source srcset="/chatbot-comparison/response8.webp" type="image/webp">
+    <source srcset="/chatbot-comparison/response8.jpeg" type="image/jpeg"> 
+    <img src="/chatbot-comparison/response8.jpeg" alt="a monochrome image of a bunny that could probably be mistaken for a gummy bear. it has vague numbers in its body, but clearly is not generated with a strong understanding of ascii" loading="lazy">
 </picture>
 </div>
 

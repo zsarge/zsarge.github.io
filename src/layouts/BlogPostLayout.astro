@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 import TableOfContent from "../components/TableOfContent.astro";
@@ -104,7 +104,7 @@ const series = (await getCollection("series")).find((s) => s.data.id === seriesI
 
 <script>
   const codeBlocks = Array.from(
-    document.querySelectorAll("figure[data-rehype-pretty-code-figure]"),
+    document.querySelectorAll("figure[data-rehype-pretty-code-figure]")
   );
 
   for (let codeBlock of codeBlocks) {

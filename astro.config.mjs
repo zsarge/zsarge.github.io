@@ -18,7 +18,7 @@ export default defineConfig({
     extendDefaultPlugins: true,
     syntaxHighlight: false,
     rehypePlugins: [rehypePrettyCode, rehypeKatex],
-    remarkPlugins: [remarkReadingTime,remarkMath],
+    remarkPlugins: [remarkReadingTime, remarkMath],
   },
   vite: {
     plugins: [

@@ -7,7 +7,7 @@ tags:
   - chatbot
 ---
 
-<link rel="stylesheet" href="/public/chatbot-comparison/chatbot.css">
+<link rel="stylesheet" href="/chatbot-comparison/chatbot.css">
 
 After [my last chatbot comparison](/blog/chatbot-comparison.html), this is a quick, surface-level
 comparison of how Bard, ChatGPT, and Bing Chat are able to interpret and understand a
