@@ -34,6 +34,13 @@ function getDescription(description?: string) {
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="me" href={FEDIVERSE_URL} />
 
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="Your Site's Title"
+  href={new URL("rss.xml", Astro.site)}
+/>
+
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
