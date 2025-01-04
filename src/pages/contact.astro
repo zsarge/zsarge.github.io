@@ -1,0 +1,20 @@
+---
+import Socials from "../components/Socials.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="All posts">
+  <h1 class="text-black dark:text-white pb-5 text-4xl">Contact</h1>
+  <Socials type="badges" />
+  <h2 class="text-black dark:text-white pv-3 my-8 text-4xl" id="cal">Calendar</h2>
+  <div class="pb-5">
+    <p>Feel free to check out my calendar to see if I'm busy.</p>
+  </div>
+  <iframe
+    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&mode=WEEK&showTitle=0&showPrint=0&showCalendars=0&src=emFja2FyeXdzYXJnZW50QGdtYWlsLmNvbQ&src=cTR2amFpZmkxZm9ncmdndmtnaDNzY2huaDhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23EF6C00&color=%23616161"
+    style="border:solid 1px #777"
+    width="800"
+    height="600"
+    frameborder="0"
+    scrolling="no"></iframe>
+</BaseLayout>
