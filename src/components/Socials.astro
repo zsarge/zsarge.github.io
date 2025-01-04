@@ -1,13 +1,20 @@
 ---
-import { RiBlueskyFill, RiGithubFill, RiMastodonFill, RiRssFill } from "@remixicon/react";
-import type { ComponentType } from "preact";
+import {
+  RiBlueskyFill,
+  RiGithubFill,
+  RiMailFill,
+  RiMastodonFill,
+  RiRssFill,
+} from "@remixicon/react";
+import type { ComponentType } from "react";
 import { BLUESKY_URL, FEDIVERSE_URL, GITHUB_HANDLE } from "../consts";
 
 const socials: [string, string, ComponentType][] = [
   ["BlueSky", BLUESKY_URL, RiBlueskyFill],
   ["Fediverse", FEDIVERSE_URL, RiMastodonFill],
-  ["RSS", "/rss.xml", RiRssFill],
   ["GitHub", GITHUB_HANDLE, RiGithubFill],
+  ["Email", "mailto:contact@zack.fyi", RiMailFill],
+  ["RSS", "/rss.xml", RiRssFill],
 ];
 
 interface Props {
