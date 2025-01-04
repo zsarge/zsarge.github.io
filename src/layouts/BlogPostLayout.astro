@@ -88,7 +88,7 @@ const series = (await getCollection("series")).find((s) => s.data.id === seriesI
       </div>
       {
         headings.length > 0 && (
-          <nav class="hidden text-sm space-y-2 mt-9 lg:block lg:w-4/12 h-screen sticky top-20 z-40">
+          <nav class="hidden text-sm space-y-2 mt-9 lg:block lg:w-4/12 h-screen sticky top-20 z-40 ">
             <span class="font-black dark:text-white text-black uppercase">On This Page</span>
             <TableOfContent headings={headings} />
             <div class="border-slate-700 border-b-[1px]" />

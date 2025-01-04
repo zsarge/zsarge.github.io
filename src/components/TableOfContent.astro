@@ -37,8 +37,18 @@ const { headings } = Astro.props;
 const toc = buildToc(headings);
 ---
 
-<div class="not-prose">
-  <ul class="list-disc list-outside">
+<style>
+  .sidebar {
+    max-height: 60vh;
+  }
+
+  .min-width {
+    min-width: 8em;
+  }
+</style>
+
+<div class="not-prose min-width">
+  <ul class="list-disc list-outside overflow-y-auto sidebar">
     {toc.map((heading) => <TableOfContentHeading heading={heading} />)}
   </ul>
 </div>
