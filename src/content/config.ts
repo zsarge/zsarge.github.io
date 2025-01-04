@@ -3,15 +3,7 @@ import { defineCollection, z } from "astro:content";
 const blog = defineCollection({
   schema: ({ image }) =>
     z.object({
-      title: z.string().transform((t) =>
-        t
-          .toLowerCase()
-          .split(" ")
-          .map(function (word) {
-            return word.replace(word[0], word[0].toUpperCase());
-          })
-          .join(" ")
-      ),
+      title: z.string(),
       description: z.string(),
       tags: z
         .string()
