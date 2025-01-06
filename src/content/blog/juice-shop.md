@@ -8,7 +8,7 @@ tags:
   - nkcyber
 ---
 
-This is not a full-fledged post, but more of a public reference of commands and steps I used to get [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/) running with [CTFd](https://ctfd.io/). Thanks so much to all the open source contributers that make this process both possible and straightforward.
+This is intended as a public reference of steps I used to get [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/) running with [CTFd](https://ctfd.io/). Thanks so much to all the open source contributers that make this process both possible and straightforward.
 
 Juice Shop does have a scoreboard built in, but CTFd allows support for teams, and better hints.
 
@@ -186,7 +186,7 @@ Make sure to enter valid data for all of this. Despite what other sources may cl
 
 After you get it set up, go to `http://localhost:8000/admin/config` to load the `nkcyberconfig.yml` as a backup:
 
-![Make sure to "Import CSV"](/assets/juice-shop/Screenshot from 2023-09-25 19-33-11.png)
+![Make sure to "Import CSV"](/assets/juice-shop/import-csv.png)
 
 Use "Import CSV" to import the generated `filtered.csv` from above.
 

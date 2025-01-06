@@ -153,6 +153,7 @@ seed="$(sed -n 's/^Seed: \([0-9][0-9]*\)/\1/p' /exploit/ed448info.txt)"
 
 <aside>
 You should see:
+
 ```
 Usage of /exploit/xzbot/xzbot:
   -addr string
@@ -162,6 +163,7 @@ Usage of /exploit/xzbot/xzbot:
   -seed string
         ed448 seed, must match xz backdoor key (default "0")
 ```
+
 </aside>
 
 ```bash
@@ -285,29 +287,17 @@ Nope! It's just establishing the SSH connection with the appropriate key!
 ## Further Reading
 
 I consulted a bunch of resources when building this list.
-Here's a compilation of the resources I found to be helpful, with the date they were first posted.
-
-<!-- make list of links easier to read -->
-<style>
-section#further-reading li,
-section#further-reading a,
-section#further-reading p {
-    line-height: 1.1em;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-}
-section#further-reading li {
-    margin-bottom: 0.2rem;
-}
-</style>
 
 <section id="further-reading">
+
+Primarily:
 
 - xzbot: <https://github.com/amlweems/xzbot>
   - Credit: Anthony Weems [GitHub](https://github.com/amlweems), [Mastodon](https://infosec.exchange/@amlw)
   - [Docker testbed for xzbot](https://github.com/dguerri/exploits-collection/tree/main/xz-5.6.1-backdoor)
 - [Wikipedia](https://en.wikipedia.org/wiki/XZ_Utils_backdoor)
+
+Here's a compilation of the resources I found to be helpful, with the date they were first posted.
 
 - [Andres Freund's Announcement](https://www.openwall.com/lists/oss-security/2024/03/29/4) (2024-03-29)
   - [Andres Freund's Mastodon Post](https://mastodon.social/@AndresFreundTec/112180083704606941) (2024-03-29)

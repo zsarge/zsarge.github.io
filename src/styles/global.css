@@ -34,6 +34,13 @@ span[data-line] {
   @apply flex;
 }
 
+/* Style line numbers */
+span[data-line]::before {
+  width: 3em;
+  text-align: right;
+  margin-right: 0.3rem;
+}
+
 span[data-highlighted-line]::before {
   @apply border-blue-400;
 }
@@ -44,5 +51,9 @@ span[data-highlighted-line] {
 
 #age {
   display: inline-block;
-  width: 6.45em;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+html {
+  word-wrap: break-word;
 }

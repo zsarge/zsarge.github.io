@@ -10,6 +10,16 @@ module.exports = {
         sans: ["Helvetica Neue", ...defaultTheme.fontFamily.sans],
         righteous: ["Righteous", "Helvetica Neue", ...defaultTheme.fontFamily.sans],
       },
+      // https://stackoverflow.com/a/73185936
+      // not sure why this doesn't seem to be working
+      typography: {
+        quoteless: {
+          css: {
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+          },
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
