@@ -96,7 +96,7 @@ export const TotalMinutesSaved = () => {
   const number = timeSavedData.reduce((acc, ele) => acc + ele.minutes, 0).toString();
   return (
     <>
-      <div className="text-center mt-6 text-xl font-bold ">Time saved</div>
+      <div className="text-center mt-6 text-xl font-bold ">Time Saved</div>
       <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 drop-shadow-lg text-center">
         {number} minutes
         <br />
@@ -109,7 +109,7 @@ export const TotalMinutesWasted = () => {
   const number = timeWastedData.reduce((acc, ele) => acc + ele.minutes, 0).toString();
   return (
     <>
-      <div class="text-center mt-6 text-xl font-bold ">Time spent</div>
+      <div className="text-center mt-6 text-xl font-bold ">Time Spent</div>
       <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 drop-shadow-lg text-center">
         {number} minutes
         <br />
