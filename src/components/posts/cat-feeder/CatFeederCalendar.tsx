@@ -7,7 +7,7 @@ const buttonClass =
 export default function () {
   const [Calendar, setCalendar] = useState(null);
   const calendarRef = useRef(null);
-  const [month, setMonth] = useState("December");
+  const [month, setMonth] = useState("December 2024");
 
   const initialEvents = [
     {
@@ -30,7 +30,7 @@ export default function () {
 
   useEffect(() => {
     console.log("Calendar props:", { events: initialEvents });
-    calendarRef?.current?.getInstance()?.setDate("2024-12-01");
+    calendarRef?.current?.getInstance()?.setDate("2024-12-05");
   }, [Calendar]);
 
   useEffect(() => {
@@ -89,7 +89,7 @@ export default function () {
         <button className={buttonClass} onClick={handlePrev}>
           Previous
         </button>
-        <div>{month}</div>
+        <div className="py-2">{month}</div>
         <button className={buttonClass} onClick={handleNext}>
           Next
         </button>
@@ -102,14 +102,6 @@ export default function () {
           view="month"
           height="40em"
           date="2024-12-01"
-          template={{
-            monthGridHeader(model) {
-              const date = parseInt(model.date.split("-")[2], 10);
-
-              return `<span>${date}</span>`;
-            },
-          }}
-          // week={{ taskView: false }}
           events={initialEvents}
         />
       ) : (
