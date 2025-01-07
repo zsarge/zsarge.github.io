@@ -1,6 +1,6 @@
 import "@toast-ui/calendar/dist/toastui-calendar.min.css";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { timeSaved, timeWasted } from "./CatFeederCalendarData";
+import { timeSavedData, timeWastedData } from "./CatFeederCalendarData";
 import interpolate from "color-interpolate";
 
 const buttonClass =
@@ -18,7 +18,7 @@ const savedColorscale = interpolate([
 
 const wastedColorScale = interpolate(["#FF4646", "#FF3232", "#F61A23", "#DD111B"]);
 
-const initialEvents = timeSaved
+const initialEvents = timeSavedData
   .map((data, index) => ({
     id: index,
     calendarId: "0",
@@ -30,8 +30,8 @@ const initialEvents = timeSaved
     isReadOnly: true,
   }))
   .concat(
-    timeWasted.map((data, index) => ({
-      id: index + timeSaved.length,
+    timeWastedData.map((data, index) => ({
+      id: index + timeSavedData.length,
       calendarId: "0",
       title: data.minutes.toString(),
       category: "allday",
@@ -47,7 +47,7 @@ export default function () {
   const calendarRef = useRef(null);
   const [month, setMonth] = useState("December 2024");
 
-  console.log(timeSaved);
+  console.log(timeSavedData);
 
   useEffect(() => {
     // Dynamically import the Calendar module because astro doesn't like the import statement

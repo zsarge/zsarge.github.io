@@ -1,22 +1,7 @@
 const seperator = ": ";
 
-const timeSavedData = `
-2024-12-04: 60
-2024-12-05: 60
-2024-12-06: 60
-2024-12-07: 66
-2024-12-08: 60
-2024-12-09: 60
-2024-12-10: 60
-2024-12-11: 60
-2024-12-12: 60
-2024-12-13: 72
-2024-12-14: 96
-2024-12-15: 60
-2024-12-16: 82
-2024-12-17: 60
+const timeSavedDataRaw = `
 2024-12-18: 60
-2024-12-19: 60
 2024-12-20: 72
 2024-12-21: 82
 2024-12-22: 60
@@ -37,7 +22,7 @@ const timeSavedData = `
 2025-01-06: 60
 `;
 
-const timeWastedData = `
+const timeWastedDataRaw = `
 2024-12-05: 8.0
 2024-12-07: 10.0
 2024-12-10: 6.0
@@ -83,5 +68,20 @@ const parse = (data: string): TimeData[] => {
   return processedData;
 };
 
-export const timeWasted = parse(timeWastedData);
-export const timeSaved = parse(timeSavedData);
+export const timeWastedData = parse(timeWastedDataRaw);
+export const timeSavedData = parse(timeSavedDataRaw);
+export const TotalMinutesSaved = () => {
+  const number = timeSavedData.reduce((acc, ele) => acc + ele.minutes, 0).toString();
+  return (
+    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 drop-shadow-lg text-center">
+      {number} minutes
+      <br />
+      {"\u2248"} {Math.round(number / 60)} hours
+    </div>
+  );
+};
+export const TotalMinutesWasted = () => (
+  <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 drop-shadow-lg text-center">
+    {timeWastedData.reduce((acc, ele) => acc + ele.minutes, 0).toString()}
+  </div>
+);

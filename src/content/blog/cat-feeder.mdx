@@ -12,6 +12,10 @@ tags:
 import QuoteBlock from "../../components/QuoteBlock.astro";
 import ZoomImage from "../../components/ZoomImage.astro";
 import CatFeederCalendar from "../../components/posts/cat-feeder/CatFeederCalendar";
+import {
+  TotalMinutesSaved,
+  TotalMinutesWasted,
+} from "../../components/posts/cat-feeder/CatFeederCalendarData";
 
 I think about these XKCD comics a lot:
 
@@ -69,9 +73,17 @@ And, for every successful time that food is dispensed:
 
 $$
 \text{Time Saved} = \begin{cases}
-    30 \text{ minutes} & \text{when I'm at home}\\
+    30 \text{ minutes} & \text{when I'm in my dorm}\\
     \text{driving duration}                     & \text{when I'm} \gt \text{1,000m away}
 \end{cases}
 $$
 
 <CatFeederCalendar client:load />
+
+Total minutes saved:
+
+<TotalMinutesSaved />
+
+Total minutes wasted:
+
+<TotalMinutesWasted />
