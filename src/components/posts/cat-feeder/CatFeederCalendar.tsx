@@ -1,5 +1,6 @@
 import "@toast-ui/calendar/dist/toastui-calendar.min.css";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { timeSaved, timeWasted } from "./CatFeederCalendarData";
 
 const buttonClass =
   "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded";
@@ -9,17 +10,42 @@ export default function () {
   const calendarRef = useRef(null);
   const [month, setMonth] = useState("December 2024");
 
-  const initialEvents = [
-    {
-      id: "3",
+  const initialEvents = timeSaved
+    .map((data, index) => ({
+      id: index,
       calendarId: "0",
-      title: "FE Workshop",
+      title: data.minutes.toString(),
       category: "allday",
-      start: "2025-01-06",
-      end: "2025-01-06",
+      start: data.date,
+      end: data.date,
+      backgroundColor: "green",
       isReadOnly: true,
-    },
-  ];
+    }))
+    .concat(
+      timeWasted.map((data, index) => ({
+        id: index + timeSaved.length,
+        calendarId: "0",
+        title: data.minutes.toString(),
+        category: "allday",
+        start: data.date,
+        end: data.date,
+        backgroundColor: "red",
+        isReadOnly: true,
+      })),
+    );
+
+  // [
+  //   {
+  //     id: "3",
+  //     calendarId: "0",
+  //     title: "FE Workshop",
+  //     category: "allday",
+  //     start: "2025-01-06",
+  //     end: "2025-01-06",
+  //     backgroundColor: "#534356",
+  //     isReadOnly: true,
+  //   },
+  // ];
 
   useEffect(() => {
     // Dynamically import the Calendar module because astro doesn't like the import statement
