@@ -1,8 +1,13 @@
 import "@toast-ui/calendar/dist/toastui-calendar.min.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const buttonClass =
+  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded";
 
 export default function () {
   const [Calendar, setCalendar] = useState(null);
+  const calendarRef = useRef(null);
+  const [month, setMonth] = useState("December");
 
   const initialEvents = [
     {
@@ -22,11 +27,94 @@ export default function () {
       setCalendar(() => mod.default);
     });
   }, []);
+
   useEffect(() => {
     console.log("Calendar props:", { events: initialEvents });
+    calendarRef?.current?.getInstance()?.setDate("2024-12-01");
   }, [Calendar]);
+
+  useEffect(() => {
+    const today = calendarRef?.current?.getInstance()?.today();
+    console.log({ today, calendarRef });
+  }, [calendarRef]);
 
   // https://github.com/nhn/tui.calendar/blob/b53e765e8d896ab7c63d9b9b9515904119a72f46/apps/react-calendar/src/index.tsx#L23-L34
 
-  return <>{Calendar ? <Calendar events={initialEvents} /> : <div>Loading calendar...</div>}</>;
+  const getCalInstance = useCallback(() => calendarRef.current?.getInstance?.(), []);
+
+  const updateRenderRangeText = useCallback(() => {
+    const calInstance = getCalInstance();
+    console.log("got here");
+    if (!calInstance) {
+      setMonth("...");
+    }
+
+    const calDate = calInstance.getDate();
+
+    const year = calDate.getFullYear();
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const monthName = months[calDate.getMonth()];
+    const dateRangeText = `${monthName} ${year}`;
+
+    console.log({ dateRangeText });
+    setMonth(dateRangeText);
+  }, [getCalInstance]);
+
+  function handlePrev() {
+    calendarRef?.current?.getInstance()?.prev();
+    updateRenderRangeText();
+  }
+
+  function handleNext() {
+    calendarRef?.current?.getInstance()?.next();
+    updateRenderRangeText();
+  }
+
+  return (
+    <>
+      <div className="w-full flex justify-between py-5">
+        <button className={buttonClass} onClick={handlePrev}>
+          Previous
+        </button>
+        <div>{month}</div>
+        <button className={buttonClass} onClick={handleNext}>
+          Next
+        </button>
+      </div>
+      {Calendar ? (
+        <Calendar
+          ref={calendarRef}
+          isReadOnly={true}
+          usageStatistics={false}
+          view="month"
+          height="40em"
+          date="2024-12-01"
+          template={{
+            monthGridHeader(model) {
+              const date = parseInt(model.date.split("-")[2], 10);
+
+              return `<span>${date}</span>`;
+            },
+          }}
+          // week={{ taskView: false }}
+          events={initialEvents}
+        />
+      ) : (
+        <div>Loading calendar...</div>
+      )}
+    </>
+  );
 }
