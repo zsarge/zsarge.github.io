@@ -47,8 +47,6 @@ export default function () {
   const calendarRef = useRef(null);
   const [month, setMonth] = useState("December 2024");
 
-  console.log(timeSavedData);
-
   useEffect(() => {
     // Dynamically import the Calendar module because astro doesn't like the import statement
     import("@toast-ui/react-calendar").then((mod) => {
@@ -57,13 +55,11 @@ export default function () {
   }, []);
 
   useEffect(() => {
-    console.log("Calendar props:", { events: initialEvents });
     calendarRef?.current?.getInstance()?.setDate("2024-12-05");
   }, [Calendar]);
 
   useEffect(() => {
     const today = calendarRef?.current?.getInstance()?.today();
-    console.log({ today, calendarRef });
   }, [calendarRef]);
 
   // https://github.com/nhn/tui.calendar/blob/b53e765e8d896ab7c63d9b9b9515904119a72f46/apps/react-calendar/src/index.tsx#L23-L34
@@ -72,7 +68,6 @@ export default function () {
 
   const updateRenderRangeText = useCallback(() => {
     const calInstance = getCalInstance();
-    console.log("got here");
     if (!calInstance) {
       setMonth("...");
     }
@@ -97,7 +92,6 @@ export default function () {
     const monthName = months[calDate.getMonth()];
     const dateRangeText = `${monthName} ${year}`;
 
-    console.log({ dateRangeText });
     setMonth(dateRangeText);
   }, [getCalInstance]);
 
@@ -117,7 +111,7 @@ export default function () {
         <button className={buttonClass} onClick={handlePrev}>
           Previous
         </button>
-        <div className="py-2">{month}</div>
+        <div className="py-2 text-2xl">{month}</div>
         <button className={buttonClass} onClick={handleNext}>
           Next
         </button>
@@ -128,7 +122,7 @@ export default function () {
           isReadOnly={true}
           usageStatistics={false}
           view="month"
-          height="40em"
+          height="35em"
           date="2024-12-01"
           events={initialEvents}
         />

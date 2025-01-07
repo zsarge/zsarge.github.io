@@ -73,15 +73,26 @@ export const timeSavedData = parse(timeSavedDataRaw);
 export const TotalMinutesSaved = () => {
   const number = timeSavedData.reduce((acc, ele) => acc + ele.minutes, 0).toString();
   return (
-    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 drop-shadow-lg text-center">
-      {number} minutes
-      <br />
-      {"\u2248"} {Math.round(number / 60)} hours
-    </div>
+    <>
+      <div className="text-center mt-6 text-xl font-bold ">Time saved</div>
+      <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 drop-shadow-lg text-center">
+        {number} minutes
+        <br />
+        {"\u2248"} {Math.round(number / 60)} hours
+      </div>
+    </>
   );
 };
-export const TotalMinutesWasted = () => (
-  <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 drop-shadow-lg text-center">
-    {timeWastedData.reduce((acc, ele) => acc + ele.minutes, 0).toString()}
-  </div>
-);
+export const TotalMinutesWasted = () => {
+  const number = timeWastedData.reduce((acc, ele) => acc + ele.minutes, 0).toString();
+  return (
+    <>
+      <div class="text-center mt-6 text-xl font-bold ">Time spent</div>
+      <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600 drop-shadow-lg text-center">
+        {number} minutes
+        <br />
+        {"\u2248"} {Math.round(number / 60)} hours
+      </div>
+    </>
+  );
+};
