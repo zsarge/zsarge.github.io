@@ -56,14 +56,32 @@ const timeWastedData = `
 2025-01-05: 7.0
 `;
 
-const parse = (data: string) =>
-  data
+interface TimeData {
+  date: string;
+  minutes: number;
+  percent: number;
+}
+
+const parse = (data: string): TimeData[] => {
+  let processedData = data
     .trim()
     .split("\n")
     .map((e) => {
       const [date, minutes] = e.split(seperator);
       return { date, minutes: parseInt(minutes) };
     });
+
+  const minutes = processedData.map((e) => e.minutes);
+  const max = Math.max(...minutes);
+  const min = Math.min(...minutes);
+
+  processedData = processedData.map((obj) => ({
+    percent: (obj.minutes - min) / (max - min),
+    ...obj,
+  }));
+
+  return processedData;
+};
 
 export const timeWasted = parse(timeWastedData);
 export const timeSaved = parse(timeSavedData);

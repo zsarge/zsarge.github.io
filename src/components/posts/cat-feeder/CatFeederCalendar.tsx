@@ -1,51 +1,53 @@
 import "@toast-ui/calendar/dist/toastui-calendar.min.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { timeSaved, timeWasted } from "./CatFeederCalendarData";
+import interpolate from "color-interpolate";
 
 const buttonClass =
   "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded";
+
+const savedColorscale = interpolate([
+  "#94C58C",
+  "#64AD62",
+  "#429B46",
+  "#1A8828",
+  "#0A6921",
+  "#063204",
+  "#094F29",
+]);
+
+const wastedColorScale = interpolate(["#FF4646", "#FF3232", "#F61A23", "#DD111B"]);
+
+const initialEvents = timeSaved
+  .map((data, index) => ({
+    id: index,
+    calendarId: "0",
+    title: data.minutes.toString(),
+    category: "allday",
+    start: data.date,
+    end: data.date,
+    backgroundColor: savedColorscale(data.percent),
+    isReadOnly: true,
+  }))
+  .concat(
+    timeWasted.map((data, index) => ({
+      id: index + timeSaved.length,
+      calendarId: "0",
+      title: data.minutes.toString(),
+      category: "allday",
+      start: data.date,
+      end: data.date,
+      backgroundColor: wastedColorScale(data.percent),
+      isReadOnly: true,
+    })),
+  );
 
 export default function () {
   const [Calendar, setCalendar] = useState(null);
   const calendarRef = useRef(null);
   const [month, setMonth] = useState("December 2024");
 
-  const initialEvents = timeSaved
-    .map((data, index) => ({
-      id: index,
-      calendarId: "0",
-      title: data.minutes.toString(),
-      category: "allday",
-      start: data.date,
-      end: data.date,
-      backgroundColor: "green",
-      isReadOnly: true,
-    }))
-    .concat(
-      timeWasted.map((data, index) => ({
-        id: index + timeSaved.length,
-        calendarId: "0",
-        title: data.minutes.toString(),
-        category: "allday",
-        start: data.date,
-        end: data.date,
-        backgroundColor: "red",
-        isReadOnly: true,
-      })),
-    );
-
-  // [
-  //   {
-  //     id: "3",
-  //     calendarId: "0",
-  //     title: "FE Workshop",
-  //     category: "allday",
-  //     start: "2025-01-06",
-  //     end: "2025-01-06",
-  //     backgroundColor: "#534356",
-  //     isReadOnly: true,
-  //   },
-  // ];
+  console.log(timeSaved);
 
   useEffect(() => {
     // Dynamically import the Calendar module because astro doesn't like the import statement
