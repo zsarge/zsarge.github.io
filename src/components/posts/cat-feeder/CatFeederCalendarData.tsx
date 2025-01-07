@@ -1,4 +1,4 @@
-const seperator = ": ";
+const separator = ": ";
 
 const timeSavedDataRaw = `
 2024-12-18: 60
@@ -41,6 +41,16 @@ const timeWastedDataRaw = `
 2025-01-05: 7.0
 `;
 
+// this is manually written, based on my calendar
+const buildingTime = `
+2024-12-20: 420
+2024-12-16: 469
+2024-12-17: 439
+2024-12-13: 600
+2024-12-10: 120
+2024-12-05: 10
+`;
+
 interface TimeData {
   date: string;
   minutes: number;
@@ -48,27 +58,39 @@ interface TimeData {
 }
 
 const parse = (data: string): TimeData[] => {
-  let processedData = data
+  // Step 1: Parse and group data by date
+  const groupedData = new Map<string, number>();
+
+  data
     .trim()
     .split("\n")
-    .map((e) => {
-      const [date, minutes] = e.split(seperator);
-      return { date, minutes: parseInt(minutes) };
+    .forEach((line) => {
+      const [date, minutesStr] = line.split(separator);
+      const minutes = parseInt(minutesStr);
+      if (groupedData.has(date)) {
+        groupedData.set(date, groupedData.get(date)! + minutes);
+      } else {
+        groupedData.set(date, minutes);
+      }
     });
 
-  const minutes = processedData.map((e) => e.minutes);
-  const max = Math.max(...minutes);
-  const min = Math.min(...minutes);
+  // Step 2: Convert the grouped data into an array
+  const processedData = Array.from(groupedData, ([date, minutes]) => ({ date, minutes }));
 
-  processedData = processedData.map((obj) => ({
+  // Step 3: Calculate percent values
+  const minutesArray = processedData.map((e) => e.minutes);
+  const max = Math.max(...minutesArray);
+  const min = Math.min(...minutesArray);
+
+  const finalData = processedData.map((obj) => ({
     percent: (obj.minutes - min) / (max - min),
     ...obj,
   }));
 
-  return processedData;
+  return finalData;
 };
 
-export const timeWastedData = parse(timeWastedDataRaw);
+export const timeWastedData = parse(timeWastedDataRaw.trim() + "\n" + buildingTime.trim());
 export const timeSavedData = parse(timeSavedDataRaw);
 export const TotalMinutesSaved = () => {
   const number = timeSavedData.reduce((acc, ele) => acc + ele.minutes, 0).toString();

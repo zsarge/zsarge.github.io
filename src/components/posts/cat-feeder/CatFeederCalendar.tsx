@@ -18,7 +18,7 @@ const savedColorscale = interpolate([
 
 const wastedColorScale = interpolate(["#FF4646", "#FF3232", "#F61A23", "#DD111B"]);
 
-const initialEvents = timeSavedData
+const initialEvents = timeWastedData
   .map((data, index) => ({
     id: index,
     calendarId: "0",
@@ -26,18 +26,18 @@ const initialEvents = timeSavedData
     category: "allday",
     start: data.date,
     end: data.date,
-    backgroundColor: savedColorscale(data.percent),
+    backgroundColor: wastedColorScale(data.percent),
     isReadOnly: true,
   }))
   .concat(
-    timeWastedData.map((data, index) => ({
-      id: index + timeSavedData.length,
+    timeSavedData.map((data, index) => ({
+      id: index + timeWastedData.length,
       calendarId: "0",
       title: data.minutes.toString(),
       category: "allday",
       start: data.date,
       end: data.date,
-      backgroundColor: wastedColorScale(data.percent),
+      backgroundColor: savedColorscale(data.percent),
       isReadOnly: true,
     })),
   );
