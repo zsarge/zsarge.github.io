@@ -1,0 +1,48 @@
+---
+import * as fs from "fs";
+import path from "path";
+import { capitalize } from "../../../lib/util";
+import { Image } from "astro:assets";
+
+import skunkPhoto from "/src/assets/cat-feeder/animals/skunk/Pasted image.png";
+import ZoomImage from "../../ZoomImage.astro";
+
+/**
+ * Note that file reads occur relative to project root
+ */
+const BASE_DIR = "./src/assets/cat-feeder/animals";
+
+// const image: ImageMetadata = import("/src/assets/cat-feeder/animals/*.{jpeg,jpg,png,gif}");
+
+function getAnimals(): string[] {
+  return fs.readdirSync(BASE_DIR);
+}
+
+async function getImages(animalName: string): Promise<any[]> {
+  const pathName = path.join(BASE_DIR, animalName);
+  return fs
+    .readdirSync(pathName)
+    .map((fileName) => path.join(BASE_DIR, animalName, fileName))
+    .map((fullPath) => import("/" + fullPath));
+}
+
+// yeah, it does sequential async calls, but it runs at compile time so I don't care.
+const paths = await Promise.all(
+  getAnimals().map(async (animalName) => [animalName, await getImages(animalName)])
+);
+---
+
+{
+  paths.map(([animalName, animalData]) => (
+    <>
+      <div>AnimalName {animalName}</div>
+      {animalData.map((image: any) => (
+        <>
+          <div>
+            <Image src={image} alt={`A picture of a ${animalName}`} />
+          </div>
+        </>
+      ))}
+    </>
+  ))
+}
