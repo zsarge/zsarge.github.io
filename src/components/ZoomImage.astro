@@ -11,7 +11,12 @@ export interface Props {
 
 const { imageProps, attributionLink, attribution } = Astro.props;
 
-const fromBlog = new URL(imageProps.src).hostname === Astro.site?.hostname;
+let fromBlog;
+try {
+  fromBlog = new URL(imageProps.src)?.hostname === Astro.site?.hostname;
+} catch {
+  fromBlog = false;
+}
 const newTab = !fromBlog;
 ---
 
