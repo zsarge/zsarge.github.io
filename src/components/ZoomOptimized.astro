@@ -1,0 +1,8 @@
+---
+import { Picture } from "astro:assets";
+import Zoom from "react-medium-image-zoom";
+---
+
+<Zoom client:load>
+  <Picture formats={["webp", "avif"]} {...Astro.props} />
+</Zoom>

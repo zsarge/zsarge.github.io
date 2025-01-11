@@ -11,6 +11,7 @@ tags:
 
 import QuoteBlock from "../../components/QuoteBlock.astro";
 import ZoomImage from "../../components/ZoomImage.astro";
+import ZoomOptimized from "../../components/ZoomOptimized.astro";
 import CatFeederCalendar from "../../components/posts/cat-feeder/CatFeederCalendar";
 import {
   TotalMinutesSaved,
@@ -49,14 +50,30 @@ Here is the area we were working with. The cats love to hang out in the bushes, 
 
 Note that there's only one outlet in the area, so we're limited on where we can put the cat feeder.
 
-In the end, we made a cat feeder, and a camera to record it.
+In the end, we made a cat feeder:
+
+import CatFeeder from "/src/assets/cat-feeder/CatFeeder.png";
+
+<ZoomOptimized
+  src={CatFeeder}
+  alt="A cat feeder made with a yellow bucket, a silver bucket, and an umbrella"
+/>
+
+And we made a camera to record it:
+
+import Camera from "/src/assets/cat-feeder/Camera.jpg";
+
+<ZoomOptimized
+  src={Camera}
+  alt="A cat feeder made with a yellow bucket, a silver bucket, and an umbrella"
+  width="300"
+/>
 
 ## Initial Development
 
 Initially, I wanted to do this project using only the tools available in the club room.
 
-Note that we're in the middle of rennovations at the moment,
-so this limited my focus largely to 3d-printing, and whatever spare motors and electronics I could find laying around.
+Given that we were going through renovations, my focus was largely limited to what I could build using solely 3d-printed components, and some motors intended for educational use.
 
 ---
 
