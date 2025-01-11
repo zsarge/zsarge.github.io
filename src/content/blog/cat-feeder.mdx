@@ -17,6 +17,7 @@ import {
   TotalMinutesWasted,
 } from "../../components/posts/cat-feeder/CatFeederCalendarData";
 import CatPictures from "../../components/posts/cat-feeder/CatPictures.astro";
+import PanellumViewer from "../../components/PanellumViewer.astro";
 
 ## Introduction
 
@@ -38,6 +39,17 @@ Here are the cats we are taking care of:
 <CatPictures />
 
 You might notice that some of the cats aren't actually cats. We'll get to that later.
+
+Here is the area we were working with. The cats love to hang out in the bushes, and they wander around the courtyard area throughout the day.
+
+<PanellumViewer
+  panorama="/assets/cat-feeder/PXL_20241213_211110965.PANO.jpg"
+  options={{ pitch: -15, yaw: 88, hfov: 65 }}
+/>
+
+Note that there's only one outlet in the area, so we're limited on where we can put the cat feeder.
+
+In the end, we made a cat feeder, and a camera to record it.
 
 ## Initial Development
 

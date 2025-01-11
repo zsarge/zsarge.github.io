@@ -1,0 +1,31 @@
+---
+export interface Props {
+  panorama: string;
+  autoLoad?: boolean;
+  options?: object;
+}
+
+const { panorama, autoLoad = true, options = {} } = Astro.props;
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"
+></script>
+
+<style>
+  #panorama {
+    width: 600px;
+    height: 400px;
+  }
+</style>
+
+<div id="panorama"></div>
+
+<script define:vars={{ panorama, autoLoad, options }}>
+  pannellum.viewer("panorama", {
+    type: "equirectangular",
+    panorama,
+    autoLoad,
+    ...options,
+  });
+</script>
