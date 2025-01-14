@@ -8,11 +8,12 @@ import react from "@astrojs/react";
 import Icons from "unplugin-icons/vite";
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import { BASE_URL } from "./src/consts";
 
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://zack.fyi",
+  site: BASE_URL,
   integrations: [mdx(), sitemap(), tailwind(), react()],
   markdown: {
     extendDefaultPlugins: true,
