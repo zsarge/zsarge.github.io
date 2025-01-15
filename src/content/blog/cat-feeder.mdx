@@ -18,7 +18,6 @@ import {
 import CatPictures from "../../components/posts/cat-feeder/CatPictures.astro";
 import PanellumViewer from "../../components/PanellumViewer.astro";
 import AnnotatedStl from "../../components/AnnotatedStl";
-import VideoEmbed from "../../components/VideoEmbed";
 
 ## Introduction
 
@@ -140,6 +139,15 @@ We had a circuit that cut power to the
 [28BYJ48 motor and ULN2003AN driver board](https://lastminuteengineers.com/28byj48-stepper-motor-arduino-tutorial/)
 when it is not in use, to minimize overheating.
 
+import AugerOnMotor from "/src/assets/cat-feeder/AugerOnMotor.jpg";
+
+<ZoomOptimized
+  src={AugerOnMotor}
+  alt="A photo of the auger on the motor"
+  width="600"
+  credit="Patrick Hirsch"
+/>
+
 import Circuit from "/src/assets/cat-feeder/Circuit.jpg";
 
 <ZoomOptimized src={Circuit} alt="A circuit as defined below" width="600" />
@@ -160,7 +168,7 @@ was nowhere near enough to overpower the cat food when little pellets get stuck 
 
 Enter: A rotisserie chicken motor!
 
-<video controls="" autoplay="" transition:persist>
+<video controls height="600" className="text-center h-96">
   <source src="/assets/cat-feeder/RotisserieChicken.mp4" type="video/mp4" />
   <source src="/assets/cat-feeder/RotisserieChicken.webm" type="video/webm" />
 </video>
@@ -174,6 +182,111 @@ It's been sitting in my basement for years.
 | 120       | Volts (AC)             |
 
 This motor is going to be strong enough!
+
+### The motor is too strong!
+
+In some of the first tests, it immediately snapped the 3d printed design!
+
+<video controls height="600" className="text-center h-96">
+  <source src="/assets/cat-feeder/ThingSnaps.mp4" type="video/mp4" />
+  <source src="/assets/cat-feeder/ThingSnaps.webm" type="video/webm" />
+</video>
+
+No worries!
+
+Instead of using a tiny peg, we can modify the model to use a full rectangle's worth of plastic. Plus, that means we can swap out the peg later, in case it snaps again! (foreshadowing)
+
+<AnnotatedStl
+  client:load
+  url="/assets/cat-feeder/square_hole.stl"
+  name="Auger with Square Hole"
+  cameraProps={{
+    initialPosition: {
+      latitude: -1.2,
+    },
+  }}
+/>
+
+And then, we made sure to print the square peg with 100% infill, so that it was as strong as possible.
+
+<AnnotatedStl client:load url="/assets/cat-feeder/square_peg.stl" height="200" />
+
+Note that we were printing this out of PETG, solely because we have a lot of PETG.
+
+## Let's build this thing!
+
+With a working prototype, Grace, Patrick, and I began work on building the housing and containers for cat food.
+
+<QuoteBlock attribution="Murphy's law">
+
+Anything that can go wrong will go wrong.
+
+</QuoteBlock>
+
+We're trying to keep our design as simple as possible, so that we minimize how many things can go wrong.
+
+Dispensing cat food takes 4 steps:
+
+1. Cat food goes in the top bucket, which funnels into the auger.
+1. A control module turns on a motor.
+1. The motor turns the auger.
+1. Cat food flows out of the tube into the cat bowl.
+
+Each step failed at some point during the month that it was running.
+
+### Step 1: Drill a hole in the top bucket
+
+We built some supports to put under the bucket, so that we minimized the amount that the metal bends.
+We drilled through the bottom of the bucket, because the drills we had did not fit in the bucket.
+
+import GraceDrilling from "/src/assets/cat-feeder/GraceDrilling.jpg";
+
+<ZoomOptimized src={GraceDrilling} alt="Grace drilling a hole in the top bucket" height="600" />
+
+We used a wooden hole saw, because it was what we had. But, it worked well, as long as we went slow, and used some oil.
+
+import HoleSaw from "/src/assets/cat-feeder/HoleSaw.jpg";
+
+<ZoomOptimized src={HoleSaw} alt="Hole Saw" height="300" />
+
+import AfterHole from "/src/assets/cat-feeder/AfterHole.jpg";
+
+<ZoomOptimized
+  src={AfterHole}
+  alt="Photo after a hole was drilled in the metal bucket, showing support underneath"
+  height="300"
+/>
+
+We used some construction plastic to create a funnel in the top bucket of the cat feeder, such that it would flow easily into the auger.
+
+### Step 2: Join the top bucket to the bottom bucket
+
+import JoinTopToBottom from "/src/assets/cat-feeder/JoinTopToBottom.jpg";
+
+<ZoomOptimized
+  src={JoinTopToBottom}
+  alt="Grace and Zack measuring the cat feeder box"
+  credit="Patrick Hirsch"
+  height="400"
+/>
+
+Next, we drilled some holes between the top and the bottom buckets, and I think we used \#10 metric nuts & bolts to connect them.
+
+(Apologies for the hazy measurements)
+
+### Step 3: Make a funnel
+
+import Funnel from "/src/assets/cat-feeder/Funnel.jpg";
+
+<ZoomOptimized src={Funnel} alt="Photo of the construction plastic funnel" height="400" />
+
+### Step 4: Make a bracket to attach the motor
+
+We measure the
+
+import MeasureTwice from "/src/assets/cat-feeder/MeasureTwice.jpg";
+
+<ZoomOptimized src={MeasureTwice} alt="Grace and Zack measuring the cat feeder box" height="400" />
 
 ---
 

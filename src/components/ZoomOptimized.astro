@@ -1,8 +1,23 @@
 ---
 import { Picture } from "astro:assets";
 import Zoom from "react-medium-image-zoom";
+
+export interface Props {
+  credit?: string;
+}
+
+const { credit } = Astro.props;
 ---
 
-<Zoom client:load>
-  <Picture formats={["webp", "avif"]} {...Astro.props} />
-</Zoom>
+<style>
+  picture {
+    margin-bottom: 0;
+  }
+</style>
+
+<figure class="w-fit">
+  <Zoom client:load>
+    <Picture formats={["webp", "avif"]} {...Astro.props} />
+  </Zoom>
+  {credit && <figcaption class="text-center">Photo Credit: {credit}</figcaption>}
+</figure>
