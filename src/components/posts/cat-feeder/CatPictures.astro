@@ -1,0 +1,74 @@
+---
+// This is a little overcomplicated, but I'm not changing it.
+
+import BlackCat from "/src/assets/cat-feeder/intro/black cat/Black Cat.jpg";
+import Boots from "/src/assets/cat-feeder/intro/boots the cat/Boots.jpg";
+import FluffyCat from "/src/assets/cat-feeder/intro/fluffy cat/Fluffy Cat.jpg";
+import TheKittens from "/src/assets/cat-feeder/intro/kittens/The Kittens.png";
+import OrangeCat from "/src/assets/cat-feeder/intro/orange cat/Orange Cat.jpg";
+import Opossum from "/src/assets/cat-feeder/intro/z-opossum/Opossum.png";
+import Tortoiseshell from "/src/assets/cat-feeder/intro/tortoiseshell/Tortoiseshell.jpg";
+import Skunk from "/src/assets/cat-feeder/intro/z-skunk/Skunk.png";
+import Raccoon from "/src/assets/cat-feeder/intro/z-raccoon/Raccoon.png";
+
+const animalData = [
+  ["Black Cat", BlackCat],
+  ["Boots", Boots],
+  ["Fluffy Cat", FluffyCat],
+  ["The Kittens", TheKittens],
+  ["Orange Cat", OrangeCat],
+  ["Opossum", Opossum],
+  ["Tortoiseshell", Tortoiseshell],
+  ["Skunk", Skunk],
+  ["Raccoon", Raccoon],
+];
+
+import { Picture } from "astro:assets";
+import Zoom from "react-medium-image-zoom";
+---
+
+<style>
+  img,
+  figure,
+  figcaption {
+    padding: 0;
+    margin: 0;
+  }
+
+  figure {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  figcaption {
+    text-align: center;
+    line-height: 0;
+  }
+  .container {
+    display: flex;
+  }
+  .fixed-height img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover; /* Crops the image to fill the container */
+  }
+</style>
+
+<div class="container mx-auto p-4">
+  <div class="flex flex-wrap">
+    {
+      animalData.map(([filename, image]) => (
+        <div class="flex-1 min-w-[150px] max-w-[300px] gap-0">
+          <div class="fixed-height  flex justify-center items-center">
+            <figure>
+              <Zoom client:load>
+                <Picture src={image} alt={filename} />
+              </Zoom>
+              <figcaption>{filename}</figcaption>
+            </figure>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

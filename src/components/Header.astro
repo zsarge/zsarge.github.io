@@ -1,0 +1,28 @@
+---
+import { SITE_NAME } from "../consts";
+import ToggleTheme from "./ToggleTheme.astro";
+---
+
+<style>
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: black;
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 10px;
+  }
+
+  .logo:hover {
+    --burnt-orange: #cc5500;
+
+    background: var(--burnt-orange);
+  }
+</style>
+<div
+  class="container mx-auto md:max-w-4xl p-4 fixed top-0 left-0 right-0 z-50 flex justify-between items-center bg-slate-100 dark:bg-slate-900"
+>
+  <a class="logo" href="/">{SITE_NAME}</a>
+  <ToggleTheme />
+</div>

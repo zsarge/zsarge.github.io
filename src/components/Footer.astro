@@ -1,0 +1,10 @@
+---
+import Socials from "./Socials.astro";
+
+const today = new Date();
+---
+
+<footer class="flex items-center justify-between py-5">
+  <p>&copy; {today.getFullYear()} Zack Sargent</p>
+  <Socials type="icons" />
+</footer>

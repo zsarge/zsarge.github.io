@@ -1,0 +1,425 @@
+---
+title: "Automatic Cat Feeder"
+description: "Lorem ipsum dolor sit amet"
+featured: true
+pubDate: "Jul 02 2022"
+tags:
+  - Norse IoT
+---
+
+import QuoteBlock from "../../components/QuoteBlock.astro";
+import ZoomImage from "../../components/ZoomImage.astro";
+import ZoomOptimized from "../../components/ZoomOptimized.astro";
+import CatFeederCalendar from "../../components/posts/cat-feeder/CatFeederCalendar";
+import {
+  TotalMinutesSaved,
+  TotalMinutesWasted,
+} from "../../components/posts/cat-feeder/CatFeederCalendarData";
+import CatPictures from "../../components/posts/cat-feeder/CatPictures.astro";
+import PanellumViewer from "../../components/PanellumViewer.astro";
+import AnnotatedStl from "../../components/AnnotatedStl";
+
+## Introduction
+
+<div className="text-4xl">This is a draft</div>
+
+There are a bunch of adorable kitties living in the bushes at [NKU](https://www.nku.edu/).
+
+For much of the semester, a smattering of students and staff have been taking care of the cats.
+They serve daily meals, and have created small houses for the cats to live in.
+
+However, feeding the kitties on a regular basis requires a signficant time commitment.
+Additionally, we knew that nobody would be on campus over winter break to feed the kitties.
+
+So, my friends and I built an automatic cat feeder, robust enough to survive abuse by the
+wildlife and even the most severe snow storms.
+
+### Context
+
+Here are the cats we are taking care of:
+
+<CatPictures />
+
+You might notice that some of the cats aren't actually cats. We'll get to that later.
+
+Here is the area we were working with. The cats love to hang out in the bushes, and they wander around the courtyard area throughout the day.
+
+<PanellumViewer
+  panorama="/assets/cat-feeder/PXL_20241213_211110965.PANO.jpg"
+  options={{ pitch: -15, yaw: 88, hfov: 65 }}
+/>
+
+Note that there's only one outlet in the area, so we're limited on where we can put the cat feeder.
+
+In the end, we made a cat feeder:
+
+import CatFeeder from "/src/assets/cat-feeder/CatFeeder.png";
+
+<ZoomOptimized
+  src={CatFeeder}
+  alt="A cat feeder made with a yellow bucket, a silver bucket, and an umbrella"
+/>
+
+And we made a camera to record it:
+
+import Camera from "/src/assets/cat-feeder/Camera.jpg";
+
+<ZoomOptimized
+  src={Camera}
+  alt="A cat feeder made with a yellow bucket, a silver bucket, and an umbrella"
+  width="300"
+/>
+
+## Initial Development
+
+### Grace's Design
+
+Grace had been feeding the cats by hand for several weeks at this point.
+
+When we talked about creating an automatic cat feeder, she created an amazing artistic representation of our goals:
+
+import GraceDrawing from "/src/assets/cat-feeder/GraceDrawing.png";
+
+<ZoomOptimized
+  src={GraceDrawing}
+  alt="Grace's diagram of a cat feeder"
+  className="text-center"
+  height="600"
+/>
+
+This illustrates the core functionality:
+
+- Lots of food goes in the top
+- A bit of food goes into food bowls at regular intervals
+
+Originally, we wanted to have multiple food bowls, so that the cats don't get in each others' way,
+but we ended up only having one bowl for simplicity.
+We also never got around to building the housing for the cats, partially due to cost reasons.
+
+### Research
+
+Initially, I wanted to do this project using only the tools available in the club room.
+
+Given that we were going through renovations, my focus was largely limited to what I could build using
+solely 3d-printed components, and some motors intended for educational use.
+
+We started out by doing some research on cat feeders.
+
+For one, [we took a look on Amazon](https://www.amazon.com/s?k=Outdoor+cat+feeder), and found that it's possible to buy an indoor automatic cat feeder,
+and it's possible to buy outdoor feeding stations for cats, but we did not find many good options for true outdoor cat feeders.
+
+We started looking into blog posts about this. We found
+this great [Russian blog post](https://alexgyver.ru/gyverfeed2/) and [GitHub repo](https://github.com/AlexGyver/GyverFeed2)
+about building a cat feeder, which released [the feeder screw](https://www.thingiverse.com/thing:4753380) for free.
+
+In their project, they only 3d-printed the screw and used PVC pipe as the outer housing.
+
+In our case, we have a lot of free filament, so we decided to 3d print the pipe as well to save costs.
+
+### First Auger
+
+This led us to our first design:
+
+<AnnotatedStl client:load url="/assets/cat-feeder/version1.stl" name="Initial Auger Design" />
+
+In this case, we started with this prototype just to make sure food would come out:
+
+import InitialDesign from "/src/assets/cat-feeder/InitialDesign.jpg";
+
+<ZoomOptimized src={InitialDesign} alt="A circuit as defined below" width="500" />
+
+This was some of the first 3d-modelling I've ever done. I was using [TinkerCad](https://www.tinkercad.com/), as it was recommended for beginners.
+I found it to be quite approachable, although it certainly was not as powerful as something like [OnShape](https://www.onshape.com/en/)
+(which also runs in the browser and is free for students!).
+
+Through this initial prototype, I learned:
+
+1. The auger is effective at distributing dry cat food!
+2. It's important to leave good tolerances. (The auger was too close to the pipe.)
+
+We had a circuit that cut power to the
+[28BYJ48 motor and ULN2003AN driver board](https://lastminuteengineers.com/28byj48-stepper-motor-arduino-tutorial/)
+when it is not in use, to minimize overheating.
+
+import AugerOnMotor from "/src/assets/cat-feeder/AugerOnMotor.jpg";
+
+<ZoomOptimized
+  src={AugerOnMotor}
+  alt="A photo of the auger on the motor"
+  width="600"
+  credit="Patrick Hirsch"
+/>
+
+import Circuit from "/src/assets/cat-feeder/Circuit.jpg";
+
+<ZoomOptimized src={Circuit} alt="A circuit as defined below" width="600" />
+
+This uses a IRFZ44N N-Channel mosfet:
+
+- **Gate:** Pin 2 on esp32
+- **Drain:** Goes to the negative line on the ULN2003AN
+- **Source:** Goes to the negative line for the 9V power supply
+- **Note:** make sure to include a ~10KΩ resistor between the gate and the source.
+
+Toby found [this interesting article](https://everythingsmarthome.co.uk/converting-the-28byj-48-stepper-motor-for-more-torque/) which detailed how to modify the stepper motor for more torque.
+
+But, this all ended up being in vain, as the force from our little motor
+was nowhere near enough to overpower the cat food when little pellets get stuck between the auger and pipe.
+
+### Rotisserie Chicken Motor
+
+Enter: A rotisserie chicken motor!
+
+<video controls height="600" className="text-center h-96">
+  <source src="/assets/cat-feeder/RotisserieChicken.mp4" type="video/mp4" />
+  <source src="/assets/cat-feeder/RotisserieChicken.webm" type="video/webm" />
+</video>
+
+It's been sitting in my basement for years.
+
+| **Value** | **Property**           |
+| --------- | ---------------------- |
+| 3         | Revolutions Per Minute |
+| 11.5      | Newton-metres          |
+| 120       | Volts (AC)             |
+
+This motor is going to be strong enough!
+
+### The motor is too strong!
+
+In some of the first tests, it immediately snapped the 3d printed design!
+
+<video controls height="600" className="text-center h-96">
+  <source src="/assets/cat-feeder/ThingSnaps.mp4" type="video/mp4" />
+  <source src="/assets/cat-feeder/ThingSnaps.webm" type="video/webm" />
+</video>
+
+No worries!
+
+Instead of using a tiny peg, we can modify the model to use a full rectangle's worth of plastic. Plus, that means we can swap out the peg later, in case it snaps again! (foreshadowing)
+
+<AnnotatedStl
+  client:load
+  url="/assets/cat-feeder/square_hole.stl"
+  name="Auger with Square Hole"
+  cameraProps={{
+    initialPosition: {
+      latitude: -1.2,
+    },
+  }}
+/>
+
+And then, we made sure to print the square peg with 100% infill, so that it was as strong as possible.
+
+<AnnotatedStl client:load url="/assets/cat-feeder/square_peg.stl" height="200" />
+
+Note that we were printing this out of PETG, solely because we have a lot of PETG.
+
+## Let's build this thing!
+
+With a working prototype, Grace, Patrick, and I began work on building the housing and containers for cat food.
+
+<QuoteBlock attribution="Murphy's law">
+
+Anything that can go wrong will go wrong.
+
+</QuoteBlock>
+
+We're trying to keep our design as simple as possible, so that we minimize how many things can go wrong.
+
+Dispensing cat food takes 4 steps:
+
+1. Cat food goes in the top bucket, which funnels into the auger.
+1. A control module turns on a motor.
+1. The motor turns the auger.
+1. Cat food flows out of the tube into the cat bowl.
+
+Each step failed at some point during the month that it was running.
+
+### Step 1: Drill a hole in the top bucket
+
+We built some supports to put under the bucket, so that we minimized the amount that the metal bends.
+We drilled through the bottom of the bucket, because the drills we had did not fit in the bucket.
+
+import GraceDrilling from "/src/assets/cat-feeder/GraceDrilling.jpg";
+
+<ZoomOptimized src={GraceDrilling} alt="Grace drilling a hole in the top bucket" height="600" />
+
+We used a wooden hole saw, because it was what we had. But, it worked well, as long as we went slow, and used some oil.
+
+import HoleSaw from "/src/assets/cat-feeder/HoleSaw.jpg";
+
+<ZoomOptimized src={HoleSaw} alt="Hole Saw" height="300" />
+
+import AfterHole from "/src/assets/cat-feeder/AfterHole.jpg";
+
+<ZoomOptimized
+  src={AfterHole}
+  alt="Photo after a hole was drilled in the metal bucket, showing support underneath"
+  height="300"
+/>
+
+We used some construction plastic to create a funnel in the top bucket of the cat feeder, such that it would flow easily into the auger.
+
+We followed the same procedure to drill a hole in the top of the bottom bucket.
+
+### Step 2: Join the top bucket to the bottom bucket
+
+import JoinTopToBottom from "/src/assets/cat-feeder/JoinTopToBottom.jpg";
+
+<ZoomOptimized
+  src={JoinTopToBottom}
+  alt="Grace and Zack measuring the cat feeder box"
+  credit="Patrick Hirsch"
+  height="400"
+/>
+
+Next, we drilled some holes between the top and the bottom buckets, and I think we used \#10 metric nuts & bolts to connect them.
+
+(Apologies for the hazy measurements)
+
+### Step 3: Make a funnel
+
+We want the cat food to flow smoothly from the top bucket into the auger.
+
+So, we use some construction plastic and HVAC tape to make a funnel.
+
+This still leaves enough space in the top bucket to fill it with about 16 lbs of cat food.
+
+import Funnel from "/src/assets/cat-feeder/Funnel.jpg";
+
+<ZoomOptimized src={Funnel} alt="Photo of the construction plastic funnel" height="400" />
+
+### Step 4: Make a bracket to attach the motor
+
+Next, we figure out where the motor needs to be mounted, and we build a bracket to match.
+
+import MeasureTwice from "/src/assets/cat-feeder/MeasureTwice.jpg";
+
+<ZoomOptimized
+  src={MeasureTwice}
+  alt="Grace and Zack measuring the cat feeder box"
+  height="400"
+  credit="Patrick Hirsch"
+/>
+
+import HammerBracket from "/src/assets/cat-feeder/HammerBracket.jpg";
+
+<ZoomOptimized src={HammerBracket} alt="Patrick hammering the bracket in place" height="400" />
+
+Originally, I was worried that this was not strong enough, because there was a little bit of flexibility under load.
+
+However, I learned that:
+
+<QuoteBlock>
+  <i>If it doesn't bend, it will break</i>
+</QuoteBlock>
+
+In the end, it was good to have a bit of flex to the system, so that:
+
+1. it was easier to work with
+2. when the tube was blocked by solidified cat food, the bracket was able to provide enough flexibility that we avoided cascading failures (such as the auger tube or mountings)
+
+import BracketBucket from "/src/assets/cat-feeder/BracketBucket.jpg";
+
+<ZoomOptimized src={BracketBucket} alt="Inside of bucket with new bracket and motor" height="300" />
+
+### TODO: Step 5: Print a new auger sheath
+
+## TODO: Cat Feeder Camera
+
+## TODO: Operations
+
+### TODO: Skunk damage & Repair
+
+### TODO: Winter storm
+
+---
+
+I think about these XKCD comics a lot:
+
+<div style={{ display: "flex" }}>
+  <div style={{ flex: 1 }}>
+    <ZoomImage
+      imageProps={{
+        height: "300",
+        width: "300",
+        alt: "Don't forget the time you spend finding the chart to look up what you save. And the time spent reading this reminder about the time spent. And the time trying to figure out if either of those actually make sense. Remember, every second counts toward your life total, including these right now.",
+        src: "https://imgs.xkcd.com/comics/is_it_worth_the_time.png",
+      }}
+      attribution="XKCD 1205"
+      attributionLink="https://xkcd.com/1205/"
+    />
+  </div>
+  <div style={{ flex: 1 }}>
+    <ZoomImage
+      imageProps={{
+        height: "300",
+        width: "300",
+        alt: "'Automating' comes from the roots 'auto-' meaning 'self-', and 'mating', meaning 'screwing'",
+        src: "https://imgs.xkcd.com/comics/automation.png",
+      }}
+      attribution="XKCD 1319"
+      attributionLink="https://xkcd.com/1319/"
+    />
+  </div>
+</div>
+
+## Is it worth it?
+
+So, this prompts the question: Was it actually worth it?
+
+Let's analyze the project, and see if it saved me time.
+
+The rules are:
+
+1. The cat feeder saves me time when it dispenses food.
+1. The cat feeder wastes time when I have to go fix it.
+
+$$
+\therefore
+$$
+
+$$
+\begin{align}
+\text{Time Spent} = & \text{ time spent near cat feeder} &\\
++ & \text{ time working on design and construction}
+\end{align}
+$$
+
+And, for every successful time that food is dispensed:
+
+$$
+\text{Time Saved} = \begin{cases}
+    30 \text{ minutes} & \text{when I'm in my dorm}\\
+    \text{driving duration}                     & \text{when I'm} \gt \text{1,000m away}
+\end{cases}
+$$
+
+The following calendar illustrates how many minutes each day this project <span class="text-red-400">took</span>, and how much it <span class="text-green-400">saved</span>.
+
+<CatFeederCalendar client:load />
+
+TODO: graph with time spent per day and time wasted per day, and then the sum of both as a sparkline
+
+<TotalMinutesWasted />
+
+<TotalMinutesSaved />
+
+## Credits
+
+Thanks to everyone who helped make this a fun project!
+
+| **Name**       | **Links**                                              | **Credit**                                                         |
+| -------------- | ------------------------------------------------------ | ------------------------------------------------------------------ |
+| Grace Wu       |                                                        | Design, Artwork, Feeder Construction                               |
+| Patrick Hirsch | [Instagram](https://www.instagram.com/patrickhirsch28) | Photographer, Feeder Construction, Norse Code Radio representative |
+| Tyler Kobida   | [Instagram](https://www.instagram.com/kobisteve07/)    | Raspberry Pi Configuration                                         |
+| Toby Carter    |                                                        | Initial Prototyping                                                |
+
+---
+
+Fun facts that I've been told:
+
+- Tortishells and Calicos are female
+- Orange Tabby is usually male

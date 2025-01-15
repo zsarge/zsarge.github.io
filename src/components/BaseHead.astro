@@ -1,0 +1,64 @@
+---
+import { FEDIVERSE_URL, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE } from "../consts";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  postMeta?: {
+    pubDate: Date;
+    tags: string[];
+  };
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, postMeta } = Astro.props;
+
+function getTitle(title?: string) {
+  return title ? `${title} | ${SITE_NAME}` : SITE_TITLE;
+}
+
+function getDescription(description?: string) {
+  return description ? description : SITE_DESCRIPTION;
+}
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="me" href={FEDIVERSE_URL} />
+
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="Your Site's Title"
+  href={new URL("rss.xml", Astro.site)}
+/>
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{getTitle(title)}</title>
+<meta name="title" content={getTitle(title)} />
+<meta name="description" content={getDescription(description)} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={getTitle(title)} />
+<meta property="og:description" content={getDescription(description)} />
+<!-- <meta property="og:image" content={getOgImage({ title, postMeta })} /> -->
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={getTitle(title)} />
+<meta property="twitter:description" content={getDescription(description)} />
+<!-- <meta property="twitter:image" content={getOgImage({ title, postMeta })} /> -->

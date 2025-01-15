@@ -1,0 +1,52 @@
+---
+/**
+ * This component could be improved by:
+ * - Customizing colors
+ * - Customizing titles
+ * - Customizing links to sources
+ * - Customizing icons (info, warning, etc)
+ *  - example: https://www.joshwcomeau.com/css/custom-css-reset/
+ */
+export interface Props {
+  attribution?: string; // the person the quote is attibuted to
+  work?: string; // the work the quote is from
+  padding?: "large" | "small";
+}
+
+const { attribution, work, padding = "small" } = Astro.props;
+
+const paddingValue = padding === "large" ? "p-4 my-4" : "py-1";
+---
+
+<style>
+  blockquote p::before,
+  blockquote p::after {
+    content: none;
+  }
+
+  blockquote p {
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+  }
+</style>
+
+<blockquote
+  class={[
+    paddingValue,
+    "border-s-4 rounded border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800",
+  ].join(" ")}
+>
+  <p class="font-medium leading-relaxed text-gray-900 dark:text-white">
+    <slot />
+    {
+      attribution && work ? (
+        <div>
+          &mdash; {attribution}, <i>{work}</i>
+        </div>
+      ) : (
+        attribution && <div>&mdash; {attribution}</div>
+      )
+    }
+  </p>
+</blockquote>
