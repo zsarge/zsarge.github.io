@@ -1,38 +1,30 @@
 ---
 // This is a little overcomplicated, but I'm not changing it.
 
-import * as fs from "fs";
-import path from "path";
+import BlackCat from "/src/assets/cat-feeder/intro/black cat/Black Cat.jpg";
+import Boots from "/src/assets/cat-feeder/intro/boots the cat/Boots.jpg";
+import FluffyCat from "/src/assets/cat-feeder/intro/fluffy cat/Fluffy Cat.jpg";
+import TheKittens from "/src/assets/cat-feeder/intro/kittens/The Kittens.png";
+import OrangeCat from "/src/assets/cat-feeder/intro/orange cat/Orange Cat.jpg";
+import Opossum from "/src/assets/cat-feeder/intro/z-opossum/Opossum.png";
+import Tortoiseshell from "/src/assets/cat-feeder/intro/tortoiseshell/Tortoiseshell.jpg";
+import Skunk from "/src/assets/cat-feeder/intro/z-skunk/Skunk.png";
+import Raccoon from "/src/assets/cat-feeder/intro/z-raccoon/Raccoon.png";
+
+const animalData = [
+  ["Black Cat", BlackCat],
+  ["Boots", Boots],
+  ["Fluffy Cat", FluffyCat],
+  ["The Kittens", TheKittens],
+  ["Orange Cat", OrangeCat],
+  ["Opossum", Opossum],
+  ["Tortoiseshell", Tortoiseshell],
+  ["Skunk", Skunk],
+  ["Raccoon", Raccoon],
+];
+
 import { Picture } from "astro:assets";
 import Zoom from "react-medium-image-zoom";
-
-/**
- * Note that file reads occur relative to project root
- */
-const BASE_DIR = "./src/assets/cat-feeder/intro";
-
-function getAnimals(): string[] {
-  return fs.readdirSync(BASE_DIR);
-}
-
-async function getImages(animalName: string): Promise<any[][]> {
-  const pathName = path.join(BASE_DIR, animalName);
-  return fs.readdirSync(pathName).map((fileName) => {
-    const fullPath = path.join(BASE_DIR, animalName, fileName);
-    return [
-      path.basename(fileName, path.extname(fileName)),
-      import(
-        /* @vite-ignore */
-        path.join("/", fullPath)
-      ),
-    ];
-  });
-}
-
-// yeah, it does sequential async calls, but it runs at compile time so I don't care.
-const paths = await Promise.all(
-  getAnimals().map(async (animalName) => [animalName, await getImages(animalName)])
-);
 ---
 
 <style>
@@ -65,20 +57,18 @@ const paths = await Promise.all(
 <div class="container mx-auto p-4">
   <div class="flex flex-wrap">
     {
-      paths.map(([animalName, animalData]) =>
-        animalData.map(([filename, image]) => (
-          <div class="flex-1 min-w-[150px] max-w-[300px] gap-0">
-            <div class="fixed-height  flex justify-center items-center">
-              <figure>
-                <Zoom client:load>
-                  <Picture src={image} alt={filename} />
-                </Zoom>
-                <figcaption>{filename}</figcaption>
-              </figure>
-            </div>
+      animalData.map(([filename, image]) => (
+        <div class="flex-1 min-w-[150px] max-w-[300px] gap-0">
+          <div class="fixed-height  flex justify-center items-center">
+            <figure>
+              <Zoom client:load>
+                <Picture src={image} alt={filename} />
+              </Zoom>
+              <figcaption>{filename}</figcaption>
+            </figure>
           </div>
-        ))
-      )
+        </div>
+      ))
     }
   </div>
 </div>
