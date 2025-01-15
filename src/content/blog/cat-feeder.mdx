@@ -3,8 +3,6 @@ title: "Automatic Cat Feeder"
 description: "Lorem ipsum dolor sit amet"
 featured: true
 pubDate: "Jul 02 2022"
-cover: "../../assets/placeholder-hero.png"
-coverAlt: "Hero Image"
 tags:
   - Norse IoT
 ---
@@ -20,6 +18,7 @@ import {
 import CatPictures from "../../components/posts/cat-feeder/CatPictures.astro";
 import PanellumViewer from "../../components/PanellumViewer.astro";
 import AnnotatedStl from "../../components/AnnotatedStl";
+import VideoEmbed from "../../components/VideoEmbed";
 
 ## Introduction
 
@@ -72,6 +71,32 @@ import Camera from "/src/assets/cat-feeder/Camera.jpg";
 
 ## Initial Development
 
+### Grace's Design
+
+Grace had been feeding the cats by hand for several weeks at this point.
+
+When we talked about creating an automatic cat feeder, she created an amazing artistic representation of our goals:
+
+import GraceDrawing from "/src/assets/cat-feeder/GraceDrawing.png";
+
+<ZoomOptimized
+  src={GraceDrawing}
+  alt="Grace's diagram of a cat feeder"
+  className="text-center"
+  height="600"
+/>
+
+This illustrates the core functionality:
+
+- Lots of food goes in the top
+- A bit of food goes into food bowls at regular intervals
+
+Originally, we wanted to have multiple food bowls, so that the cats don't get in each others' way,
+but we ended up only having one bowl for simplicity.
+We also never got around to building the housing for the cats, partially due to cost reasons.
+
+### Research
+
 Initially, I wanted to do this project using only the tools available in the club room.
 
 Given that we were going through renovations, my focus was largely limited to what I could build using
@@ -79,7 +104,7 @@ solely 3d-printed components, and some motors intended for educational use.
 
 We started out by doing some research on cat feeders.
 
-For one, [we took a look on Amazon](https://www.amazon.com/s?k=Outdoor+cat+feeder), and found that it's possible to buy an automatic cat feeder,
+For one, [we took a look on Amazon](https://www.amazon.com/s?k=Outdoor+cat+feeder), and found that it's possible to buy an indoor automatic cat feeder,
 and it's possible to buy outdoor feeding stations for cats, but we did not find many good options for true outdoor cat feeders.
 
 We started looking into blog posts about this. We found
@@ -88,7 +113,9 @@ about building a cat feeder, which released [the feeder screw](https://www.thing
 
 In their project, they only 3d-printed the screw and used PVC pipe as the outer housing.
 
-Due to our school, we have a lot of free filament, so we decided to 3d print the pipe as well to save costs.
+In our case, we have a lot of free filament, so we decided to 3d print the pipe as well to save costs.
+
+### First Auger
 
 This led us to our first design:
 
@@ -119,11 +146,34 @@ import Circuit from "/src/assets/cat-feeder/Circuit.jpg";
 
 This uses a IRFZ44N N-Channel mosfet:
 
-- Gate: Pin 2 on esp32
-- Drain: Goes to the negative line on the ULN2003AN
-- Source: Goes to the negative line for the 9V power supply
+- **Gate:** Pin 2 on esp32
+- **Drain:** Goes to the negative line on the ULN2003AN
+- **Source:** Goes to the negative line for the 9V power supply
+- **Note:** make sure to include a ~10KΩ resistor between the gate and the source.
 
-Important: make sure to include a ~10KΩ resistor between the gate and the source.
+Toby found [this interesting article](https://everythingsmarthome.co.uk/converting-the-28byj-48-stepper-motor-for-more-torque/) which detailed how to modify the stepper motor for more torque.
+
+But, this all ended up being in vain, as the force from our little motor
+was nowhere near enough to overpower the cat food when little pellets get stuck between the auger and pipe.
+
+### Rotisserie Chicken Motor
+
+Enter: A rotisserie chicken motor!
+
+<video controls="" autoplay="" transition:persist>
+  <source src="/assets/cat-feeder/RotisserieChicken.mp4" type="video/mp4" />
+  <source src="/assets/cat-feeder/RotisserieChicken.webm" type="video/webm" />
+</video>
+
+It's been sitting in my basement for years.
+
+| **Value** | **Property**           |
+| --------- | ---------------------- |
+| 3         | Revolutions Per Minute |
+| 11.5      | Newton-metres          |
+| 120       | Volts (AC)             |
+
+This motor is going to be strong enough!
 
 ---
 
