@@ -1,6 +1,4 @@
 import { StlViewer, type StlViewerProps } from "react-stl-viewer";
-import { BASE_URL } from "../consts";
-import { styled } from "styled-components";
 
 export interface AnnotatedStlProps extends StlViewerProps {
   name: string;
@@ -18,7 +16,7 @@ export default function ({ name, height, url, ...rest }: AnnotatedStlProps) {
   height ??= "20em";
   const canvasId = getIdFromPathName(url);
 
-  let presetHeight = name ? "5em" : "2em"; // we set the preset height to avoid layout-shift when the file loads
+  let presetHeight = name ? "6.5em" : "2em"; // we set the preset height to avoid layout-shift when the file loads
 
   return (
     <div style={{ height: `calc(${height} + ${presetHeight})` }}>
