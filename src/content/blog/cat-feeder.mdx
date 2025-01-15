@@ -21,6 +21,8 @@ import AnnotatedStl from "../../components/AnnotatedStl";
 
 ## Introduction
 
+<div className="text-4xl">This is a draft</div>
+
 There are a bunch of adorable kitties living in the bushes at [NKU](https://www.nku.edu/).
 
 For much of the semester, a smattering of students and staff have been taking care of the cats.
@@ -259,6 +261,8 @@ import AfterHole from "/src/assets/cat-feeder/AfterHole.jpg";
 
 We used some construction plastic to create a funnel in the top bucket of the cat feeder, such that it would flow easily into the auger.
 
+We followed the same procedure to drill a hole in the top of the bottom bucket.
+
 ### Step 2: Join the top bucket to the bottom bucket
 
 import JoinTopToBottom from "/src/assets/cat-feeder/JoinTopToBottom.jpg";
@@ -276,17 +280,59 @@ Next, we drilled some holes between the top and the bottom buckets, and I think 
 
 ### Step 3: Make a funnel
 
+We want the cat food to flow smoothly from the top bucket into the auger.
+
+So, we use some construction plastic and HVAC tape to make a funnel.
+
+This still leaves enough space in the top bucket to fill it with about 16 lbs of cat food.
+
 import Funnel from "/src/assets/cat-feeder/Funnel.jpg";
 
 <ZoomOptimized src={Funnel} alt="Photo of the construction plastic funnel" height="400" />
 
 ### Step 4: Make a bracket to attach the motor
 
-We measure the
+Next, we figure out where the motor needs to be mounted, and we build a bracket to match.
 
 import MeasureTwice from "/src/assets/cat-feeder/MeasureTwice.jpg";
 
-<ZoomOptimized src={MeasureTwice} alt="Grace and Zack measuring the cat feeder box" height="400" />
+<ZoomOptimized
+  src={MeasureTwice}
+  alt="Grace and Zack measuring the cat feeder box"
+  height="400"
+  credit="Patrick Hirsch"
+/>
+
+import HammerBracket from "/src/assets/cat-feeder/HammerBracket.jpg";
+
+<ZoomOptimized src={HammerBracket} alt="Patrick hammering the bracket in place" height="400" />
+
+Originally, I was worried that this was not strong enough, because there was a little bit of flexibility under load.
+
+However, I learned that:
+
+<QuoteBlock>
+  <i>If it doesn't bend, it will break</i>
+</QuoteBlock>
+
+In the end, it was good to have a bit of flex to the system, so that:
+
+1. it was easier to work with
+2. when the tube was blocked by solidified cat food, the bracket was able to provide enough flexibility that we avoided cascading failures (such as the auger tube or mountings)
+
+import BracketBucket from "/src/assets/cat-feeder/BracketBucket.jpg";
+
+<ZoomOptimized src={BracketBucket} alt="Inside of bucket with new bracket and motor" height="300" />
+
+### TODO: Step 5: Print a new auger sheath
+
+## TODO: Cat Feeder Camera
+
+## TODO: Operations
+
+### TODO: Skunk damage & Repair
+
+### TODO: Winter storm
 
 ---
 
@@ -318,10 +364,6 @@ I think about these XKCD comics a lot:
     />
   </div>
 </div>
-
-## TODO - Story so far
-
-<QuoteBlock>test</QuoteBlock>
 
 ## Is it worth it?
 
