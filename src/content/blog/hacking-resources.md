@@ -542,6 +542,7 @@ Guides:
 
 - <https://fotoforensics.com/>
 - <https://book.hacktricks.xyz/crypto-and-stego/stego-tricks>
+- <https://www.aperisolve.com/>
 
 ---
 
