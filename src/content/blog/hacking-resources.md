@@ -250,9 +250,15 @@ This is an [awesome list](https://github.com/sindresorhus/awesome) of resources 
 
 **Capture the Flag (CTF) games**
 
-- [CTFd](https://ctfd.io/) – an open-source CTF platform
 - [CTFtime](https://ctftime.org/) – a public directory of all CTFs organized currently or in the past
 - [CTF Field Guide](https://trailofbits.github.io/ctf/) – an online book about preparing for CTFs
+
+**CTF platforms**
+
+- [CTFd](https://ctfd.io/) – the standard open-source CTF platform
+    - [CTFd downloader](https://github.com/jselliott/ctfd_download_python) - useful to get all files as an archive, or during a competition
+- [rCTF](https://rctf.redpwn.net/) - another open-source CTF platform
+- [fbctf](https://github.com/facebookarchive/fbctf) - Facebook's (deprecated) CTF platform
 
 **Online training grounds and practice challenges**
 
