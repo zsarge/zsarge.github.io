@@ -157,7 +157,7 @@ XSS resources recommended by [thehacker.recipes](https://www.thehacker.recipes/w
 
 ### Public hacking wikis
 
-Here are some wikis all about cybersecurity. These are great resources to link people to, because there's no ads.
+Here are some wikis all about cybersecurity. These are great resources to link people to, because there's minimal/no ads.
 
 - Hacker Recipies: <https://www.thehacker.recipes/>
   - SQL Injection: <https://www.thehacker.recipes/web/inputs/sqli>
@@ -315,6 +315,16 @@ This work is licensed under a [CC0 (Public Domain) License](https://creativecomm
 
 ---
 
+### List of useful payloads
+
+Can you send inputs? Here are some ideas to try!
+
+- <https://github.com/swisskyrepo/PayloadsAllTheThings>
+- <https://github.com/minimaxir/big-list-of-naughty-strings>
+- Sites like [HackTricks](https://book.hacktricks.wiki/en/pentesting-web/sql-injection/index.html) have great lists of payloads to try.
+
+---
+
 ### YouTube CyberSecurity
 
 These are my personal recommendations.
@@ -420,6 +430,14 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 ---
 
+### Reverse Engineering
+
+- <https://ghidra-sre.org/> - My go-to for many years
+- <https://binary.ninja/> - My new best friend
+- <https://hex-rays.com/ida-pro> - I've seen it around, but I haven't used it.
+
+---
+
 ### Metasploit and Metasploitable
 
 [Metasploit](https://www.metasploit.com/)
@@ -460,6 +478,15 @@ Guides:
 - <https://cryptopals.com/> ⭐
   - [easy example](https://cryptopals.com/sets/1/challenges/1)
   - [difficult example](https://cryptopals.com/sets/8/challenges/62.txt)
+- <https://github.com/Ciphey/Ciphey> - Automatically decrypt encryptions without knowing the key or cipher, decode encodings, and crack hashes 
+
+---
+
+### Hashing
+
+- [John the Ripper](https://github.com/openwall/john)
+- [Hashcat](https://github.com/hashcat/hashcat)
+    - [Hashcat Practice](https://www.thehacker.recipes/ad/movement/credentials/cracking#practice)
 
 ---
 
@@ -468,6 +495,26 @@ Guides:
 <https://downfall.page/>
 
 > Downfall attacks targets a critical weakness found in billions of modern processors used in personal and cloud computers. This vulnerability, identified as CVE-2022-40982, enables a user to access and steal data from other users who share the same computer. For instance, a malicious app obtained from an app store could use the Downfall attack to steal sensitive information like passwords, encryption keys, and private data such as banking details, personal emails, and messages. Similarly, in cloud computing environments, a malicious customer could exploit the Downfall vulnerability to steal data and credentials from other customers who share the same cloud computer.
+
+---
+
+### Heartbleed
+
+<https://heartbleed.com/>
+
+> The Heartbleed Bug is a serious vulnerability in the popular OpenSSL cryptographic software library. This weakness allows stealing the information protected, under normal conditions, by the SSL/TLS encryption used to secure the Internet. SSL/TLS provides communication security and privacy over the Internet for applications such as web, email, instant messaging (IM) and some virtual private networks (VPNs).
+
+---
+
+### Meltdown / Spectre
+
+<https://meltdownattack.com/>
+
+> Meltdown and Spectre exploit critical vulnerabilities in modern processors. These hardware vulnerabilities allow programs to steal data which is currently processed on the computer. While programs are typically not permitted to read data from other programs, a malicious program can exploit Meltdown and Spectre to get hold of secrets stored in the memory of other running programs. This might include your passwords stored in a password manager or browser, your personal photos, emails, instant messages and even business-critical documents.
+
+<https://leaky.page/>
+
+>  This site hosts a proof of concept for the Spectre vulnerability written in JavaScript. It was developed and optimized for Chrome 88 running on an Intel® Core™ i7-6500U processor on Linux. While it was confirmed to work on other CPUs (different vendor and/or generation), operating systems and Chromium flavors, you might have to adjust the configuration and it might work less reliably (or not at all). Note that the goal of this proof of concept is to demonstrate the feasibility of a web-based Spectre exploit. It is not a test to see if your device is vulnerable or not. All code is public, you can find it on GitHub. 
 
 ---
 
@@ -546,9 +593,23 @@ Guides:
 
 ### Steganography
 
+**Websites**
+
+- <https://www.aperisolve.com/> ⭐
 - <https://fotoforensics.com/>
 - <https://book.hacktricks.xyz/crypto-and-stego/stego-tricks>
-- <https://www.aperisolve.com/>
+
+**Tools**
+
+- [binwalk](https://github.com/ReFirmLabs/binwalk) - Can extract embedded files from images
+- [foremost](https://www.kali.org/tools/foremost/) - recover lost files based on their headers, footers, and internal data structures.
+- [ImageMagick](https://github.com/ImageMagick/ImageMagick) - cli image manipulation
+    - `magick identify -verbose <filename>` - Get more information about a file
+    - `mogrify -set comment 'Extraneous bytes removed' <filename>` - mogrify may process or remove damaged bytes
+- <https://github.com/bannsec/stegoVeritas>
+- <https://www.kali.org/tools/steghide/>
+- <https://github.com/izcoser/stegpy>
+- [hexedit](https://linux.die.net/man/1/hexedit) / [xxd](https://linux.die.net/man/1/xxd)
 
 ---
 
@@ -562,7 +623,7 @@ I have a [Flipper Zero](https://flipperzero.one/). What can I do with it for the
 
 ---
 
-### CTFd
+### Misc
 
 CTFd resources:
 
