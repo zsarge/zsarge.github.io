@@ -321,6 +321,7 @@ Can you send inputs? Here are some ideas to try!
 
 - <https://github.com/swisskyrepo/PayloadsAllTheThings>
 - <https://github.com/minimaxir/big-list-of-naughty-strings>
+- <https://github.com/danielmiessler/SecLists>
 - Sites like [HackTricks](https://book.hacktricks.wiki/en/pentesting-web/sql-injection/index.html) have great lists of payloads to try.
 
 ---
