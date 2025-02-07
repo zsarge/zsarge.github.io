@@ -433,9 +433,16 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 ### Reverse Engineering
 
+**Tools:**
+
 - <https://ghidra-sre.org/> - My go-to for many years
 - <https://binary.ninja/> - My new best friend
 - <https://hex-rays.com/ida-pro> - I've seen it around, but I haven't used it.
+
+**Challenges:**
+
+- <https://challenges.re/>
+- See other CTFs 
 
 ---
 
