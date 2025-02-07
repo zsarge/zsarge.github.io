@@ -442,6 +442,7 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 **Challenges:**
 
 - <https://challenges.re/>
+- <https://crackmes.one/>
 - See other CTFs 
 
 ---
