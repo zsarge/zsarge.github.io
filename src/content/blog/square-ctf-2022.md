@@ -634,9 +634,6 @@ I'm calling that **three** total challenges. 🎉
 
 <aside>
 And yes, several hours later, my $6 Digital Ocean Droplet is still maxed out trying to build one the docker image for [nojs](https://squarectf.com/2022/nojs.html).
-
-If you are represent a company interested in supporting college students passionate about cybersecurity, please feel free to [contact me](/contact.html).
-
 </aside>
 
 ## Our status so far:

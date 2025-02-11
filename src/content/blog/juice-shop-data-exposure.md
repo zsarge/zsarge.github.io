@@ -370,4 +370,4 @@ I hope you learned something new today.
 
 Come back next week for our foreign exchange meeting, where we'll be learning more about other injection techniques.
 
-As always, feel free to [reach out to me](https://zack.fyi/contact.html) with feedback about this week's lesson. Thanks! 😊
+As always, feel free to [reach out to me](https://zack.fyi/contact) with feedback about this week's lesson. Thanks! 😊
