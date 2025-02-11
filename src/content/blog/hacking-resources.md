@@ -13,7 +13,7 @@ Hi! I'm Zack Sargent. I'm in charge of running weekly meetings for my university
 
 During my time finding things to do for our meetings, I've stumbled across quite a few resources.
 
-Here is the list that I personally reference when looking for inspiration. If you think it could be better, feel free to [let me know](/contact.html)!
+Here is the list that I personally reference when looking for inspiration. If you think it could be better, feel free to [let me know](/contact)!
 
 ## Cyber Security Resources
 
