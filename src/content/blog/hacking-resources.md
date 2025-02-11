@@ -443,7 +443,7 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 - <https://challenges.re/>
 - <https://crackmes.one/>
-- See other CTFs 
+- See other CTFs
 
 ---
 
@@ -483,11 +483,12 @@ Guides:
 
 ### Cryptography
 
-- <https://cryptohack.org/challenges/> ⭐
-- <https://cryptopals.com/> ⭐
+- <https://cryptohack.org/challenges/>
+- <https://cryptopals.com/>
   - [easy example](https://cryptopals.com/sets/1/challenges/1)
   - [difficult example](https://cryptopals.com/sets/8/challenges/62.txt)
-- <https://github.com/Ciphey/Ciphey> - Automatically decrypt encryptions without knowing the key or cipher, decode encodings, and crack hashes 
+- <https://mysterytwister.org/>
+- <https://github.com/Ciphey/Ciphey> - Automatically decrypt encryptions without knowing the key or cipher, decode encodings, and crack hashes
 
 ---
 
@@ -523,7 +524,7 @@ Guides:
 
 <https://leaky.page/>
 
->  This site hosts a proof of concept for the Spectre vulnerability written in JavaScript. It was developed and optimized for Chrome 88 running on an Intel® Core™ i7-6500U processor on Linux. While it was confirmed to work on other CPUs (different vendor and/or generation), operating systems and Chromium flavors, you might have to adjust the configuration and it might work less reliably (or not at all). Note that the goal of this proof of concept is to demonstrate the feasibility of a web-based Spectre exploit. It is not a test to see if your device is vulnerable or not. All code is public, you can find it on GitHub. 
+>  This site hosts a proof of concept for the Spectre vulnerability written in JavaScript. It was developed and optimized for Chrome 88 running on an Intel® Core™ i7-6500U processor on Linux. While it was confirmed to work on other CPUs (different vendor and/or generation), operating systems and Chromium flavors, you might have to adjust the configuration and it might work less reliably (or not at all). Note that the goal of this proof of concept is to demonstrate the feasibility of a web-based Spectre exploit. It is not a test to see if your device is vulnerable or not. All code is public, you can find it on GitHub.
 
 ---
 
