@@ -3,10 +3,11 @@ import PostsList from "../components/PostsList.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import SeriesList from "../components/SeriesList.astro";
-import Socials from "../components/Socials.astro";
 import Age from "../components/Age";
 import QuoteBlock from "../components/QuoteBlock.astro";
-import { RiContactsBook3Fill, RiContactsBookFill, RiContactsFill } from "@remixicon/react";
+import { RiContactsFill } from "@remixicon/react";
+import SmallVoice from "../assets/general/smallvoice.gif";
+import { Image } from "astro:assets";
 
 const posts = await getCollection("blog");
 
@@ -83,6 +84,16 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
           </div>
         )
       }
+
+      <br />
+
+      <div class="mt-10 leading-10">
+        <h2 class="text-2xl text-black dark:text-white">WebNeighbors</h2>
+        <p>AWESOME PEOPLE!! RAH!</p>
+        <a href="https://smallvoice.neocities.org/" target="_blank">
+          <Image src={SmallVoice} alt="smallvoice" />
+        </a>
+      </div>
     </div>
   </div>
 </BaseLayout>
