@@ -8,6 +8,7 @@ import QuoteBlock from "../components/QuoteBlock.astro";
 import { RiContactsFill } from "@remixicon/react";
 import SmallVoice from "../assets/general/smallvoice.gif";
 import Cassian from "../assets/general/cassian-button.avif";
+import Malice from "../assets/general/malice.png";
 import Zack from "../assets/general/";
 import { Image } from "astro:assets";
 
@@ -105,6 +106,9 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
           </a>
           <a href="https://cassian.cc" target="_blank" class="m-1">
             <Image src={Cassian} alt="Cassian" />
+          </a>
+          <a href="https://malice.site" target="_blank" class="m-1">
+            <Image src={Malice} alt="malice.site" />
           </a>
         </div>
         <div class="text-sm leading-6">
