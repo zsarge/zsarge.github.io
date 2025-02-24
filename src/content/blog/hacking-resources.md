@@ -336,8 +336,7 @@ These are my personal recommendations.
 
 Related:
 
-- [Ben Eater](https://www.youtube.com/beneater) - <https://eater.net/> - Hardware
-- [PirateSoftware](https://www.youtube.com/@PirateSoftware) - Hacker, turned GameDev YouTuber
+- [Ben Eater](https://www.youtube.com/beneater) - <https://eater.net/> - Hardware + Computer Engineering
 - [Which is your favourite cybersecurity youtube channel? And why?](https://www.reddit.com/r/hacking/comments/nj68g2/which_is_your_favourite_cybersecurity_youtube)
 
 ---
