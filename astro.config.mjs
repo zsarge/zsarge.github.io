@@ -19,7 +19,7 @@ export default defineConfig({
   markdown: {
     extendDefaultPlugins: true,
     syntaxHighlight: false,
-    rehypePlugins: [rehypePrettyCode, rehypeKatex],
+    rehypePlugins: [rehypeKatex],
     remarkPlugins: [remarkReadingTime, remarkMath],
   },
   vite: {
