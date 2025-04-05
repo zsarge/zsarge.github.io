@@ -167,6 +167,7 @@ Here are some wikis all about cybersecurity. These are great resources to link p
 - <https://redteam.wiki/>
 - <https://es7evam.gitbook.io/security-studies>
 - <https://ir0nstone.gitbook.io/notes>
+- <https://book.jorianwoltjer.com/>
 
 ---
 
@@ -322,6 +323,7 @@ Can you send inputs? Here are some ideas to try!
 - <https://github.com/swisskyrepo/PayloadsAllTheThings>
 - <https://github.com/minimaxir/big-list-of-naughty-strings>
 - <https://github.com/danielmiessler/SecLists>
+- <https://georgemauer.net/2017/10/07/csv-injection.html> - CSV Injection
 - Sites like [HackTricks](https://book.hacktricks.wiki/en/pentesting-web/sql-injection/index.html) have great lists of payloads to try.
 
 ---

@@ -9,12 +9,13 @@ import Icons from "unplugin-icons/vite";
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import { BASE_URL } from "./src/consts";
+import expressiveCode from "astro-expressive-code";
 
 
 // https://astro.build/config
 export default defineConfig({
   site: BASE_URL,
-  integrations: [mdx(), sitemap(), tailwind(), react()],
+  integrations: [expressiveCode(), mdx(), sitemap(), tailwind(), react()],
   markdown: {
     extendDefaultPlugins: true,
     syntaxHighlight: false,

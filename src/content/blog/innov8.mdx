@@ -1,0 +1,227 @@
+---
+title: Plaid CTF - innov8 challenge
+description: A challenge about Math.random() in Node.JS vs V8
+pubDate: 2025-03-05
+tags:
+  - nkcyber
+  - cybersecurity
+---
+
+import QuoteBlock from "../../components/QuoteBlock.astro";
+import ZoomOptimized from "../../components/ZoomOptimized.astro";
+
+NKCyber recently participated in PlaidCTF 2025.
+
+<QuoteBlock>
+
+**More Info about PlaidCTF**
+
+> PlaidCTF is a Capture The Flag hosted by the [Plaid Parliament of Pwning (PPP)](https://pwning.net/about/), a CTF team from Carnegie Mellon University.
+> It is sponsored by Jane Street, among others.
+
+- [Website](https://plaidctf.com/)
+- [CTFTime](https://ctftime.org/ctf/10/)
+
+</QuoteBlock>
+
+## Challenge
+
+import ChallengeContext from "/src/assets/innov8/context.png";
+
+<ZoomOptimized
+  src={ChallengeContext}
+  alt="Challenge Description: Remember the past. (Solving this gives the password for part 2's server and handout.) Reward: 42 points Solves: 100 solves — First solved by valgrind (in 9 minutes), MM_ (in 12 minutes), and Kalmaroos (in 14 minutes)"
+/>
+
+I'm going to be focusing on the innov8 > excav8 challenge
+
+The name is a pun on the [V8 engine](https://v8.dev/), which powers everything from Chrome to Node.JS.
+
+{/* TODO: create component to represent files in dir */}
+
+```Console
+innov8_excav8$ ls -l
+total 39076
+-rw-r--r--. 1 sarge sarge      425 Mar 12 15:37 chall.py
+-rwxr-xr-x. 1 sarge sarge 39692296 Mar 12 15:40 d8
+-rw-r--r--. 1 sarge sarge      664 Mar 12 15:37 Dockerfile
+-rw-r--r--. 1 sarge sarge       65 Mar 12 15:37 gen.js
+-rw-r--r--. 1 sarge sarge   303530 Mar 12 15:37 output.txt
+```
+
+The d8 file is for running JavaScript directly with the [V8 Developer Shell](https://v8.dev/docs/d8).
+
+We can see the files that are relevant to the challenge:
+
+```python title="chall.py"
+import subprocess
+
+secret = open('secret.txt').read().strip()
+secretbits = ''.join(f'{ord(i):08b}' for i in secret)
+
+output = []
+
+for bit in secretbits:
+    if bit == '0':
+        output += [float(i) for i in subprocess.check_output('./d8 gen.js', shell=True).decode().split()]
+    else:
+        output += [float(i) for i in subprocess.check_output('node gen.js', shell=True).decode().split()]
+
+for i in output:
+    print(i)
+```
+
+```js title="gen.js"
+for (let i = 0; i < 24; i++) {
+  console.log(Math.random());
+}
+```
+
+<details>
+<summary> Show Dockerfile </summary>
+
+```dockerfile title="Dockerfile"
+FROM node:23.9.0-slim AS base
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    curl \
+    g++ \
+    git \
+    pkg-config \
+    python3
+
+FROM base AS build
+
+RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+ENV PATH="/depot_tools:${PATH}"
+RUN fetch v8
+
+WORKDIR /v8
+
+RUN git checkout 13.6.1
+RUN gn gen out/build --args='is_debug=false v8_use_external_startup_data=false target_cpu="x64" use_goma=false v8_enable_i18n_support=false symbol_level=0'
+RUN ninja -C out/build d8
+
+FROM base AS chall
+
+WORKDIR /chall
+COPY --from=build /v8/out/build/d8 .
+COPY secret.txt gen.js chall.py .
+
+ENTRYPOINT ["python3", "chall.py"]
+```
+
+</details>
+
+### Summary
+
+So, we know that the flag was encoded by taking each byte of text and joining them together as a binary string.
+
+From there, each `0` bit then ran `gen.js` with `d8`, and each `1` bit was run with Node.
+
+Our goal is to loop through each group of 24 numbers, and determine if the random numbers came from Node.JS or V8.
+
+## Attack
+
+```py title="chatgpt.py"
+import z3
+import struct
+from itertools import batched
+
+def is_v8_sequence(floats: list[float]) -> bool:
+    assert len(floats) == 24
+
+    reversed_floats = floats[::-1]
+
+    solver = z3.Solver()
+    state0, state1 = z3.BitVecs("se_state0 se_state1", 64)
+
+    current_state0 = state0
+    current_state1 = state1
+
+    for num in reversed_floats:
+        # Compute the mantissa of the number (as per V8's ToDouble method)
+        try:
+            float_plus_one = num + 1.0
+            packed = struct.pack("d", float_plus_one)
+            uint64 = struct.unpack("<Q", packed)[0]
+            mantissa = uint64 & ((1 << 52) - 1)
+        except:
+            return False
+
+        # Perform one step of XorShift128+
+        s1 = current_state0
+        s0 = current_state1
+        new_state0 = s0
+        s1 ^= s1 << 23
+        s1 ^= z3.LShR(s1, 17)
+        s1 ^= s0
+        s1 ^= z3.LShR(s0, 26)
+        new_state1 = s1
+
+        # Add constraint: the upper 52 bits of new_state0 (after shift) must equal the mantissa
+        solver.add(z3.LShR(new_state0, 12) == mantissa)
+
+        # Update the current states for next iteration
+        current_state0, current_state1 = new_state0, new_state1
+
+    return solver.check() == z3.sat
+```
+
+Then, once I was sure I was on the right track, I wrote some glue logic to apply to the challenge:
+
+```py title="Python 3"
+"""
+this script takes "output.txt" from plaidctf.com for the "innov8" challenge.
+
+- https://plaidctf.com/challenge/5
+- https://plaidctf.com/files/innov8_excav8.d35e5bf36e3e6438dd960aa7adeeb1dcbb25479bddd96509ba72968e1238b488.tgz
+
+It was adapted from PwnFunction's v8-randomness-predictor.
+
+- https://github.com/PwnFunction/v8-randomness-predictor
+"""
+
+from chatgpt import is_v8_sequence
+from itertools import islice, batched
+from tqdm import tqdm
+
+print('starting...')
+
+with open("output.txt") as f:
+        numbers = [float(line.strip()) for line in f]
+        #  windows = [numbers[i:i+24] for i in range(len(numbers) - 23)]
+        windows = batched(numbers, 24)
+
+def is_v8_wrapper(f: list[float]) -> int:
+        assert len(f) == 24
+        if is_v8_sequence(f):
+                return 1
+        else:
+                return 0
+
+def reverse_secretbits(secretbits):
+    # Split the binary string into chunks of 8 bits
+    chunks = [secretbits[i:i+8] for i in range(0, len(secretbits), 8)]
+    # Convert each 8-bit binary string to its corresponding character
+    return ''.join(chr(int(chunk, 2)) for chunk in chunks)
+
+decoded_bits = ""
+
+for group in tqdm(windows):
+        bit = is_v8_wrapper(group)
+        print(bit)
+        decoded_bits += str(bit)
+
+print(reverse_secretbits(decoded_bits))
+```
+
+Running this script on `output.txt` produces:
+
+```
+$ python3 attack.py
+flag: PCTF{BuilD1nG_v8_i5_SuCh_4_pa1N...}
+password to part 2: oaq1MD92evRsDZvH
+```
+
+And with that, we get the flag.
