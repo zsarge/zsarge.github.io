@@ -1,6 +1,6 @@
 ---
 title: Plaid CTF - innov8 challenge
-description: A challenge about Math.random() in Node.JS vs V8
+description: A challenge about Math.random() in Node.js vs V8
 pubDate: 2025-03-05
 tags:
   - nkcyber
@@ -16,8 +16,8 @@ NKCyber recently participated in PlaidCTF 2025.
 
 **More Info about PlaidCTF**
 
-> PlaidCTF is a Capture The Flag hosted by the [Plaid Parliament of Pwning (PPP)](https://pwning.net/about/), a CTF team from Carnegie Mellon University.
-> It is sponsored by Jane Street, among others.
+PlaidCTF is a Capture The Flag hosted by the [Plaid Parliament of Pwning (PPP)](https://pwning.net/about/), a CTF team from Carnegie Mellon University.
+It has multiple sponsors, including the trading firm Jane Street.
 
 - [Website](https://plaidctf.com/)
 - [CTFTime](https://ctftime.org/ctf/10/)
@@ -33,11 +33,11 @@ NKCyber recently participated in PlaidCTF 2025.
 
 I'm going to be focusing on the innov8 > excav8 challenge
 
-The name is a pun on the [V8 engine](https://v8.dev/), which powers everything from Chrome to Node.JS.
+The name is a pun on the [V8 engine](https://v8.dev/), which powers everything from Chrome to Node.js.
 
 {/* TODO: create component to represent files in dir */}
 
-```Console frame="terminal"
+```txt frame="terminal"
 innov8_excav8$ ls -l
 total 39076
 -rw-r--r--. 1 sarge sarge      425 Mar 12 15:37 chall.py
@@ -127,9 +127,9 @@ ENTRYPOINT ["python3", "chall.py"]
 
 So, we know that the flag was encoded by taking each byte of text and joining them together as a binary string.
 
-From there, each `0` bit then ran `gen.js` with `d8`, and each `1` bit ran `gen.js` with Node.JS.
+From there, each `0` bit then ran `gen.js` with `d8`, and each `1` bit ran `gen.js` with Node.js.
 
-Our goal is to loop through each group of 24 numbers produced by `gen.js`, and determine if the random numbers came from Node.JS or V8.
+Our goal is to loop through each group of 24 numbers produced by `gen.js`, and determine if the random numbers came from Node.js or V8.
 
 ## Approach
 
@@ -139,7 +139,7 @@ In my research, I found the article ["[V8 Deep Dives] Random Thoughts on Math.ra
 
 This breaks down the internals of the V8 engine, and leads us to [the following code](https://github.com/v8/v8/blob/70906b269bb30d41440129038f2606cee03f373c/src/builtins/math.tq#L512-L530):
 
-```torque
+```txt
 // ES6 #sec-math.random
 extern macro RefillMathRandom(NativeContext): Smi;
 
@@ -264,9 +264,15 @@ If we [look at Node.js](https://github.com/nodejs/node/blob/f31c88021b5b815bf776
 
 which uses [`ncrypto::CSPRNG`](https://github.com/nodejs/node/blob/f31c88021b5b815bf776066c8eca510696b8c744/deps/ncrypto/ncrypto.cc#L495) as their pseudorandom number generator.
 
-Back to the CTF challenge, the source code comments make it really clear that V8 uses an insecure implementation, so I figure that's what we're going to exploit.
+The source code comments make it really clear that V8 uses an insecure entropy source.
+
+Now we need to figure out how to exploit this fact.
 
 ## Attack
+
+Luckily, the excellent creator PwnFunction wrote [a program](https://github.com/PwnFunction/v8-randomness-predictor/) that uses Microsoft's z3 theorem prover to reverse engineer the pseudorandom engine state using only a few inputs.
+
+Given that we have the `chall.py` output, being chunks of 24 random numbers, we need to apply this to detect whether the chunk of 24 floats was generated with Node.js or V8.
 
 ```py title="deepseek.py"
 """
@@ -371,6 +377,7 @@ Running this script on `output.txt` produces:
 
 ```text frame="terminal"
 $ python3 attack.py
+# ... processing elided
 flag: PCTF{BuilD1nG_v8_i5_SuCh_4_pa1N...}
 password to part 2: oaq1MD92evRsDZvH
 ```
