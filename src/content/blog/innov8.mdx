@@ -139,7 +139,7 @@ In my research, I found the article ["[V8 Deep Dives] Random Thoughts on Math.ra
 
 This breaks down the internals of the V8 engine, and leads us to [the following code](https://github.com/v8/v8/blob/70906b269bb30d41440129038f2606cee03f373c/src/builtins/math.tq#L512-L530):
 
-```txt
+```ts title="math.tq"
 // ES6 #sec-math.random
 extern macro RefillMathRandom(NativeContext): Smi;
 
@@ -220,7 +220,7 @@ Address MathRandom::RefillCache(Isolate* isolate, Address raw_native_context) {
 When we're just running V8 by itself, it will define [RandomNumberGenerator](https://chromium.googlesource.com/v8/v8/+/3.28.8/src/base/utils/random-number-generator.cc#65) as taking entropy from `/dev/urandom` (if available) or system time (by default).
 
 ```cpp
- // Gather entropy from /dev/urandom if available.
+  // Gather entropy from /dev/urandom if available.
   FILE* fp = fopen("/dev/urandom", "rb");
   if (fp != NULL) {
     int64_t seed;
@@ -270,7 +270,13 @@ Now we need to figure out how to exploit this fact.
 
 ## Attack
 
+Our goal is to be able to prove whether a set of inputs were produced by a known algorithm.
+
 Luckily, the excellent creator PwnFunction wrote [a program](https://github.com/PwnFunction/v8-randomness-predictor/) that uses Microsoft's z3 theorem prover to reverse engineer the pseudorandom engine state using only a few inputs.
+
+> Z3 is a state-of-the art theorem prover from Microsoft Research. It can be used to check the satisfiability of logical formulas over one or more theories. Z3 offers a compelling match for software analysis and verification tools, since several common software constructs map directly into supported theories.
+>
+> &mdash; https://microsoft.github.io/z3guide/docs/logic/intro
 
 Given that we have the `chall.py` output, being chunks of 24 random numbers, we need to apply this to detect whether the chunk of 24 floats was generated with Node.js or V8.
 
@@ -285,7 +291,7 @@ import z3
 import struct
 from itertools import batched
 
-def is_v8_sequence(floats: list[float]) -> bool:
+def is_node_sequence(floats: list[float]) -> bool:
     assert len(floats) == 24
 
     reversed_floats = floats[::-1]
@@ -339,7 +345,7 @@ It was adapted from PwnFunction's v8-randomness-predictor.
 - https://github.com/PwnFunction/v8-randomness-predictor
 """
 
-from deepseek import is_v8_sequence
+from deepseek import is_node_sequence
 from itertools import islice, batched
 from tqdm import tqdm
 
@@ -347,12 +353,11 @@ print('starting...')
 
 with open("output.txt") as f:
         numbers = [float(line.strip()) for line in f]
-        #  windows = [numbers[i:i+24] for i in range(len(numbers) - 23)]
         windows = batched(numbers, 24)
 
-def is_v8_wrapper(f: list[float]) -> int:
+def is_node_wrapper(f: list[float]) -> int:
         assert len(f) == 24
-        if is_v8_sequence(f):
+        if is_node_sequence(f):
                 return 1
         else:
                 return 0
@@ -366,7 +371,7 @@ def reverse_secretbits(secretbits):
 decoded_bits = ""
 
 for group in tqdm(windows):
-        bit = is_v8_wrapper(group)
+        bit = is_node_wrapper(group)
         print(bit)
         decoded_bits += str(bit)
 
@@ -377,9 +382,21 @@ Running this script on `output.txt` produces:
 
 ```text frame="terminal"
 $ python3 attack.py
-# ... processing elided
+# ... processing elided ...
 flag: PCTF{BuilD1nG_v8_i5_SuCh_4_pa1N...}
 password to part 2: oaq1MD92evRsDZvH
 ```
 
 And with that, we get the flag.
+
+## What did we learn?
+
+- The chromium codebase can be intimidating, but there's a lot of good documentation and resources to help you approach it.
+- It's important to have a cryptographically secure entropy source for pseudorandom number generation.
+- The Z3 theorem solver is useful for representing known algorithms.
+- Node.js depends on V8, but is different from V8.
+- Large Language Models are good at reformatting similar solutions, but not great at large logical leaps.
+
+I'm not sure we'll do well in the event over all, given that we've only spent a few hours on it, and it's open for 3 days.
+
+However, I think I learned something new, and I hope you did too!
