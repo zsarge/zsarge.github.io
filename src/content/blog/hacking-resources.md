@@ -141,6 +141,72 @@ XSS resources recommended by [thehacker.recipes](https://www.thehacker.recipes/w
 
 ---
 
+### Reverse Engineering
+
+**Tools:**
+
+- <https://ghidra-sre.org/> - My go-to for many years
+- <https://binary.ninja/> - My new best friend
+- <https://hex-rays.com/ida-pro> - I've seen it around, but I haven't used it.
+
+**Challenges:**
+
+- <https://challenges.re/>
+- <https://crackmes.one/>
+- See other CTFs
+
+#### Binary Exploitation Resources
+
+- https://ctf101.org/binary-exploitation/overview/
+- Challenges: <https://crackmes.one/>
+
+#### Buffer Overflow
+
+Buffer Overflow challenges are common in CTFs and the real world.
+
+- [Wikipedia - Buffer Overflow](https://en.wikipedia.org/wiki/Buffer_overflow), [Wikipedia - Stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow#Stack_canaries)
+- [NKCyber's intro collection of Buffer Overflow challenges](https://wiki.nkcyber.org/en/Cyber-Security-Training/Writeups/Meetings/2025-03-07#challenges)
+- iread.team wiki
+    - [32-bit Buffer Overflow](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/stack-based-buffer-overflow)
+    - [32-bit Buffer Overflow](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/64-bit-stack-based-buffer-overflow)
+- [Hacktricks Wiki - Stack Overflow](https://book.hacktricks.wiki/en/binary-exploitation/stack-overflow/index.html?highlight=buffer%20overflow#what-is-a-stack-overflow)
+- [CTF 101 - Buffer Overflow](https://ctf101.org/binary-exploitation/buffer-overflow/)
+- [Writeups on CTFTime](https://ctftime.org/writeups?tags=binary-exploitation&hidden-tags=pwn%2Crev%2Cbuffer+overflow%2Cbinary-exploitation)
+- Chapter 4 of "Computer Security: A Hands-on Approach", by Wenliang Du
+    - [Available as a sample chapter](https://web.ecs.syr.edu/~wedu/seed/Book/book_sample_buffer.pdf) from [Seed Labs](https://web.ecs.syr.edu/~wedu/seed/book.html)
+    - Used in [CSC 482](https://onlinecatalog.nku.edu/preview_course_nopop.php?catoid=20&coid=49247) at NKU.
+
+#### Ropchain
+
+I used all of the following to build a [ROPChain Lab](https://github.com/nkcyber/ropchain-lab/) for [CyberSword](https://wiki.nkcyber.org/en/General/CyberSword):
+
+- <https://textbook.cs161.org/memory-safety/x86.html>
+- <https://tc.gts3.org/cs6265/tut/tut06-01-rop.html>
+- <https://github.com/Gallopsled/pwntools-tutorial/blob/master/rop.md>
+- <https://ocw.cs.pub.ro/courses/cns/labs/lab-08>
+- <https://ir0nstone.gitbook.io/notes/binexp/stack/pie/pie-bypass>
+- <https://docs.pwntools.com/en/stable/rop/rop.html>
+- <https://docs.pwntools.com/en/stable/elf/corefile.html>
+
+More information is available:
+
+- <https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/rop-chaining-return-oriented-programming>
+- <https://ctf101.org/binary-exploitation/return-oriented-programming/>
+- <https://ropemporium.com/> ([Guide](https://ropemporium.com/guide.html))
+- [ret2libc](https://book.jorianwoltjer.com/binary-exploitation/ret2libc)
+- Chapter 5 of "Computer Security: A Hands-on Approach", by Wenliang Du
+
+> ROPgadget is a tool that helps automate the process of finding gadgets and building an attack against a binary. ROPgadget searches a binary for useful gadgets and tries to assemble them into an attack payload that starts a shell that accepts commands from the attacker.
+
+- <https://docs.pwntools.com/en/stable/rop/rop.html>
+
+> Nightmare is an intro to binary exploitation / reverse engineering course based around ctf challenges. I call it that because it's a lot of people's nightmare to get hit by weaponized 0 days, which these skills directly translate into doing that type of work (plus it's a really cool song).
+
+- <https://guyinatuxedo.github.io/>
+
+
+---
+
 ### Virtual Machines available for download:
 
 <https://exploit.education/>
@@ -165,6 +231,7 @@ Here are some wikis all about cybersecurity. These are great resources to link p
 - <https://www.ired.team/>
 - <https://book.hacktricks.xyz/>
 - <https://redteam.wiki/>
+- <https://ctf101.org/>
 - <https://es7evam.gitbook.io/security-studies>
 - <https://ir0nstone.gitbook.io/notes>
 - <https://book.jorianwoltjer.com/>
@@ -432,22 +499,6 @@ I totally recommend going to [his website](https://liveoverflow.com/) and search
 
 ---
 
-### Reverse Engineering
-
-**Tools:**
-
-- <https://ghidra-sre.org/> - My go-to for many years
-- <https://binary.ninja/> - My new best friend
-- <https://hex-rays.com/ida-pro> - I've seen it around, but I haven't used it.
-
-**Challenges:**
-
-- <https://challenges.re/>
-- <https://crackmes.one/>
-- See other CTFs
-
----
-
 ### Metasploit and Metasploitable
 
 [Metasploit](https://www.metasploit.com/)
@@ -572,18 +623,6 @@ Guides:
 - [Videos](https://www.youtube.com/playlist?list=PLjG9EfEtwbvIrGFTx4XctK8IxkUJkAEqP)
 
   ***
-
-### Binary Exploitation Resources
-
-<https://guyinatuxedo.github.io/>
-
-> Nightmare is an intro to binary exploitation / reverse engineering course based around ctf challenges. I call it that because it's a lot of people's nightmare to get hit by weaponized 0 days, which these skills directly translate into doing that type of work (plus it's a really cool song).
-
-> ROPgadget is a tool that helps automate the process of finding gadgets and building an attack against a binary. ROPgadget searches a binary for useful gadgets and tries to assemble them into an attack payload that starts a shell that accepts commands from the attacker.
-
-- <https://docs.pwntools.com/en/stable/rop/rop.html>
-
----
 
 ### DreamHack (EN+KR)
 
