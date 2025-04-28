@@ -141,7 +141,9 @@ XSS resources recommended by [thehacker.recipes](https://www.thehacker.recipes/w
 
 ---
 
-### Reverse Engineering
+### Reverse Engineering / Binary Exploitation
+
+- https://ctf101.org/binary-exploitation/overview/
 
 **Tools:**
 
@@ -155,18 +157,13 @@ XSS resources recommended by [thehacker.recipes](https://www.thehacker.recipes/w
 - <https://crackmes.one/>
 - See other CTFs
 
-#### Binary Exploitation Resources
-
-- https://ctf101.org/binary-exploitation/overview/
-- Challenges: <https://crackmes.one/>
-
 #### Buffer Overflow
 
 Buffer Overflow challenges are common in CTFs and the real world.
 
-- [Wikipedia - Buffer Overflow](https://en.wikipedia.org/wiki/Buffer_overflow), [Wikipedia - Stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow#Stack_canaries)
+- [Wikipedia - Buffer Overflow](https://en.wikipedia.org/wiki/Buffer_overflow), [Wikipedia - Stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow)
 - [NKCyber's intro collection of Buffer Overflow challenges](https://wiki.nkcyber.org/en/Cyber-Security-Training/Writeups/Meetings/2025-03-07#challenges)
-- iread.team wiki
+- Red Team Notes
     - [32-bit Buffer Overflow](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/stack-based-buffer-overflow)
     - [32-bit Buffer Overflow](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/64-bit-stack-based-buffer-overflow)
 - [Hacktricks Wiki - Stack Overflow](https://book.hacktricks.wiki/en/binary-exploitation/stack-overflow/index.html?highlight=buffer%20overflow#what-is-a-stack-overflow)
