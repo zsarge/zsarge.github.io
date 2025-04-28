@@ -588,14 +588,6 @@ Guides:
 
 ---
 
-### Introductory Resources
-
-<https://ctf101.org/>
-
-<!-- No longer online: <https://huntress.ctf.games/resources>  -->
-
----
-
 ### Random Number Manipulation
 
 [Random number manipulation](https://www.reddit.com/r/programminghorror/s/NpZTLupRXk)
