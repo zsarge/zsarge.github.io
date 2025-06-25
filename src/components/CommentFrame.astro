@@ -1,0 +1,21 @@
+---
+import { Astro } from "astro";
+import { SERVER_DOMAIN } from "../consts";
+
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '');
+
+const commentsUrl = `http://${SERVER_DOMAIN}/comments/for?post_path=${normalizedPath}`;
+
+---
+
+<hr>
+<h2 id="comments">Comments</h2>
+
+<iframe 
+  src={commentsUrl}
+  width="600" 
+  height="400" 
+  style="border: none;"
+  loading="lazy"
+  />
+

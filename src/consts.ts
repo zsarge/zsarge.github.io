@@ -8,5 +8,7 @@ export const GITHUB_HANDLE = "https://github.com/zsarge";
 export const FEDIVERSE_URL = "https://defcon.social/@zsarge";
 export const BLUESKY_URL = "https://bsky.app/profile/zack.fyi";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/zsarge";
+export const SERVER_DOMAIN = "localhost:3000";
+export const SERVER_URL = "https://" + SERVER_DOMAIN;
 
 export const CLOUDINARY_NAME = "example";
