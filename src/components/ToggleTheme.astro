@@ -24,6 +24,27 @@ import PhSunFill from "~icons/ph/sun-fill";
     return "light";
   })();
 
+  /**
+   * @param {"dark" | "light"} theme
+   */
+  function broadcastTheme(theme) {
+    const commentsIframe = document.getElementById("comments-iframe");
+    if (commentsIframe) {
+       commentsIframe.contentWindow.postMessage({ type: 'use-theme', theme }, '*');
+    }
+  }
+
+  window.addEventListener('message', (event) => {
+	if (event.data === 'comments-frame-loaded') {
+	  const element = document.documentElement;
+	  const isDark = element.classList.contains("dark");
+	  const newTheme = isDark ? "dark" : "light";
+	  broadcastTheme(newTheme);
+	}
+  });
+
+
+  broadcastTheme(theme);
   if (theme === "light") {
     document.documentElement.classList.remove("dark");
   } else {
@@ -37,7 +58,9 @@ import PhSunFill from "~icons/ph/sun-fill";
     element.classList.toggle("dark");
 
     const isDark = element.classList.contains("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
+    const newTheme = isDark ? "dark" : "light";
+    localStorage.setItem("theme", newTheme);
+    broadcastTheme(newTheme);
   };
 
   document.getElementById("themeToggle").addEventListener("click", handleToggleClick);

@@ -7,6 +7,7 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import { Image } from "astro:assets";
 import SeriesList from "../components/SeriesList.astro";
 import SeriesCard from "../components/SeriesCard.astro";
+import CommentFrame from "../components/CommentFrame.astro";
 
 type Blog = CollectionEntry<"blog">["data"];
 
@@ -85,6 +86,9 @@ const series = (await getCollection("series")).find((s) => s.data.id === seriesI
         <article>
           <slot />
         </article>
+        <div>
+          <CommentFrame />
+        </div>
       </div>
       {
         headings.length > 0 && (

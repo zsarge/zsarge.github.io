@@ -1,0 +1,51 @@
+---
+import { Astro } from "astro";
+import { SERVER_DOMAIN } from "../consts";
+
+const normalizedPath = Astro.url.pathname.replace(/\/+$/, '');
+
+const commentsUrl = `http://${SERVER_DOMAIN}/comments/for?post_path=${normalizedPath}`;
+
+---
+
+<hr>
+<h2 id="comments">Comments</h2>
+
+
+<div id="error-loading-iframe">
+  <p>
+    Sorry, comments may not be available at this time.
+  </p>
+  <p>
+    Feel free to <a href="/contact">contact me</a>, if you want!
+  </p>
+</div>
+
+<iframe 
+  id="comments-iframe"
+  src={commentsUrl}
+  frameborder="0"
+  height="350"
+  style="width:100%; border: none; display: none;"
+  />
+
+<script>
+  window.addEventListener('message', (event) => {
+    if (event.data === 'comments-frame-loaded') {
+      console.log('Iframe says: comments frame loaded!');
+      document.getElementById("error-loading-iframe").style.display = "none";
+      const commentsIframe = document.getElementById("comments-iframe");
+      commentsIframe.style.display = "block";
+      commentsIframe.contentWindow.postMessage('refresh', '*'); // let the iframe know it's visible now
+    }
+  });
+
+  window.addEventListener('message', (event) => {
+    if  (event.data.type === 'comments-frame-height') {
+      const newHeight = event.data.height;
+      if (newHeight !== 0) {
+        document.getElementById('comments-iframe').height = newHeight;
+      }
+    }
+  });
+</script>
