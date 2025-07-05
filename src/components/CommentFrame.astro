@@ -1,10 +1,11 @@
 ---
 import { Astro } from "astro";
-import { SERVER_DOMAIN } from "../consts";
+import { SERVER_URL } from "../consts";
 
+// this ensures "/post" and "/post/" are treated equivalently
 const normalizedPath = Astro.url.pathname.replace(/\/+$/, '');
 
-const commentsUrl = `http://${SERVER_DOMAIN}/comments/for?post_path=${normalizedPath}`;
+const commentsUrl = `${SERVER_URL}/comments/for?post_path=${normalizedPath}`;
 
 ---
 
