@@ -6,16 +6,46 @@ const normalizedPath = Astro.url.pathname.replace(/\/+$/, '');
 
 const commentsUrl = `http://${SERVER_DOMAIN}/comments/for?post_path=${normalizedPath}`;
 
+
+
 ---
 
 <hr>
 <h2 id="comments">Comments</h2>
 
+
+<div id="error-loading-iframe">
+  <p>
+    Sorry, comments may not be available at this time.
+  </p>
+  <p>
+    Feel free to <a href="/contact">contact me</a>, if you want!
+  </p>
+</div>
+
 <iframe 
+  id="comments-iframe"
   src={commentsUrl}
-  width="600" 
-  height="400" 
-  style="border: none;"
-  loading="lazy"
+  frameborder="0"
+  height="350"
+  style="width:100%; border: none; display: none;"
   />
 
+<script>
+  window.addEventListener('message', (event) => {
+    if (event.data === 'comments-frame-loaded') {
+      console.log('Iframe says: comments frame loaded!');
+      document.getElementById("error-loading-iframe").style.display = "none";
+      document.getElementById("comments-iframe").style.display = "block";
+    }
+  });
+
+  window.addEventListener('message', (event) => {
+    if  (event.data.type === 'comments-frame-height') {
+      const newHeight = event.data.height;
+      if (newHeight !== 0) {
+        document.getElementById('comments-iframe').height = newHeight;
+      }
+    }
+  });
+</script>
