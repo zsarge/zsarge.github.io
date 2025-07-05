@@ -6,8 +6,6 @@ const normalizedPath = Astro.url.pathname.replace(/\/+$/, '');
 
 const commentsUrl = `http://${SERVER_DOMAIN}/comments/for?post_path=${normalizedPath}`;
 
-
-
 ---
 
 <hr>
@@ -36,7 +34,9 @@ const commentsUrl = `http://${SERVER_DOMAIN}/comments/for?post_path=${normalized
     if (event.data === 'comments-frame-loaded') {
       console.log('Iframe says: comments frame loaded!');
       document.getElementById("error-loading-iframe").style.display = "none";
-      document.getElementById("comments-iframe").style.display = "block";
+      const commentsIframe = document.getElementById("comments-iframe");
+      commentsIframe.style.display = "block";
+      commentsIframe.contentWindow.postMessage('refresh', '*'); // let the iframe know it's visible now
     }
   });
 
