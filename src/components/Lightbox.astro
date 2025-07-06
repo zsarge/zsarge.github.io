@@ -1,0 +1,84 @@
+---
+import 'glightbox/dist/css/glightbox.css'
+
+// url, title, id, description, alt 
+const { files, id } = Astro.props
+---
+
+<section class="glightbox-images" id={`gallery-${id || 1}`}>
+{
+  files.map((f) => (
+    <a
+      href={f.url}
+      class="glightbox glightbox-link"
+      data-gallery={`gallery-${id || 1}`}
+      data-title={f.title}
+      data-description={f.description} >
+        <img
+          src={f.url}
+          alt={f.alt}
+          class="glightbox-image"
+          loading="lazy"
+        />
+    </a>
+  ))
+}
+
+</section>
+
+<script>
+  import GLightbox from 'glightbox'
+
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+  })
+</script>
+
+<style>
+.glightbox-images {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+
+  *,
+  *::after,
+  *::before {
+    all: unset;
+    font-size: 1rem;
+  }
+}
+
+.glightbox-link {
+  block-size: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  inline-size: 100%;
+  /* aspect-ratio: 1/1; */
+  object-fit: contain;
+}
+
+.glightbox-image {
+  /* aspect-ratio: 1/1; */
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+}
+</style>
+
+<style is:global>
+/* Overrides */
+.gslide-description {
+  background-color: #1c1e1f !important;
+  color: #d2d2d2 !important;
+}
+.gslide-title {
+  color: #fff !important;
+}
+.gslide-title  {
+  margin-bottom: 0 !important;
+}
+.gslide-title + .gslide-desc {
+  margin-top: 12px !important;
+}
+</style>
+
