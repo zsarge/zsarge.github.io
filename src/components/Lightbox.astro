@@ -1,30 +1,62 @@
 ---
+/*
+ * This component is intended to be an easy way to make images be interactive and zoomable.
+ */
+
 import 'glightbox/dist/css/glightbox.css'
+import ServerImage from './ServerImage.astro';
+import getImageUrl from "../lib/getImageServerUrl.ts";
+import { incrementAndGet } from "../lib/idSingleton.ts";
 
 // url, title, id, description, alt 
-const { files, id } = Astro.props
----
+// expect a list of files
+const { files, ...rest } = Astro.props
+// or just one
+const { collection, image, alt, title, description } = rest;
 
-<section class="glightbox-images" id={`gallery-${id || 1}`}>
-{
-  files.map((f) => (
-    <a
-      href={f.url}
-      class="glightbox glightbox-link"
-      data-gallery={`gallery-${id || 1}`}
-      data-title={f.title}
-      data-description={f.description} >
-        <img
-          src={f.url}
-          alt={f.alt}
-          class="glightbox-image"
-          loading="lazy"
-        />
-    </a>
-  ))
+if (files && image) throw new Error("You're not supposed to provide both a list of images and just one image");
+if (!files && !image) throw new Error("You must provide one of files or image");
+if (files && !Array.isArray(files)) throw new Error("files must be an array");
+
+const id = (() => files ? incrementAndGet('lightbox')*1 : null)();
+
+function toClassName(str) {
+  return str.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
 }
 
-</section>
+// at this point, we must either have files or an image
+
+---
+
+{ image && // we are just given one image
+  <a
+    href={getImageUrl(image, collection)}
+    class="glightbox glightbox-link"
+    data-title=""
+    data-description={description || alt} >
+    <ServerImage {...{ collection, image, alt, title, description}} class="glightbox-image" loading="lazy" />
+  </a>
+
+}
+
+{ files && // we are given a collection
+    <section class="glightbox-images" id={`gallery-${id}`}>
+    {
+      files.map((f) => (
+        <a
+          href={getImageUrl(f.image, collection || f.collection)}
+          class="glightbox glightbox-link"
+          data-gallery={`gallery-${id}`}
+          data-title=""
+          data-description={f.alt || f.description} >
+            <ServerImage collection={collection || f.collection} {...f} class="glightbox-image" loading="lazy" />
+        </a>
+      ))
+    }
+
+    </section>
+}
+
 
 <script>
   import GLightbox from 'glightbox'
@@ -38,7 +70,7 @@ const { files, id } = Astro.props
 .glightbox-images {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr));
 
   *,
   *::after,
@@ -62,6 +94,7 @@ const { files, id } = Astro.props
   block-size: 100%;
   inline-size: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 </style>
 

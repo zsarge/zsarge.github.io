@@ -10,7 +10,9 @@ tags:
 import ServerImage from "../../components/ServerImage.astro";
 import Lightbox from "../../components/Lightbox.astro";
 
-<Lightbox files={[{ url: "https://server.zack.fyi/files/trip-2025?file_name=car-on-flatbed.jpg&convert_to=webp", alt: "car no worky" }]}  id="3" />
+<Lightbox files={[{ image: "car-on-flatbed.jpg", alt: "car no worky" }, { image: "fudge.jpg", alt: "Fudge at Wall Drug" }]} collection="trip-2025" />
+
+<Lightbox collection="trip-2025" image="car-on-flatbed.jpg" alt="car no worky" />
 
 In April of 2025, I found out that I'd have about a month long gap between leaving school and starting work.
 

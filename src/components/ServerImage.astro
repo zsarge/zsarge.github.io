@@ -1,32 +1,13 @@
 ---
 import { Astro } from "astro";
-import { SERVER_URL } from "../consts";
+import getImageUrl from "../lib/getImageServerUrl.ts";
 
 interface Props {
   image: string,
   collection?: string;
   alt?: string;
 }
-const { image, collection, alt } = Astro.props;
-
-/**
- * @param {string} image
- * @param {string | undefined} collection
- * @param {"png" | "jpg" | "webp" | undefined} convertTo
- */
-function getImageUrl(image, collection, convertTo) {
-  const url = new URL(SERVER_URL);
-  if (collection) {
-    url.pathname = `/files/${collection}`;
-  } else {
-    url.pathname = `/files`;
-  }
-  url.searchParams.append("file_name", image);
-  if (convertTo) {
-    url.searchParams.append("convert_to", convertTo);
-  } 
-  return url.toString();
-}
+const { image, collection, alt, ...unusedProps } = Astro.props;
 
 /**
  * Returns true when the file extension isn't in the filename
@@ -41,7 +22,7 @@ function isNot(fileExtension) {
   {isNot('webp') && <source srcset={getImageUrl(image, collection, "webp")} type="image/webp" /> }
   {isNot('png') && <source srcset={getImageUrl(image, collection, "png")} type="image/png" /> }
   {isNot('jpg') && <source srcset={getImageUrl(image, collection, "jpg")} type="image/jpg" /> }
-  <img src={getImageUrl(image, collection)} alt={alt} />
+  <img src={getImageUrl(image, collection)} alt={alt} {...unusedProps} />
 </picture>
 
 
