@@ -20,7 +20,6 @@ function isNot(fileExtension) {
 
 <picture>
   {isNot('webp') && <source srcset={getImageUrl(image, collection, "webp")} type="image/webp" /> }
-  {isNot('png') && <source srcset={getImageUrl(image, collection, "png")} type="image/png" /> }
   {isNot('jpg') && <source srcset={getImageUrl(image, collection, "jpg")} type="image/jpg" /> }
   <img src={getImageUrl(image, collection)} alt={alt} {...unusedProps} />
 </picture>
