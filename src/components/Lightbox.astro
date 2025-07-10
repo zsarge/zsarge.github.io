@@ -14,7 +14,7 @@ import { incrementAndGet } from "../lib/idSingleton.ts";
 
 // url, title, id, description, alt 
 // expect a list of files
-const { files, ...rest } = Astro.props
+const { files, format, formats, ...rest } = Astro.props
 // or just one
 const { collection, image, alt, title, description } = rest;
 
@@ -53,7 +53,7 @@ function toClassName(str) {
           data-gallery={`gallery-${id}`}
           data-title=""
           data-description={f.alt || f.description} >
-            <ServerImage collection={collection || f.collection} {...f} class="glightbox-image" loading="lazy" />
+            <ServerImage collection={collection || f.collection} {...f} {format} {formats} class="glightbox-image" loading="lazy" />
         </a>
       ))
     }

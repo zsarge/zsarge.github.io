@@ -8,10 +8,14 @@ export default function(image: string, collection?: string, convertTo?: "png" | 
   } else {
     url.pathname = `/files`;
   }
-  url.searchParams.append("file_name", image);
   if (convertTo) {
-    url.searchParams.append("convert_to", convertTo);
-  } 
+    const lastDotIndex = image.lastIndexOf('.');
+    if (lastDotIndex <= 0) throw new Error(`Expected to find a file extension in ${image}!`);
+    const newName = image.substring(0, lastDotIndex) + '.' + convertTo;
+    url.pathname = url.pathname.concat(newName);
+  } else {
+    url.pathname = url.pathname.concat(`/${image}`);
+  }
   return url.toString();
 }
 

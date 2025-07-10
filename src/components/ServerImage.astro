@@ -1,13 +1,24 @@
 ---
+// TODO: improve cumulative layout shift
+// have default image sizing, and allow users to set the w/h as necessary
+
 import { Astro } from "astro";
 import getImageUrl from "../lib/getImageServerUrl.ts";
 
 interface Props {
   image: string,
+  formats: string[],
   collection?: string;
   alt?: string;
 }
-const { image, collection, alt, ...unusedProps } = Astro.props;
+const { image, collection, alt, ...rest } = Astro.props;
+let { format, formats, ...unusedProps } = rest;
+
+/**
+ * The last format will be the target of the image element.
+ * Formats are included in order.
+ */
+formats ??= [format] || [ "avif", "webp", "jpg" ];
 
 /**
  * Returns true when the file extension isn't in the filename
@@ -16,12 +27,21 @@ function isNot(fileExtension) {
   return !image.includes(`.${fileExtension}`);
 }
 
+function urlFor(fileExtension) {
+  if (image.substring(image.length-6, image.length).includes(`.${fileExtension}`)) {
+    return getImageUrl(image, collection);
+  } else {
+    return getImageUrl(image, collection, fileExtension);
+  }
+}
+
 ---
 
 <picture>
-  {isNot('webp') && <source srcset={getImageUrl(image, collection, "webp")} type="image/webp" /> }
-  {isNot('jpg') && <source srcset={getImageUrl(image, collection, "jpg")} type="image/jpg" /> }
-  <img src={getImageUrl(image, collection)} alt={alt} {...unusedProps} />
+  {formats.slice(0,-1).map((format) => 
+    <source srcset={urlFor(format)} type={`image/${format}`} />
+  )}
+  <img src={urlFor(formats.at(-1))} alt={alt} {...unusedProps} />
 </picture>
 
 
