@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const { panorama, id = 1, autoLoad = true, options = {} } = Astro.props;
-const panoramaId = `panorama-1`;
+const panoramaId = `panorama-${id}`;
 ---
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
