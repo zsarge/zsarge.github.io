@@ -17,9 +17,6 @@ import PanellumViewer from "../../components/PanellumViewer.astro";
 import getServerUrl from "../../lib/getImageServerUrl.ts";
 
 During my road trip, I had about 5 days to explore Grand Teton and Yellowstone, which is really no time at all.
-Yellowstone was designated America's first national park in 1872, with Grand Teton following much later in 1929.
-Yellowstone is incredibly diverse, and fully challenged my expectations of what Earth looks like.
-
 
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=7&ll=44.41138006044178, -110.77007795851718" width="640" height="480"></iframe>
 
@@ -144,53 +141,123 @@ I do love the environmental storytelling. For example, there's a path that split
 This quote from the visitor's center really stood out to me. 
 I don't think I could have set it better, or put a better dislaimer on why the person quoted is apparently an awful person.
 
-<div class="flex w-full items-center justify-center">
-	<div class="w-3/5">
-		<Lightbox collection="trip-2025" alt="A highway in Wyoming" image="20250513_105957_PXL_20250513_165957680.MP.jpg" format="jpg" />
-	</div>
-</div>
+<Lightbox collection="trip-2025" alt="Quote from Lieutenant Gustavus Cheney Doane, who was proud of massacring over 170 Native Americans" image="20250513_105957_PXL_20250513_165957680.MP.jpg" format="jpg" />
 
 ## Yellowstone
 
+Yellowstone was designated America's first national park in 1872, with Grand Teton following much later in 1929.
+While Grand Teton is incredibly beautiful, I found that Yellowstone matches this beauty with greater diversity,
+fully deserving its first-place spot in history.
+
+Yellowstone's draw includes seeing hot springs and geysers (like *Old Faithful*), 
+which are fueled by the magma of the supervolcano underneath the park.
+
+I really like the way Bill Bryson tells the story of geologist Bob Christiansen's work in analyzing this supervolcano:
+
+<QuoteBlock attribution="Bill Bryson" work="A Short History of Nearly Everything">
+"[There] are volcanoes so
+explosive that they burst open in a single mighty rupture, leaving behind a vast subsided pit [called]
+the caldera (from a Latin word for cauldron). Yellowstone obviously was of this [...] type,
+but Christiansen couldn’t find the caldera anywhere.
+
+By coincidence just at this time NASA decided to test some new high-altitude cameras by
+taking photographs of Yellowstone, copies of which some thoughtful official passed on to the
+park authorities on the assumption that they might make a nice blow-up for one of the
+visitors’ centers. As soon as Christiansen saw the photos he realized why he had failed to spot
+the caldera: virtually the whole park—2.2 million acres—was caldera. The explosion had left
+a crater more than forty miles across—much too huge to be perceived from anywhere at
+ground level. At some time in the past Yellowstone must have blown up with a violence far
+beyond the scale of anything known to humans."
+
+&hellip;
+
+"Yellowstone wasn’t the site of an ancient supervolcano; it was the site of an active one. It was
+also at about this time that they were able to work out that the cycle of Yellowstone’s
+eruptions averaged one massive blow every 600,000 years. The last one, interestingly enough,
+was 630,000 years ago. Yellowstone, it appears, is due."
+</QuoteBlock>
+
+So, just keep that comforting thought in mind as we see the hot springs and geysers firsthand.
+
+Also, any time you see a hot spring, assume that the sulfur in the air makes everything smell like farts and rotten eggs.
+Just be glad your device doesn't support Smell-O-Vision.
+
+### West Thumb
 
 <Lightbox collection="trip-2025" files={[
-	// , { alt: "tmp image", image: "20250514_083721_PXL_20250514_143721621.MP.avif" }
-	// , { alt: "tmp image", image: "20250514_130737_IMG_8610.avif" }
-	// , { alt: "tmp image", image: "20250514_131443_IMG_8616.avif" }
-	// , { alt: "tmp image", image: "20250514_131733_IMG_8624.avif" }
-	// , { alt: "tmp image", image: "20250514_132130_IMG_8642.avif" }
-	// , { alt: "tmp image", image: "20250514_132231_IMG_8643.avif" }
-	// , { alt: "tmp image", image: "20250514_132434_IMG_8644.avif" }
-	// , { alt: "tmp image", image: "20250514_132444_IMG_8646.avif" }
-	// , { alt: "tmp image", image: "20250514_132518_IMG_8648.avif" }
-	// , { alt: "tmp image", image: "20250514_132529_IMG_8651.avif" }
-	// , { alt: "tmp image", image: "20250514_133004_IMG_8665.avif" }
-	// , { alt: "tmp image", image: "20250514_133308_IMG_8674.avif" }
-	// , { alt: "tmp image", image: "20250514_143004_IMG_8698.avif" }
-	// , { alt: "tmp image", image: "20250514_143049_IMG_8703.avif" }
-	// , { alt: "tmp image", image: "20250514_143446_IMG_8713.avif" }
-	// , { alt: "tmp image", image: "20250514_143447_IMG_8714.avif" }
-	// , { alt: "tmp image", image: "20250514_150148_IMG_8716.avif" }
-	// , { alt: "tmp image", image: "20250514_150817_IMG_8726.avif" }
-	// , { alt: "tmp image", image: "20250514_152959_IMG_8741.avif" }
-	// , { alt: "tmp image", image: "20250514_153558_PXL_20250514_213558001.avif" }
-	// , { alt: "tmp image", image: "20250514_160626_IMG_8743.avif" }
-	// , { alt: "tmp image", image: "20250514_160627_IMG_8744.avif" }
-	// , { alt: "tmp image", image: "20250514_160627_IMG_8745.avif" }
-	// , { alt: "tmp image", image: "20250514_160629_IMG_8749.avif" }
-	// , { alt: "tmp image", image: "20250514_160634_IMG_8755.avif" }
-	// , { alt: "tmp image", image: "20250514_160800_IMG_8778.avif" }
-	// , { alt: "tmp image", image: "20250514_161215_IMG_8792.avif" }
-	// , { alt: "tmp image", image: "20250514_162823_IMG_8828.avif" }
-	// , { alt: "tmp image", image: "20250514_162942_IMG_8832.avif" }
-	// , { alt: "tmp image", image: "20250514_163937_IMG_8848.avif" }
-	// , { alt: "tmp image", image: "20250514_173520_IMG_8880.avif" }
-	// , { alt: "tmp image", image: "20250514_193359_IMG_8893.avif" }
-	// , { alt: "tmp image", image: "20250515_121637_PXL_20250515_181637827.MP.avif" }
-	// , { alt: "tmp image", image: "20250515_121921_PXL_20250515_181914817.PANO.avif" }
-	// , { alt: "tmp image", image: "20250515_140633_PXL_20250515_200633884.MP.avif" }
-	// , { alt: "tmp image", image: "20250515_140701_PXL_20250515_200701217.MP.avif" }
-	// , { alt: "tmp image", image: "20250515_151108_PXL_20250515_211108596.avif" }
+	, { alt: "tmp image", image: "20250514_131443_IMG_8616.avif" }
+	, { alt: "tmp image", image: "20250514_131733_IMG_8624.avif" }
+	, { alt: "tmp image", image: "20250514_130737_IMG_8610.avif" }
+	, { alt: "The Lakeshore Geyser", image: "20250514_132130_IMG_8642.avif" }
+	, { alt: "tmp image", image: "20250514_132434_IMG_8644.avif" }
+	, { alt: "tmp image", image: "20250514_132444_IMG_8646.avif" }
+	, { alt: "The Fishing Cone", image: "20250514_132518_IMG_8648.avif" }
+	, { alt: "tmp image", image: "20250514_133004_IMG_8665.avif" }
+	, { alt: "tmp image", image: "20250514_133308_IMG_8674.avif" }
+	, { alt: "tmp image", image: "20250514_143004_IMG_8698.avif" }
+	, { alt: "tmp image", image: "20250514_143049_IMG_8703.avif" }
+	, { alt: "tmp image", image: "20250514_143446_IMG_8713.avif" }
+]} />
+
+
+### Riverside Geyser
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250514_152959_IMG_8741.avif" }
+	, { alt: "tmp image", image: "20250514_160626_IMG_8743.avif" }
+	, { alt: "tmp image", image: "20250514_160627_IMG_8744.avif" }
+	, { alt: "tmp image", image: "20250514_160627_IMG_8745.avif" }
+	, { alt: "tmp image", image: "20250514_160800_IMG_8778.avif" }
+	, { alt: "tmp image", image: "20250514_161215_IMG_8792.avif" }
+]} />
+
+The website [GeyserTimes.org](https://www.geysertimes.org/predictions.php) maintains regular predictions for many of the geysers of Yellowstone.
+
+I was lucky enough to see both the Riverside Geyser and Old Faithful errupt back-to-back.
+It may be hard to convey in pictures, but seeing geyser erruptions is truly a unique and stunning experience.
+
+### Old Faithful
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250514_150148_IMG_8716.avif" }
+	, { alt: "tmp image", image: "20250514_153558_PXL_20250514_213558001.avif" }
+	, { alt: "tmp image", image: "20250514_173520_IMG_8880.avif" }
+]} />
+
+### Around the Geyser Basin
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250514_150817_IMG_8726.avif" }
+	, { alt: "tmp image", image: "20250515_151108_PXL_20250515_211108596.avif" }
+	, { alt: "tmp image", image: "20250514_162823_IMG_8828.avif" }
+	, { alt: "tmp image", image: "20250514_162942_IMG_8832.avif" }
+	, { alt: "tmp image", image: "20250514_163937_IMG_8848.avif" }
+	, { alt: "tmp image", image: "20250514_193359_IMG_8893.avif" }
+]} />
+
+### Lewis Lake
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250515_121637_PXL_20250515_181637827.MP.avif" }
+	, { alt: "tmp image", image: "20250515_121921_PXL_20250515_181914817.PANO.avif" }
+]} />
+
+### Dragon's Mouth Spring
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250515_140633_PXL_20250515_200633884.MP.avif" }
+	, { alt: "tmp image", image: "20250515_140701_PXL_20250515_200701217.MP.avif" }
+]} />
+
+### Second Bison Traffic Jam
+
+<video width="640" height="360" controls>
+	<source src={getServerUrl("bison-pt2.mp4", "trip-2025")} type="video/mp4"/>
+	<source src={getServerUrl("bison-pt2.webm", "trip-2025")} type="video/webm"/>
+	Your browser does not support the video tag.
+</video>
+
+<Lightbox collection="trip-2025" files={[
 	// , { alt: "tmp image", image: "20250515_183336_PXL_20250516_003326607.PANO.avif" }
 	// , { alt: "tmp image", image: "20250515_183339_PXL_20250516_003337550.PANO.avif" }
 	// , { alt: "tmp image", image: "20250515_191357_PXL_20250516_011357674.avif" }
@@ -656,6 +723,6 @@ I don't think I could have set it better, or put a better dislaimer on why the p
 
 ----
 
-Unless otherwise stated, all of the images above are licensed as [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+Unless otherwise stated, all of the images and videos above are licensed as [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
 
