@@ -1,9 +1,15 @@
 ---
 // TODO: improve cumulative layout shift
 // have default image sizing, and allow users to set the w/h as necessary
+//
+// Note that, due to programmer laziness, the getImageDimensions function expects
+// file names to 1:1 correspond to image sizes.
+// If there are two images with the same name and different sizes, there
+// may be a wrong answer.
 
 import { Astro } from "astro";
 import getImageUrl from "../lib/getImageServerUrl.ts";
+import {getImageDimensions} from "../lib/getImageDimensions.ts";
 
 interface Props {
   image: string, // raw filename
@@ -41,7 +47,7 @@ function urlFor(fileExtension) {
   {formats.slice(0,-1).map((format) => 
     <source srcset={urlFor(format)} type={`image/${format}`} />
   )}
-  <img src={urlFor(formats.at(-1))} alt={alt} {...unusedProps} />
+  <img src={urlFor(formats.at(-1))} alt={alt} {...unusedProps} {...getImageDimensions(image)} />
 </picture>
 
 
