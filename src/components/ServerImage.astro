@@ -6,7 +6,7 @@ import { Astro } from "astro";
 import getImageUrl from "../lib/getImageServerUrl.ts";
 
 interface Props {
-  image: string,
+  image: string, // raw filename
   formats: string[],
   collection?: string;
   alt?: string;
