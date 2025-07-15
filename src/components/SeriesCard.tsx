@@ -17,10 +17,10 @@ export default function ({ series, posts, order }: Props) {
   };
 
   return (
-    <div className="bg-slate-300 dark:bg-slate-800 rounded-lg">
+    <div className="bg-slate-200 dark:bg-slate-800 rounded-lg">
       <button
-        className={`p-5 rounded-lg text-left space-y-2 hover:bg-slate-400 dark:hover:bg-slate-700 min-w-full ${
-          isOpen ? "border-b-4 border-blue-600 rounded-b-lg bg-slate-400 dark:bg-slate-700" : ""
+        className={`p-5 rounded-lg text-left space-y-2 hover:bg-slate-300 dark:hover:bg-slate-700 min-w-full ${
+          isOpen ? "border-b-4 border-blue-600 rounded-b-lg bg-slate-300 dark:bg-slate-700" : ""
         }`}
         onClick={handleOnClick}
       >

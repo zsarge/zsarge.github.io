@@ -1,0 +1,55 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import MaterialSymbolsKeyboardArrowLeft from "~icons/material-symbols/keyboard-arrow-left";
+import MaterialSymbolsKeyboardArrowRight from "~icons/material-symbols/keyboard-arrow-right";
+
+export interface Props {
+  series: CollectionEntry<"series">;
+  order: number;
+}
+
+const { series, orderInSeries } = Astro.props;
+
+const filteredPosts = (await getCollection("blog"))
+  .filter((post) => series.data.id === post.data.seriesId)
+  .sort((a, b) => (a.data.orderInSeries as number) - (b.data.orderInSeries as number));
+
+const getNPost = (n) => filteredPosts.find(post => post.data.orderInSeries === orderInSeries + n);
+const toLink = (post) => "/blog/" + post.slug;
+const nextPost = getNPost(+1);
+const prevPost = getNPost(-1)
+const prevPostTitle = prevPost && prevPost.data.title;
+const nextPostTitle = nextPost && nextPost.data.title;
+const nextPostLink = nextPost && toLink(nextPost);
+const prevPostLink = prevPost && toLink(prevPost);
+---
+
+<nav class="footer-nav bg-slate-200 dark:bg-slate-800 w-full flex p-2">
+  <div class={"w-1/2 p-2 " + (prevPostLink ? "hover:bg-slate-300 dark:hover:bg-slate-700" : "")}>
+	{prevPostLink && (
+	  <a href={prevPostLink} class="flex items-center space-x-2">
+		<MaterialSymbolsKeyboardArrowLeft class="text-2xl" />
+		<div class="flex flex-col leading-tight">
+		  <span class="text-sm text-gray-500 dark:text-gray-400 no-underline">Previous</span>
+		  <span class="text-base">{prevPostTitle}</span>
+		</div>
+	  </a>
+	)}
+  </div>
+
+  
+  <div class="self-stretch w-0.5 bg-neutral-100 dark:bg-white/10 mx-3"></div>
+  
+  <div class={"w-1/2 p-2 text-right " + (nextPostLink ? "hover:bg-slate-300 dark:hover:bg-slate-700" : "")}>
+	{nextPostLink && (
+	  <a href={nextPostLink} class="flex items-center justify-end space-x-2">
+		<div class="flex flex-col leading-tight text-right">
+		  <span class="text-sm text-gray-500 dark:text-gray-400 no-underline">Next</span>
+		  <span class="text-base">{nextPostTitle}</span>
+		</div>
+		<MaterialSymbolsKeyboardArrowRight class="text-2xl" />
+	  </a>
+	)}
+  </div>
+</nav>
+
