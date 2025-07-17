@@ -21,7 +21,7 @@ export default function ShareMessage() {
 	  <p>Just a heads up:</p>
 	  <ul>
 		<li>There's &gt;30 minutes of content to read across all articles.</li>
-		<li>I wouldn't mind if you didn't read it all!</li>
+		<li>I really wouldn't mind if you didn't read it all!</li>
 		<li>I just wanted to share what I've been up to. 😄</li>
 	  </ul>
 	</div>
