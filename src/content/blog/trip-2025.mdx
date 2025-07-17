@@ -1,6 +1,6 @@
 ---
 title: My 7,000 Mile Road Trip
-description: Zack goes on a trip
+description: An introduction to my road trip across the western United States.
 pubDate: 2025-07-16
 featured: true
 seriesId: trip-2025
@@ -13,6 +13,9 @@ import ServerImage from "../../components/ServerImage.astro";
 import Lightbox from "../../components/Lightbox.astro";
 import QuoteBlock from "../../components/QuoteBlock.astro";
 import ColorSquare from "../../components/posts/trip-2025/ColorSquare.astro";
+import ShareMessage from "../../components/posts/trip-2025/ShareMessage.tsx";
+
+<ShareMessage client:only="react" />
 
 In April of 2025, I found out that I'd have about a month long gap between leaving school and starting work.
 
