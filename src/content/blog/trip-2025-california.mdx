@@ -1,0 +1,244 @@
+---
+title: My Trip to California
+description: Zack goes on a trip to California
+pubDate: 2025-07-16
+featured: false
+seriesId: trip-2025
+orderInSeries: 4
+tags:
+  - travel
+  - photography
+---
+
+import ServerImage from "../../components/ServerImage.astro";
+import Lightbox from "../../components/Lightbox.astro";
+import QuoteBlock from "../../components/QuoteBlock.astro";
+import CensorTetons from "../../components/posts/trip-2025-yellowstone/CensorTetons.tsx";
+import PanellumViewer from "../../components/PanellumViewer.astro";
+import getServerUrl from "../../lib/getImageServerUrl.ts";
+
+----
+
+
+California
+
+<Lightbox collection="trip-2025" files={[
+    // , { alt: "tmp image", image: "20250528_190725_PXL_20250529_020725939.avif" }
+    // , { alt: "tmp image", image: "20250528_194519_PXL_20250529_024519824.avif" }
+    // , { alt: "tmp image", image: "20250528_194645_PXL_20250529_024645848.MP.avif" }
+	// , { alt: "tmp image", image: "20250528_201206_PXL_20250529_031206642.NIGHT.avif" }
+	// , { alt: "tmp image", image: "20250528_203322_PXL_20250529_033322840.MP.avif" }
+	// , { alt: "tmp image", image: "20250528_235530_IMG_0715.avif" }
+	// , { alt: "tmp image", image: "20250528_235630_IMG_0731.avif" }
+	// , { alt: "tmp image", image: "20250529_185635_PXL_20250530_015635055.avif" }
+	// , { alt: "tmp image", image: "20250529_185643_PXL_20250530_015643269.MP.avif" }
+	// , { alt: "tmp image", image: "20250529_192835_PXL_20250530_022835551.MP.avif" }
+	// , { alt: "tmp image", image: "20250529_192835_PXL_20250530_022835566.avif" }
+	// , { alt: "tmp image", image: "20250529_200117_PXL_20250530_030117699.MP.avif" }
+	// , { alt: "tmp image", image: "20250529_200857_PXL_20250530_030857908.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_085629_PXL_20250530_155629441.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_090545_PXL_20250530_160545912.avif" }
+	// , { alt: "tmp image", image: "20250530_092239_PXL_20250530_162239562.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_092452_PXL_20250530_162452053.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_094501_PXL_20250530_164501640.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_094716_PXL_20250530_164716519.avif" }
+	// , { alt: "tmp image", image: "20250530_095211_PXL_20250530_165211212.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_101137_PXL_20250530_171137372.avif" }
+	// , { alt: "tmp image", image: "20250530_102010_PXL_20250530_172010046.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_113144_PXL_20250530_183144939.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_113420_PXL_20250530_183420925.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_113453_PXL_20250530_183453663.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_115520_PXL_20250530_185520399.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_115942_PXL_20250530_185942683.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_120211_PXL_20250530_190211017.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_120359_PXL_20250530_190359574~2.avif" }
+	// , { alt: "tmp image", image: "20250530_120359_PXL_20250530_190359574.avif" }
+	// , { alt: "tmp image", image: "20250530_123510_PXL_20250530_193510548.avif" }
+	// , { alt: "tmp image", image: "20250530_125211_PXL_20250530_195211667.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_140341_PXL_20250530_210341748.avif" }
+	// , { alt: "tmp image", image: "20250530_140347_PXL_20250530_210347093.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_140847_PXL_20250530_210847337.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_141153_PXL_20250530_211153835.avif" }
+	// , { alt: "tmp image", image: "20250530_175410_PXL_20250531_005410378.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_175841_PXL_20250531_005841489.MP.avif" }
+	// , { alt: "tmp image", image: "20250530_180027_PXL_20250531_010027340.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_133711_PXL_20250601_203711005.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_133746_PXL_20250601_203746651.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_145515_PXL_20250601_215515435.avif" }
+	// , { alt: "tmp image", image: "20250601_152712_PXL_20250601_222712403.avif" }
+	// , { alt: "tmp image", image: "20250601_170633_PXL_20250602_000633305.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_172148_PXL_20250602_002148909.avif" }
+	// , { alt: "tmp image", image: "20250601_172301_PXL_20250602_002301164.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_182130_PXL_20250602_012130327.avif" }
+	// , { alt: "tmp image", image: "20250601_182131_PXL_20250602_012131764.avif" }
+	// , { alt: "tmp image", image: "20250601_182215_PXL_20250602_012215629.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_182217_PXL_20250602_012217888.avif" }
+	// , { alt: "tmp image", image: "20250601_182529_PXL_20250602_012529165.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_182533_PXL_20250602_012533514.MP.avif" }
+	// , { alt: "tmp image", image: "20250601_195948_PXL_20250602_025948505.avif" }
+	// , { alt: "tmp image", image: "20250601_203653_PXL_20250602_033653862.MP.avif" }
+	// , { alt: "tmp image", image: "20250603_123539_PXL_20250603_193539030.avif" }
+	// , { alt: "tmp image", image: "20250603_143204_PXL_20250603_213204917.MP.avif" }
+	// , { alt: "tmp image", image: "20250603_143341_IMG_0808.avif" }
+	// , { alt: "tmp image", image: "20250603_145540_IMG_0839.avif" }
+	// , { alt: "tmp image", image: "20250603_155020_IMG_0903.avif" }
+	// , { alt: "tmp image", image: "20250603_155100_IMG_0905.avif" }
+	// , { alt: "tmp image", image: "20250603_155102_IMG_0906.avif" }
+	// , { alt: "tmp image", image: "20250603_160815_IMG_0928.avif" }
+	// , { alt: "tmp image", image: "20250603_161040_IMG_0935.avif" }
+	// , { alt: "tmp image", image: "20250603_163019_IMG_0968.avif" }
+	// , { alt: "tmp image", image: "20250603_164255_IMG_1003.avif" }
+	// , { alt: "tmp image", image: "20250603_164416_IMG_1036.avif" }
+	// , { alt: "tmp image", image: "20250603_172736_IMG_1087.avif" }
+	// , { alt: "tmp image", image: "20250603_172909_IMG_1098.avif" }
+	// , { alt: "tmp image", image: "20250603_172917_IMG_1099.avif" }
+	// , { alt: "tmp image", image: "20250603_173324_IMG_1128.avif" }
+	// , { alt: "tmp image", image: "20250603_180134_IMG_1160.avif" }
+	// , { alt: "tmp image", image: "20250603_180153_IMG_1163.avif" }
+	// , { alt: "tmp image", image: "20250603_180323_IMG_1170.avif" }
+	// , { alt: "tmp image", image: "20250604_103828_PXL_20250604_173828717.avif" }
+	// , { alt: "tmp image", image: "20250604_103929_PXL_20250604_173929000.avif" }
+	// , { alt: "tmp image", image: "20250604_103934_PXL_20250604_173934326.avif" }
+	// , { alt: "tmp image", image: "20250604_123745_PXL_20250604_193745262.MP.avif" }
+	// , { alt: "tmp image", image: "20250604_130020_PXL_20250604_200020778.MP.avif" }
+	// , { alt: "tmp image", image: "20250604_130316_PXL_20250604_200316920.avif" }
+	// , { alt: "tmp image", image: "20250604_145856_IMG_1214.avif" }
+	// , { alt: "tmp image", image: "20250604_145901_IMG_1218.avif" }
+	// , { alt: "tmp image", image: "20250604_152510_IMG_1247.avif" }
+	// , { alt: "tmp image", image: "20250604_153713_IMG_1248.avif" }
+	// , { alt: "tmp image", image: "20250604_154013_IMG_1255.avif" }
+	// , { alt: "tmp image", image: "20250604_155125_IMG_1263.avif" }
+	// , { alt: "tmp image", image: "20250604_160316_IMG_1270.avif" }
+	// , { alt: "tmp image", image: "20250604_161419_IMG_1278.avif" }
+	// , { alt: "tmp image", image: "20250604_165502_PXL_20250604_235502330.MP.avif" }
+	// , { alt: "tmp image", image: "20250604_165527_PXL_20250604_235527652.MP.avif" }
+	// , { alt: "tmp image", image: "20250604_172319_IMG_1286.avif" }
+	// , { alt: "tmp image", image: "20250604_182659_PXL_20250605_012659645.PHOTOSPHERE.avif" }
+	// , { alt: "tmp image", image: "20250604_204349_IMG_1313.avif" }
+	// , { alt: "tmp image", image: "20250604_205004_PXL_20250605_035004329.NIGHT.avif" }
+	// , { alt: "tmp image", image: "20250604_205512_PXL_20250605_035512674.NIGHT.avif" }
+	// , { alt: "tmp image", image: "20250604_210527_IMG_1316.avif" }
+	// , { alt: "tmp image", image: "20250604_213020_IMG_1358.avif" }
+	// , { alt: "tmp image", image: "20250604_213104_IMG_1371.avif" }
+	// , { alt: "tmp image", image: "20250604_214745_PXL_20250605_044745039.avif" }
+	// , { alt: "tmp image", image: "20250604_231005_IMG_1405.avif" }
+	// , { alt: "tmp image", image: "20250604_231057_IMG_1408.avif" }
+	// , { alt: "tmp image", image: "20250604_231114_IMG_1413.avif" }
+	// , { alt: "tmp image", image: "20250604_231124_IMG_1417.avif" }
+	// , { alt: "tmp image", image: "20250604_231156_IMG_1419.avif" }
+	// , { alt: "tmp image", image: "20250604_233109_IMG_1436.avif" }
+	// , { alt: "tmp image", image: "20250605_132111_PXL_20250605_202111721.MP.avif" }
+	// , { alt: "tmp image", image: "20250606_135128_PXL_20250606_205128768.MP.avif" }
+	// , { alt: "tmp image", image: "20250606_152141_PXL_20250606_222141729.avif" }
+	// , { alt: "tmp image", image: "20250607_134304_PXL_20250607_204304023.PHOTOSPHERE.avif" }
+	// , { alt: "tmp image", image: "20250607_134456_PXL_20250607_204456242.avif" }
+	// , { alt: "tmp image", image: "20250608_134410_PXL_20250608_204410313.avif" }
+	// , { alt: "tmp image", image: "20250608_200939_PXL_20250609_030939748.avif" }
+	// , { alt: "tmp image", image: "20250609_122042_PXL_20250609_192042337.avif" }
+	// , { alt: "tmp image", image: "20250609_134926_IMG_1518.avif" }
+	// , { alt: "tmp image", image: "20250609_135044_IMG_1525.avif" }
+	// , { alt: "tmp image", image: "20250609_135056_IMG_1530.avif" }
+	// , { alt: "tmp image", image: "20250609_135108_IMG_1535.avif" }
+	// , { alt: "tmp image", image: "20250609_135555_IMG_1544.avif" }
+	// , { alt: "tmp image", image: "20250609_143137_IMG_1591.avif" }
+	// , { alt: "tmp image", image: "20250609_143421_IMG_1595.avif" }
+	// , { alt: "tmp image", image: "20250609_144650_IMG_1609.avif" }
+	// , { alt: "tmp image", image: "20250609_144709_IMG_1616.avif" }
+	// , { alt: "tmp image", image: "20250609_144721_IMG_1618.avif" }
+	// , { alt: "tmp image", image: "20250609_144726_IMG_1624.avif" }
+	// , { alt: "tmp image", image: "20250609_144741_IMG_1627.avif" }
+	// , { alt: "tmp image", image: "20250609_145749_IMG_1648.avif" }
+	// , { alt: "tmp image", image: "20250609_145759_IMG_1651.avif" }
+	// , { alt: "tmp image", image: "20250609_145836_IMG_1657.avif" }
+	// , { alt: "tmp image", image: "20250609_150756_IMG_1667.avif" }
+	// , { alt: "tmp image", image: "20250609_151008_IMG_1677.avif" }
+	// , { alt: "tmp image", image: "20250609_151915_IMG_1692.avif" }
+	// , { alt: "tmp image", image: "20250609_151917_IMG_1693.avif" }
+	// , { alt: "tmp image", image: "20250609_151922_IMG_1696.avif" }
+	// , { alt: "tmp image", image: "20250609_152044_IMG_1703.avif" }
+	// , { alt: "tmp image", image: "20250609_152114_IMG_1712.avif" }
+	// , { alt: "tmp image", image: "20250609_152115_PXL_20250609_222115109.avif" }
+	// , { alt: "tmp image", image: "20250609_152343_IMG_1719.avif" }
+	// , { alt: "tmp image", image: "20250609_152714_IMG_1727.avif" }
+	// , { alt: "tmp image", image: "20250609_153830_IMG_1737.avif" }
+	// , { alt: "tmp image", image: "20250609_154622_IMG_1740.avif" }
+	// , { alt: "tmp image", image: "20250609_160613_IMG_1768.avif" }
+	// , { alt: "tmp image", image: "20250609_162523_IMG_1792.avif" }
+	// , { alt: "tmp image", image: "20250609_165218_IMG_1813.avif" }
+	// , { alt: "tmp image", image: "20250609_174108_IMG_1831.avif" }
+	// , { alt: "tmp image", image: "20250609_174325_IMG_1840.avif" }
+	// , { alt: "tmp image", image: "20250609_181152_IMG_1844.avif" }
+	// , { alt: "tmp image", image: "20250609_190325_IMG_1873.avif" }
+	// , { alt: "tmp image", image: "20250610_142809_IMG_1939.avif" }
+	// , { alt: "tmp image", image: "20250610_143319_IMG_1967.avif" }
+	// , { alt: "tmp image", image: "20250610_145840_IMG_2025.avif" }
+	// , { alt: "tmp image", image: "20250610_145906_IMG_2027.avif" }
+	// , { alt: "tmp image", image: "20250610_153633_IMG_2075.avif" }
+	// , { alt: "tmp image", image: "20250610_162151_IMG_2103.avif" }
+	// , { alt: "tmp image", image: "20250610_165317_IMG_2126.avif" }
+	// , { alt: "tmp image", image: "20250610_171633_IMG_2169.avif" }
+	// , { alt: "tmp image", image: "20250610_172913_IMG_2176.avif" }
+	// , { alt: "tmp image", image: "20250610_190451_IMG_2196.avif" }
+	// , { alt: "tmp image", image: "20250612_134533_IMG_2215.avif" }
+	// , { alt: "tmp image", image: "20250612_143703_IMG_2234.avif" }
+	// , { alt: "tmp image", image: "20250612_161816_IMG_2269.avif" }
+	// , { alt: "tmp image", image: "20250613_094144_PXL_20250613_154144378.avif" }
+	// , { alt: "tmp image", image: "20250613_095024_PXL_20250613_155024715.MP.avif" }
+	// , { alt: "tmp image", image: "20250613_140506_PXL_20250613_200506649.avif" }
+	// , { alt: "tmp image", image: "20250613_160223_IMG_2306.avif" }
+	// , { alt: "tmp image", image: "20250613_160225_IMG_2307.avif" }
+	// , { alt: "tmp image", image: "20250613_160304_IMG_2316.avif" }
+	// , { alt: "tmp image", image: "20250613_160437_IMG_2340.avif" }
+	// , { alt: "tmp image", image: "20250613_161904_IMG_2391.avif" }
+	// , { alt: "tmp image", image: "20250613_162937_IMG_2421.avif" }
+	// , { alt: "tmp image", image: "20250613_163512_IMG_2435.avif" }
+	// , { alt: "tmp image", image: "20250613_164700_IMG_2476.avif" }
+	// , { alt: "tmp image", image: "20250613_164815_IMG_2483.avif" }
+	// , { alt: "tmp image", image: "20250613_165705_PXL_20250613_225705252.avif" }
+	// , { alt: "tmp image", image: "20250613_171811_IMG_2527.avif" }
+	// , { alt: "tmp image", image: "20250613_171928_IMG_2533.avif" }
+	// , { alt: "tmp image", image: "20250613_190621_PXL_20250614_010621028.avif" }
+	// , { alt: "tmp image", image: "20250614_152805_PXL_20250614_212805535.MP.avif" }
+	// , { alt: "tmp image", image: "20250614_170339_PXL_20250614_230339969.MP.avif" }
+	// , { alt: "tmp image", image: "20250616_120242_IMG_2617.avif" }
+	// , { alt: "tmp image", image: "20250616_125118_IMG_2659.avif" }
+	// , { alt: "tmp image", image: "20250616_125316_IMG_2671.avif" }
+	// , { alt: "tmp image", image: "20250616_125322_IMG_2673.avif" }
+	// , { alt: "tmp image", image: "20250616_125332_IMG_2677.avif" }
+	// , { alt: "tmp image", image: "20250616_125335_IMG_2679.avif" }
+	// , { alt: "tmp image", image: "20250616_125345_IMG_2682.avif" }
+	// , { alt: "tmp image", image: "20250616_125400_IMG_2684.avif" }
+	// , { alt: "tmp image", image: "20250616_125403_IMG_2685.avif" }
+	// , { alt: "tmp image", image: "20250616_125640_IMG_2696.avif" }
+	// , { alt: "tmp image", image: "20250616_133606_IMG_2718.avif" }
+	// , { alt: "tmp image", image: "20250616_133734_IMG_2724.avif" }
+	// , { alt: "tmp image", image: "20250616_134152_IMG_2729.avif" }
+	// , { alt: "tmp image", image: "20250616_134321_IMG_2740.avif" }
+	// , { alt: "tmp image", image: "20250616_142426_IMG_2801.avif" }
+	// , { alt: "tmp image", image: "20250616_142855_IMG_2809.avif" }
+	// , { alt: "tmp image", image: "20250616_144901_IMG_2824.avif" }
+	// , { alt: "tmp image", image: "20250616_154731_IMG_2863.avif" }
+	// , { alt: "tmp image", image: "20250616_160759_IMG_2880.avif" }
+	// , { alt: "tmp image", image: "20250616_162714_IMG_2890.avif" }
+	// , { alt: "tmp image", image: "20250616_172138_IMG_2899.avif" }
+	// , { alt: "tmp image", image: "20250616_174117_IMG_2926.avif" }
+	// , { alt: "tmp image", image: "20250617_092412_IMG_2936.avif" }
+	// , { alt: "tmp image", image: "20250618_105502_IMG_2997.avif" }
+	// , { alt: "tmp image", image: "20250618_111800_IMG_3024.avif" }
+	// , { alt: "tmp image", image: "20250618_121227_IMG_3071.avif" }
+	// , { alt: "tmp image", image: "20250618_124215_IMG_3137.avif" }
+	// , { alt: "tmp image", image: "20250618_124301_IMG_3153.avif" }
+	// , { alt: "tmp image", image: "20250618_164129_PXL_20250618_224129837.avif" }
+	// , { alt: "tmp image", image: "20250619_162124_f5e455ed-ebf8-4c85-96d3-8fa2ca81d56a.avif" }
+	// , { alt: "tmp image", image: "20250621_134940_IMG_3182.avif" }
+	// , { alt: "tmp image", image: "20250621_135142_IMG_3191.avif" }
+	// , { alt: "tmp image", image: "20250621_141855_IMG_3224.avif" }
+	// , { alt: "tmp image", image: "20250621_145013_IMG_3300.avif" }
+	// , { alt: "tmp image", image: "20250630_181258_20250518160233_011260F.avif" }
+	// , { alt: "tmp image", image: "20250630_181259_20250518172414_011425F.avif" }
+]} />
+
+----
+
+Unless otherwise stated, all of the images and videos above are licensed as [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
