@@ -11,6 +11,7 @@ import 'glightbox/dist/css/glightbox.css'
 import ServerImage from './ServerImage.astro';
 import getImageUrl from "../lib/getImageServerUrl.ts";
 import { incrementAndGet } from "../lib/idSingleton.ts";
+import { getImageDimensions } from "../lib/getImageDimensions.ts";
 
 // url, title, id, description, alt 
 // expect a list of files
@@ -28,6 +29,22 @@ function toClassName(str) {
   return str.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
 }
 
+function getAspectRatio(imageName) {
+  const dimensions = getImageDimensions(imageName);
+  if (dimensions) {
+    const { height, width } = dimensions;
+    return `${width}/${height}`;
+  }
+  return '';
+}
+
+function getAnchorStyle(imageName) {
+  return {
+    display: "block",
+    aspectRatio: getAspectRatio(imageName),
+  };
+}
+
 // at this point, we must either have files or an image
 
 ---
@@ -36,6 +53,7 @@ function toClassName(str) {
   <a
     href={getImageUrl(image, collection)}
     class="glightbox glightbox-link"
+    style={getAnchorStyle(image)}
     data-title=""
     data-description={description || alt} >
     <ServerImage {...{ collection, image, alt, title, description}} class="glightbox-image" loading="lazy" />
@@ -50,6 +68,7 @@ function toClassName(str) {
         <a
           href={getImageUrl(f.image, collection || f.collection)}
           class="glightbox glightbox-link"
+          style={getAnchorStyle(f.image)}
           data-gallery={`gallery-${id}`}
           data-title=""
           data-description={f.alt || f.description} >
