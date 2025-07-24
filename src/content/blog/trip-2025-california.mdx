@@ -12,6 +12,7 @@ tags:
 
 import ServerImage from "../../components/ServerImage.astro";
 import Lightbox from "../../components/Lightbox.astro";
+import SingleCenteredPhoto from "../../components/SingleCenteredPhoto.astro";
 import QuoteBlock from "../../components/QuoteBlock.astro";
 import CensorTetons from "../../components/posts/trip-2025-yellowstone/CensorTetons.tsx";
 import PanellumViewer from "../../components/PanellumViewer.astro";
@@ -20,66 +21,189 @@ import getServerUrl from "../../lib/getImageServerUrl.ts";
 ----
 
 
-California
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=6&ll=38.78786646633671, -121.76435373059213" width="640" height="480" title="Map of my travel through California"></iframe>
+
+This post will cover stops 10, 11, 12, and 13 as I explore California.
+
+## Elk Prairie Campground
+
+The redwood forests of California contain many massive trees that are older than every city in America.
+Unfortunately, I had relatively few pictures from this time.
+This is another instance where I was so focused on the hike that I wasn't taking many photos.
 
 <Lightbox collection="trip-2025" files={[
-    // , { alt: "tmp image", image: "20250528_190725_PXL_20250529_020725939.avif" }
-    // , { alt: "tmp image", image: "20250528_194519_PXL_20250529_024519824.avif" }
-    // , { alt: "tmp image", image: "20250528_194645_PXL_20250529_024645848.MP.avif" }
-	// , { alt: "tmp image", image: "20250528_201206_PXL_20250529_031206642.NIGHT.avif" }
-	// , { alt: "tmp image", image: "20250528_203322_PXL_20250529_033322840.MP.avif" }
-	// , { alt: "tmp image", image: "20250528_235530_IMG_0715.avif" }
-	// , { alt: "tmp image", image: "20250528_235630_IMG_0731.avif" }
-	// , { alt: "tmp image", image: "20250529_185635_PXL_20250530_015635055.avif" }
-	// , { alt: "tmp image", image: "20250529_185643_PXL_20250530_015643269.MP.avif" }
-	// , { alt: "tmp image", image: "20250529_192835_PXL_20250530_022835551.MP.avif" }
-	// , { alt: "tmp image", image: "20250529_192835_PXL_20250530_022835566.avif" }
-	// , { alt: "tmp image", image: "20250529_200117_PXL_20250530_030117699.MP.avif" }
-	// , { alt: "tmp image", image: "20250529_200857_PXL_20250530_030857908.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_085629_PXL_20250530_155629441.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_090545_PXL_20250530_160545912.avif" }
-	// , { alt: "tmp image", image: "20250530_092239_PXL_20250530_162239562.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_092452_PXL_20250530_162452053.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_094501_PXL_20250530_164501640.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_094716_PXL_20250530_164716519.avif" }
-	// , { alt: "tmp image", image: "20250530_095211_PXL_20250530_165211212.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_101137_PXL_20250530_171137372.avif" }
-	// , { alt: "tmp image", image: "20250530_102010_PXL_20250530_172010046.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_113144_PXL_20250530_183144939.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_113420_PXL_20250530_183420925.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_113453_PXL_20250530_183453663.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_115520_PXL_20250530_185520399.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_115942_PXL_20250530_185942683.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_120211_PXL_20250530_190211017.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_120359_PXL_20250530_190359574~2.avif" }
-	// , { alt: "tmp image", image: "20250530_120359_PXL_20250530_190359574.avif" }
-	// , { alt: "tmp image", image: "20250530_123510_PXL_20250530_193510548.avif" }
-	// , { alt: "tmp image", image: "20250530_125211_PXL_20250530_195211667.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_140341_PXL_20250530_210341748.avif" }
-	// , { alt: "tmp image", image: "20250530_140347_PXL_20250530_210347093.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_140847_PXL_20250530_210847337.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_141153_PXL_20250530_211153835.avif" }
-	// , { alt: "tmp image", image: "20250530_175410_PXL_20250531_005410378.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_175841_PXL_20250531_005841489.MP.avif" }
-	// , { alt: "tmp image", image: "20250530_180027_PXL_20250531_010027340.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_133711_PXL_20250601_203711005.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_133746_PXL_20250601_203746651.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_145515_PXL_20250601_215515435.avif" }
-	// , { alt: "tmp image", image: "20250601_152712_PXL_20250601_222712403.avif" }
-	// , { alt: "tmp image", image: "20250601_170633_PXL_20250602_000633305.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_172148_PXL_20250602_002148909.avif" }
-	// , { alt: "tmp image", image: "20250601_172301_PXL_20250602_002301164.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_182130_PXL_20250602_012130327.avif" }
-	// , { alt: "tmp image", image: "20250601_182131_PXL_20250602_012131764.avif" }
-	// , { alt: "tmp image", image: "20250601_182215_PXL_20250602_012215629.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_182217_PXL_20250602_012217888.avif" }
-	// , { alt: "tmp image", image: "20250601_182529_PXL_20250602_012529165.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_182533_PXL_20250602_012533514.MP.avif" }
-	// , { alt: "tmp image", image: "20250601_195948_PXL_20250602_025948505.avif" }
-	// , { alt: "tmp image", image: "20250601_203653_PXL_20250602_033653862.MP.avif" }
-	// , { alt: "tmp image", image: "20250603_123539_PXL_20250603_193539030.avif" }
-	// , { alt: "tmp image", image: "20250603_143204_PXL_20250603_213204917.MP.avif" }
-	// , { alt: "tmp image", image: "20250603_143341_IMG_0808.avif" }
+    , { alt: "tmp image", image: "20250528_190725_PXL_20250529_020725939.avif" }
+    , { alt: "tmp image", image: "20250528_194519_PXL_20250529_024519824.avif" }
+    , { alt: "tmp image", image: "20250528_194645_PXL_20250529_024645848.MP.avif" }
+	, { alt: "tmp image", image: "20250528_201206_PXL_20250529_031206642.NIGHT.avif" }
+]} />
+
+But when I returned to my campsite, I found out why it's called "Elk Prarie Campground", as I found a group of 4 elk casually grazing in the prairie.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250528_235530_IMG_0715.avif" }
+	, { alt: "tmp image", image: "20250528_235630_IMG_0731.avif" }
+]} />
+
+<Lightbox collection="trip-2025" image="20250528_203322_PXL_20250529_033322840.MP.avif" />
+
+I love going out in nature, but it's even cooler when it comes to me!
+
+## San Francisco &amp; Daly City
+
+I left Elk Prarie Campground at around 9:30am PST.
+With about a 6.5 hour drive, this meant I had the good fortune of getting the real San Francisco experience by showing up just in time for rush hour!
+
+I entered via the Golden Gate Bridge, and made my way through San Francisco to my hotel in Daly City.
+You see, I used the same plan as I did in Portland: Get a cheaper lodging outside the city center,
+and take public transit anywhere you want to go.
+I chose Daly City specifically because it was also covered by
+[Waymo](https://waymo.com/blog/2024/08/expanding-destinations-for-san-francisco-and-los-angeles-riders),
+so that I wouldn't have to drive much, except to go visit family.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250529_185635_PXL_20250530_015635055.avif" }
+	, { alt: "tmp image", image: "20250529_185643_PXL_20250530_015643269.MP.avif" }
+]} />
+
+Also, for my first meal, I gained an appreciation for how much Californians appreciate In-N-Out.
+I'd heard people mention that In-N-Out is the best fast food you can get, so I figured I'd check it out.
+
+On my walk to In-N-Out, I passed by a Wendy's, which was clearly open. I could see one person inside eating dinner.
+As I passed, I figured that I must've missed the dinner rush.
+But, when I got to In-N-Out, I found out I was totally wrong.
+Every seat was filled, and there was a line of cars spilling into the intersection.
+I've never seen a clearer example of consumer preferences in my life.
+
+
+<SingleCenteredPhoto>
+	<Lightbox collection="trip-2025" image="20250529_192835_PXL_20250530_022835566.avif" alt="In-N-Out Double Double and Animal Fries" />
+</SingleCenteredPhoto>
+
+I got a Double Double with Animal Fries and a chocolate shake. It was delicious.
+
+Anyway, for my first foray into San Francisco proper, 
+I hopped on the BART line, and headed to downtown San Francisco.
+Compared to my reference point of New York City, 
+I was surprised how few people there were while I was walking about.
+My anecdotal experience is correlated [with the observed trend](https://www.axios.com/local/san-francisco/2024/04/26/downtown-economy-visitor-activity-dropped) of shrinking activity in downtown SF.
+It was really interesting to see first-hand how big cities are struggling to recover after COVID.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250530_090545_PXL_20250530_160545912.avif" }
+	, { alt: "tmp image", image: "20250530_092239_PXL_20250530_162239562.MP.avif" }
+]} />
+
+### Telegraph Hill
+
+But, I was on my way to the Marconi Monument on [Telegraph Hill](https://en.wikipedia.org/wiki/Telegraph_Hill,_San_Francisco), for my tour with the [San Francisco City Guides](https://sfcityguides.org/).
+I totally recommend this organization; they offer free volunteer-run tours (with a requested donation of $20).
+I really enjoyed my tour group, as it was a great way to meet people from the area, as well as other tourists.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250530_094501_PXL_20250530_164501640.MP.avif" }
+	, { alt: "tmp image", image: "20250530_094716_PXL_20250530_164716519.avif" }
+	, { alt: "tmp image", image: "20250530_095211_PXL_20250530_165211212.MP.avif" }
+	, { alt: "tmp image", image: "20250530_101137_PXL_20250530_171137372.avif" }
+	, { alt: "tmp image", image: "20250530_102010_PXL_20250530_172010046.MP.avif" }
+	, { alt: "tmp image", image: "20250530_113144_PXL_20250530_183144939.MP.avif" }
+	, { alt: "tmp image", image: "20250530_113420_PXL_20250530_183420925.MP.avif" }
+	, { alt: "tmp image", image: "20250530_113453_PXL_20250530_183453663.MP.avif" }
+]} />
+
+These flowers are part of [Grace Marchent Garden](https://gracemarchantgarden.com/) 
+along Filbert Street. Now, if you're like me, you'll hear "street" and assume it's 
+a place you can drive your car. However, the Filbert Steps are a victim of the fact 
+San Francisco's street grid was laid out without respect to any silly concerns like "incline" or "geography".
+As such, it's much too steep to drive, and instead is home to a set of wonderful wooden steps
+that are simply called a street.
+I saw some FedEx workers making deliveries while I was there.
+It's my belief that this is the place with the fittest delivery people on earth, 
+constantly hiking up and down these long flights of stairs.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250530_115520_PXL_20250530_185520399.MP.avif" }
+	, { alt: "tmp image", image: "20250530_115942_PXL_20250530_185942683.MP.avif" }
+	, { alt: "tmp image", image: "20250530_120211_PXL_20250530_190211017.MP.avif" }
+	, { alt: "tmp image", image: "20250530_120359_PXL_20250530_190359574.avif" }
+]} />
+
+I think the last photo there is a prime example of the history that makes San Francisco special.
+The building looks like every other commercial building I've seen. 
+It's not clear there's anything special about it.
+But, it turns out that building is 202 Green Street, where Philo Farnsworth invented the television.
+
+You can't walk far in San Francisco without tripping over something historical.
+Telegraph Hill was originally influential as a location for old-style telegraph operators to
+operate a wooden semaphore system, describing the ships that entered the bay.
+
+It's also the filming locaiton for movies like Robert Wise's 
+"[The House on Telegraph Hill](https://en.wikipedia.org/wiki/The_House_on_Telegraph_Hill)" 
+and Alfred Hitchcock's 
+"[Vertigo](https://en.wikipedia.org/wiki/Vertigo_(film))".
+
+But, with end of my tour, I began the start of a spontaneous 14 mile hike around San Francisco,
+beginning with Fort Mason and the Marina District. 
+As I explored, I'd be surprised by how everything felt normal. 
+But then, I'd be even more surprised by the startling differences.
+Like, the design of an intersection is the same in San Francisco as it is in Cincinnati, Ohio.
+It's just the traffic passing through it that stands out:
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250530_140341_PXL_20250530_210341748.avif" }
+	, { alt: "tmp image", image: "20250530_140347_PXL_20250530_210347093.MP.avif" }
+]} />
+
+And so it goes with things like grocery stores and fast food.
+Like, we have the same designs for big box retail and pad site quick-service restaurants in Cincinnati.
+It's just that in San Francisco, there's ten times the amount of people.
+
+### Palace of Fine Arts
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250530_140847_PXL_20250530_210847337.MP.avif" }
+	, { alt: "tmp image", image: "20250530_141153_PXL_20250530_211153835.avif" }
+]} />
+
+I wandered into the Palace of Fine Arts, 
+
+TODO:
+- Hike through golden gate park
+- long walk on beach
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250530_175410_PXL_20250531_005410378.MP.avif" }
+	, { alt: "tmp image", image: "20250530_175841_PXL_20250531_005841489.MP.avif" }
+	, { alt: "tmp image", image: "20250530_180027_PXL_20250531_010027340.MP.avif" }
+	]} />
+
+
+I also had the great opportunity to meet up with a friend for boba at the Urban Ritual Cafe!
+
+
+<SingleCenteredPhoto>
+	<Lightbox collection="trip-2025" image="PXL_20250601_204122554.avif" alt="Urban Ritual Cafe" />
+</SingleCenteredPhoto>
+
+Thanks Ayushe! I appreciated the opportunity to catch up.
+
+And, after a bit more wandering, I found myself in the Berkley Rose Garden, 
+which was a fun comparison to Portland's rose garden.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250601_172148_PXL_20250602_002148909.avif" }
+	, { alt: "tmp image", image: "20250601_172301_PXL_20250602_002301164.MP.avif" }
+	, { alt: "tmp image", image: "20250601_182130_PXL_20250602_012130327.avif" }
+	, { alt: "tmp image", image: "20250601_182131_PXL_20250602_012131764.avif" }
+	, { alt: "tmp image", image: "20250601_182215_PXL_20250602_012215629.MP.avif" }
+	, { alt: "tmp image", image: "20250601_182217_PXL_20250602_012217888.avif" }
+	, { alt: "tmp image", image: "20250601_182529_PXL_20250602_012529165.MP.avif" }
+	, { alt: "tmp image", image: "20250601_182533_PXL_20250602_012533514.MP.avif" }
+	, { alt: "tmp image", image: "20250601_195948_PXL_20250602_025948505.avif" }
+	, { alt: "tmp image", image: "20250601_203653_PXL_20250602_033653862.MP.avif" }
+	, { alt: "tmp image", image: "20250603_123539_PXL_20250603_193539030.avif" }
+	, { alt: "tmp image", image: "20250603_143204_PXL_20250603_213204917.MP.avif" }
+	, { alt: "tmp image", image: "20250603_143341_IMG_0808.avif" }
 	// , { alt: "tmp image", image: "20250603_145540_IMG_0839.avif" }
 	// , { alt: "tmp image", image: "20250603_155020_IMG_0903.avif" }
 	// , { alt: "tmp image", image: "20250603_155100_IMG_0905.avif" }

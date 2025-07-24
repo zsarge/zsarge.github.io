@@ -12,6 +12,7 @@ tags:
 
 import ServerImage from "../../components/ServerImage.astro";
 import Lightbox from "../../components/Lightbox.astro";
+import SingleCenteredPhoto from "../../components/SingleCenteredPhoto.astro";
 import QuoteBlock from "../../components/QuoteBlock.astro";
 import CensorTetons from "../../components/posts/trip-2025-yellowstone/CensorTetons.tsx";
 import PanellumViewer from "../../components/PanellumViewer.astro";
@@ -383,11 +384,9 @@ Overall, every place in Yellowstone is stunningly beautiful, and I'm glad it did
 
 However, during my time on the road, I did get a check engine light
 
-<div class="flex items-center justify-center w-full">
-	<div class="max-w-60">
-		<Lightbox collection="trip-2025" image="check-engine.png" format="png" />
-	</div>
-</div>
+<SingleCenteredPhoto>
+	<Lightbox collection="trip-2025" image="check-engine.png" format="png" />
+</SingleCenteredPhoto>
 
 This told me that my vent valve and fuel solenoid were experiencing an intermittent failure, which would explain my previous one-time loss of power, rough idle, and inability to start my car.
 

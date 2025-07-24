@@ -12,6 +12,7 @@ tags:
 
 import ServerImage from "../../components/ServerImage.astro";
 import Lightbox from "../../components/Lightbox.astro";
+import SingleCenteredPhoto from "../../components/SingleCenteredPhoto.astro";
 import QuoteBlock from "../../components/QuoteBlock.astro";
 import CensorTetons from "../../components/posts/trip-2025-yellowstone/CensorTetons.tsx";
 import PanellumViewer from "../../components/PanellumViewer.astro";
@@ -19,10 +20,10 @@ import getServerUrl from "../../lib/getImageServerUrl.ts";
 
 ----
 
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=6&ll=45.47176638559308, -122.45240396129586" width="640" height="480"></iframe>
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=6&ll=45.47176638559308, -122.45240396129586" width="640" height="480" title="Map of my travel through the pacific northwest"></iframe>
 
 This post will cover stops 5, 6, 7, 8, and 9 as I explore the Pacific Northwest.
-We try to fix the issues with my car, do some Twilight toursim of Forks, Washington (16 years after the first movie came out), and visit one of America's two temperate rainforests!
+We'll try to fix the issues with my car, do some Twilight toursim of Forks, Washington (16 years after the first movie came out), and visit one of America's two temperate rainforests!
 
 ## Missoula, Montana
 
@@ -198,11 +199,9 @@ I found that the area had some very nice parks and libraries, so I spent some ti
 
 By the end of the day, the called and said that they had finished fixing her up!
 
-<div class="flex items-center justify-center w-full">
-	<div class="max-w-60">
-		<Lightbox collection="trip-2025" image="cascade-auto.png" format="png" />
-	</div>
-</div>
+<SingleCenteredPhoto>
+	<Lightbox collection="trip-2025" image="cascade-auto.png" format="png" alt="a receipt for >$1k in repairs"/>
+</SingleCenteredPhoto>
 
 To be honest, this was a real bummer. But, let this be a reminder to always budget for emergencies during travel!
 
@@ -373,11 +372,9 @@ and should not be taken for granted. However, this was the first time I've truly
 as I had just accidentally spent the past ~5 days in a food desert. The USDA has [a map of food deserts](https://www.ers.usda.gov/data-products/food-access-research-atlas),
 and I've put a big red dot on where I'd been staying for the past few days, and a pink dot on my first stop in Oregon:
 
-<div class="flex items-center justify-center w-full">
-	<div class="max-w-65">
-		<Lightbox collection="trip-2025" image="wa-food-desert.png" alt="Image of Washinton Food Deserts" format="png" />
-	</div>
-</div>
+<SingleCenteredPhoto>
+	<Lightbox collection="trip-2025" image="wa-food-desert.png" alt="Image of Washinton Food Deserts" format="png" />
+</SingleCenteredPhoto>
 
 When planning this trip, I had such a long list of things that I *could*
 need that I decided to just play it by feel and buy things when necessary,

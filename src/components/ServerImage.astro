@@ -40,7 +40,7 @@ function urlFor(fileExtension) {
 
 ---
 
-<picture>
+<picture class="p-0 m-0">
   {formats.slice(0,-1).map((format) => 
     <source srcset={urlFor(format)} type={`image/${format}`} />
   )}
