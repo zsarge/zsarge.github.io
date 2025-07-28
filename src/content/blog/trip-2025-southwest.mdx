@@ -1,5 +1,5 @@
 ---
-title: My Trip through the Southwest
+title: My Trip to the Southwest
 description: Zack sees the Grand Canyon, Zion, Bryce Canyon, The Black Canyon of the Gunnison, and Colorado Springs!
 pubDate: 2025-07-16
 featured: false
@@ -14,7 +14,7 @@ import ServerImage from "../../components/ServerImage.astro";
 import Lightbox from "../../components/Lightbox.astro";
 import SingleCenteredPhoto from "../../components/SingleCenteredPhoto.astro";
 import QuoteBlock from "../../components/QuoteBlock.astro";
-import CensorTetons from "../../components/posts/trip-2025-yellowstone/CensorTetons.tsx";
+import ShowPeople from "../../components/posts/trip-2025-southwest/ShowPeople.tsx";
 import PanellumViewer from "../../components/PanellumViewer.astro";
 import getServerUrl from "../../lib/getImageServerUrl.ts";
 
@@ -25,61 +25,142 @@ import getServerUrl from "../../lib/getImageServerUrl.ts";
 
 This post will cover stops 14 through 19 as I explore the American Southwest.
 
-## Grandest canyon
+## The Grand Canyon
+
+I think the Grand Canyon is the opposite of Mount Rushmore.
+
+Mount Rushmore is a monument that fits within a frame. 
+If you've seen a picture of Mount Rushmore, you basically get the gist.
+It's hand-carved slopes transform a mountianside from natural beauty to cultural icon.
+
+The word "Grand" doesn't do the Grand Canyon justice. 
+There's a sheer scale to it that makes observation akin to astronomy: 
+a reminder of how miniscule a human really is.
+No one picture does it justice. 
+
+
+As someone who recently under-estimated a hike, I appreciated that the signage makes the difficulty of the full hike clear.
+
+<Lightbox collection="trip-2025" image="20250609_143421_IMG_1595.avif" alt="Sign warning not to hike too far at the Grand Canyon" />
+
+I know there's tourist attractions at the Grand Canyon, where they'll bus you into the most picturesque spots, or let you walk on [a glass skywalk](https://en.wikipedia.org/wiki/Grand_Canyon_Skywalk).
+However, I decided to keep it simple, and just wander at my own pace.
+The [Grand Canyon Shuttle](https://www.nps.gov/grca/planyourvisit/shuttle-buses.htm) 
+made it easy to explore on a whim.
+
+<div class="mb-3">
+	<Lightbox collection="trip-2025" image="20250609_134926_IMG_1518.avif" alt="The Grand Canyon" />
+</div>
 
 <Lightbox collection="trip-2025" files={[
-	// , { alt: "tmp image", image: "20250607_134456_PXL_20250607_204456242.avif" }
-	// , { alt: "tmp image", image: "20250608_134410_PXL_20250608_204410313.avif" }
-	// , { alt: "tmp image", image: "20250608_200939_PXL_20250609_030939748.avif" }
-	// , { alt: "tmp image", image: "20250609_122042_PXL_20250609_192042337.avif" }
+	, { alt: "tmp image", image: "20250609_122042_PXL_20250609_192042337.avif" }
 	// , { alt: "tmp image", image: "20250609_134926_IMG_1518.avif" }
-	// , { alt: "tmp image", image: "20250609_135044_IMG_1525.avif" }
-	// , { alt: "tmp image", image: "20250609_135056_IMG_1530.avif" }
-	// , { alt: "tmp image", image: "20250609_135108_IMG_1535.avif" }
-	// , { alt: "tmp image", image: "20250609_135555_IMG_1544.avif" }
-	// , { alt: "tmp image", image: "20250609_143137_IMG_1591.avif" }
-	// , { alt: "tmp image", image: "20250609_143421_IMG_1595.avif" }
-	// , { alt: "tmp image", image: "20250609_144650_IMG_1609.avif" }
-	// , { alt: "tmp image", image: "20250609_144709_IMG_1616.avif" }
-	// , { alt: "tmp image", image: "20250609_144721_IMG_1618.avif" }
-	// , { alt: "tmp image", image: "20250609_144726_IMG_1624.avif" }
-	// , { alt: "tmp image", image: "20250609_144741_IMG_1627.avif" }
-	// , { alt: "tmp image", image: "20250609_145749_IMG_1648.avif" }
-	// , { alt: "tmp image", image: "20250609_145759_IMG_1651.avif" }
-	// , { alt: "tmp image", image: "20250609_145836_IMG_1657.avif" }
-	// , { alt: "tmp image", image: "20250609_150756_IMG_1667.avif" }
-	// , { alt: "tmp image", image: "20250609_151008_IMG_1677.avif" }
-	// , { alt: "tmp image", image: "20250609_151915_IMG_1692.avif" }
-	// , { alt: "tmp image", image: "20250609_151917_IMG_1693.avif" }
-	// , { alt: "tmp image", image: "20250609_151922_IMG_1696.avif" }
-	// , { alt: "tmp image", image: "20250609_152044_IMG_1703.avif" }
-	// , { alt: "tmp image", image: "20250609_152114_IMG_1712.avif" }
-	// , { alt: "tmp image", image: "20250609_152115_PXL_20250609_222115109.avif" }
-	// , { alt: "tmp image", image: "20250609_152343_IMG_1719.avif" }
-	// , { alt: "tmp image", image: "20250609_152714_IMG_1727.avif" }
-	// , { alt: "tmp image", image: "20250609_153830_IMG_1737.avif" }
-	// , { alt: "tmp image", image: "20250609_154622_IMG_1740.avif" }
-	// , { alt: "tmp image", image: "20250609_160613_IMG_1768.avif" }
-	// , { alt: "tmp image", image: "20250609_162523_IMG_1792.avif" }
-	// , { alt: "tmp image", image: "20250609_165218_IMG_1813.avif" }
-	// , { alt: "tmp image", image: "20250609_174108_IMG_1831.avif" }
-	// , { alt: "tmp image", image: "20250609_174325_IMG_1840.avif" }
-	// , { alt: "tmp image", image: "20250609_181152_IMG_1844.avif" }
-	// , { alt: "tmp image", image: "20250609_190325_IMG_1873.avif" }
-	// , { alt: "tmp image", image: "20250610_142809_IMG_1939.avif" }
-	// , { alt: "tmp image", image: "20250610_143319_IMG_1967.avif" }
-	// , { alt: "tmp image", image: "20250610_145840_IMG_2025.avif" }
-	// , { alt: "tmp image", image: "20250610_145906_IMG_2027.avif" }
-	// , { alt: "tmp image", image: "20250610_153633_IMG_2075.avif" }
-	// , { alt: "tmp image", image: "20250610_162151_IMG_2103.avif" }
-	// , { alt: "tmp image", image: "20250610_165317_IMG_2126.avif" }
-	// , { alt: "tmp image", image: "20250610_171633_IMG_2169.avif" }
-	// , { alt: "tmp image", image: "20250610_172913_IMG_2176.avif" }
-	// , { alt: "tmp image", image: "20250610_190451_IMG_2196.avif" }
-	// , { alt: "tmp image", image: "20250612_134533_IMG_2215.avif" }
-	// , { alt: "tmp image", image: "20250612_143703_IMG_2234.avif" }
-	// , { alt: "tmp image", image: "20250612_161816_IMG_2269.avif" }
-	// , { alt: "tmp image", image: "20250613_094144_PXL_20250613_154144378.avif" }
+	, { alt: "tmp image", image: "20250609_135056_IMG_1530.avif" }
+	//, { alt: "tmp image", image: "20250609_135108_IMG_1535.avif" }
+	, { alt: "tmp image", image: "20250609_135555_IMG_1544.avif" }
+	, { alt: "tmp image", image: "20250609_143137_IMG_1591.avif" }
+	, { alt: "tmp image", image: "20250609_144650_IMG_1609.avif" }
+	, { alt: "tmp image", image: "20250609_144709_IMG_1616.avif" }
+	, { alt: "tmp image", image: "20250609_144721_IMG_1618.avif" }
+	, { alt: "tmp image", image: "20250609_144726_IMG_1624.avif" }
+	, { alt: "tmp image", image: "20250609_144741_IMG_1627.avif" }
+	, { alt: "tmp image", image: "20250609_145749_IMG_1648.avif" }
+]}/>
+
+I loved seeing the mules at work in the Grand Canyon.
+They do a few jobs. 
+For one, you can book a mule ride for a casual $185.56/person[^mule].
+They also carry equipment and supplies to the canyon floor, which is what I believe is happening here.
+In this case, I believe they're coming back from the 7.5 mile route[^mile] across the South Kaibab Trail to get to Phantom Ranch,
+which is the only lodging below the canyon rim.
+
+[^mule]: Source: https://www.grandcanyonlodges.com/plan/mule-rides/
+[^mile]: Source: https://www.theadventurediet.com/blog/a-complete-guide-on-how-to-visit-phantom-ranch-grand-canyons-most-epic-place-to-stay
+
+Also, I want to highlight the incredibly solid trail construction.
+This is another example of the outstanding work by the CCC, and continues the theme of durability we talked about earlier: 
+it's lasted ~100 years, and it's likely to last at least another 100 years with light maintenance.
+
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250609_145759_IMG_1651.avif" }
+	, { alt: "tmp image", image: "20250609_145836_IMG_1657.avif" }
+	, { alt: "tmp image", image: "20250609_150756_IMG_1667.avif" }
+	, { alt: "tmp image", image: "20250609_151008_IMG_1677.avif" }
+	, { alt: "tmp image", image: "20250609_151915_IMG_1692.avif" }
+	, { alt: "tmp image", image: "20250609_151917_IMG_1693.avif" }
+	, { alt: "tmp image", image: "20250609_151922_IMG_1696.avif" }
+	, { alt: "tmp image", image: "20250609_152044_IMG_1703.avif" }
+	, { alt: "tmp image", image: "20250609_152114_IMG_1712.avif" }
+	, { alt: "tmp image", image: "20250609_152115_PXL_20250609_222115109.avif" }
+	, { alt: "tmp image", image: "20250609_152343_IMG_1719.avif" }
+	//, { alt: "tmp image", image: "20250609_152714_IMG_1727.avif" }
+	, { alt: "tmp image", image: "20250609_153830_IMG_1737.avif" }
+	//, { alt: "tmp image", image: "20250609_154622_IMG_1740.avif" }
+]}/>
+
+Sometimes, the scale of the Grand Canyon blends together. 
+It's easy to lose sight of how incredibly massive it is, compared to humans.
+Take a look at the picture below, and see if you can spot the two grainy specs of humanity.
+You can use the button below to reveal their location.
+
+<ShowPeople client:load />
+
+Eleven Native-American tribes, including the Basketmaker-Pueblo, Hopi, Hualapai, and Yavapai-Apache,
+have a history of living in or near the Grand Canyon. 
+[The history is fascinating](https://en.wikipedia.org/wiki/History_of_the_Grand_Canyon_area#Early_history), 
+though I don't feel qualified to explain it here.
+Nonetheless, as I see how small humans are compared to the canyon trails,
+I also reflect on how impressive it is that humans lived
+in the canyon thousands of years before there were tourist-friendly trails.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250609_160613_IMG_1768.avif" }
+	, { alt: "tmp image", image: "20250609_162523_IMG_1792.avif" }
+	, { alt: "tmp image", image: "20250609_165218_IMG_1813.avif" }
+	, { alt: "tmp image", image: "20250609_174108_IMG_1831.avif" }
+	, { alt: "tmp image", image: "20250609_174325_IMG_1840.avif" }
+	, { alt: "tmp image", image: "20250609_181152_IMG_1844.avif" }
+	, { alt: "tmp image", image: "20250609_190325_IMG_1873.avif" }
+	, { alt: "tmp image", image: "20250610_142809_IMG_1939.avif" }
+	, { alt: "tmp image", image: "20250610_143319_IMG_1967.avif" }
+	, { alt: "tmp image", image: "20250610_145840_IMG_2025.avif" }
+	, { alt: "tmp image", image: "20250610_153633_IMG_2075.avif" }
+	, { alt: "tmp image", image: "20250610_162151_IMG_2103.avif" }
+	, { alt: "tmp image", image: "20250610_165317_IMG_2126.avif" }
+	, { alt: "tmp image", image: "20250610_171633_IMG_2169.avif" }
+	, { alt: "tmp image", image: "20250610_172913_IMG_2176.avif" }
+	, { alt: "tmp image", image: "20250610_190451_IMG_2196.avif" }
+]}/>
+
+## Zion
+
+I enjoy hiking and exploring nature as a way to get away from 
+the hustle and bustle of urban life. 
+However, most city streets are less densely packed than Zion national park.
+Let's take a look at the numbers.
+
+
+|             | Miles of Trails                    | Annual Visitors (2024) <sup>[source][stats]</sup>| Visitors/Mile |
+|:------------|-----------------------------------:|:------------------------------------------------:|--------------:|
+| Zion        | 90 <sup>[source][zion]</sup>       | 4,946,592                                        |    **54,962** |
+| Yosemite    | 750 <sup>[source][yose]</sup>      | 4,121,807                                        |     **5,496** |
+| Yellowstone | 1,100 <sup>[source][yell]</sup>    | 4,744,353                                        |     **4,313** |
+
+[zion]: https://www.nps.gov/zion/planyourvisit/backpacking.htm
+[yell]: https://www.nps.gov/yose/planyourvisit/trails.htm
+[yose]: https://www.nps.gov/yose/planyourvisit/trails.htm
+[stats]: https://irma.nps.gov/Stats/
+
+Obviously, it's naïve to assume that visitors are equally spread out over all trails, but the point is in the proportions.
+Zion recieves an *order of magnitude* more visitors per mile than other parks with similar attendance.
+
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250612_134533_IMG_2215.avif" }
+	, { alt: "tmp image", image: "20250612_143703_IMG_2234.avif" }
+	, { alt: "tmp image", image: "20250612_161816_IMG_2269.avif" }
+	, { alt: "tmp image", image: "20250613_094144_PXL_20250613_154144378.avif" }
 	// , { alt: "tmp image", image: "20250613_095024_PXL_20250613_155024715.MP.avif" }
 	// , { alt: "tmp image", image: "20250613_140506_PXL_20250613_200506649.avif" }
 	// , { alt: "tmp image", image: "20250613_160223_IMG_2306.avif" }
