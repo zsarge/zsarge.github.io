@@ -1,0 +1,141 @@
+---
+title: My Trip through the Southwest
+description: Zack sees the Grand Canyon, Zion, Bryce Canyon, The Black Canyon of the Gunnison, and Colorado Springs!
+pubDate: 2025-07-16
+featured: false
+seriesId: trip-2025
+orderInSeries: 5
+tags:
+  - travel
+  - photography
+---
+
+import ServerImage from "../../components/ServerImage.astro";
+import Lightbox from "../../components/Lightbox.astro";
+import SingleCenteredPhoto from "../../components/SingleCenteredPhoto.astro";
+import QuoteBlock from "../../components/QuoteBlock.astro";
+import CensorTetons from "../../components/posts/trip-2025-yellowstone/CensorTetons.tsx";
+import PanellumViewer from "../../components/PanellumViewer.astro";
+import getServerUrl from "../../lib/getImageServerUrl.ts";
+
+----
+
+
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=6&ll=37.55071903938504, -109.04564240252516" width="640" height="480" title="Map of my travel through California"></iframe>
+
+This post will cover stops 14 through 19 as I explore the American Southwest.
+
+## Grandest canyon
+
+<Lightbox collection="trip-2025" files={[
+	// , { alt: "tmp image", image: "20250607_134456_PXL_20250607_204456242.avif" }
+	// , { alt: "tmp image", image: "20250608_134410_PXL_20250608_204410313.avif" }
+	// , { alt: "tmp image", image: "20250608_200939_PXL_20250609_030939748.avif" }
+	// , { alt: "tmp image", image: "20250609_122042_PXL_20250609_192042337.avif" }
+	// , { alt: "tmp image", image: "20250609_134926_IMG_1518.avif" }
+	// , { alt: "tmp image", image: "20250609_135044_IMG_1525.avif" }
+	// , { alt: "tmp image", image: "20250609_135056_IMG_1530.avif" }
+	// , { alt: "tmp image", image: "20250609_135108_IMG_1535.avif" }
+	// , { alt: "tmp image", image: "20250609_135555_IMG_1544.avif" }
+	// , { alt: "tmp image", image: "20250609_143137_IMG_1591.avif" }
+	// , { alt: "tmp image", image: "20250609_143421_IMG_1595.avif" }
+	// , { alt: "tmp image", image: "20250609_144650_IMG_1609.avif" }
+	// , { alt: "tmp image", image: "20250609_144709_IMG_1616.avif" }
+	// , { alt: "tmp image", image: "20250609_144721_IMG_1618.avif" }
+	// , { alt: "tmp image", image: "20250609_144726_IMG_1624.avif" }
+	// , { alt: "tmp image", image: "20250609_144741_IMG_1627.avif" }
+	// , { alt: "tmp image", image: "20250609_145749_IMG_1648.avif" }
+	// , { alt: "tmp image", image: "20250609_145759_IMG_1651.avif" }
+	// , { alt: "tmp image", image: "20250609_145836_IMG_1657.avif" }
+	// , { alt: "tmp image", image: "20250609_150756_IMG_1667.avif" }
+	// , { alt: "tmp image", image: "20250609_151008_IMG_1677.avif" }
+	// , { alt: "tmp image", image: "20250609_151915_IMG_1692.avif" }
+	// , { alt: "tmp image", image: "20250609_151917_IMG_1693.avif" }
+	// , { alt: "tmp image", image: "20250609_151922_IMG_1696.avif" }
+	// , { alt: "tmp image", image: "20250609_152044_IMG_1703.avif" }
+	// , { alt: "tmp image", image: "20250609_152114_IMG_1712.avif" }
+	// , { alt: "tmp image", image: "20250609_152115_PXL_20250609_222115109.avif" }
+	// , { alt: "tmp image", image: "20250609_152343_IMG_1719.avif" }
+	// , { alt: "tmp image", image: "20250609_152714_IMG_1727.avif" }
+	// , { alt: "tmp image", image: "20250609_153830_IMG_1737.avif" }
+	// , { alt: "tmp image", image: "20250609_154622_IMG_1740.avif" }
+	// , { alt: "tmp image", image: "20250609_160613_IMG_1768.avif" }
+	// , { alt: "tmp image", image: "20250609_162523_IMG_1792.avif" }
+	// , { alt: "tmp image", image: "20250609_165218_IMG_1813.avif" }
+	// , { alt: "tmp image", image: "20250609_174108_IMG_1831.avif" }
+	// , { alt: "tmp image", image: "20250609_174325_IMG_1840.avif" }
+	// , { alt: "tmp image", image: "20250609_181152_IMG_1844.avif" }
+	// , { alt: "tmp image", image: "20250609_190325_IMG_1873.avif" }
+	// , { alt: "tmp image", image: "20250610_142809_IMG_1939.avif" }
+	// , { alt: "tmp image", image: "20250610_143319_IMG_1967.avif" }
+	// , { alt: "tmp image", image: "20250610_145840_IMG_2025.avif" }
+	// , { alt: "tmp image", image: "20250610_145906_IMG_2027.avif" }
+	// , { alt: "tmp image", image: "20250610_153633_IMG_2075.avif" }
+	// , { alt: "tmp image", image: "20250610_162151_IMG_2103.avif" }
+	// , { alt: "tmp image", image: "20250610_165317_IMG_2126.avif" }
+	// , { alt: "tmp image", image: "20250610_171633_IMG_2169.avif" }
+	// , { alt: "tmp image", image: "20250610_172913_IMG_2176.avif" }
+	// , { alt: "tmp image", image: "20250610_190451_IMG_2196.avif" }
+	// , { alt: "tmp image", image: "20250612_134533_IMG_2215.avif" }
+	// , { alt: "tmp image", image: "20250612_143703_IMG_2234.avif" }
+	// , { alt: "tmp image", image: "20250612_161816_IMG_2269.avif" }
+	// , { alt: "tmp image", image: "20250613_094144_PXL_20250613_154144378.avif" }
+	// , { alt: "tmp image", image: "20250613_095024_PXL_20250613_155024715.MP.avif" }
+	// , { alt: "tmp image", image: "20250613_140506_PXL_20250613_200506649.avif" }
+	// , { alt: "tmp image", image: "20250613_160223_IMG_2306.avif" }
+	// , { alt: "tmp image", image: "20250613_160225_IMG_2307.avif" }
+	// , { alt: "tmp image", image: "20250613_160304_IMG_2316.avif" }
+	// , { alt: "tmp image", image: "20250613_160437_IMG_2340.avif" }
+	// , { alt: "tmp image", image: "20250613_161904_IMG_2391.avif" }
+	// , { alt: "tmp image", image: "20250613_162937_IMG_2421.avif" }
+	// , { alt: "tmp image", image: "20250613_163512_IMG_2435.avif" }
+	// , { alt: "tmp image", image: "20250613_164700_IMG_2476.avif" }
+	// , { alt: "tmp image", image: "20250613_164815_IMG_2483.avif" }
+	// , { alt: "tmp image", image: "20250613_165705_PXL_20250613_225705252.avif" }
+	// , { alt: "tmp image", image: "20250613_171811_IMG_2527.avif" }
+	// , { alt: "tmp image", image: "20250613_171928_IMG_2533.avif" }
+	// , { alt: "tmp image", image: "20250613_190621_PXL_20250614_010621028.avif" }
+	// , { alt: "tmp image", image: "20250614_152805_PXL_20250614_212805535.MP.avif" }
+	// , { alt: "tmp image", image: "20250614_170339_PXL_20250614_230339969.MP.avif" }
+	// , { alt: "tmp image", image: "20250616_120242_IMG_2617.avif" }
+	// , { alt: "tmp image", image: "20250616_125118_IMG_2659.avif" }
+	// , { alt: "tmp image", image: "20250616_125316_IMG_2671.avif" }
+	// , { alt: "tmp image", image: "20250616_125322_IMG_2673.avif" }
+	// , { alt: "tmp image", image: "20250616_125332_IMG_2677.avif" }
+	// , { alt: "tmp image", image: "20250616_125335_IMG_2679.avif" }
+	// , { alt: "tmp image", image: "20250616_125345_IMG_2682.avif" }
+	// , { alt: "tmp image", image: "20250616_125400_IMG_2684.avif" }
+	// , { alt: "tmp image", image: "20250616_125403_IMG_2685.avif" }
+	// , { alt: "tmp image", image: "20250616_125640_IMG_2696.avif" }
+	// , { alt: "tmp image", image: "20250616_133606_IMG_2718.avif" }
+	// , { alt: "tmp image", image: "20250616_133734_IMG_2724.avif" }
+	// , { alt: "tmp image", image: "20250616_134152_IMG_2729.avif" }
+	// , { alt: "tmp image", image: "20250616_134321_IMG_2740.avif" }
+	// , { alt: "tmp image", image: "20250616_142426_IMG_2801.avif" }
+	// , { alt: "tmp image", image: "20250616_142855_IMG_2809.avif" }
+	// , { alt: "tmp image", image: "20250616_144901_IMG_2824.avif" }
+	// , { alt: "tmp image", image: "20250616_154731_IMG_2863.avif" }
+	// , { alt: "tmp image", image: "20250616_160759_IMG_2880.avif" }
+	// , { alt: "tmp image", image: "20250616_162714_IMG_2890.avif" }
+	// , { alt: "tmp image", image: "20250616_172138_IMG_2899.avif" }
+	// , { alt: "tmp image", image: "20250616_174117_IMG_2926.avif" }
+	// , { alt: "tmp image", image: "20250617_092412_IMG_2936.avif" }
+	// , { alt: "tmp image", image: "20250618_105502_IMG_2997.avif" }
+	// , { alt: "tmp image", image: "20250618_111800_IMG_3024.avif" }
+	// , { alt: "tmp image", image: "20250618_121227_IMG_3071.avif" }
+	// , { alt: "tmp image", image: "20250618_124215_IMG_3137.avif" }
+	// , { alt: "tmp image", image: "20250618_124301_IMG_3153.avif" }
+	// , { alt: "tmp image", image: "20250618_164129_PXL_20250618_224129837.avif" }
+	// , { alt: "tmp image", image: "20250619_162124_f5e455ed-ebf8-4c85-96d3-8fa2ca81d56a.avif" }
+	// , { alt: "tmp image", image: "20250621_134940_IMG_3182.avif" }
+	// , { alt: "tmp image", image: "20250621_135142_IMG_3191.avif" }
+	// , { alt: "tmp image", image: "20250621_141855_IMG_3224.avif" }
+	// , { alt: "tmp image", image: "20250621_145013_IMG_3300.avif" }
+	// , { alt: "tmp image", image: "20250630_181258_20250518160233_011260F.avif" }
+	// , { alt: "tmp image", image: "20250630_181259_20250518172414_011425F.avif" }
+]} />
+
+----
+
+Unless otherwise stated, all of the images and videos above are licensed as [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
