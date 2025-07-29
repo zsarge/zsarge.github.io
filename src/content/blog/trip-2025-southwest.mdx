@@ -21,7 +21,16 @@ import getServerUrl from "../../lib/getImageServerUrl.ts";
 ----
 
 
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=6&ll=37.55071903938504, -109.04564240252516" width="640" height="480" title="Map of my travel through California"></iframe>
+{/* Mobile Only - zoom = 5 */}
+<div class="block md:hidden">
+	<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=5&ll=37.56007860983725, -109.319751451722" width="640" height="480" title="Map of my travel through the American Southwest"></iframe>
+</div>
+
+{/* Non-mobile (tablet and up) - zoom = 6 */}
+<div class="hidden md:block">
+	<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R5wmIVCydTNGL9lUlEFTEXnpWBKFLyk&ehbc=2E312F&noprof=1&z=6&ll=37.56007860983725, -109.319751451722" width="640" height="480" title="Map of my travel through the American Southwest"></iframe>
+</div>
+
 
 This post will cover stops 14 through 19 as I explore the American Southwest.
 
@@ -29,23 +38,23 @@ This post will cover stops 14 through 19 as I explore the American Southwest.
 
 I think the Grand Canyon is the opposite of Mount Rushmore.
 
-Mount Rushmore is a monument that fits within a frame. 
+Mount Rushmore is a monument that fits within a frame.
 If you've seen a picture of Mount Rushmore, you basically get the gist.
 It's hand-carved slopes transform a mountianside from natural beauty to cultural icon.
 
-The word "Grand" doesn't do the Grand Canyon justice. 
-There's a sheer scale to it that makes observation akin to astronomy: 
+The word "Grand" doesn't do the Grand Canyon justice.
+There's a sheer scale to it that makes observation akin to astronomy:
 a reminder of how miniscule a human really is.
-No one picture does it justice. 
+No one picture does it justice.
 
 
-As someone who recently under-estimated a hike, I appreciated that the signage makes the difficulty of the full hike clear.
+As someone who recently underestimated a hike, I appreciated that the signage emphasizes this scale, and makes the difficulty of the full hike clear.
 
 <Lightbox collection="trip-2025" image="20250609_143421_IMG_1595.avif" alt="Sign warning not to hike too far at the Grand Canyon" />
 
 I know there's tourist attractions at the Grand Canyon, where they'll bus you into the most picturesque spots, or let you walk on [a glass skywalk](https://en.wikipedia.org/wiki/Grand_Canyon_Skywalk).
 However, I decided to keep it simple, and just wander at my own pace.
-The [Grand Canyon Shuttle](https://www.nps.gov/grca/planyourvisit/shuttle-buses.htm) 
+The [Grand Canyon Shuttle](https://www.nps.gov/grca/planyourvisit/shuttle-buses.htm)
 made it easy to explore on a whim.
 
 <div class="mb-3">
@@ -68,7 +77,7 @@ made it easy to explore on a whim.
 ]}/>
 
 I loved seeing the mules at work in the Grand Canyon.
-They do a few jobs. 
+They do a few jobs.
 For one, you can book a mule ride for a casual $185.56/person[^mule].
 They also carry equipment and supplies to the canyon floor, which is what I believe is happening here.
 In this case, I believe they're coming back from the 7.5 mile route[^mile] across the South Kaibab Trail to get to Phantom Ranch,
@@ -78,7 +87,7 @@ which is the only lodging below the canyon rim.
 [^mile]: Source: https://www.theadventurediet.com/blog/a-complete-guide-on-how-to-visit-phantom-ranch-grand-canyons-most-epic-place-to-stay
 
 Also, I want to highlight the incredibly solid trail construction.
-This is another example of the outstanding work by the CCC, and continues the theme of durability we talked about earlier: 
+This is another example of the outstanding work by the CCC, and continues the theme of durability we talked about earlier:
 it's lasted ~100 years, and it's likely to last at least another 100 years with light maintenance.
 
 
@@ -99,7 +108,7 @@ it's lasted ~100 years, and it's likely to last at least another 100 years with 
 	//, { alt: "tmp image", image: "20250609_154622_IMG_1740.avif" }
 ]}/>
 
-Sometimes, the scale of the Grand Canyon blends together. 
+Sometimes, the scale of the Grand Canyon blends together.
 It's easy to lose sight of how incredibly massive it is, compared to humans.
 Take a look at the picture below, and see if you can spot the two grainy specs of humanity.
 You can use the button below to reveal their location.
@@ -107,10 +116,10 @@ You can use the button below to reveal their location.
 <ShowPeople client:load />
 
 Eleven Native-American tribes, including the Basketmaker-Pueblo, Hopi, Hualapai, and Yavapai-Apache,
-have a history of living in or near the Grand Canyon. 
-[The history is fascinating](https://en.wikipedia.org/wiki/History_of_the_Grand_Canyon_area#Early_history), 
+have a history of living in or near the Grand Canyon.
+[The history is fascinating](https://en.wikipedia.org/wiki/History_of_the_Grand_Canyon_area#Early_history),
 though I don't feel qualified to explain it here.
-Nonetheless, as I see how small humans are compared to the canyon trails,
+Nonetheless, as I see how small humans are compared to the canyon paths,
 I also reflect on how impressive it is that humans lived
 in the canyon thousands of years before there were tourist-friendly trails.
 
@@ -135,8 +144,8 @@ in the canyon thousands of years before there were tourist-friendly trails.
 
 ## Zion
 
-I enjoy hiking and exploring nature as a way to get away from 
-the hustle and bustle of urban life. 
+I enjoy hiking and exploring nature as a way to get away from
+the hustle and bustle of urban life.
 However, most city streets are less densely packed than Zion national park.
 Let's take a look at the numbers.
 
@@ -153,70 +162,204 @@ Let's take a look at the numbers.
 [stats]: https://irma.nps.gov/Stats/
 
 Obviously, it's naïve to assume that visitors are equally spread out over all trails, but the point is in the proportions.
-Zion recieves an *order of magnitude* more visitors per mile than other parks with similar attendance.
+Zion recieves an *order of magnitude* more visitors per mile of trail than other parks with similar annual attendance.
 
+<div class="mb-3">
+	<Lightbox collection="trip-2025" image="20250612_134533_IMG_2215.avif" alt="Zion national park" />
+</div>
 
 <Lightbox collection="trip-2025" files={[
-	, { alt: "tmp image", image: "20250612_134533_IMG_2215.avif" }
 	, { alt: "tmp image", image: "20250612_143703_IMG_2234.avif" }
 	, { alt: "tmp image", image: "20250612_161816_IMG_2269.avif" }
-	, { alt: "tmp image", image: "20250613_094144_PXL_20250613_154144378.avif" }
-	// , { alt: "tmp image", image: "20250613_095024_PXL_20250613_155024715.MP.avif" }
-	// , { alt: "tmp image", image: "20250613_140506_PXL_20250613_200506649.avif" }
-	// , { alt: "tmp image", image: "20250613_160223_IMG_2306.avif" }
-	// , { alt: "tmp image", image: "20250613_160225_IMG_2307.avif" }
-	// , { alt: "tmp image", image: "20250613_160304_IMG_2316.avif" }
-	// , { alt: "tmp image", image: "20250613_160437_IMG_2340.avif" }
-	// , { alt: "tmp image", image: "20250613_161904_IMG_2391.avif" }
-	// , { alt: "tmp image", image: "20250613_162937_IMG_2421.avif" }
-	// , { alt: "tmp image", image: "20250613_163512_IMG_2435.avif" }
-	// , { alt: "tmp image", image: "20250613_164700_IMG_2476.avif" }
-	// , { alt: "tmp image", image: "20250613_164815_IMG_2483.avif" }
-	// , { alt: "tmp image", image: "20250613_165705_PXL_20250613_225705252.avif" }
-	// , { alt: "tmp image", image: "20250613_171811_IMG_2527.avif" }
-	// , { alt: "tmp image", image: "20250613_171928_IMG_2533.avif" }
-	// , { alt: "tmp image", image: "20250613_190621_PXL_20250614_010621028.avif" }
-	// , { alt: "tmp image", image: "20250614_152805_PXL_20250614_212805535.MP.avif" }
-	// , { alt: "tmp image", image: "20250614_170339_PXL_20250614_230339969.MP.avif" }
-	// , { alt: "tmp image", image: "20250616_120242_IMG_2617.avif" }
-	// , { alt: "tmp image", image: "20250616_125118_IMG_2659.avif" }
-	// , { alt: "tmp image", image: "20250616_125316_IMG_2671.avif" }
-	// , { alt: "tmp image", image: "20250616_125322_IMG_2673.avif" }
-	// , { alt: "tmp image", image: "20250616_125332_IMG_2677.avif" }
-	// , { alt: "tmp image", image: "20250616_125335_IMG_2679.avif" }
-	// , { alt: "tmp image", image: "20250616_125345_IMG_2682.avif" }
-	// , { alt: "tmp image", image: "20250616_125400_IMG_2684.avif" }
-	// , { alt: "tmp image", image: "20250616_125403_IMG_2685.avif" }
-	// , { alt: "tmp image", image: "20250616_125640_IMG_2696.avif" }
-	// , { alt: "tmp image", image: "20250616_133606_IMG_2718.avif" }
-	// , { alt: "tmp image", image: "20250616_133734_IMG_2724.avif" }
-	// , { alt: "tmp image", image: "20250616_134152_IMG_2729.avif" }
-	// , { alt: "tmp image", image: "20250616_134321_IMG_2740.avif" }
-	// , { alt: "tmp image", image: "20250616_142426_IMG_2801.avif" }
-	// , { alt: "tmp image", image: "20250616_142855_IMG_2809.avif" }
-	// , { alt: "tmp image", image: "20250616_144901_IMG_2824.avif" }
-	// , { alt: "tmp image", image: "20250616_154731_IMG_2863.avif" }
-	// , { alt: "tmp image", image: "20250616_160759_IMG_2880.avif" }
-	// , { alt: "tmp image", image: "20250616_162714_IMG_2890.avif" }
-	// , { alt: "tmp image", image: "20250616_172138_IMG_2899.avif" }
-	// , { alt: "tmp image", image: "20250616_174117_IMG_2926.avif" }
-	// , { alt: "tmp image", image: "20250617_092412_IMG_2936.avif" }
-	// , { alt: "tmp image", image: "20250618_105502_IMG_2997.avif" }
-	// , { alt: "tmp image", image: "20250618_111800_IMG_3024.avif" }
-	// , { alt: "tmp image", image: "20250618_121227_IMG_3071.avif" }
-	// , { alt: "tmp image", image: "20250618_124215_IMG_3137.avif" }
-	// , { alt: "tmp image", image: "20250618_124301_IMG_3153.avif" }
-	// , { alt: "tmp image", image: "20250618_164129_PXL_20250618_224129837.avif" }
-	// , { alt: "tmp image", image: "20250619_162124_f5e455ed-ebf8-4c85-96d3-8fa2ca81d56a.avif" }
-	// , { alt: "tmp image", image: "20250621_134940_IMG_3182.avif" }
-	// , { alt: "tmp image", image: "20250621_135142_IMG_3191.avif" }
-	// , { alt: "tmp image", image: "20250621_141855_IMG_3224.avif" }
-	// , { alt: "tmp image", image: "20250621_145013_IMG_3300.avif" }
-	// , { alt: "tmp image", image: "20250630_181258_20250518160233_011260F.avif" }
-	// , { alt: "tmp image", image: "20250630_181259_20250518172414_011425F.avif" }
+]}/>
+
+I thought it was pretty, but I definitely felt like it was overcrowded, especially with Bryce Canyon being an hour away.
+Also, parking was \$27.50.
+
+## Bryce Canyon
+
+Sitting at around half the attendance of the parks we last discussed, Bryce Canyon received 2,498,075 visitors in 2024,
+making it relatively underrated in my view.
+It has a fast and efficient shuttle service, and plenty of unique and interesting hiking trails to explore.
+
+<div class="mb-3">
+	<Lightbox collection="trip-2025" image="20250613_171928_IMG_2533.avif" alt="overview of Bryce Canyon" />
+</div>
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250613_140506_PXL_20250613_200506649.avif" }
+	, { alt: "tmp image", image: "20250613_160223_IMG_2306.avif" }
+	, { alt: "tmp image", image: "20250613_160225_IMG_2307.avif" }
+	, { alt: "tmp image", image: "20250613_160304_IMG_2316.avif" }
+]}/>
+
+The tower-like erroded rocks you see are called ["hoodoos"](https://www.nps.gov/brca/learn/nature/hoodoos.htm),
+which are formed through uplifted sedementary rock that has been eroded away over time.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250613_160437_IMG_2340.avif" }
+	, { alt: "tmp image", image: "20250613_161904_IMG_2391.avif" }
+	, { alt: "tmp image", image: "20250613_162937_IMG_2421.avif" }
+	, { alt: "tmp image", image: "20250613_163512_IMG_2435.avif" }
+	, { alt: "tmp image", image: "20250613_164700_IMG_2476.avif" }
+	, { alt: "tmp image", image: "20250613_164815_IMG_2483.avif" }
+]}/>
+
+There was [a quote on a sign](https://www.nps.gov/places/000/the-legend-people-wayside.htm) about the
+Coyote God Sinawava in Paiute Indian tradition
+that stuck out to me:
+
+<QuoteBlock attribution="NPS Sign" url="https://www.nps.gov/places/000/the-legend-people-wayside.htm">
+The Paiutes inhabited this region for hundreds of years before the arrival of European Americans. A sacred oral tradition of the Paiute Indians states that the hoodoos are ancient legend people turned into stone by coyote as a punishment for bad deeds. It is the custom of the Paiutes to tell these stories only during the winter season. Spring summer and fall are for hunting gathering and storing food it is out of respect for this custom that the authentic story is not repeated here.
+</QuoteBlock>
+
+I liked this for two reasons.
+For one,
+I can totally see how some freaky-looking hoodoos got personified as people turned to stone.
+Additionally, I generally think of written text as being outside of time, so it's interesting to
+see a reference to a story that should not be printed, lest it be read outside of the appropriate season.
+Very interesting!
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250613_171811_IMG_2527.avif" }
+	, { alt: "tmp image", image: "20250614_152805_PXL_20250614_212805535.MP.avif" }
+]}/>
+
+<div class="mt-3">
+	<SingleCenteredPhoto>
+		<Lightbox collection="trip-2025" image="20250613_165705_PXL_20250613_225705252.avif" />
+	</SingleCenteredPhoto>
+</div>
+
+## Warner Campground
+
+Early on, when planning my trip, I decided that
+I wanted to plan a basic structure, but leave opportunity for spontaneity.
+Rather than having every minute of the day planned out,
+I'd have a general plan of where I need to be, but
+I'd always reserve agency to decide what exactly to do on the day.
+
+I think this worked out well overall!
+
+However, there were several situations where I had to make a change of plans.
+For example, I planned to visit Arches National Park.
+When planning, I noticed the nearest campsite that wasn't completely booked was an hour away,
+which seemed unfortunate but doable.
+I noted that it was only accessible via gravel roads, but I decided that I'd figure it out.
+
+
+<Lightbox collection="trip-2025" image="20250617_092412_IMG_2936.avif" alt="photo of gravel road leading to Warner Campground" />
+
+However, when I arrived, I felt that the gravel and dirt roads were taxing
+enough on my car that it'd be wise to minimize the times I drove on them.
+As such, I ended up skipping Arches, and just exploring the the mountain my campsite was on.
+Sure, it wasn't what I planned, but I ended up really enjoying it anyway!
+
+And when I arrived at my campsite, I made several new deer friends:
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250616_120242_IMG_2617.avif" }
+	, { alt: "tmp image", image: "20250616_125118_IMG_2659.avif" }
+	, { alt: "tmp image", image: "20250616_125316_IMG_2671.avif" }
+	, { alt: "tmp image", image: "20250616_125322_IMG_2673.avif" }
+	, { alt: "tmp image", image: "20250616_125332_IMG_2677.avif" }
+	, { alt: "tmp image", image: "20250616_125335_IMG_2679.avif" }
+]}/>
+
+And, apparently deer can be really rude! 
+One of them came over and literally kicked the other ones out from under the tree.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250616_125345_IMG_2682.avif" }
+	, { alt: "tmp image", image: "20250616_125400_IMG_2684.avif" }
+	, { alt: "tmp image", image: "20250616_125403_IMG_2685.avif" }
+	, { alt: "tmp image", image: "20250616_125640_IMG_2696.avif" }
+	, { alt: "tmp image", image: "20250616_133606_IMG_2718.avif" }
+	, { alt: "tmp image", image: "20250616_133734_IMG_2724.avif" }
+]}/>
+
+I really enjoyed hiking along the mountain trails.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250616_134152_IMG_2729.avif" }
+	, { alt: "tmp image", image: "20250616_134321_IMG_2740.avif" }
+	, { alt: "tmp image", image: "20250616_142426_IMG_2801.avif" }
+	, { alt: "tmp image", image: "20250616_142855_IMG_2809.avif" }
+	, { alt: "tmp image", image: "20250616_144901_IMG_2824.avif" }
+	, { alt: "tmp image", image: "20250616_154731_IMG_2863.avif" }
+	, { alt: "tmp image", image: "20250616_160759_IMG_2880.avif" }
+	, { alt: "tmp image", image: "20250616_162714_IMG_2890.avif" }
+	, { alt: "tmp image", image: "20250616_172138_IMG_2899.avif" }
+	, { alt: "tmp image", image: "20250616_174117_IMG_2926.avif" }
+]}/>
+
+## Black Canyon of the Gunnison
+
+Now, by this point I'd visited the canyons at Yellowstone, 
+Yosemite, the Grand Canyon, and Zion. 
+So, when visiting the Black Canyon of the Gunnison, I felt an almost paternal air towards it:
+"Who's a good little canyon? Are you gonna grow up to be like the Grand Canyon one day?"
+
+It's certainly a nice place, but I think it helps 
+contextualise how utterly amazing all of the other national parks are by comparison.
+As far as I'm aware, there's around 19 miles of trails in the 
+park,<sup>[†](https://www.nps.gov/blca/planyourvisit/hikingtrails.htm)</sup>
+making Zion look massive in comparison.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250618_105502_IMG_2997.avif" }
+	, { alt: "tmp image", image: "20250618_111800_IMG_3024.avif" }
+	, { alt: "tmp image", image: "20250618_121227_IMG_3071.avif" }
+	, { alt: "tmp image", image: "20250618_124215_IMG_3137.avif" }
+	, { alt: "tmp image", image: "20250618_124301_IMG_3153.avif" }
+	, { alt: "tmp image", image: "20250618_164129_PXL_20250618_224129837.avif" }
+]}/>
+
+## Colorado Springs
+
+Once again, I feel fortunate to have visited many amazing places during this trip,
+but the the time I got to spend with people meant the most to me.
+
+Thanks to Carson and Thora for spending like three days showing me around Colorado Springs!
+I had a really great time!
+
+### Garden of the Gods
+
+On our last day together, we visited Garden of the Gods, which is famous for its towering rock formations, of which a few are pictured below.
+
+<Lightbox collection="trip-2025" files={[
+	, { alt: "tmp image", image: "20250621_134940_IMG_3182.avif" }
+	, { alt: "tmp image", image: "20250621_135142_IMG_3191.avif" }
+	, { alt: "tmp image", image: "20250621_141855_IMG_3224.avif" }
+	, { alt: "tmp image", image: "20250621_145013_IMG_3300.avif" }
 ]} />
+
+And thanks to Thora for taking this picture of Carson and I. :]
+
+<Lightbox collection="trip-2025" image="IMG_3325.jpg" alt="Me and Carson" format="jpg" />
+
+## Heading Home
+
+And so, I headed back east through Kansas, Missouri, and Illinois.
+
+My only note is that it's Important to check your tire pressure after coming down from high elevation.
+There are lots of free air pumps in Kansas City for this reason.
+
+Beyond that, I found this leg of the journey to be entirely uneventful.
+
+## Conclusion
+
+So, that's it! That has been a quick peak into what I was up to for those 43 days.
+
+weird mix of emotions; wow this is fun but also this is a lot and hard work.
+
+I had a lot of fun! TODO: I should write more here when the mood strikes me.
+
+In the lasst chapter, I'll show some spreadsheets and code that I used to plan this, and I'll give some advice based on my experience.
 
 ----
 
 Unless otherwise stated, all of the images and videos above are licensed as [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+----
 
