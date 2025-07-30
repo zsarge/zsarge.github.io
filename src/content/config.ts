@@ -9,6 +9,7 @@ const blog = defineCollection({
         .string()
         .array()
         .transform((tags) => tags.map((tag) => `#${tag}`)),
+      hidden: z.boolean().default(false),
       draft: z.boolean().default(false),
       featured: z.boolean().default(false),
       planned: z.boolean().default(false),
