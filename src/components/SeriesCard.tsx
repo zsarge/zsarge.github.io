@@ -9,8 +9,20 @@ interface Props {
   order?: number;
 }
 
+interface AddClass {
+  className: string;
+  prefix?: string;
+}
+
+
 export default function ({ series, posts, order }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+
+  function XofY({ className, prefix }: AddClass) {
+    return <span className={className}>{`${
+      order ? `${prefix||""}${order} of ${posts.length}` : `${posts.length} Parts`
+    }`}</span>;
+  }
 
   const handleOnClick = () => {
     setIsOpen(!isOpen);
@@ -27,9 +39,8 @@ export default function ({ series, posts, order }: Props) {
         <div className="flex items-center justify-between">
           <div className="flex items justify-center space-x-2">
             <h2 className="text-xl text-black dark:text-white font-bold">{series.data.title}</h2>
-            <span className="text-xl">{`${
-              order ? ` • ${order} of ${posts.length}` : ` • ${posts.length} Parts`
-            }`}</span>
+            <div className="text-xl hidden md:block">•</div>
+            <XofY className="text-xl hidden md:block" />
           </div>
           <div className="text-black dark:text-white">
             {isOpen ? (
@@ -38,6 +49,9 @@ export default function ({ series, posts, order }: Props) {
               <MaterialSymbolsKeyboardArrowDownRounded style={{ fontSize: "1.5em" }} />
             )}
           </div>
+        </div>
+        <div className=" block md:hidden">
+          (<XofY prefix="Post " className="text-md" />)
         </div>
         <p>{series.data.description}</p>
       </button>
