@@ -20,7 +20,7 @@ export default function ShareMessage() {
 	  <p><strong>Thanks for clicking my link!</strong></p>
 	  <p>Just a heads up:</p>
 	  <ul>
-		<li>There's &gt;30 minutes of content to read across all articles.</li>
+		<li>There's &gt;30 minutes of content to read across all the articles.</li>
 	    <li>Feel free to just <a href="/blog/trip-2025-tldr">look at the top 5 prettiest photos!</a></li>
 		<li>I just wanted to share what I've been up to. 😄</li>
 	  </ul>
