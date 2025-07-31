@@ -169,7 +169,7 @@ Zion recieves an *order of magnitude* more visitors per mile of trail than other
 	, { alt: "The Court of the Patriarchs", image: "20250612_161816_IMG_2269.avif" }
 ]}/>
 
-I thought it was pretty, but I definitely felt like it was overcrowded. 
+I thought it was pretty, but I definitely felt like it was overcrowded.
 Much of my time there was spent standing in lines, even on the trails.
 I'm surprised it's this crowded, with Bryce Canyon being only like an hour away.
 Also, parking was \$27.50.
@@ -264,7 +264,7 @@ And when I arrived at my campsite, I made several new deer friends:
 	, { alt: "One deer kicking another deer out from under the tree", image: "20250616_125335_IMG_2679.avif" }
 ]}/>
 
-And, apparently deer can be really rude! 
+And, apparently deer can be really rude!
 One of them came over and literally kicked the other ones out from under the tree.
 
 <Lightbox collection="trip-2025" files={[
@@ -291,19 +291,19 @@ I really enjoyed hiking along the mountain trails.
 	, { alt: "deer by my campsite", image: "20250616_174117_IMG_2926.avif" }
 ]}/>
 
-So, while my original plan was to spend this time at Arches National Park, 
+So, while my original plan was to spend this time at Arches National Park,
 I thoroughly enjoyed my time with the deer and in the mountains instead.
 
 ## Black Canyon of the Gunnison
 
-Now, by this point I'd visited the canyons at Yellowstone, 
-Yosemite, the Grand Canyon, and Zion. 
+Now, by this point I'd visited the canyons at Yellowstone,
+Yosemite, the Grand Canyon, and Zion.
 So, when visiting the Black Canyon of the Gunnison, I felt an almost paternal air towards it:
 "Who's a good little canyon? Are you gonna grow up to be like the Grand Canyon one day?"
 
-It's certainly a nice place, but I think it helps 
+It's certainly a nice place, but I think it helps
 contextualise how utterly amazing all of the other national parks are by comparison.
-As far as I'm aware, there's around 19 miles of trails in the 
+As far as I'm aware, there's around 19 miles of trails in the
 park,<sup>[†](https://www.nps.gov/blca/planyourvisit/hikingtrails.htm)</sup>
 making Zion look practically massive.
 
@@ -348,15 +348,128 @@ There are lots of free air pumps in Kansas City for this reason.
 
 Beyond that, I found this leg of the journey to be entirely uneventful.
 
-## Conclusion
+## Conclusion & FAQ
 
-So, that's it! That has been a quick peak into what I was up to for those 43 days.
+So, that's it! That has been a quick peek into what I was up to for those 43 days.
 
-weird mix of emotions; wow this is fun but also this is a lot and hard work.
+Finishing the trip was has been a weird mix of emotions.
+I had a great time, I learned a lot, and it was certianly life-changing.
+However, by the time I got home, I was really excited to just sleep in my own bed.
+In campsites, I saw quite a few people living a "digital nomad" or "van-life" lifestyle,
+and this trip helped me learn that's not for me!
 
-I had a lot of fun! TODO: I should write more here when the mood strikes me.
+Anyway, I'll try to answer some questions you might have!
 
-In the lasst chapter, I'll show some spreadsheets and code that I used to plan this, and I'll give some advice based on my experience.
+### What was your favorite part?
+
+My favorite parts were the times I spent with people!
+Thanks to everyone who met up with me during my trip!
+
+But, in terms of areas,
+I really enjoyed the Pacific Northwest.
+I could totally see myself living in Portland, Oregon or
+Coeur d'Alene, Idaho.
+I was astounded by both the natural beauty and the
+friendliness of the people I met.
+It's a really great region.
+
+### How did you plan this trip?
+
+While there were a few times I had to improvize,
+this trip was generally well planned and low stress.
+
+I attribute this to all of the planning I did in Google Sheets.
+
+I started off with a list of places I wanted to go.
+From there, I used Google Apps Script to automatically calculate driving times
+between locations, lookup geocoords, and estimate gas costs.
+This helped me eliminate places that would take too long to get to,
+and add new stops so I wasn't driving for more than 9 hours per day.
+
+I had a few programs to help me out:
+
+1. [My Google Apps Script](https://gist.github.com/zsarge/87f652a10cdb0b4980e9fd2320bc0bf6#file-google-apps-script-for-spreadsheet-js), which was embedded in my Google Sheet, and took care of calculating driving times, estimating gas costs, and more.
+1. [A script to convert my spreadsheet to `.ical`](https://gist.github.com/zsarge/87f652a10cdb0b4980e9fd2320bc0bf6#file-create_calendar-py), which ensured I had all driving times, check-ins, and check-outs marked on my calendar. Calendar integration was *super* convinent to help me handle timezones while I was travelling.
+1. [A script to convert my spreadsheet to `.kml`](https://gist.github.com/zsarge/87f652a10cdb0b4980e9fd2320bc0bf6#file-csv_to_kml-py), which helped me visualize my trip ahead of time, and make sure it was reasonable.
+
+I'll keep the rest of the sheet private, as it has quite a bit of
+personal information, but I hope that the idea is clear.
+It was useful to have one spreadsheet to be a single source-of-truth,
+and then use scripts to convert it for Google Calendar and Google My Maps.
+
+### How much did this cost?
+
+For the 43 day trip, I spent:
+
+<table class="w-1/3 max-w-xs text-xs font-sans border-collapse">
+  <tbody>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Lodging</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;2,004.42</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Automotive</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;1,146.25</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Gas</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;1,035.24</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Restaurants</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;&nbsp;&nbsp;681.48</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Groceries</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;&nbsp;&nbsp;551.03</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Supplies</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;&nbsp;&nbsp;368.75</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Misc. Travel</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;&nbsp;&nbsp;275.18</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Gifts</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;89.73</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Parking</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;46.10</td>
+    </tr>
+    <tr>
+      <td class="py-[0.1rem] pr-2 text-left">Experiences</td>
+      <td class="py-[0.1rem] text-right font-mono">$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36.03</td>
+    </tr>
+    <tr class="border-t border-gray-300">
+      <td class="pt-1 pr-2 text-left font-semibold">Total:</td>
+      <td class="pt-1 text-right font-mono font-semibold">$&nbsp;&nbsp;6,234.21</td>
+    </tr>
+  </tbody>
+</table>
+
+So, the largest single expense was the emergency car repair in Washington.
+
+### Was there anything you wish you did differently?
+
+Honestly, I'm really happy with how the trip turned out.
+
+I really enjoyed it, and I learned a lot about myself and about the world.
+I think the interruptions to Mt. Rainer and Arches were unfortunate,
+but I still really enjoyed the trip nonetheless.
+
+### Do you have any general advice?
+
+- Make sure to book campsites as early as possible!
+  - Many prime campsites are booked out months in advance
+  so the sooner you book, the better.
+- Also, make sure to check your tire pressure before you start driving
+after experiencing any significant change in elevation.
+- Consider asking around for the supplies you need before buying them.
+  - Thanks to Aaron for letting me borrow his tent and tripod!
+
 
 ----
 
