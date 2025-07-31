@@ -7,6 +7,7 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import { Image } from "astro:assets";
 import SeriesList from "../components/SeriesList.astro";
 import SeriesCard from "../components/SeriesCard.astro";
+import FooterNav from "../components/FooterNav.astro";
 import CommentFrame from "../components/CommentFrame.astro";
 
 type Blog = CollectionEntry<"blog">["data"];
@@ -86,6 +87,7 @@ const series = (await getCollection("series")).find((s) => s.data.id === seriesI
         <article>
           <slot />
         </article>
+        {series && <FooterNav series={series} orderInSeries={orderInSeries} />}
         <div>
           <CommentFrame />
         </div>

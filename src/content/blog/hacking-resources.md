@@ -635,6 +635,7 @@ Guides:
 **Websites**
 
 - <https://www.aperisolve.com/> ⭐
+- <https://29a.ch/photo-forensics/> ⭐
 - <https://fotoforensics.com/>
 - <https://book.hacktricks.xyz/crypto-and-stego/stego-tricks>
 

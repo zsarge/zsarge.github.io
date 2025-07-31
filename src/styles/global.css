@@ -54,6 +54,11 @@ span[data-highlighted-line] {
   font-family: 'Courier New', Courier, monospace;
 }
 
+iframe {
+  /* thanks to Aaron for encouraging responsive web design */
+  max-width: 100%;
+}
+
 html {
   word-wrap: break-word;
 }

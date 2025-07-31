@@ -1,5 +1,17 @@
 # Zack's Blog
 
+## TODO
+
+- make top bar not sticky
+- Adjust blog link formatting, inspired by [Harsh](https://msfjarvis.dev/)
+- add a little "clap" button for reactions like [Jason](https://www.fromjason.xyz/p/notebook/the-bliss-of-good-enough-an-ode-to-my-moka-pot/)
+- add little smileys like [hyves-smileys](https://hyves-smileys.immerblei.com/).
+- external links [tutorial](https://cosmicthemes.com/blog/astro-mdx-external-link/)
+- resize calendar
+    - think about responsive web design at all
+    - maybe resize panellum viewer and map embed.
+
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:

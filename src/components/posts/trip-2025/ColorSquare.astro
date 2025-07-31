@@ -1,0 +1,14 @@
+---
+import { Astro } from "astro";
+
+interface Props {
+  color: string,
+  size?: string,
+}
+const { color, size="0.8em" } = Astro.props;
+
+---
+
+<div style={`background-color: ${color}; width: ${size}; height: ${size}`} class="rounded-sm inline-block mr-1 ml-1">
+</div>
+

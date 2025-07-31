@@ -1,0 +1,146 @@
+---
+/*
+ * This component is intended to be an easy way to make images be interactive and zoomable.
+ * Example usage
+ *
+ * <Lightbox files={[{ image: "car-on-flatbed.jpg", alt: "car no worky" }, { image: "fudge.jpg", alt: "Fudge at Wall Drug" }]} collection="trip-2025" />
+ * <Lightbox collection="trip-2025" image="car-on-flatbed.jpg" alt="car no worky" /> -->
+ */
+
+import 'glightbox/dist/css/glightbox.css'
+import ServerImage from './ServerImage.astro';
+import getImageUrl from "../lib/getImageServerUrl.ts";
+import { incrementAndGet } from "../lib/idSingleton.ts";
+import { getImageDimensions } from "../lib/getImageDimensions.ts";
+
+// url, title, id, description, alt 
+// expect a list of files
+const { files, format, formats, ...rest } = Astro.props
+// or just one
+const { collection, image, alt, title, description } = rest;
+
+if (files && image) throw new Error("You're not supposed to provide both a list of images and just one image");
+if (!files && !image) throw new Error("You must provide one of files or image");
+if (files && !Array.isArray(files)) throw new Error("files must be an array");
+
+const id = (() => files ? incrementAndGet('lightbox')*1 : null)();
+
+function toClassName(str) {
+  return str.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
+}
+
+function getAspectRatio(imageName) {
+  const dimensions = getImageDimensions(imageName);
+  if (dimensions) {
+    const { height, width } = dimensions;
+    return `${width}/${height}`;
+  }
+  return '';
+}
+
+function getAnchorStyle(imageName) {
+  return {
+    display: "block",
+    aspectRatio: getAspectRatio(imageName),
+  };
+}
+
+// at this point, we must either have files or an image
+
+---
+
+{ image && // we are just given one image
+  <a
+    href={getImageUrl(image, collection)}
+    class="glightbox glightbox-link"
+    style={getAnchorStyle(image)}
+    data-title=""
+    data-description={description || alt} >
+    <ServerImage {...{ collection, image, alt, title, description}} class="glightbox-image" loading="lazy" />
+  </a>
+
+}
+
+{ files && // we are given a collection
+    <section class="glightbox-images" id={`gallery-${id}`}>
+    {
+      files.map((f) => (
+        <a
+          href={getImageUrl(f.image, collection || f.collection)}
+          class="glightbox glightbox-link"
+          style={getAnchorStyle(f.image)}
+          data-gallery={`gallery-${id}`}
+          data-title=""
+          data-description={f.alt || f.description} >
+            <ServerImage collection={collection || f.collection} {...f} {format} {formats} class="glightbox-image" loading="lazy" />
+        </a>
+      ))
+    }
+
+    </section>
+}
+
+
+<script>
+  import GLightbox from 'glightbox'
+
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+  })
+</script>
+
+<style>
+.glightbox-images {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr));
+
+  *,
+  *::after,
+  *::before {
+    all: unset;
+    font-size: 1rem;
+  }
+}
+
+.glightbox-link {
+  block-size: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  inline-size: 100%;
+  /* aspect-ratio: 1/1; */
+  object-fit: contain;
+}
+
+.glightbox-image {
+  /* aspect-ratio: 1/1; */
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+</style>
+
+<style is:global>
+/* Overrides */
+.gslide-description {
+  background-color: #1c1e1f !important;
+  color: #d2d2d2 !important;
+}
+.gslide-title {
+  color: #fff !important;
+}
+.gslide-title  {
+  margin-bottom: 0 !important;
+}
+.gslide-title + .gslide-desc {
+  margin-top: 12px !important;
+}
+
+/* https://github.com/biati-digital/glightbox/issues/22#issuecomment-418204785 */
+.glightbox-open {
+  height: auto;
+}
+
+</style>
+

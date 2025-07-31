@@ -1,0 +1,50 @@
+---
+// Note that, due to programmer laziness, the getImageDimensions function expects
+// file names to 1:1 correspond to image sizes.
+// If there are two images with the same name and different sizes, there
+// may be a wrong answer.
+
+import { Astro } from "astro";
+import getImageUrl from "../lib/getImageServerUrl.ts";
+import { getImageDimensions } from "../lib/getImageDimensions.ts";
+
+interface Props {
+  image: string, // raw filename
+  formats: string[],
+  collection?: string;
+  alt?: string;
+}
+const { image, collection, alt, ...rest } = Astro.props;
+let { format, formats, ...unusedProps } = rest;
+
+/**
+ * The last format will be the target of the image element.
+ * Formats are included in order.
+ */
+formats ??= [format] || [ "avif", "webp", "jpg" ];
+
+/**
+ * Returns true when the file extension isn't in the filename
+ */
+function isNot(fileExtension) {
+  return !image.includes(`.${fileExtension}`);
+}
+
+function urlFor(fileExtension) {
+  if (image.substring(image.length-6, image.length).includes(`.${fileExtension}`)) {
+    return getImageUrl(image, collection);
+  } else {
+    return getImageUrl(image, collection, fileExtension);
+  }
+}
+
+---
+
+<picture class="p-0 m-0">
+  {formats.slice(0,-1).map((format) => 
+    <source srcset={urlFor(format)} type={`image/${format}`} />
+  )}
+  <img src={urlFor(formats.at(-1))} alt={alt} {...unusedProps} {...getImageDimensions(image)} />
+</picture>
+
+

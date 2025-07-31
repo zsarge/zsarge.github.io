@@ -12,6 +12,7 @@ export async function GET(context) {
     trailingSlash: false,
     items: posts
       .filter((post) => !post.data.planned)
+      .filter((post) => !post.data.hidden)
       .sort((a, b) => (b.data.updatedDate || b.data.pubDate) - (a.data.updatedDate || a.data.pubDate))
       .map((post) => ({
         ...post.data,

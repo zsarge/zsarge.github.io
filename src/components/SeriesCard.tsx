@@ -9,27 +9,38 @@ interface Props {
   order?: number;
 }
 
+interface AddClass {
+  className: string;
+  prefix?: string;
+}
+
+
 export default function ({ series, posts, order }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+
+  function XofY({ className, prefix }: AddClass) {
+    return <span className={className}>{`${
+      order ? `${prefix||""}${order} of ${posts.length}` : `${posts.length} Parts`
+    }`}</span>;
+  }
 
   const handleOnClick = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className="bg-slate-300 dark:bg-slate-800 rounded-lg">
+    <div className="bg-slate-200 dark:bg-slate-800 rounded-lg">
       <button
-        className={`p-5 rounded-lg text-left space-y-2 hover:bg-slate-400 dark:hover:bg-slate-700 min-w-full ${
-          isOpen ? "border-b-4 border-blue-600 rounded-b-lg bg-slate-400 dark:bg-slate-700" : ""
+        className={`p-5 rounded-lg text-left space-y-2 hover:bg-slate-300 dark:hover:bg-slate-700 min-w-full ${
+          isOpen ? "border-b-4 border-blue-600 rounded-b-lg bg-slate-300 dark:bg-slate-700" : ""
         }`}
         onClick={handleOnClick}
       >
         <div className="flex items-center justify-between">
           <div className="flex items justify-center space-x-2">
             <h2 className="text-xl text-black dark:text-white font-bold">{series.data.title}</h2>
-            <span className="text-xl">{`${
-              order ? ` • ${order} of ${posts.length}` : ` • ${posts.length} Parts`
-            }`}</span>
+            <div className="text-xl hidden md:block">•</div>
+            <XofY className="text-xl hidden md:block" />
           </div>
           <div className="text-black dark:text-white">
             {isOpen ? (
@@ -38,6 +49,9 @@ export default function ({ series, posts, order }: Props) {
               <MaterialSymbolsKeyboardArrowDownRounded style={{ fontSize: "1.5em" }} />
             )}
           </div>
+        </div>
+        <div className=" block md:hidden">
+          (<XofY prefix="Post " className="text-md" />)
         </div>
         <p>{series.data.description}</p>
       </button>

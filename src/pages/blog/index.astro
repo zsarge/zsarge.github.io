@@ -5,7 +5,8 @@ import PostsList from "../../components/PostsList.astro";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .filter((post) => !post.data.planned);
+  .filter((post) => !post.data.planned)
+  .filter((post) => !post.data.hidden);
 ---
 
 <BaseLayout title="All posts">
