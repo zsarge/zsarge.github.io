@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+import ExternalLink from "../../components/ExternalLink.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -18,5 +19,5 @@ const { readingTime } = remarkPluginFrontmatter;
 ---
 
 <BlogPostLayout readingTime={readingTime} headings={headings} {...post.data}>
-  <Content />
+  <Content components={{ a: ExternalLink }} />
 </BlogPostLayout>
