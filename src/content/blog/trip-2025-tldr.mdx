@@ -13,7 +13,7 @@ import ServerImage from "../../components/ServerImage.astro";
 import Lightbox from "../../components/Lightbox.astro";
 import SingleCenteredPhoto from "../../components/SingleCenteredPhoto.astro";
 import QuoteBlock from "../../components/QuoteBlock.astro";
-import ShowPeople from "../../components/posts/trip-2025-southwest/ShowPeople.tsx";
+import ShareMessageTLDR from "../../components/posts/trip-2025/ShareMessageTLDR.tsx";
 import PanellumViewer from "../../components/PanellumViewer.astro";
 import getServerUrl from "../../lib/getImageServerUrl.ts";
 import ColorSquare from "../../components/posts/trip-2025/ColorSquare.astro";
@@ -21,6 +21,8 @@ import ColorSquare from "../../components/posts/trip-2025/ColorSquare.astro";
 ----
 
 TL;DR: I took a road trip. 7,000 miles. 300 hours of driving over 43 days. Passing through 17 states, and staying in 13.
+
+<ShareMessageTLDR client:only="react" />
 
 <div>[The full story is available here](/blog/trip-2025).</div>
 <div>What follows is a quick overview for readers in a hurry.</div>
