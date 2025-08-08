@@ -2,14 +2,46 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostsList from "../../components/index/PostsList.astro";
+import _ from "lodash";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .filter((post) => !post.data.planned)
   .filter((post) => !post.data.hidden);
+
+function getDateStr(date) {
+  const display = date.toLocaleString('default', {
+	month: 'long',
+	year: 'numeric'
+  });
+  const sortable = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+  return JSON.stringify({ display, sortable });
+}
+
+function toKebabCase(str: string): string {
+  return str
+    .match(/[A-Z]?[a-z]+|[0-9]+/g)!
+    .map(word => word.toLowerCase())
+    .join('-');
+}
+
+const postsGroupedByMonth = _.groupBy(posts, (post) => getDateStr(post.data.pubDate));
+
+const sortedPosts = Object.entries(postsGroupedByMonth).sort(([key1, _], [key2, __]) => {
+  let date1 = JSON.parse(key1).sortable;
+  let date2 = JSON.parse(key2).sortable;
+  return -date1.localeCompare(date2);
+});
+
 ---
 
 <BaseLayout title="All posts">
   <h1 class="text-black dark:text-white pb-10 text-4xl">All Posts</h1>
-  <PostsList posts={posts} />
+  <div class="space-y-4">
+	{sortedPosts.map(([monthInfo, posts]) => <>
+		<h2 class="text-2xl font-bold">{JSON.parse(monthInfo).display}</h2>
+		<PostsList posts={posts} />
+	  </>
+	)}
+  </div>
 </BaseLayout>
