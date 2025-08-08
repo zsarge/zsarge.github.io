@@ -1,15 +1,15 @@
 ---
-import PostsList from "../components/PostsList.astro";
+import PostsList from "../components/index/PostsList.astro";
+import SeriesList from "../components/index/SeriesList.astro";
+import ShowMorePosts from "../components/index/ShowMorePosts.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import SeriesList from "../components/SeriesList.astro";
 import Age from "../components/Age";
 import QuoteBlock from "../components/QuoteBlock.astro";
 import { RiContactsFill } from "@remixicon/react";
 import SmallVoice from "../assets/general/smallvoice.gif";
 import Cassian from "../assets/general/cassian-button.avif";
 import Malice from "../assets/general/malice.png";
-import Zack from "../assets/general/";
 import { Image } from "astro:assets";
 
 const posts = await getCollection("blog");
@@ -76,7 +76,10 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
             >View all</a
           >
         </div>
-        <PostsList posts={sortedPosts} />
+        <div class="space-y-4">
+          <PostsList posts={sortedPosts} />
+          <ShowMorePosts />
+        </div>
       </div>
       {
         featuredSeries.length > 0 && (
