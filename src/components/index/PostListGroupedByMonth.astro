@@ -1,13 +1,13 @@
 ---
+/**
+ * This assumes that the posts are sorted beforehand.
+ */
+
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import PostListGroupedByMonth from "../../components/index/PostListGroupedByMonth.astro";
+import PostsList from "../../components/index/PostsList.astro";
 import _ from "lodash";
 
-const posts = (await getCollection("blog"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .filter((post) => !post.data.planned)
-  .filter((post) => !post.data.hidden);
+const { posts } = Astro.props;
 
 function getDateStr(date) {
   const display = date.toLocaleString('default', {
@@ -35,7 +35,10 @@ const sortedPosts = Object.entries(postsGroupedByMonth).sort(([key1, _], [key2, 
 
 ---
 
-<BaseLayout title="All posts">
-  <h1 class="text-black dark:text-white pb-10 text-4xl">All Posts</h1>
-  <PostListGroupedByMonth posts={posts} />
-</BaseLayout>
+<div class="space-y-4">
+  {sortedPosts.map(([monthInfo, posts]) => <>
+      <h2 class="text-2xl font-bold">{JSON.parse(monthInfo).display}</h2>
+      <PostsList posts={posts} />
+    </>
+  )}
+</div>
