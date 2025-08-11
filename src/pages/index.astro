@@ -10,6 +10,7 @@ import { RiContactsFill } from "@remixicon/react";
 import SmallVoice from "../assets/general/smallvoice.gif";
 import Cassian from "../assets/general/cassian-button.avif";
 import Malice from "../assets/general/malice.png";
+import Loef from "../assets/general/loef.png";
 import { Image } from "astro:assets";
 
 const posts = await getCollection("blog");
@@ -112,6 +113,9 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
           </a>
           <a href="https://malice.site" target="_blank" class="m-1">
             <Image src={Malice} alt="malice.site" />
+          </a>
+          <a href="https://loef.gay" target="_blank" class="m-1">
+            <Image src={Loef} alt="loef.gay" />
           </a>
         </div>
         <div class="text-sm leading-6">
