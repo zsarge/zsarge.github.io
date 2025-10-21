@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AwesomeButtonWrapper from "../components/AwesomeButtonWrapper";
+---
+
+<BaseLayout>
+  <div class="space-y-10">
+    <div class="space-y-4">
+      <h1 class="text-4xl text-black dark:text-white font-black">Aaron Sound Board</h1>
+    </div>
+  </div>
+  <div>
+    <AwesomeButtonWrapper
+      client:only="react"
+      type="primary"
+      size="medium"
+      onClick={() => alert("Button clicked!")}
+    >
+      Click Me!
+    </AwesomeButtonWrapper>
+  </div>
+</BaseLayout>
