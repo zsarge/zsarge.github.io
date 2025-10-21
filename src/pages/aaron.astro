@@ -1,29 +1,35 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import AwesomeButtonWrapper from "../components/AwesomeButtonWrapper";
+import AaronSoundButton from "../components/AaronSoundButton";
 import CatImage from "../../src/assets/aaron/catimage.png";
+import ohnoSound from "../../src/assets/aaron/ohno.mp3";
 import { Image } from "astro:assets";
 ---
 
 <BaseLayout>
-  <div class="space-y-10">
-    <div class="space-y-4">
-      <h1 class="text-4xl text-black dark:text-white font-black">Aaron Sound Board</h1>
-    </div>
+  <div class="mb-10">
+    <h1 class="text-4xl text-black dark:text-white font-black">Aaron Sound Board</h1>
   </div>
-  <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-    <AwesomeButtonWrapper
-      client:only="react"
-      type="primary"
-      size="large"
-      style={{
-        width: "100vw",
-        height: "30vh",
-        fontSize: "7vw",
-      }}
-      onClick={() => console.log("Button clicked!")}
-    >
-      <Image src={CatImage} alt="cat image" />
-    </AwesomeButtonWrapper>
+
+  <!-- This is going to play a sound -->
+  <div>
+    <h1 class="text-2xl text-black text-center dark:text-white font-black">
+      The name of the sound
+    </h1>
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <AaronSoundButton
+        client:only="react"
+        audioSrc={ohnoSound}
+        type="primary"
+        size="large"
+        style={{
+          width: "100vw",
+          height: "30vh",
+          fontSize: "7vw",
+        }}
+      >
+        <Image src={CatImage} alt="cat image" height={200} />
+      </AaronSoundButton>
+    </div>
   </div>
 </BaseLayout>
