@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AwesomeButtonWrapper from "../components/AwesomeButtonWrapper";
+import CatImage from "../../src/assets/aaron/catimage.png";
+import { Image } from "astro:assets";
 ---
 
 <BaseLayout>
@@ -9,14 +11,19 @@ import AwesomeButtonWrapper from "../components/AwesomeButtonWrapper";
       <h1 class="text-4xl text-black dark:text-white font-black">Aaron Sound Board</h1>
     </div>
   </div>
-  <div>
+  <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
     <AwesomeButtonWrapper
       client:only="react"
       type="primary"
-      size="medium"
-      onClick={() => alert("Button clicked!")}
+      size="large"
+      style={{
+        width: "100vw",
+        height: "30vh",
+        fontSize: "7vw",
+      }}
+      onClick={() => console.log("Button clicked!")}
     >
-      Click Me!
+      <Image src={CatImage} alt="cat image" />
     </AwesomeButtonWrapper>
   </div>
 </BaseLayout>
