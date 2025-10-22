@@ -2,9 +2,66 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AaronSoundButton from "../components/AaronSoundButton";
 import RandomQuote from "../components/RandomQuote";
-import CatImage from "../../src/assets/aaron/catimage.png";
-import ohnoSound from "../../src/assets/aaron/ohno.mp3";
 import { Image } from "astro:assets";
+
+// Import all images
+import angryImg from "../assets/aaron/images/angry.png";
+import blemImg from "../assets/aaron/images/blem.png";
+import flumpImg from "../assets/aaron/images/flump.png";
+import happyToSeeYouImg from "../assets/aaron/images/happy-to-see-you.png";
+import interestedImg from "../assets/aaron/images/interested.png";
+import kingImg from "../assets/aaron/images/king.png";
+import loafImg from "../assets/aaron/images/loaf.png";
+import lookingUpImg from "../assets/aaron/images/looking-up.png";
+import pawImg from "../assets/aaron/images/paw.png";
+import photogenicImg from "../assets/aaron/images/photogenic.png";
+import poorLittleBabyImg from "../assets/aaron/images/poor-little-baby.png";
+import sitImg from "../assets/aaron/images/sit.png";
+import springImg from "../assets/aaron/images/spring.png";
+import theVoidImg from "../assets/aaron/images/the-void.png";
+import watImg from "../assets/aaron/images/wat.png";
+import waveImg from "../assets/aaron/images/wave.png";
+import wizardImg from "../assets/aaron/images/wizard.png";
+
+// Import all sounds
+import agreeSound from "../assets/aaron/mp3s/agree.mp3";
+import bowowSound from "../assets/aaron/mp3s/bowow.mp3";
+import caveatSound from "../assets/aaron/mp3s/caveat.mp3";
+import doublePowerSound from "../assets/aaron/mp3s/double-power.mp3";
+import eliminated3Sound from "../assets/aaron/mp3s/eliminated3.mp3";
+import enjoyingMyselfSound from "../assets/aaron/mp3s/enjoying-myself.mp3";
+import froggySound from "../assets/aaron/mp3s/froggy.mp3";
+import moreToThePointSound from "../assets/aaron/mp3s/more-to-the-point.mp3";
+import needIPullSound from "../assets/aaron/mp3s/need-i-pull.mp3";
+import offTheWallSound from "../assets/aaron/mp3s/off-the-wall.mp3";
+import oneHourPerNightSound from "../assets/aaron/mp3s/one-hour-per-night.mp3";
+import onlyOnTuesdaySound from "../assets/aaron/mp3s/only-on-tuesday.mp3";
+import photographer2Sound from "../assets/aaron/mp3s/photographer2.mp3";
+import pureAngerSound from "../assets/aaron/mp3s/pure-anger.mp3";
+import thatsItSound from "../assets/aaron/mp3s/thats-it.mp3";
+import tomorrowSound from "../assets/aaron/mp3s/tomorrow.mp3";
+import waitSound from "../assets/aaron/mp3s/wait.mp3";
+
+// Define the sound buttons configuration
+const soundButtons = [
+  { name: "Agree", sound: agreeSound, image: kingImg },
+  { name: "Bowow", sound: bowowSound, image: angryImg },
+  { name: "Caveat", sound: caveatSound, image: wizardImg },
+  { name: "Double Power", sound: doublePowerSound, image: springImg },
+  { name: "Eliminated", sound: eliminated3Sound, image: theVoidImg },
+  { name: "Enjoying Myself", sound: enjoyingMyselfSound, image: happyToSeeYouImg },
+  { name: "Froggy", sound: froggySound, image: blemImg },
+  { name: "More to the Point", sound: moreToThePointSound, image: interestedImg },
+  { name: "Need I Pull", sound: needIPullSound, image: pawImg },
+  { name: "Off the Wall", sound: offTheWallSound, image: watImg },
+  { name: "One Hour Per Night", sound: oneHourPerNightSound, image: sitImg },
+  { name: "Only on Tuesday", sound: onlyOnTuesdaySound, image: lookingUpImg },
+  { name: "Photographer", sound: photographer2Sound, image: photogenicImg },
+  { name: "Pure Anger", sound: pureAngerSound, image: flumpImg },
+  { name: "That's It", sound: thatsItSound, image: waveImg },
+  { name: "Tomorrow", sound: tomorrowSound, image: loafImg },
+  { name: "Wait", sound: waitSound, image: poorLittleBabyImg },
+];
 ---
 
 <BaseLayout>
@@ -13,25 +70,28 @@ import { Image } from "astro:assets";
     <RandomQuote client:load />
   </div>
 
-  <!-- This is going to play a sound -->
-  <div>
-    <h1 class="text-2xl text-black text-center dark:text-white font-black">
-      The name of the sound
-    </h1>
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-      <AaronSoundButton
-        client:only="react"
-        audioSrc={ohnoSound}
-        type="primary"
-        size="large"
-        style={{
-          width: "100vw",
-          height: "30vh",
-          fontSize: "7vw",
-        }}
-      >
-        <Image src={CatImage} alt="cat image" height={200} />
-      </AaronSoundButton>
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
+    {
+      soundButtons.map((button) => (
+        <div class="flex flex-col items-center">
+          <h2 class="text-xl text-black text-center dark:text-white font-bold mb-2">
+            {button.name}
+          </h2>
+          <AaronSoundButton
+            client:only="react"
+            audioSrc={button.sound}
+            type="primary"
+            size="large"
+            style={{
+              width: "100%",
+              minHeight: "200px",
+              fontSize: "1rem",
+            }}
+          >
+            <Image src={button.image} alt={`${button.name} - Aaron`} height={150} />
+          </AaronSoundButton>
+        </div>
+      ))
+    }
   </div>
 </BaseLayout>
