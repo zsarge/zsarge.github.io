@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import AaronSoundButton from "../components/AaronSoundButton";
+import SoundboardWithSettings from "../components/SoundboardWithSettings";
 import RandomQuote from "../components/RandomQuote";
 import { Image } from "astro:assets";
 
@@ -75,30 +75,7 @@ const soundButtons = [
     </div>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
-    {
-      soundButtons.map((button) => (
-        <div class="flex flex-col items-center">
-          <h2 class="text-xl text-black text-center dark:text-white font-bold mb-2">
-            {button.name}
-          </h2>
-          <AaronSoundButton
-            client:only="react"
-            audioSrc={button.sound}
-            type="primary"
-            size="large"
-            style={{
-              width: "100%",
-              minHeight: "200px",
-              fontSize: "1rem",
-            }}
-          >
-            <Image src={button.image} alt={`${button.name} - Aaron`} height={150} />
-          </AaronSoundButton>
-        </div>
-      ))
-    }
-  </div>
+  <SoundboardWithSettings client:load soundButtons={soundButtons} />
 
   <div class="mt-12 mb-6 text-center">
     <p class="text-sm text-gray-600 dark:text-gray-400">
