@@ -7,6 +7,7 @@ import { getCollection } from "astro:content";
 import Age from "../components/Age";
 import QuoteBlock from "../components/QuoteBlock.astro";
 import { RiContactsFill } from "@remixicon/react";
+import { RiVolumeUpFill } from "@remixicon/react";
 import SmallVoice from "../assets/general/smallvoice.gif";
 import Cassian from "../assets/general/cassian-button.avif";
 import Malice from "../assets/general/malice.png";
@@ -41,7 +42,8 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
         Hi! &#128075; My name is <span
           class="underline underline-offset-2 decoration-fuchsia-600 dark:decoration-fuchsia-400"
         >
-          Zack Sargent</span>.
+          Zack Sargent</span
+        >.
       </h1>
       <p>
         Welcome to my blog! I'm a <Age client:load /> year-old software engineer who needs to finish
@@ -99,6 +101,21 @@ const featuredSeries = (await getCollection("series")).filter((s) => s.data.feat
           </div>
         )
       }
+
+      <br />
+
+      <a
+        href="/aaron"
+        class="flex flex-col items-start rounded-lg p-5 bg-slate-300 hover:bg-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700"
+      >
+        <div class="text-center w-full text-center font-bold text-white">
+          <div class="flex items-center justify-center gap-2">
+            <RiVolumeUpFill className="w-5 h-5" />
+            <span>Aaron Soundboard</span>
+            <RiVolumeUpFill className="w-5 h-5" />
+          </div>
+        </div>
+      </a>
 
       <br />
 
