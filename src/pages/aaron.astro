@@ -13,6 +13,7 @@ import interestedImg from "../assets/aaron/images/interested.png";
 import kingImg from "../assets/aaron/images/king.png";
 import loafImg from "../assets/aaron/images/loaf.png";
 import lookingUpImg from "../assets/aaron/images/looking-up.png";
+import ohNoImg from "../assets/aaron/images/oh-no.png";
 import pawImg from "../assets/aaron/images/paw.png";
 import photogenicImg from "../assets/aaron/images/photogenic.png";
 import poorLittleBabyImg from "../assets/aaron/images/poor-little-baby.png";
@@ -34,6 +35,7 @@ import froggySound from "../assets/aaron/mp3s/froggy.mp3";
 import moreToThePointSound from "../assets/aaron/mp3s/more-to-the-point.mp3";
 import needIPullSound from "../assets/aaron/mp3s/need-i-pull.mp3";
 import offTheWallSound from "../assets/aaron/mp3s/off-the-wall.mp3";
+import ohNoSound from "../assets/aaron/mp3s/oh-no.mp3";
 import oneHourPerNightSound from "../assets/aaron/mp3s/one-hour-per-night.mp3";
 import onlyOnTuesdaySound from "../assets/aaron/mp3s/only-on-tuesday.mp3";
 import photographer2Sound from "../assets/aaron/mp3s/photographer2.mp3";
@@ -54,6 +56,7 @@ const soundButtons = [
   { name: "More to the Point", sound: moreToThePointSound, image: interestedImg },
   { name: "Need I Pull", sound: needIPullSound, image: pawImg },
   { name: "Off the Wall", sound: offTheWallSound, image: watImg },
+  { name: "Oh No", sound: ohNoSound, image: ohNoImg },
   { name: "One Hour Per Night", sound: oneHourPerNightSound, image: sitImg },
   { name: "Only on Tuesday", sound: onlyOnTuesdaySound, image: lookingUpImg },
   { name: "Photographer", sound: photographer2Sound, image: photogenicImg },
@@ -66,8 +69,10 @@ const soundButtons = [
 
 <BaseLayout>
   <div class="mb-10">
-    <h1 class="text-4xl text-black dark:text-white font-black">Aaron Sound Board</h1>
-    <RandomQuote client:load />
+    <h1 class="text-4xl text-black dark:text-white font-black text-center">Aaron Sound Board</h1>
+    <div class="mt-2">
+      <RandomQuote client:load />
+    </div>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
