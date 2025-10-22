@@ -4,6 +4,7 @@ const quotes = [
   "No Aarons were harmed in the making of this website",
   "Made with 100% sounds",
   "To be loved is to be known",
+  "Consent is the most important part of wiretapping",
 ];
 
 const RandomQuote: React.FC = () => {

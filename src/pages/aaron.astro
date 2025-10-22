@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SoundboardWithSettings from "../components/SoundboardWithSettings";
 import RandomQuote from "../components/RandomQuote";
+import Milner from "../assets/general/milner.png";
 import { Image } from "astro:assets";
 
 // Import all images
@@ -78,13 +79,25 @@ const soundButtons = [
   <SoundboardWithSettings client:load soundButtons={soundButtons} />
 
   <div class="mt-12 mb-6 text-center">
-    <p class="text-sm text-gray-600 dark:text-gray-400">
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
       Cat images from <a
         href="https://www.tumblr.com/transparentcatpngs"
         target="_blank"
         rel="noopener noreferrer"
         class="underline hover:text-gray-800 dark:hover:text-gray-200">transparentcatpngs</a
       >
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      If you have a sound to add, feel free to
+      <a href="/contact" class="underline hover:text-gray-800 dark:hover:text-gray-200">
+        contact me</a
+      >.
+    </p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+      Support more sounds:
+      <a href="https://milner.fyi" target="_blank" class="m-1">
+        <Image src={Milner} alt="milner.fyi" class="inline-block" />
+      </a>
     </p>
   </div>
 </BaseLayout>
