@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AaronSoundButton from "../components/AaronSoundButton";
+import RandomQuote from "../components/RandomQuote";
 import CatImage from "../../src/assets/aaron/catimage.png";
 import ohnoSound from "../../src/assets/aaron/ohno.mp3";
 import { Image } from "astro:assets";
@@ -9,6 +10,7 @@ import { Image } from "astro:assets";
 <BaseLayout>
   <div class="mb-10">
     <h1 class="text-4xl text-black dark:text-white font-black">Aaron Sound Board</h1>
+    <RandomQuote client:load />
   </div>
 
   <!-- This is going to play a sound -->
