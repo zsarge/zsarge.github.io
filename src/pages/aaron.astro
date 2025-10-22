@@ -44,6 +44,8 @@ import pureAngerSound from "../assets/aaron/mp3s/pure-anger.mp3";
 import thatsItSound from "../assets/aaron/mp3s/thats-it.mp3";
 import tomorrowSound from "../assets/aaron/mp3s/tomorrow.mp3";
 import waitSound from "../assets/aaron/mp3s/wait.mp3";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
 
 // Define the sound buttons configuration
 const soundButtons = [
@@ -68,36 +70,52 @@ const soundButtons = [
 ];
 ---
 
-<BaseLayout>
-  <div class="mb-10">
-    <h1 class="text-4xl text-black dark:text-white font-black text-center">Aaron Sound Board</h1>
-    <div class="mt-2">
-      <RandomQuote client:load />
-    </div>
-  </div>
+<!doctype html>
+<html lang="en" class="font-sans">
+  <head>
+    <BaseHead title="Aaron Soundboard" description="Aaron sounds" />
+  </head>
+  <body
+    class="relative container mx-auto md:max-w-4xl px-4 space-y-10 flex flex-col justify-between h-screen text-slate-700 bg-slate-100 dark:text-slate-300 dark:bg-slate-900"
+  >
+    <Header hideLogo="true" />
+    <main class="flex-grow pt-20">
+      <div class="mb-10">
+        <h1 class="text-4xl text-black dark:text-white font-black text-center">Aaron Soundboard</h1>
+        <div class="mt-2">
+          <RandomQuote client:load />
+        </div>
+      </div>
 
-  <SoundboardWithSettings client:load soundButtons={soundButtons} />
+      <SoundboardWithSettings client:load soundButtons={soundButtons} />
 
-  <div class="mt-12 mb-6 text-center">
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      Cat images from <a
-        href="https://www.tumblr.com/transparentcatpngs"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="underline hover:text-gray-800 dark:hover:text-gray-200">transparentcatpngs</a
-      >
-    </p>
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      If you have a sound to add, feel free to
-      <a href="/contact" class="underline hover:text-gray-800 dark:hover:text-gray-200">
-        contact me</a
-      >.
-    </p>
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      Support more sounds:
-      <a href="https://milner.fyi" target="_blank" class="m-1">
-        <Image src={Milner} alt="milner.fyi" class="inline-block" />
-      </a>
-    </p>
-  </div>
-</BaseLayout>
+      <div class="mt-12 mb-12 text-center">
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          Cat images from <a
+            href="https://www.tumblr.com/transparentcatpngs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-gray-800 dark:hover:text-gray-200">transparentcatpngs</a
+          >
+        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          If you have a sound to add, feel free to
+          <a href="/contact" class="underline hover:text-gray-800 dark:hover:text-gray-200">
+            contact me</a
+          >.
+        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          Support more sounds:
+          <a href="https://milner.fyi" target="_blank" class="m-1">
+            <Image src={Milner} alt="milner.fyi" class="inline-block" />
+          </a>
+        </p>
+        <p>
+          <a href="/" class="underline hover:text-gray-800 dark:hover:text-gray-200">
+            Go back home
+          </a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
