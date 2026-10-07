@@ -235,6 +235,18 @@ Here are some wikis all about cybersecurity. These are great resources to link p
 
 ---
 
+## Hacking magazines & blogs
+
+To all college students, <https://phrack.org/> and <https://www.2600.com/> are great hacking magazines that have probably been publishing in-depth articles longer than you've been alive.
+
+<https://krebsonsecurity.com/> is always informative and worth a read.
+
+Wikipedia has [its own category for hacking magazines](https://en.wikipedia.org/wiki/Category:Hacker_magazines).
+
+You'll get a lot of great information via RSS feeds by passionate people publishing perspectives for free. So, grab yourself an RSS reader like [Feeder](https://feeder.co/) or [FeedBro](https://nodetics.com/feedbro/) or [whatever](https://en.wikipedia.org/wiki/Comparison_of_feed_aggregators) and get reading! You can start with a blogroll [like this](https://www.lizwigg.com/pages/blogroll.html).
+
+---
+
 ### Lists of resources
 
 Not enough ideas for you? Check out these lists!
