@@ -144,6 +144,7 @@ XSS resources recommended by [thehacker.recipes](https://www.thehacker.recipes/w
 ### Reverse Engineering / Binary Exploitation
 
 - https://ctf101.org/binary-exploitation/overview/
+- https://beginners.re/
 
 **Tools:**
 
